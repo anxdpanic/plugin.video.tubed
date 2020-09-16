@@ -8,6 +8,6 @@
     See LICENSES/GPL-2.0-only.txt for more information.
 """
 
-from resources.lib.src import addon
 
-addon.invoke()
+def invoke():
+    pass
