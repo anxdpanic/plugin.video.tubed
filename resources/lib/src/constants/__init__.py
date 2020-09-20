@@ -8,8 +8,11 @@
     See LICENSES/GPL-2.0-only.txt for more information.
 """
 
-import sys
 
-from resources.lib.src import addon  # pylint: disable=import-error
+from .modes import MODES
 
-addon.invoke(sys.argv)
+# the actual constants
+__all__ = ['MODES']
+
+# the modules containing the constants
+__all__ += ['modes']
