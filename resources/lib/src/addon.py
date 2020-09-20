@@ -9,8 +9,11 @@
 """
 
 from .constants import MODES
+from .lib.context import Context
 from .lib.routing import Router
 from .lib.utils import parse_query
+
+CONTEXT = Context()
 
 router = Router()
 
@@ -18,8 +21,13 @@ router = Router()
 @router.route(MODES.MAIN)
 def _main_menu():
     from .routes import main_menu  # pylint: disable=import-outside-toplevel
-    main_menu.invoke()
+    main_menu.invoke(CONTEXT)
 
 
 def invoke(argv):
-    router.invoke(parse_query(argv[2]))
+    global CONTEXT  # pylint: disable=global-statement
+
+    CONTEXT.argv = argv
+    CONTEXT.query = parse_query(argv[2])
+
+    router.invoke(CONTEXT.query)

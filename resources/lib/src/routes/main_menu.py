@@ -9,5 +9,5 @@
 """
 
 
-def invoke():
-    pass
+def invoke(context):
+    _ = context
