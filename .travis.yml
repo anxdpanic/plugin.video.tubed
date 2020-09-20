@@ -2,6 +2,11 @@ language: python
 python:
   - "3.6"
 
+branches:
+  except:
+    - pr_matrix
+
+
 env:
   global:
     - ADDON_CHECK_PATH=$HOME/addon-check/
