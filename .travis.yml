@@ -15,7 +15,7 @@ env:
 
 before_install:
   - |
-    git clone https://github.com/xbmc/addon-check $ADDON_CHECK_PATH
+    git clone --single-branch --branch indev https://github.com/anxdpanic/addon-check.git $ADDON_CHECK_PATH
 
 install:
   - pip install isort
