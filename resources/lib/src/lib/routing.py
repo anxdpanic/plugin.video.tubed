@@ -35,36 +35,37 @@ class Router:
 
         return decorator
 
-    def invoke(self, mode, queries):
+    def invoke(self, query):
+        mode = query.get('mode')
 
         if mode not in self._functions:
-            message = 'Attempt to invoke an unregistered mode %s' % mode
+            message = 'Attempted to invoke an unregistered mode %s' % mode
             raise Exception(message)
 
         args = []
         kwargs = {}
-        unused_args = queries.copy()
+        unused = query.copy()
 
         if self._args[mode]:
             for arg in self._args[mode]:
                 arg = arg.strip()
-                if arg in queries:
-                    args.append(self._cast(queries[arg]))
-                    del unused_args[arg]
+                if arg in query:
+                    args.append(self._cast(query[arg]))
+                    del unused[arg]
                     continue
 
-                message = 'Mode %s requested argument %s but it was not provided.' % (mode, arg)
+                message = 'Mode %s requested argument %s which was not provided.' % (mode, arg)
                 raise Exception(message)
 
         if self._kwargs[mode]:
             for arg in self._kwargs[mode]:
                 arg = arg.strip()
-                if arg in queries:
-                    kwargs[arg] = self._cast(queries[arg])
-                    del unused_args[arg]
+                if arg in query:
+                    kwargs[arg] = self._cast(query[arg])
+                    del unused[arg]
 
-        if 'mode' in unused_args:
-            del unused_args['mode']
+        if 'mode' in unused:
+            del unused['mode']
 
         self._functions[mode](*args, **kwargs)
 

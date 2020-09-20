@@ -22,7 +22,4 @@ def _main_menu():
 
 
 def invoke(argv):
-    query = parse_query(argv[2])
-    mode = query.get('mode')
-
-    router.invoke(mode, query)
+    router.invoke(parse_query(argv[2]))
