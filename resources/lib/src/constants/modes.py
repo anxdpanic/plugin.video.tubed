@@ -8,8 +8,8 @@
     See LICENSES/GPL-2.0-only.txt for more information.
 """
 
-import sys
+from enum import Enum
 
-from resources.lib.src import addon  # pylint: disable=import-error
 
-addon.invoke(sys.argv)
+class MODES(Enum):
+    MAIN = 1

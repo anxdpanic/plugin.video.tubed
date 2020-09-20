@@ -8,8 +8,6 @@
     See LICENSES/GPL-2.0-only.txt for more information.
 """
 
-import sys
 
-from resources.lib.src import addon  # pylint: disable=import-error
-
-addon.invoke(sys.argv)
+def invoke():
+    pass

@@ -8,4 +8,4 @@
     See LICENSES/GPL-2.0-only.txt for more information.
 """
 
-__all__ = ['lib', 'addon', 'service']
+__all__ = ['lib', 'routes', 'addon', 'service']
