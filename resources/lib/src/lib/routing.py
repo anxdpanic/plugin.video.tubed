@@ -75,10 +75,10 @@ class Router:
         if lowercase == 'true':
             return True
 
-        elif lowercase == 'false':
+        if lowercase == 'false':
             return False
 
-        elif lowercase == 'none':
+        if lowercase == 'none':
             return None
 
         return arg
