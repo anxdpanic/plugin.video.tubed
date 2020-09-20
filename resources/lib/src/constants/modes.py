@@ -12,4 +12,4 @@ from enum import Enum
 
 
 class MODES(Enum):
-    MAIN = 1
+    MAIN = 'main'
