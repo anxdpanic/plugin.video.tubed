@@ -13,6 +13,7 @@ import sys
 import xbmcaddon  # pylint: disable=import-error
 
 from .settings import Settings
+from .translation import Translator
 
 
 class Context:
@@ -27,6 +28,7 @@ class Context:
         self._addon = None
 
         self._settings = None
+        self._translator = None
 
     @property
     def argv(self):
@@ -73,3 +75,8 @@ class Context:
         if not self._settings:
             self._settings = Settings(self.addon)
         return self._settings
+
+    def i18n(self, string_id):
+        if not self._translator:
+            self._translator = Translator(self.addon)
+        return self._translator.i18n(string_id)
