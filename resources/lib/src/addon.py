@@ -8,6 +8,7 @@
     See LICENSES/GPL-2.0-only.txt for more information.
 """
 
+from .api import API
 from .constants import MODES
 from .lib.context import Context
 from .lib.routing import Router
@@ -29,5 +30,7 @@ def invoke(argv):
 
     CONTEXT.argv = argv
     CONTEXT.query = parse_query(argv[2])
+
+    CONTEXT.api = API()
 
     router.invoke(CONTEXT.query)
