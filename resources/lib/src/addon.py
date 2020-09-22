@@ -29,6 +29,7 @@ def invoke(argv):
     global CONTEXT  # pylint: disable=global-statement
 
     CONTEXT.argv = argv
+    CONTEXT.handle = argv[1]
     CONTEXT.query = parse_query(argv[2])
 
     CONTEXT.api = API()

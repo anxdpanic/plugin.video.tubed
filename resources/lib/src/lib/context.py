@@ -16,10 +16,11 @@ from .settings import Settings
 from .translation import Translator
 
 
-class Context:
+class Context:  # pylint: disable=too-many-instance-attributes
 
     def __init__(self):
         self._argv = None
+        self._handle = -1
         self._mode = None
         self._query = {}
 
@@ -80,3 +81,14 @@ class Context:
         if not self._translator:
             self._translator = Translator(self.addon)
         return self._translator.i18n(string_id)
+
+    @property
+    def handle(self):
+        return int(self._handle)
+
+    @handle.setter
+    def handle(self, value):
+        try:
+            self._handle = int(value)
+        except ValueError:
+            self._handle = -1
