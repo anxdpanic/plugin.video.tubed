@@ -10,6 +10,11 @@
 
 import tubed_api  # pylint: disable=import-error
 
+from ..constants import ONE_MINUTE
+from ..constants import ONE_WEEK
+from ..exceptions.decorators import catch_api_exceptions
+from ..lib import memoizer
+
 
 class API:
     client_id = ''
@@ -32,7 +37,7 @@ class API:
 
     @property
     def language(self):
-        return self._language
+        return self._language.replace('-', '_')
 
     @language.setter
     def language(self, value):
@@ -46,9 +51,28 @@ class API:
     def region(self, value):
         self._region = value
 
+    @memoizer.cache_method(limit=ONE_MINUTE * 5)
     def resolve(self, video_id, quality=None):
         if isinstance(quality, (int, str)):
             quality = self._usher.Quality(quality)
 
         return self._usher.resolve(video_id, quality=quality,
                                    language=self.language, region=self.region)
+
+    @catch_api_exceptions
+    @memoizer.cache_method(limit=ONE_WEEK)
+    def languages(self):
+
+        return self.api.i18n_languages.get({
+            'part': 'snippet',
+            'hl': self.language
+        })
+
+    @catch_api_exceptions
+    @memoizer.cache_method(limit=ONE_WEEK)
+    def regions(self):
+
+        return self.api.i18n_regions.get({
+            'part': 'snippet',
+            'hl': self.region
+        })
