@@ -38,7 +38,7 @@ def _get_filename(name, args, kwargs):
            hashlib.md5(str(kwargs).encode('utf-8')).hexdigest()
 
 
-def _load(name, args=None, kwargs=None, limit=1):
+def _load(name, args=None, kwargs=None, limit=60):
     if not ENABLED or limit <= 0:
         return False, None
 
@@ -48,7 +48,7 @@ def _load(name, args=None, kwargs=None, limit=1):
         kwargs = {}
 
     now = time.time()
-    max_age = now - (limit * 60 * 60)
+    max_age = now - limit
 
     filename = os.path.join(PATH, _get_filename(name, args, kwargs))
     if xbmcvfs.exists(filename):
