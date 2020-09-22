@@ -16,8 +16,10 @@ import time
 
 import xbmcvfs  # pylint: disable=import-error
 
+from ..constants import ADDON_ID
+
 ENABLED = True
-PATH = xbmcvfs.translatePath('special://temp/plugin.video.tubed/cache/')
+PATH = xbmcvfs.translatePath('special://temp/%s/cache/' % ADDON_ID)
 
 
 def make_path():

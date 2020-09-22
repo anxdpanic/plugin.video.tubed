@@ -8,6 +8,7 @@
     See LICENSES/GPL-2.0-only.txt for more information.
 """
 
+from .config import ADDON_ID
 from .modes import MODES
 from .strings import STRINGS
 from .time import ONE_DAY
@@ -17,7 +18,8 @@ from .time import ONE_MONTH
 from .time import ONE_WEEK
 
 # the actual constants
-__all__ = ['MODES', 'STRINGS', 'ONE_MINUTE', 'ONE_HOUR', 'ONE_DAY', 'ONE_WEEK', 'ONE_MONTH']
+__all__ = ['ADDON_ID', 'MODES', 'STRINGS', 'ONE_MINUTE', 'ONE_HOUR', 'ONE_DAY',
+           'ONE_WEEK', 'ONE_MONTH']
 
 # the modules containing the constants
-__all__ += ['modes', 'strings', 'time']
+__all__ += ['config', 'modes', 'strings', 'time']

@@ -12,7 +12,7 @@ from .api import API
 from .constants import MODES
 from .lib.context import Context
 from .lib.routing import Router
-from .lib.utils import parse_query
+from .lib.url_utils import parse_query
 
 CONTEXT = Context()
 

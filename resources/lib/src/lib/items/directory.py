@@ -8,5 +8,12 @@
     See LICENSES/GPL-2.0-only.txt for more information.
 """
 
-__all__ = ['items', 'cache', 'context', 'database', 'logger', 'memoizer', 'routing', 'settings',
-           'sql_storage', 'time', 'translation', 'url_utils']
+from .base import Base
+
+
+class Directory(Base):
+
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+
+        self.ListItem.setIsFolder(True)
