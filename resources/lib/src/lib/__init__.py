@@ -8,4 +8,4 @@
     See LICENSES/GPL-2.0-only.txt for more information.
 """
 
-__all__ = ['context', 'logger', 'routing', 'settings', 'translation', 'utils']
+__all__ = ['context', 'logger', 'memoizer', 'routing', 'settings', 'translation', 'utils']
