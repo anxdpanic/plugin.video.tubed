@@ -10,4 +10,5 @@
 
 STRINGS = {
     'Most Popular': 30000,
+    'Next Page': 30001,
 }
