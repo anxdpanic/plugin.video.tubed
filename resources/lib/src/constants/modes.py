@@ -13,3 +13,4 @@ from enum import Enum
 
 class MODES(Enum):
     MAIN = 'main'
+    MOST_POPULAR = 'most_popular'

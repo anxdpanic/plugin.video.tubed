@@ -62,14 +62,6 @@ class API:  # pylint: disable=too-many-public-methods
     def max_results(self, value):
         self._max_results = int(value)
 
-    @memoizer.cache_method(limit=ONE_MINUTE * 5)
-    def resolve(self, video_id, quality=None):
-        if isinstance(quality, (int, str)):
-            quality = self._usher.Quality(quality)
-
-        return self._usher.resolve(video_id, quality=quality,
-                                   language=self.language, region=self.region)
-
     @catch_api_exceptions
     @memoizer.cache_method(limit=ONE_WEEK)
     def languages(self):
@@ -577,6 +569,14 @@ class API:  # pylint: disable=too-many-public-methods
             parameters['pageToken'] = page_token
 
         return self.api.videos.get(parameters=parameters)
+
+    @memoizer.cache_method(limit=ONE_MINUTE * 5)
+    def resolve(self, video_id, quality=None):
+        if isinstance(quality, (int, str)):
+            quality = self._usher.Quality(quality)
+
+        return self._usher.resolve(video_id, quality=quality,
+                                   language=self.language, region=self.region)
 
     def calculate_next_page_token(self, page):
         """

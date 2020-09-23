@@ -16,4 +16,5 @@ class Directory(Base):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
 
+        self._is_folder = True
         self.ListItem.setIsFolder(True)
