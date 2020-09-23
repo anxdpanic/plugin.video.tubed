@@ -17,6 +17,8 @@ class Router:
         self._kwargs = {}
 
     def route(self, mode, args=None, kwargs=None):
+        mode = str(mode)
+
         if args is None:
             args = []
         if kwargs is None:
@@ -27,7 +29,7 @@ class Router:
                 message = '%s already registered as %s' % (str(func), mode)
                 raise Exception(message)
 
-            self._functions[mode.strip()] = func
+            self._functions[mode] = func
             self._args[mode] = args
             self._kwargs[mode] = kwargs
 

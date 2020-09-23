@@ -10,6 +10,6 @@
 
 import sys
 
-from resources.lib.src import addon  # pylint: disable=import-error
+from src import addon  # pylint: disable=import-error
 
 addon.invoke(sys.argv)
