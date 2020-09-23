@@ -90,18 +90,19 @@ def cache_method(limit):
         @functools.wraps(func)
         def memoizer(*args, **kwargs):
             if args:
-                klass, args = args[0], args[1:]
+                klass, rargs = args[0], args[1:]
                 name = '%s.%s.%s' % (klass.__module__, klass.__class__.__name__, func.__name__)
             else:
                 name = func.__name__
+                rargs = args
 
-            cached, payload = _load(name, args, kwargs, limit=limit)
+            cached, payload = _load(name, rargs, kwargs, limit=limit)
             if cached:
                 return payload
 
             payload = func(*args, **kwargs)
             if ENABLED and limit > 0:
-                _save(name, args, kwargs, payload)
+                _save(name, rargs, kwargs, payload)
 
             return payload
 
