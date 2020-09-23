@@ -31,9 +31,9 @@ class API:  # pylint: disable=too-many-public-methods
 
         self._api = tubed_api
 
-        self._api.CLIENT_ID = CREDENTIALS.ID
-        self._api.CLIENT_SECRET = CREDENTIALS.SECRET
-        self._api.API_KEY = CREDENTIALS.KEY
+        self._api.CLIENT_ID = str(CREDENTIALS.ID)
+        self._api.CLIENT_SECRET = str(CREDENTIALS.SECRET)
+        self._api.API_KEY = str(CREDENTIALS.KEY)
 
         self._api.ACCESS_TOKEN = self.access_token
 
