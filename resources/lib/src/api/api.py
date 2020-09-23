@@ -75,5 +75,5 @@ class API:
 
         return self.api.i18n_regions.get({
             'part': 'snippet',
-            'hl': self.region
+            'hl': self.language
         })
