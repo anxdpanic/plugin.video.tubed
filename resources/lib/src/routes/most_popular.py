@@ -10,21 +10,15 @@
 
 import xbmcplugin  # pylint: disable=import-error
 
-from ..constants import MODES
-from ..lib.items.directory import Directory
-from ..lib.url_utils import create_addon_path
+# from ..constants import MODES
+# from ..lib.items.next_page import NextPage
+# from ..lib.items.video import Video
+# from ..lib.url_utils import create_addon_path
 
 
-def invoke(context):
+def invoke(context, page_token=''):
+    _ = page_token
     items = []
-
-    directory = Directory(
-        label=context.i18n('Most Popular'),
-        path=create_addon_path(parameters={
-            'mode': MODES.MOST_POPULAR
-        })
-    )
-    items.append(tuple(directory))
 
     xbmcplugin.addDirectoryItems(context.handle, items, len(items))
 

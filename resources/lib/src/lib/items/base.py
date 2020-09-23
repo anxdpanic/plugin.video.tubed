@@ -21,9 +21,16 @@ class Base:
             offscreen=True
         )
 
+        self._is_folder = False
+
     @property
     def ListItem(self):  # pylint: disable=invalid-name
         return self._list_item
 
     def setIsPlayable(self, value=True):  # pylint: disable=invalid-name
         self.ListItem.setProperty('isPlayable', str(value).lower())
+
+    def __iter__(self):
+        payload = [self.ListItem.getPath(), self.ListItem, self._is_folder]
+        for item in payload:
+            yield item

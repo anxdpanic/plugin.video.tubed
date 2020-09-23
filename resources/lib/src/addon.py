@@ -25,6 +25,12 @@ def _main_menu():
     main_menu.invoke(CONTEXT)
 
 
+@router.route(MODES.MOST_POPULAR, kwargs=['page_token'])
+def _most_popular(page_token=''):
+    from .routes import most_popular  # pylint: disable=import-outside-toplevel
+    most_popular.invoke(CONTEXT, page_token=page_token)
+
+
 def invoke(argv):
     global CONTEXT  # pylint: disable=global-statement
 

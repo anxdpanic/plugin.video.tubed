@@ -9,5 +9,5 @@
 """
 
 STRINGS = {
-
+    'Most Popular': 30000,
 }
