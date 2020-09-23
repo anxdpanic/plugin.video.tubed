@@ -10,6 +10,7 @@
 
 import tubed_api  # pylint: disable=import-error
 
+from ..constants import CREDENTIALS
 from ..constants import ONE_MINUTE
 from ..constants import ONE_WEEK
 from ..exceptions.decorators import catch_api_exceptions
@@ -17,8 +18,6 @@ from ..lib import memoizer
 
 
 class API:
-    client_id = ''
-    client_secret = ''
     access_token = ''
 
     def __init__(self, language='en-US', region='US'):
@@ -27,8 +26,10 @@ class API:
 
         self._api = tubed_api
 
-        self._api.CLIENT_ID = self.client_id
-        self._api.CLIENT_SECRET = self.client_secret
+        self._api.CLIENT_ID = CREDENTIALS.ID
+        self._api.CLIENT_SECRET = CREDENTIALS.SECRET
+        self._api.API_KEY = CREDENTIALS.KEY
+
         self._api.ACCESS_TOKEN = self.access_token
 
         self._client = self._api.oauth.Client
