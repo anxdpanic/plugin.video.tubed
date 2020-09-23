@@ -16,3 +16,7 @@ msgstr ""
 msgctxt "#30000"
 msgid "Most Popular"
 msgstr ""
+
+msgctxt "#30001"
+msgid "Next Page"
+msgstr ""
