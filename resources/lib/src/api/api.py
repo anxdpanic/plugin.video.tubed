@@ -9,6 +9,9 @@
 """
 
 import tubed_api  # pylint: disable=import-error
+from tubed_api import oauth  # pylint: disable=import-error
+from tubed_api import usher  # pylint: disable=import-error
+from tubed_api import v3  # pylint: disable=import-error
 
 from ..constants import CREDENTIALS
 from ..constants import ONE_HOUR
@@ -34,9 +37,9 @@ class API:  # pylint: disable=too-many-public-methods
 
         self._api.ACCESS_TOKEN = self.access_token
 
-        self._client = self._api.oauth.Client
-        self._usher = self._api.usher
-        self.api = self._api.v3
+        self._client = oauth.Client
+        self._usher = usher
+        self.api = v3
 
     @property
     def language(self):
