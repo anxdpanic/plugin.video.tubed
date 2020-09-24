@@ -68,3 +68,11 @@ msgstr ""
 msgctxt "#30013"
 msgid "Switch User"
 msgstr ""
+
+msgctxt "#30014"
+msgid "New Search"
+msgstr ""
+
+msgctxt "#30015"
+msgid "Enter your search term"
+msgstr ""

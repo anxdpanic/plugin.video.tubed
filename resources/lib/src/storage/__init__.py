@@ -8,5 +8,4 @@
     See LICENSES/GPL-2.0-only.txt for more information.
 """
 
-__all__ = ['disliked_videos', 'liked_videos', 'live',
-           'main_menu', 'most_popular', 'play', 'search', 'search_query']
+__all__ = ['search_cache', 'search_history']

@@ -23,4 +23,6 @@ STRINGS = {
     'Sign In': 30011,
     'Sign Out': 30012,
     'Switch User': 30013,
+    'New Search': 30014,
+    'Enter your search term': 30015,
 }
