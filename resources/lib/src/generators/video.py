@@ -8,6 +8,8 @@
     See LICENSES/GPL-2.0-only.txt for more information.
 """
 
+from html import unescape
+
 from ..constants import MODES
 from ..lib.items.video import Video
 from ..lib.url_utils import create_addon_path
@@ -22,8 +24,8 @@ def video_generator(items):
         snippet = item.get('snippet', {})
 
         payload = Video(
-            label=snippet.get('title', ''),
-            label2=snippet.get('channelTitle', ''),
+            label=unescape(snippet.get('title', '')),
+            label2=unescape(snippet.get('channelTitle', '')),
             path=create_addon_path({
                 'mode': str(MODES.PLAY),
                 'video_id': video_id
@@ -32,11 +34,11 @@ def video_generator(items):
 
         info_labels = {
             'mediatype': 'video',
-            'plot': snippet.get('description', ''),
-            'plotoutline': snippet.get('description', ''),
-            'originaltitle': snippet.get('title', ''),
-            'sorttitle': snippet.get('title', ''),
-            'studio': snippet.get('channelTitle', '')
+            'plot': unescape(snippet.get('description', '')),
+            'plotoutline': unescape(snippet.get('description', '')),
+            'originaltitle': unescape(snippet.get('title', '')),
+            'sorttitle': unescape(snippet.get('title', '')),
+            'studio': unescape(snippet.get('channelTitle', ''))
         }
         payload.ListItem.setInfo('video', info_labels)
 
