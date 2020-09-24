@@ -15,6 +15,18 @@ class MODES(Enum):
     MAIN = 'main'
     MOST_POPULAR = 'most_popular'
     PLAY = 'play'
+    RECOMMENDATIONS = 'recommendations'
+    SEARCH = 'search'
+    MY_CHANNEL = 'my_channel'
+    LIKED_VIDEOS = 'liked_videos'
+    DISLIKED_VIDEOS = 'disliked_videos'
+    PLAYLISTS = 'playlists'
+    CHANNELS = 'channels'
+    SUBSCRIPTIONS = 'subscriptions'
+    LIVE = 'live'
+    SIGN_IN = 'sign_in'
+    SIGN_OUT = 'sign_out'
+    SWITCH_USER = 'switch_user'
 
     def __str__(self):
         return str(self.value).lower()

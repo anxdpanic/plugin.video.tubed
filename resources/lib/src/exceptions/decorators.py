@@ -14,7 +14,7 @@ from .api import V3Exception
 
 
 def __api_error_check(payload):
-    if hasattr(payload, 'error'):
+    if 'error' in payload:
         raise V3Exception(payload)
 
     return payload
