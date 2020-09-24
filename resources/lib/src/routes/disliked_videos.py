@@ -27,7 +27,7 @@ def invoke(context, page_token=''):
         directory = NextPage(
             label=context.i18n('Next Page'),
             path=create_addon_path({
-                'mode': str(MODES.MOST_POPULAR),
+                'mode': str(MODES.DISLIKED_VIDEOS),
                 'page_token': page_token
             })
         )
