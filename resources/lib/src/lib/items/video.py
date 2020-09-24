@@ -17,8 +17,4 @@ class Video(Base):
         super().__init__(**kwargs)
 
         self.ListItem.setIsFolder(False)
-        self.ListItem.setIsPlayable(True)
-
-    def setIsDash(self, value=True):  # pylint: disable=invalid-name
-        if value:
-            self.ListItem.setMimeType('application/dash+xml')
+        self.setIsPlayable(True)

@@ -8,4 +8,5 @@
     See LICENSES/GPL-2.0-only.txt for more information.
 """
 
-__all__ = ['api', 'constants', 'exceptions', 'lib', 'routes', 'addon', 'service']
+__all__ = ['api', 'constants', 'exceptions', 'generators',
+           'lib', 'routes', 'addon', 'service']

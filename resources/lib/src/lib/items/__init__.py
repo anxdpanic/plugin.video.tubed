@@ -8,4 +8,4 @@
     See LICENSES/GPL-2.0-only.txt for more information.
 """
 
-__all__ = ['action', 'base', 'directory', 'next_page', 'video']
+__all__ = ['action', 'base', 'directory', 'next_page', 'stream', 'video']

@@ -10,22 +10,29 @@
 
 import xbmcplugin  # pylint: disable=import-error
 
-# from ..constants import MODES
+from ..constants import MODES
+from ..generators.video import video_generator
 from ..lib.items.next_page import NextPage
-# from ..lib.items.video import Video
-# from ..lib.url_utils import create_addon_path
+from ..lib.url_utils import create_addon_path
 
 
 def invoke(context, page_token=''):
-    items = []
+    xbmcplugin.setContent(context.handle, 'videos')
 
     payload = context.api.most_popular(page_token=page_token)
+    list_items = list(video_generator(payload.get('items', [])))
 
-    page_token = payload.nextPageToken
+    page_token = payload.get('nextPageToken')
     if page_token:
-        item = NextPage(label=context.i18n('Next Page'))
-        items.append(tuple(item))
+        directory = NextPage(
+            label=context.i18n('Next Page'),
+            path=create_addon_path({
+                'mode': str(MODES.MOST_POPULAR),
+                'page_token': page_token
+            })
+        )
+        list_items.append(tuple(directory))
 
-    xbmcplugin.addDirectoryItems(context.handle, items, len(items))
+    xbmcplugin.addDirectoryItems(context.handle, list_items, len(list_items))
 
     xbmcplugin.endOfDirectory(context.handle, True)
