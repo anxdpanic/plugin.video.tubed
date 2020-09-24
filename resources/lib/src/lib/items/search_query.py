@@ -17,3 +17,6 @@ class SearchQuery(Directory):
         super().__init__(**kwargs)
 
         self.ListItem.setProperty('specialSort', 'top')
+        self.ListItem.setArt({
+            'icon': 'DefaultAddonsSearch.png'
+        })
