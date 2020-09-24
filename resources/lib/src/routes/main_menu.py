@@ -84,14 +84,6 @@ def invoke(context):
     items.append(tuple(directory))
 
     directory = Directory(
-        label=context.i18n('Channels'),
-        path=create_addon_path(parameters={
-            'mode': str(MODES.CHANNELS)
-        })
-    )
-    items.append(tuple(directory))
-
-    directory = Directory(
         label=context.i18n('Subscriptions'),
         path=create_addon_path(parameters={
             'mode': str(MODES.SUBSCRIPTIONS)
