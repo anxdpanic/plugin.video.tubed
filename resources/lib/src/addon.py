@@ -45,6 +45,12 @@ def _disliked_videos(page_token=''):
     disliked_videos.invoke(CONTEXT, page_token=page_token)
 
 
+@router.route(MODES.LIVE, kwargs=['page_token'])
+def _live(page_token=''):
+    from .routes import live
+    live.invoke(CONTEXT, page_token=page_token)
+
+
 @router.route(MODES.PLAY, args=['video_id'])
 def _play(video_id):
     from .routes import play

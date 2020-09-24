@@ -19,7 +19,7 @@ from ..lib.url_utils import create_addon_path
 def invoke(context, page_token=''):
     xbmcplugin.setContent(context.handle, 'videos')
 
-    payload = context.api.my_rating(rating='dislike', page_token=page_token)
+    payload = context.api.live_events(page_token=page_token)
     list_items = list(video_generator(payload.get('items', [])))
 
     page_token = payload.get('nextPageToken')
@@ -27,7 +27,7 @@ def invoke(context, page_token=''):
         directory = NextPage(
             label=context.i18n('Next Page'),
             path=create_addon_path({
-                'mode': str(MODES.DISLIKED_VIDEOS),
+                'mode': str(MODES.LIVE),
                 'page_token': page_token
             })
         )
