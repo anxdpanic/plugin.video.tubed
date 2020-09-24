@@ -23,10 +23,12 @@ def strptime(timestamp, timestamp_format):
 def now():
     # now that always has microseconds
     _now = datetime.datetime.now()
+
     try:
-        _ = datetime.datetime(*(strptime(_now, '%Y-%m-%d %H:%M:%S.%f')[0:6]))
+        _ = datetime.datetime(*(strptime(_now.strftime('%Y-%m-%d %H:%M:%S.%f'),
+                                         '%Y-%m-%d %H:%M:%S.%f')[0:6]))
         return _now
-    except ValueError:
+    except:  # pylint: disable=bare-except
         return _now + datetime.timedelta(microseconds=1)
 
 
