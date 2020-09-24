@@ -27,4 +27,7 @@ def invoke(context, video_id):
         license_key=license_data.get('proxy', '')
     )
 
+    # TODO: Subtitles requires choice logic
+    # stream.ListItem.setSubtitles()
+
     xbmcplugin.setResolvedUrl(context.handle, True, stream.ListItem)
