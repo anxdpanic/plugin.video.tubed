@@ -14,7 +14,7 @@ from ..lib.items.stream import Stream
 
 
 def invoke(context, video_id):
-    video = context.api.resolve(video_id=video_id)
+    video = context.api.resolve(video_id=video_id, quality=2160)  # TODO: Quality setting
     channel = video.get('channel', {})
     license_data = video.get('license', {})
     metadata = video.get('metadata', {})
@@ -26,5 +26,8 @@ def invoke(context, video_id):
         headers=video.get('headers', ''),
         license_key=license_data.get('proxy', '')
     )
+
+    # TODO: Subtitles requires choice logic
+    # stream.ListItem.setSubtitles()
 
     xbmcplugin.setResolvedUrl(context.handle, True, stream.ListItem)

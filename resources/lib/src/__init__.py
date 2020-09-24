@@ -9,4 +9,4 @@
 """
 
 __all__ = ['api', 'constants', 'exceptions', 'generators',
-           'lib', 'routes', 'addon', 'service']
+           'lib', 'routes', 'routes', 'addon', 'service']

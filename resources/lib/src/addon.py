@@ -10,6 +10,8 @@
 
 from .api import API
 from .constants import MODES
+from .constants import ONE_HOUR
+from .lib import memoizer
 from .lib.context import Context
 from .lib.routing import Router
 from .lib.url_utils import parse_query
@@ -57,12 +59,26 @@ def _play(video_id):
     play.invoke(CONTEXT, video_id=video_id)
 
 
+@router.route(MODES.SEARCH)
+def _search():
+    from .routes import search
+    search.invoke(CONTEXT)
+
+
+@memoizer.cache_method(limit=ONE_HOUR)
+@router.route(MODES.SEARCH_QUERY, kwargs=['page_token', 'query'])
+def _search_query(query='', page_token=''):
+    from .routes import search_query
+    search_query.invoke(CONTEXT, query, page_token)
+
+
 def invoke(argv):
     global CONTEXT  # pylint: disable=global-statement
 
     CONTEXT.argv = argv
     CONTEXT.handle = argv[1]
     CONTEXT.query = parse_query(argv[2])
+    CONTEXT.mode = CONTEXT.query.get('mode', 'main')
 
     CONTEXT.api = API()
 

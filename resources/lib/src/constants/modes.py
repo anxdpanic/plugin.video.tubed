@@ -27,6 +27,7 @@ class MODES(Enum):
     SIGN_IN = 'sign_in'
     SIGN_OUT = 'sign_out'
     SWITCH_USER = 'switch_user'
+    SEARCH_QUERY = 'search_query'
 
     def __str__(self):
         return str(self.value).lower()
