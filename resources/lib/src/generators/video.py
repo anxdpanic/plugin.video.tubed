@@ -16,6 +16,9 @@ from ..lib.url_utils import create_addon_path
 def video_generator(items):
     for item in items:
         video_id = item.get('id', '')
+        if isinstance(video_id, dict):
+            video_id = video_id.get('videoId', '')
+
         snippet = item.get('snippet', {})
 
         payload = Video(
