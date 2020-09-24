@@ -57,7 +57,7 @@ def _load(name, args=None, kwargs=None, limit=60):
         mtime = xbmcvfs.Stat(filename).st_mtime()
 
         if mtime >= max_age:
-            with xbmcvfs.File(filename) as file_handle:
+            with open(filename, 'rb') as file_handle:
                 payload = file_handle.read()
 
             return True, pickle.loads(payload)
@@ -66,16 +66,16 @@ def _load(name, args=None, kwargs=None, limit=60):
 
 
 def _save(name, args=None, kwargs=None, result=None):
-    try:
-        if args is None:
-            args = []
-        if kwargs is None:
-            kwargs = {}
+    if args is None:
+        args = []
+    if kwargs is None:
+        kwargs = {}
 
+    try:
         payload = pickle.dumps(result)
 
         filename = os.path.join(PATH, _get_filename(name, args, kwargs))
-        with xbmcvfs.File(filename, 'w') as file_handle:
+        with open(filename, 'wb') as file_handle:
             file_handle.write(payload)
 
         return True

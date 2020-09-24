@@ -8,7 +8,6 @@
     See LICENSES/GPL-2.0-only.txt for more information.
 """
 
-from copy import deepcopy
 from urllib.parse import parse_qs
 from urllib.parse import urlencode
 
@@ -32,21 +31,5 @@ def parse_query(query):
     return payload
 
 
-def create_addon_path(path='/', parameters=None):
-    if not parameters:
-        parameters = {}
-
-    path = 'plugin://%s/%s' % (ADDON_ID, path.rstrip('/') + '/')
-
-    if len(parameters) > 0:
-        url_parameters = deepcopy(parameters)
-
-        for parameter in url_parameters:
-            if isinstance(parameters[parameter], int):
-                parameters[parameter] = str(parameters[parameter])
-
-            url_parameters[parameter] = parameters[parameter]
-
-        return '?'.join([path, urlencode(url_parameters)])
-
-    return path
+def create_addon_path(parameters):
+    return '?'.join(['plugin://%s/' % ADDON_ID, urlencode(parameters)])

@@ -31,6 +31,12 @@ def _most_popular(page_token=''):
     most_popular.invoke(CONTEXT, page_token=page_token)
 
 
+@router.route(MODES.PLAY, args=['video_id'])
+def _play(video_id):
+    from .routes import play  # pylint: disable=import-outside-toplevel
+    play.invoke(CONTEXT, video_id=video_id)
+
+
 def invoke(argv):
     global CONTEXT  # pylint: disable=global-statement
 

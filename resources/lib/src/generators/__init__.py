@@ -8,13 +8,4 @@
     See LICENSES/GPL-2.0-only.txt for more information.
 """
 
-from enum import Enum
-
-
-class MODES(Enum):
-    MAIN = 'main'
-    MOST_POPULAR = 'most_popular'
-    PLAY = 'play'
-
-    def __str__(self):
-        return str(self.value).lower()
+__all__ = ['video']
