@@ -20,3 +20,51 @@ msgstr ""
 msgctxt "#30001"
 msgid "Next Page"
 msgstr ""
+
+msgctxt "#30002"
+msgid "Recommendations"
+msgstr ""
+
+msgctxt "#30003"
+msgid "Search"
+msgstr ""
+
+msgctxt "#30004"
+msgid "My Channel"
+msgstr ""
+
+msgctxt "#30005"
+msgid "Liked Videos"
+msgstr ""
+
+msgctxt "#30006"
+msgid "Disliked Videos"
+msgstr ""
+
+msgctxt "#30007"
+msgid "Playlists"
+msgstr ""
+
+msgctxt "#30008"
+msgid "Channels"
+msgstr ""
+
+msgctxt "#30009"
+msgid "Subscriptions"
+msgstr ""
+
+msgctxt "#30010"
+msgid "Live"
+msgstr ""
+
+msgctxt "#30011"
+msgid "Sign In"
+msgstr ""
+
+msgctxt "#30012"
+msgid "Sign Out"
+msgstr ""
+
+msgctxt "#30013"
+msgid "Switch User"
+msgstr ""

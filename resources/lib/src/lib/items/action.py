@@ -17,4 +17,4 @@ class Action(Base):
         super().__init__(**kwargs)
 
         self.ListItem.setIsFolder(False)
-        self.ListItem.setIsPlayable(False)
+        self.setIsPlayable(False)
