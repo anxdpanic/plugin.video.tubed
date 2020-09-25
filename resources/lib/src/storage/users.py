@@ -29,13 +29,22 @@ class UserStorage:
 </users>
         '''
 
+    __template_user = \
+        '''
+    <user current="false">
+        <name>%s</name>
+        <uuid>%s</uuid>
+        <refresh_token></refresh_token>
+        <access_token></access_token>
+    </user>
+        '''
+
     def __init__(self):
 
         self.filename = xbmcvfs.translatePath(
             'special://profile/addon_data/%s/users.xml' % ADDON_ID
         )
 
-        self.tree = None
         self.root = None
 
         self._users = None
@@ -74,42 +83,86 @@ class UserStorage:
 
     @property
     def username(self):
-        return self._current_user('name', '')
+        return self._current_user_get('name', '')
+
+    @username.setter
+    def username(self, value):
+        self._current_user_set('name', value)
 
     @property
     def uuid(self):
-        return self._current_user('uuid', '')
+        return self._current_user_get('uuid', '')
 
     @property
     def refresh_token(self):
-        return self._current_user('refresh_token', '')
+        return self._current_user_get('refresh_token', '')
+
+    @refresh_token.setter
+    def refresh_token(self, value):
+        self._current_user_set('refresh_token', value)
 
     @property
     def access_token(self):
-        return self._current_user('access_token', '')
+        return self._current_user_get('access_token', '')
+
+    @access_token.setter
+    def access_token(self, value):
+        self._current_user_set('access_token', value)
+
+    def change_current(self, user_uuid):
+        user = self.root.find('.//user[@current="true"]')
+
+        user_elements = self.root.findall('./user')
+        for user_element in user_elements:
+            uuid_element = user_element.find('uuid')
+
+            if not hasattr(uuid_element, 'text'):
+                continue
+
+            if uuid_element.text == user_uuid:
+                self._reset()
+
+                user.attrib['current'] = 'false'
+                user_element.attrib['current'] = 'true'
+                break
+
+    def add(self, name):
+        self._reset()
+
+        user_template = self.__template_user % (name, str(uuid4()))
+        user_element = ElementTree.fromstring(user_template)
+        self.root.append(user_element)
+
+    def remove(self, user_uuid):
+        self._reset()
+
+        user_elements = self.root.findall('./user')
+        for user_element in user_elements:
+            uuid_element = user_element.find('uuid')
+
+            if not hasattr(uuid_element, 'text'):
+                continue
+
+            if uuid_element.text == user_uuid:
+                self.root.remove(user_element)
+                break
 
     def load(self):
-        self.__reset()
+        self._reset()
+
         try:
-            self.tree = ElementTree.parse(self.filename)
-            self.root = self.tree.getroot()
+            self.root = ElementTree.parse(self.filename).getroot()
         except (ElementTree.ParseError, FileNotFoundError):
-            self.root = ElementTree.fromstring(self.__root_template())
+            self.root = ElementTree.fromstring(self.__template_root % str(uuid4()))
             self.save()
-            self.tree = ElementTree.parse(self.filename)
-            self.root = self.tree.getroot()
 
     def save(self):
-        self.__reset()
-        if not self.tree:
-            with open(self.filename, 'wb') as file_handle:
-                file_handle.write(ElementTree.tostring(self.root,
-                                                       short_empty_elements=False,
-                                                       method='html'))
-        else:
-            self.tree.write(self.filename, short_empty_elements=False, method='html')
+        with open(self.filename, 'wb') as file_handle:
+            file_handle.write(ElementTree.tostring(self.root,
+                                                   short_empty_elements=False,
+                                                   method='html'))
 
-    def _current_user(self, attrib, default=''):
+    def _current_user_get(self, attrib, default=''):
         if self._user:
             return self._user.get(attrib, default)
 
@@ -120,12 +173,18 @@ class UserStorage:
 
         return default
 
-    def __reset(self):
-        self.tree = None
-        self.root = None
+    def _current_user_set(self, attrib, value):
+        user = self.root.find('.//user[@current="true"]')
+        if not user:
+            return
 
+        element = user.find(attrib)
+        if not hasattr(element, 'text'):
+            return
+
+        self._reset()
+        element.text = value
+
+    def _reset(self):
         self._users = None
         self._user = None
-
-    def __root_template(self):
-        return self.__template_root % str(uuid4())
