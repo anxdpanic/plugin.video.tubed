@@ -11,8 +11,8 @@
 import xbmcplugin  # pylint: disable=import-error
 
 from ..constants import MODES
-from ..lib.items.action import Action
-from ..lib.items.directory import Directory
+from ..items.action import Action
+from ..items.directory import Directory
 from ..lib.url_utils import create_addon_path
 
 

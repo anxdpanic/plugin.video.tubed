@@ -10,7 +10,7 @@
 
 import xbmcplugin  # pylint: disable=import-error
 
-from ..lib.items.stream import Stream
+from ..items.stream import Stream
 
 
 def invoke(context, video_id):
