@@ -13,8 +13,8 @@ from urllib.parse import quote
 import xbmcplugin  # pylint: disable=import-error
 
 from ..constants import MODES
-from ..lib.items.directory import Directory
-from ..lib.items.search_query import SearchQuery
+from ..items.directory import Directory
+from ..items.search_query import SearchQuery
 from ..lib.url_utils import create_addon_path
 from ..storage.search_history import SearchHistory
 

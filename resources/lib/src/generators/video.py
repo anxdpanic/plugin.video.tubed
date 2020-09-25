@@ -11,7 +11,7 @@
 from html import unescape
 
 from ..constants import MODES
-from ..lib.items.video import Video
+from ..items.video import Video
 from ..lib.url_utils import create_addon_path
 
 

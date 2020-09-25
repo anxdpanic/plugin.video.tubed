@@ -16,7 +16,7 @@ import xbmcplugin  # pylint: disable=import-error
 
 from ..constants import MODES
 from ..generators.video import video_generator
-from ..lib.items.next_page import NextPage
+from ..items.next_page import NextPage
 from ..lib.url_utils import create_addon_path
 from ..storage.search_cache import SearchCache
 from ..storage.search_history import SearchHistory
