@@ -9,4 +9,4 @@
 """
 
 __all__ = ['disliked_videos', 'liked_videos', 'live', 'main_menu', 'most_popular',
-           'play', 'search', 'search_query', 'sign_in']
+           'my_channel', 'play', 'search', 'search_query', 'sign_in']
