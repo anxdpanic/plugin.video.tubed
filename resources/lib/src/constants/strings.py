@@ -34,4 +34,5 @@ STRINGS = {
     'Removing %s, are you sure?': 30022,
     'Uploads': 30023,
     'You are about to sign out, are you sure?': 30024,
+    'Categories': 30025,
 }

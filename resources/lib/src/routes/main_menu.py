@@ -38,6 +38,14 @@ def invoke(context):
     )
     items.append(tuple(directory))
 
+    directory = Directory(
+        label=context.i18n('Categories'),
+        path=create_addon_path(parameters={
+            'mode': str(MODES.CATEGORIES)
+        })
+    )
+    items.append(tuple(directory))
+
     if logged_in:
         directory = Directory(
             label=context.i18n('My Channel'),
