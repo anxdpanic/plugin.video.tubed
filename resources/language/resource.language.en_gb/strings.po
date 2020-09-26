@@ -104,3 +104,7 @@ msgstr ""
 msgctxt "#30022"
 msgid "Removing %s, are you sure?"
 msgstr ""
+
+msgctxt "#30023"
+msgid "Uploads"
+msgstr ""

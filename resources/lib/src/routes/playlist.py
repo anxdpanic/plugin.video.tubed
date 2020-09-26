@@ -16,27 +16,10 @@ from ..items.next_page import NextPage
 from ..lib.url_utils import create_addon_path
 
 
-def invoke(context, page_token=''):
+def invoke(context, playlist_id, page_token=''):
     xbmcplugin.setContent(context.handle, 'videos')
 
-    payload = context.api.channel_by_username('mine')
-
-    channel_id = payload.get('items', [{}])[0].get('id', '')
-    if not channel_id:
-        xbmcplugin.endOfDirectory(context.handle, False)
-        return
-
-    payload = context.api.channels(channel_id=channel_id)
-
-    channel_item = payload.get('items', [{}])[0]
-    upload_playlist = channel_item.get('contentDetails', {}) \
-        .get('relatedPlaylists', {}).get('uploads', '')
-
-    if not upload_playlist:
-        xbmcplugin.endOfDirectory(context.handle, False)
-        return
-
-    payload = context.api.playlist_items(upload_playlist, page_token=page_token)
+    payload = context.api.playlist_items(playlist_id, page_token=page_token)
     list_items = list(video_generator(payload.get('items', [])))
 
     page_token = payload.get('nextPageToken')
@@ -44,7 +27,8 @@ def invoke(context, page_token=''):
         directory = NextPage(
             label=context.i18n('Next Page'),
             path=create_addon_path({
-                'mode': str(MODES.MY_CHANNEL),
+                'mode': str(MODES.PLAYLIST),
+                'playlist_id': playlist_id,
                 'page_token': page_token
             })
         )

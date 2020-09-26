@@ -69,6 +69,31 @@ def _live(page_token=''):
     live.invoke(CONTEXT, page_token=page_token)
 
 
+@router.route(MODES.SUBSCRIPTIONS, kwargs=['page_token'])
+def _subscriptions(page_token=''):
+    from .routes import subscriptions
+    subscriptions.invoke(CONTEXT, page_token=page_token)
+
+
+@router.route(MODES.CHANNEL, args=['channel_id'], kwargs=['page_token'])
+def _channel(channel_id, page_token=''):
+    # alias of MODES.PLAYLISTS
+    from .routes import playlists
+    playlists.invoke(CONTEXT, channel_id, page_token=page_token)
+
+
+@router.route(MODES.PLAYLISTS, args=['channel_id'], kwargs=['page_token'])
+def _playlists(channel_id, page_token=''):
+    from .routes import playlists
+    playlists.invoke(CONTEXT, channel_id, page_token=page_token)
+
+
+@router.route(MODES.PLAYLIST, args=['playlist_id'], kwargs=['page_token'])
+def _playlist(playlist_id, page_token=''):
+    from .routes import playlist
+    playlist.invoke(CONTEXT, playlist_id, page_token)
+
+
 @router.route(MODES.PLAY, args=['video_id'])
 def _play(video_id):
     from .routes import play
@@ -87,10 +112,10 @@ def _search_query(query='', page_token=''):
     search_query.invoke(CONTEXT, query, page_token)
 
 
-@router.route(MODES.MY_CHANNEL)
-def _my_channel():
+@router.route(MODES.MY_CHANNEL, kwargs=['page_token'])
+def _my_channel(page_token=''):
     from .routes import my_channel
-    my_channel.invoke(CONTEXT)
+    my_channel.invoke(CONTEXT, page_token)
 
 
 def invoke(argv):

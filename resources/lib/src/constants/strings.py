@@ -32,4 +32,5 @@ STRINGS = {
     'New Username': 30020,
     'Remove User': 30021,
     'Removing %s, are you sure?': 30022,
+    'Uploads': 30023,
 }
