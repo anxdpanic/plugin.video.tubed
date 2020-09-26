@@ -38,7 +38,7 @@ class UserStorage:
         <uuid>%s</uuid>
         <refresh_token></refresh_token>
         <access_token></access_token>
-        <token_expiry>0</token_expiry>
+        <token_expiry>-1</token_expiry>
     </user>
         '''
 
