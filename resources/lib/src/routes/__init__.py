@@ -8,5 +8,5 @@
     See LICENSES/GPL-2.0-only.txt for more information.
 """
 
-__all__ = ['disliked_videos', 'liked_videos', 'live', 'main_menu', 'most_popular',
-           'my_channel', 'play', 'search', 'search_query', 'sign_in']
+__all__ = ['disliked_videos', 'liked_videos', 'live', 'main_menu', 'manage_users',
+           'most_popular', 'my_channel', 'play', 'search', 'search_query', 'sign_in']

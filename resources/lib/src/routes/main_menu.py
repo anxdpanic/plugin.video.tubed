@@ -114,9 +114,9 @@ def invoke(context):
         items.append(tuple(action))
 
     action = Action(
-        label=context.i18n('Switch User'),
+        label=context.i18n('Manage Users'),
         path=create_addon_path(parameters={
-            'mode': str(MODES.SWITCH_USER)
+            'mode': str(MODES.MANAGE_USERS)
         })
     )
     items.append(tuple(action))

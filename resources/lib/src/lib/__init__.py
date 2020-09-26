@@ -9,4 +9,4 @@
 """
 
 __all__ = ['cache', 'context', 'database', 'logger', 'memoizer', 'routing', 'settings',
-           'sql_storage', 'time', 'translation', 'url_utils']
+           'sql_storage', 'time', 'translation', 'txt_fmt', 'url_utils']

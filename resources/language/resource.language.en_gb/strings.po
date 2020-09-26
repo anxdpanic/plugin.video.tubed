@@ -66,7 +66,7 @@ msgid "Sign Out"
 msgstr ""
 
 msgctxt "#30013"
-msgid "Switch User"
+msgid "Manage Users"
 msgstr ""
 
 msgctxt "#30014"
@@ -79,4 +79,28 @@ msgstr ""
 
 msgctxt "#30016"
 msgid "Go to %s and enter the following code:"
+msgstr ""
+
+msgctxt "#30017"
+msgid "New user..."
+msgstr ""
+
+msgctxt "#30018"
+msgid "Rename user..."
+msgstr ""
+
+msgctxt "#30019"
+msgid "Remove user..."
+msgstr ""
+
+msgctxt "#30020"
+msgid "New Username"
+msgstr ""
+
+msgctxt "#30021"
+msgid "Remove User"
+msgstr ""
+
+msgctxt "#30022"
+msgid "Removing %s, are you sure?"
 msgstr ""
