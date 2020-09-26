@@ -16,7 +16,6 @@ from tubed_api import usher  # pylint: disable=import-error
 from tubed_api import v3  # pylint: disable=import-error
 
 from ..constants import CREDENTIALS
-from ..constants import ONE_HOUR
 from ..constants import ONE_MINUTE
 from ..constants import ONE_WEEK
 from ..exceptions.decorators import catch_api_exceptions
@@ -165,7 +164,7 @@ class API:  # pylint: disable=too-many-public-methods
         })
 
     @catch_api_exceptions
-    @memoizer.cache_method(limit=ONE_WEEK)
+    @memoizer.cache_method(limit=ONE_MINUTE * 7)
     def rating(self, video_id):
         if isinstance(video_id, list):
             video_id = ','.join(video_id)
@@ -208,7 +207,7 @@ class API:  # pylint: disable=too-many-public-methods
         })
 
     @catch_api_exceptions
-    @memoizer.cache_method(limit=ONE_HOUR)
+    @memoizer.cache_method(limit=ONE_MINUTE * 7)
     def subscription(self, channel_id, order='alphabetical', page_token=''):
         parameters = {
             'part': 'snippet',
@@ -226,7 +225,7 @@ class API:  # pylint: disable=too-many-public-methods
         return self.api.subscriptions.get(parameters=parameters)
 
     @catch_api_exceptions
-    @memoizer.cache_method(limit=ONE_HOUR)
+    @memoizer.cache_method(limit=ONE_MINUTE * 7)
     def guide_category(self, category_id, page_token=''):
         parameters = {
             'part': 'snippet,contentDetails,brandingSettings',
@@ -241,7 +240,7 @@ class API:  # pylint: disable=too-many-public-methods
         return self.api.channels.get(parameters=parameters)
 
     @catch_api_exceptions
-    @memoizer.cache_method(limit=ONE_HOUR)
+    @memoizer.cache_method(limit=ONE_MINUTE * 7)
     def guide_categories(self, page_token=''):
         parameters = {
             'part': 'snippet',
@@ -255,7 +254,7 @@ class API:  # pylint: disable=too-many-public-methods
         return self.api.guide_categories.get(parameters=parameters)
 
     @catch_api_exceptions
-    @memoizer.cache_method(limit=ONE_HOUR)
+    @memoizer.cache_method(limit=ONE_MINUTE * 7)
     def video_category(self, category_id, page_token=''):
         parameters = {
             'part': 'snippet,contentDetails,status',
@@ -271,7 +270,7 @@ class API:  # pylint: disable=too-many-public-methods
         return self.api.videos.get(parameters=parameters)
 
     @catch_api_exceptions
-    @memoizer.cache_method(limit=ONE_HOUR)
+    @memoizer.cache_method(limit=ONE_MINUTE * 7)
     def video_categories(self, page_token=''):
         parameters = {
             'part': 'snippet',
@@ -285,7 +284,7 @@ class API:  # pylint: disable=too-many-public-methods
         return self.api.video_categories.get(parameters=parameters)
 
     @catch_api_exceptions
-    @memoizer.cache_method(limit=ONE_HOUR)
+    @memoizer.cache_method(limit=ONE_MINUTE * 7)
     def activities(self, channel_id, page_token=''):
         parameters = {
             'part': 'snippet,contentDetails',
@@ -307,7 +306,7 @@ class API:  # pylint: disable=too-many-public-methods
         return self.api.activities.get(parameters=parameters)
 
     @catch_api_exceptions
-    @memoizer.cache_method(limit=ONE_HOUR)
+    @memoizer.cache_method(limit=ONE_MINUTE * 7)
     def channel_sections(self, channel_id):
         parameters = {
             'part': 'snippet,contentDetails',
@@ -323,7 +322,7 @@ class API:  # pylint: disable=too-many-public-methods
         return self.api.channel_sections.get(parameters=parameters)
 
     @catch_api_exceptions
-    @memoizer.cache_method(limit=ONE_HOUR)
+    @memoizer.cache_method(limit=ONE_MINUTE * 7)
     def playlists_of_channel(self, channel_id, page_token=''):
         parameters = {
             'part': 'snippet',
@@ -341,7 +340,7 @@ class API:  # pylint: disable=too-many-public-methods
         return self.api.playlists.get(parameters=parameters)
 
     @catch_api_exceptions
-    @memoizer.cache_method(limit=ONE_HOUR)
+    @memoizer.cache_method(limit=ONE_MINUTE * 7)
     def playlist_items(self, playlist_id, page_token='', max_results=None):
         parameters = {
             'part': 'snippet',
@@ -355,7 +354,7 @@ class API:  # pylint: disable=too-many-public-methods
         return self.api.playlist_items.get(parameters=parameters)
 
     @catch_api_exceptions
-    @memoizer.cache_method(limit=ONE_HOUR)
+    @memoizer.cache_method(limit=ONE_MINUTE * 7)
     def channel_by_username(self, username):
         parameters = {
             'part': 'id'
@@ -369,7 +368,7 @@ class API:  # pylint: disable=too-many-public-methods
         return self.api.channels.get(parameters=parameters)
 
     @catch_api_exceptions
-    @memoizer.cache_method(limit=ONE_HOUR)
+    @memoizer.cache_method(limit=ONE_MINUTE * 7)
     def channels(self, channel_id):
         if isinstance(channel_id, list):
             channel_id = ','.join(channel_id)
@@ -386,7 +385,7 @@ class API:  # pylint: disable=too-many-public-methods
         return self.api.channels.get(parameters=parameters)
 
     @catch_api_exceptions
-    @memoizer.cache_method(limit=ONE_HOUR)
+    @memoizer.cache_method(limit=ONE_MINUTE * 7)
     def my_rating(self, rating='like', page_token=''):
         parameters = {
             'part': 'snippet,status',
@@ -400,7 +399,7 @@ class API:  # pylint: disable=too-many-public-methods
         return self.api.videos.get(parameters=parameters)
 
     @catch_api_exceptions
-    @memoizer.cache_method(limit=ONE_HOUR)
+    @memoizer.cache_method(limit=ONE_MINUTE * 7)
     def videos(self, video_id, live_details=False):
         if isinstance(video_id, list):
             video_id = ','.join(video_id)
@@ -417,7 +416,7 @@ class API:  # pylint: disable=too-many-public-methods
         return self.api.videos.get(parameters=parameters)
 
     @catch_api_exceptions
-    @memoizer.cache_method(limit=ONE_HOUR)
+    @memoizer.cache_method(limit=ONE_MINUTE * 7)
     def playlists(self, playlist_id):
         if isinstance(playlist_id, list):
             playlist_id = ','.join(playlist_id)
@@ -430,7 +429,7 @@ class API:  # pylint: disable=too-many-public-methods
         return self.api.playlists.get(parameters=parameters)
 
     @catch_api_exceptions
-    @memoizer.cache_method(limit=ONE_HOUR)
+    @memoizer.cache_method(limit=ONE_MINUTE * 7)
     def parent_comments(self, video_id, page_token='', max_results=None):
         parameters = {
             'part': 'snippet',
@@ -446,7 +445,7 @@ class API:  # pylint: disable=too-many-public-methods
         return self.api.comment_threads.get(parameters=parameters)
 
     @catch_api_exceptions
-    @memoizer.cache_method(limit=ONE_HOUR)
+    @memoizer.cache_method(limit=ONE_MINUTE * 7)
     def child_comments(self, parent_id, page_token='', max_results=None):
         parameters = {
             'part': 'snippet',
@@ -461,7 +460,7 @@ class API:  # pylint: disable=too-many-public-methods
         return self.api.comments.get(parameters=parameters)
 
     @catch_api_exceptions
-    @memoizer.cache_method(limit=ONE_HOUR)
+    @memoizer.cache_method(limit=ONE_MINUTE * 7)
     def channel_videos(self, channel_id, page_token=''):
         parameters = {
             'part': 'snippet',
@@ -483,7 +482,7 @@ class API:  # pylint: disable=too-many-public-methods
         return self.api.search.get(parameters=parameters)
 
     @catch_api_exceptions
-    @memoizer.cache_method(limit=ONE_HOUR)
+    @memoizer.cache_method(limit=ONE_MINUTE * 7)
     def live_events(self, event_type='live', order='relevance', page_token=''):
         parameters = {
             'part': 'snippet',
@@ -502,7 +501,7 @@ class API:  # pylint: disable=too-many-public-methods
         return self.api.search.get(parameters=parameters)
 
     @catch_api_exceptions
-    @memoizer.cache_method(limit=ONE_HOUR)
+    @memoizer.cache_method(limit=ONE_MINUTE * 7)
     def related_videos(self, video_id, page_token='', max_results=None):
         parameters = {
             'relatedToVideoId': video_id,
@@ -519,7 +518,7 @@ class API:  # pylint: disable=too-many-public-methods
         return self.api.search.get(parameters=parameters)
 
     @catch_api_exceptions
-    @memoizer.cache_method(limit=ONE_HOUR)
+    @memoizer.cache_method(limit=ONE_MINUTE * 7)
     def search(self, query, search_type=None, event_type='', channel_id='',
                order='relevance', safe_search='moderate', page_token=''):
         parameters = {
@@ -570,7 +569,7 @@ class API:  # pylint: disable=too-many-public-methods
         return self.api.search.get(parameters=parameters)
 
     @catch_api_exceptions
-    @memoizer.cache_method(limit=ONE_HOUR)
+    @memoizer.cache_method(limit=ONE_MINUTE * 7)
     def most_popular(self, page_token=''):
         parameters = {
             'part': 'snippet,status',
@@ -595,9 +594,9 @@ class API:  # pylint: disable=too-many-public-methods
     @catch_api_exceptions
     def refresh_token(self):
         if USERS.access_token and USERS.token_expired:
-            data = self.client.refresh_token(USERS.refresh_token)
-            USERS.access_token = data['access_token']
-            USERS.token_expiry = int(time.time()) + int(data.get('expires_in', 3600))
+            access_token, expiry = self.client.refresh_token(USERS.refresh_token)
+            USERS.access_token = access_token
+            USERS.token_expiry = int(time.time()) + int(expiry)
             USERS.save()
             self.refresh_client()
 
@@ -643,6 +642,7 @@ class API:  # pylint: disable=too-many-public-methods
         USERS.load()
         self._api.ACCESS_TOKEN = USERS.access_token
         self.client = oauth.Client()
+        memoizer.reset_cache()
 
     def calculate_next_page_token(self, page):
         """

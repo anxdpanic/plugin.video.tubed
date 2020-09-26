@@ -19,5 +19,3 @@ def invoke(context):
     context.api.revoke_token()
 
     xbmc.executebuiltin('Container.Refresh')
-
-    # TODO: clear caches
