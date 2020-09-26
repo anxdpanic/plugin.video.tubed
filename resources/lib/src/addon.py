@@ -81,6 +81,12 @@ def _search_query(query='', page_token=''):
     search_query.invoke(CONTEXT, query, page_token)
 
 
+@router.route(MODES.MY_CHANNEL)
+def _my_channel():
+    from .routes import my_channel
+    my_channel.invoke(CONTEXT)
+
+
 def invoke(argv):
     global CONTEXT  # pylint: disable=global-statement
 
