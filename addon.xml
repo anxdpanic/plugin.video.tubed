@@ -4,7 +4,7 @@
         <import addon="xbmc.python" version="3.0.0"/>
         <import addon="script.module.requests" version="2.12.4"/>
         <import addon="script.module.pyxbmct" version="1.2.0"/>
-        <import addon="script.module.tubed.api" version="0.0.1"/>
+        <import addon="script.module.tubed.api" version="0.0.1~alpha1"/>
     </requires>
     <extension point="xbmc.python.pluginsource" library="resources/lib/addon.py">
         <provides>video</provides>
