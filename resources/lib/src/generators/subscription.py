@@ -11,51 +11,29 @@
 from html import unescape
 
 from ..constants import MODES
-from ..items.video import Video
+from ..items.directory import Directory
 from ..lib.url_utils import create_addon_path
 
 
-def video_generator(items):
+def subscription_generator(items):
     for item in items:
-        video_id = ''
-
-        kind = item.get('kind', '')
-        if not kind:
-            continue
-
         snippet = item.get('snippet', {})
-        if not snippet:
-            continue
+        channel_id = snippet.get('resourceId', {}).get('channelId', snippet.get('channelId', ''))
 
-        if kind == 'youtube#video':
-            video_id = item.get('id', '')
-
-        elif kind == 'youtube#playlistItem':
-            video_id = snippet.get('resourceId', {}).get('videoId', '')
-
-        elif kind == 'youtube#searchResult':
-            if isinstance(item.get('id', {}), dict):
-                video_id = item.get('id', {}).get('videoId', '')
-
-        if not video_id:
-            continue
-
-        payload = Video(
+        payload = Directory(
             label=unescape(snippet.get('title', '')),
-            label2=unescape(snippet.get('channelTitle', '')),
             path=create_addon_path({
-                'mode': str(MODES.PLAY),
-                'video_id': video_id
+                'mode': str(MODES.PLAYLISTS),
+                'channel_id': channel_id
             })
         )
 
         info_labels = {
-            'mediatype': 'video',
             'plot': unescape(snippet.get('description', '')),
             'plotoutline': unescape(snippet.get('description', '')),
             'originaltitle': unescape(snippet.get('title', '')),
             'sorttitle': unescape(snippet.get('title', '')),
-            'studio': unescape(snippet.get('channelTitle', ''))
+            'studio': unescape(snippet.get('title', ''))
         }
         payload.ListItem.setInfo('video', info_labels)
 

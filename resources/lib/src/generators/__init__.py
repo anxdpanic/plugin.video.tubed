@@ -8,4 +8,4 @@
     See LICENSES/GPL-2.0-only.txt for more information.
 """
 
-__all__ = ['video']
+__all__ = ['playlist', 'subscription', 'video']

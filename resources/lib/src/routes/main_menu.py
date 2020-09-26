@@ -30,15 +30,6 @@ def invoke(context):
         )
         items.append(tuple(action))
 
-    if logged_in:
-        directory = Directory(
-            label=context.i18n('Recommendations'),
-            path=create_addon_path(parameters={
-                'mode': str(MODES.RECOMMENDATIONS)
-            })
-        )
-        items.append(tuple(directory))
-
     directory = Directory(
         label=context.i18n('Most Popular'),
         path=create_addon_path(parameters={
@@ -75,7 +66,8 @@ def invoke(context):
         directory = Directory(
             label=context.i18n('Playlists'),
             path=create_addon_path(parameters={
-                'mode': str(MODES.PLAYLISTS)
+                'mode': str(MODES.PLAYLISTS),
+                'channel_id': 'mine'
             })
         )
         items.append(tuple(directory))
