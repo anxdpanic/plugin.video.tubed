@@ -112,3 +112,7 @@ msgstr ""
 msgctxt "#30024"
 msgid "You are about to sign out, are you sure?"
 msgstr ""
+
+msgctxt "#30025"
+msgid "Categories"
+msgstr ""

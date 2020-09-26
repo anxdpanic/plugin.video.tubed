@@ -28,6 +28,8 @@ class MODES(Enum):
     MANAGE_USERS = 'manage_users'
     SEARCH_QUERY = 'search_query'
     PLAYLIST = 'playlist'
+    CATEGORIES = 'categories'
+    CATEGORY = 'category'
 
     def __str__(self):
         return str(self.value).lower()

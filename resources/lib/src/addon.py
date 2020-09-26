@@ -118,6 +118,18 @@ def _my_channel(page_token=''):
     my_channel.invoke(CONTEXT, page_token)
 
 
+@router.route(MODES.CATEGORIES, kwargs=['page_token'])
+def _categories(page_token=''):
+    from .routes import categories
+    categories.invoke(CONTEXT, page_token)
+
+
+@router.route(MODES.CATEGORY, args=['category_id'], kwargs=['page_token'])
+def _category(category_id, page_token=''):
+    from .routes import category
+    category.invoke(CONTEXT, category_id, page_token)
+
+
 def invoke(argv):
     global CONTEXT  # pylint: disable=global-statement
 
