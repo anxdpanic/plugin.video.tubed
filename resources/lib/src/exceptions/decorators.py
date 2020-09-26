@@ -14,7 +14,7 @@ from .api import V3Exception
 
 
 def __api_error_check(payload):
-    if 'error' in payload:
+    if isinstance(payload, dict) and 'error' in payload:
         raise V3Exception(payload)
 
     return payload

@@ -29,6 +29,18 @@ def _main_menu():
     main_menu.invoke(CONTEXT)
 
 
+@router.route(MODES.SIGN_IN)
+def _sign_in():
+    from .routes import sign_in
+    sign_in.invoke(CONTEXT)
+
+
+@router.route(MODES.SIGN_OUT)
+def _sign_out():
+    from .routes import sign_out
+    sign_out.invoke(CONTEXT)
+
+
 @router.route(MODES.MOST_POPULAR, kwargs=['page_token'])
 def _most_popular(page_token=''):
     from .routes import most_popular

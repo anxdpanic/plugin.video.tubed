@@ -8,6 +8,8 @@
     See LICENSES/GPL-2.0-only.txt for more information.
 """
 
+import time
+
 import tubed_api  # pylint: disable=import-error
 from tubed_api import oauth  # pylint: disable=import-error
 from tubed_api import usher  # pylint: disable=import-error
@@ -19,10 +21,12 @@ from ..constants import ONE_MINUTE
 from ..constants import ONE_WEEK
 from ..exceptions.decorators import catch_api_exceptions
 from ..lib import memoizer
+from ..storage.users import UserStorage
+
+USERS = UserStorage()
 
 
 class API:  # pylint: disable=too-many-public-methods
-    access_token = ''
 
     def __init__(self, language='en-US', region='US'):
         self._language = language
@@ -35,11 +39,18 @@ class API:  # pylint: disable=too-many-public-methods
         self._api.CLIENT_SECRET = str(CREDENTIALS.SECRET)
         self._api.API_KEY = str(CREDENTIALS.KEY)
 
-        self._api.ACCESS_TOKEN = self.access_token
+        self._api.ACCESS_TOKEN = USERS.access_token
 
-        self._client = oauth.Client
         self._usher = usher
+
         self.api = v3
+        self.client = oauth.Client()
+        self.refresh_token()
+
+    @property
+    def logged_in(self):
+        self.refresh_token()
+        return USERS.access_token and not USERS.token_expired
 
     @property
     def language(self):
@@ -580,6 +591,58 @@ class API:  # pylint: disable=too-many-public-methods
 
         return self._usher.resolve(video_id, quality=quality,
                                    language=self.language, region=self.region)
+
+    @catch_api_exceptions
+    def refresh_token(self):
+        if USERS.access_token and USERS.token_expired:
+            data = self.client.refresh_token(USERS.refresh_token)
+            USERS.access_token = data['access_token']
+            USERS.token_expiry = int(time.time()) + int(data.get('expires_in', 3600))
+            USERS.save()
+            self.refresh_client()
+
+    @catch_api_exceptions
+    def revoke_token(self):
+        if USERS.refresh_token:
+            self.client.revoke_token(USERS.refresh_token)
+            USERS.access_token = ''
+            USERS.refresh_token = ''
+            USERS.token_expiry = -1
+            USERS.save()
+            self.refresh_client()
+
+    @catch_api_exceptions
+    def request_codes(self):
+        return self.client.request_codes()
+
+    @catch_api_exceptions
+    def request_access_token(self, device_code):
+        data = self.client.request_access_token(device_code)
+
+        if 'error' not in data:
+            access_token = data.get('access_token', '')
+            refresh_token = data.get('refresh_token', '')
+            token_expiry = int(time.time()) + int(data.get('expires_in', 3600))
+
+            if not access_token and not refresh_token:
+                token_expiry = 0
+
+            USERS.access_token = access_token
+            USERS.refresh_token = refresh_token
+            USERS.token_expiry = token_expiry
+            USERS.save()
+            self.refresh_client()
+            return True
+
+        if data['error'] == 'authorization_pending':
+            return False
+
+        return data
+
+    def refresh_client(self):
+        USERS.load()
+        self._api.ACCESS_TOKEN = USERS.access_token
+        self.client = oauth.Client()
 
     def calculate_next_page_token(self, page):
         """
