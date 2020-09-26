@@ -160,6 +160,8 @@ class UserStorage:
     def remove(self, user_uuid):
         self._reset()
 
+        new_uuid = None
+        remove = False
         user_elements = self.root.findall('./user')
         for user_element in user_elements:
             uuid_element = user_element.find('uuid')
@@ -168,7 +170,30 @@ class UserStorage:
                 continue
 
             if uuid_element.text == user_uuid:
-                self.root.remove(user_element)
+                remove = user_element
+            else:
+                new_uuid = uuid_element.text
+
+            if remove and new_uuid:
+                break
+
+        if remove and new_uuid:
+            self.change_current(new_uuid)
+            self.root.remove(remove)
+
+    def rename(self, user_uuid, new_name):
+        self._reset()
+
+        user_elements = self.root.findall('./user')
+        for user_element in user_elements:
+            uuid_element = user_element.find('uuid')
+            name_element = user_element.find('name')
+
+            if not hasattr(uuid_element, 'text') or not hasattr(name_element, 'text'):
+                continue
+
+            if uuid_element.text == user_uuid:
+                name_element.text = new_name
                 break
 
     def load(self):

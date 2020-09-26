@@ -26,7 +26,7 @@ class MODES(Enum):
     LIVE = 'live'
     SIGN_IN = 'sign_in'
     SIGN_OUT = 'sign_out'
-    SWITCH_USER = 'switch_user'
+    MANAGE_USERS = 'manage_users'
     SEARCH_QUERY = 'search_query'
 
     def __str__(self):

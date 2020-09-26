@@ -39,6 +39,12 @@ def _sign_out():
     sign_out.invoke(CONTEXT)
 
 
+@router.route(MODES.MANAGE_USERS)
+def _manage_users():
+    from .routes import manage_users
+    manage_users.invoke(CONTEXT)
+
+
 @router.route(MODES.MOST_POPULAR, kwargs=['page_token'])
 def _most_popular(page_token=''):
     from .routes import most_popular
