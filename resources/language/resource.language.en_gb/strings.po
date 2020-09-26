@@ -108,3 +108,7 @@ msgstr ""
 msgctxt "#30023"
 msgid "Uploads"
 msgstr ""
+
+msgctxt "#30024"
+msgid "You are about to sign out, are you sure?"
+msgstr ""
