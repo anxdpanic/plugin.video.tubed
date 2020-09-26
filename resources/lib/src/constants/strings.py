@@ -25,4 +25,5 @@ STRINGS = {
     'Switch User': 30013,
     'New Search': 30014,
     'Enter your search term': 30015,
+    'Go to %s and enter the following code:': 30016,
 }

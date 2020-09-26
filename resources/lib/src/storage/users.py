@@ -8,6 +8,7 @@
     See LICENSES/GPL-2.0-only.txt for more information.
 """
 
+import time
 from uuid import uuid4
 from xml.etree import ElementTree
 
@@ -25,6 +26,7 @@ class UserStorage:
         <uuid>%s</uuid>
         <refresh_token></refresh_token>
         <access_token></access_token>
+        <token_expiry>-1</token_expiry>
     </user>
 </users>
         '''
@@ -36,6 +38,7 @@ class UserStorage:
         <uuid>%s</uuid>
         <refresh_token></refresh_token>
         <access_token></access_token>
+        <token_expiry>0</token_expiry>
     </user>
         '''
 
@@ -108,6 +111,25 @@ class UserStorage:
     @access_token.setter
     def access_token(self, value):
         self._current_user_set('access_token', value)
+
+    @property
+    def token_expiry(self):
+        return int(self._current_user_get('token_expiry', '-1'))
+
+    @token_expiry.setter
+    def token_expiry(self, value):
+        self._current_user_set('token_expiry', str(int(value)))
+
+    @property
+    def token_expired(self):
+        if not self.access_token:
+            return True
+
+        # in this case no expiration date was set
+        if self.token_expiry == -1:
+            return False
+
+        return self.token_expiry <= int(time.time())
 
     def change_current(self, user_uuid):
         user = self.root.find('.//user[@current="true"]')
