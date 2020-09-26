@@ -24,7 +24,7 @@ def invoke(context):
 
     device_code = data['device_code']
     user_code = data['user_code']
-    verification_url = data.get('verification_url', 'youtube.com/activate').lstrip('https://www.')
+    verification_url = data.get('verification_url', 'google.com/device').lstrip('https://www.')
 
     message = context.i18n('Go to %s and enter the following code:') % verification_url
     message += ' ' + user_code
