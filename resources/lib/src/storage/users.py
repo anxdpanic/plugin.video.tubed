@@ -116,11 +116,11 @@ class UserStorage:
 
     @property
     def token_expiry(self):
-        return int(self._current_user_get('token_expiry', '-1'))
+        return float(self._current_user_get('token_expiry', -1))
 
     @token_expiry.setter
     def token_expiry(self, value):
-        self._current_user_set('token_expiry', str(int(value)))
+        self._current_user_set('token_expiry', str(value))
 
     @property
     def token_expired(self):

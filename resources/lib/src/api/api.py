@@ -596,7 +596,7 @@ class API:  # pylint: disable=too-many-public-methods
         if USERS.access_token and USERS.token_expired:
             access_token, expiry = self.client.refresh_token(USERS.refresh_token)
             USERS.access_token = access_token
-            USERS.token_expiry = int(time.time()) + int(expiry)
+            USERS.token_expiry = time.time() + int(expiry)
             USERS.save()
             self.refresh_client()
 
@@ -621,10 +621,10 @@ class API:  # pylint: disable=too-many-public-methods
         if 'error' not in data:
             access_token = data.get('access_token', '')
             refresh_token = data.get('refresh_token', '')
-            token_expiry = int(time.time()) + int(data.get('expires_in', 3600))
+            token_expiry = time.time() + int(data.get('expires_in', 3600))
 
             if not access_token and not refresh_token:
-                token_expiry = 0
+                token_expiry = -1
 
             USERS.access_token = access_token
             USERS.refresh_token = refresh_token
