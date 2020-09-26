@@ -9,13 +9,13 @@
 """
 
 import xbmc  # pylint: disable=import-error
-
-from ..storage.users import UserStorage
-
-USERS = UserStorage()
+import xbmcgui  # pylint: disable=import-error
 
 
 def invoke(context):
-    context.api.revoke_token()
+    if xbmcgui.Dialog().yesno(context.i18n('Sign Out'),
+                              context.i18n('You are about to sign out, are you sure?')):
 
-    xbmc.executebuiltin('Container.Refresh')
+        context.api.revoke_token()
+
+        xbmc.executebuiltin('Container.Refresh')
