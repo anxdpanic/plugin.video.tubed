@@ -45,8 +45,8 @@ def category_generator(items):
         payload.ListItem.setInfo('video', info_labels)
 
         payload.ListItem.setArt({
-            'icon': 'DefaultSets.png',
-            'thumb': 'DefaultSets.png',
+            'icon': 'DefaultGenre.png',
+            'thumb': 'DefaultGenre.png',
         })
 
         yield tuple(payload)
