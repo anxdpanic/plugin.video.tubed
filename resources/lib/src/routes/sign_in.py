@@ -50,5 +50,3 @@ def invoke(context):
     dialog.close()
 
     xbmc.executebuiltin('Container.Refresh')
-
-    # TODO: clear caches

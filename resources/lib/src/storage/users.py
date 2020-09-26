@@ -69,6 +69,7 @@ class UserStorage:
                 name = user.find('name').text
                 refresh_token = user.find('refresh_token').text
                 access_token = user.find('access_token').text
+                token_expiry = user.find('token_expiry').text
                 current = user.attrib.get('current', 'false').lower() == 'true'
 
                 payload.append({
@@ -76,7 +77,8 @@ class UserStorage:
                     'name': name,
                     'current': current,
                     'refresh_token': refresh_token or '',
-                    'access_token': access_token or ''
+                    'access_token': access_token or '',
+                    'token_expiry': token_expiry or -1
                 })
             except:  # pylint: disable=bare-except
                 pass
