@@ -33,6 +33,8 @@ def _search_history():
 
 
 def invoke(argv):
+    global CONTEXT  # pylint: disable=global-statement
+
     CONTEXT.argv = argv
     CONTEXT.handle = -1
     CONTEXT.query = parse_script_query(CONTEXT.argv[1])
