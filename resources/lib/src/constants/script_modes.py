@@ -8,6 +8,12 @@
     See LICENSES/GPL-2.0-only.txt for more information.
 """
 
-__all__ = ['api', 'constants', 'exceptions', 'generators', 'items',
-           'lib', 'routes', 'scripts', 'storage', 'addon', 'script',
-           'service']
+from enum import Enum
+
+
+class SCRIPT_MODES(Enum):  # pylint: disable=invalid-name
+    MAIN = 'main'
+    SEARCH_HISTORY = 'search_history'
+
+    def __str__(self):
+        return str(self.value).lower()

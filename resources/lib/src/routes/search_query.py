@@ -31,7 +31,10 @@ def invoke(context, query='', page_token=''):
         query = SEARCH_CACHE.item
 
     if query and '%' in query:
-        query = unquote(query)
+        try:
+            query = unquote(query)
+        except:  # pylint: disable=bare-except
+            pass
 
     if not query:
         keyboard = xbmc.Keyboard()

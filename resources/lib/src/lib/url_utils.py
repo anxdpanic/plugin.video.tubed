@@ -12,11 +12,13 @@ from urllib.parse import parse_qs
 from urllib.parse import urlencode
 
 from ..constants import ADDON_ID
+from ..constants import MODES
+from ..constants import SCRIPT_MODES
 
 
 def parse_query(query):
     payload = {
-        'mode': 'main'
+        'mode': str(MODES.MAIN)
     }
 
     args = parse_qs(query.lstrip('?'))
@@ -27,6 +29,21 @@ def parse_query(query):
 
         else:
             payload[arg] = args[arg]
+
+    return payload
+
+
+def parse_script_query(argv):
+    payload = {
+        'mode': str(SCRIPT_MODES.MAIN)
+    }
+
+    argv = argv.split('&')
+
+    args = [arg.split('=') for arg in argv if len(arg.split('=')) == 2]
+
+    for arg in args:
+        payload[arg[0].lower()] = arg[1]
 
     return payload
 

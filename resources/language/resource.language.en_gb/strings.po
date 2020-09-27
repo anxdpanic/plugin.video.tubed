@@ -116,3 +116,11 @@ msgstr ""
 msgctxt "#30025"
 msgid "Categories"
 msgstr ""
+
+msgctxt "#30026"
+msgid "Remove..."
+msgstr ""
+
+msgctxt "#30027"
+msgid "Clear history"
+msgstr ""

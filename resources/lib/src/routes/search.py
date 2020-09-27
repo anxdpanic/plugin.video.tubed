@@ -12,6 +12,7 @@ from urllib.parse import quote
 
 import xbmcplugin  # pylint: disable=import-error
 
+from ..constants import ADDON_ID
 from ..constants import MODES
 from ..items.directory import Directory
 from ..items.search_query import SearchQuery
@@ -40,6 +41,16 @@ def invoke(context):
                 'query': quote(query)
             })
         )
+
+        context_menus = [
+            (context.i18n('Remove...'),
+             'RunScript(%s,mode=search_history&action=remove&item=%s)' % (ADDON_ID, quote(query))),
+
+            (context.i18n('Clear history'),
+             'RunScript(%s,mode=search_history&action=clear)' % ADDON_ID),
+        ]
+
+        directory.ListItem.addContextMenuItems(context_menus)
         items.append(tuple(directory))
 
     xbmcplugin.addDirectoryItems(context.handle, items, len(items))
