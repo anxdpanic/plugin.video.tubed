@@ -30,6 +30,9 @@ def category_generator(items):
         if not category_id:
             continue
 
+        if not snippet.get('assignable'):
+            continue
+
         payload = Directory(
             label=unescape(snippet.get('title', '')),
             path=create_addon_path({
