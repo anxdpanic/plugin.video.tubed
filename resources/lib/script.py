@@ -8,6 +8,8 @@
     See LICENSES/GPL-2.0-only.txt for more information.
 """
 
-__all__ = ['api', 'constants', 'exceptions', 'generators', 'items',
-           'lib', 'routes', 'scripts', 'storage', 'addon', 'script',
-           'service']
+import sys
+
+from src import script  # pylint: disable=import-error
+
+script.invoke(sys.argv)

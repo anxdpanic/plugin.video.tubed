@@ -136,7 +136,7 @@ def invoke(argv):
     CONTEXT.argv = argv
     CONTEXT.handle = argv[1]
     CONTEXT.query = parse_query(argv[2])
-    CONTEXT.mode = CONTEXT.query.get('mode', 'main')
+    CONTEXT.mode = CONTEXT.query.get('mode', str(MODES.MAIN))
 
     CONTEXT.api = API()
 

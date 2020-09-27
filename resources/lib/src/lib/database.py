@@ -254,6 +254,7 @@ class Database:
     def _remove(self, item_id):
         self._open()
         self._execute(True, 'DELETE FROM %s WHERE key = ?' % self.table_name, [item_id])
+        self._close()
 
     @staticmethod
     def _encode(obj):

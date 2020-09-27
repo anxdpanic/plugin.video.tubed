@@ -35,4 +35,6 @@ STRINGS = {
     'Uploads': 30023,
     'You are about to sign out, are you sure?': 30024,
     'Categories': 30025,
+    'Remove...': 30026,
+    'Clear history': 30027,
 }
