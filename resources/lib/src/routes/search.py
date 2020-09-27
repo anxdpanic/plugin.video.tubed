@@ -19,10 +19,10 @@ from ..items.search_query import SearchQuery
 from ..lib.url_utils import create_addon_path
 from ..storage.search_history import SearchHistory
 
-SEARCH_HISTORY = SearchHistory()
-
 
 def invoke(context):
+    history = SearchHistory()
+
     items = []
 
     directory = SearchQuery(
@@ -33,7 +33,7 @@ def invoke(context):
     )
     items.append(tuple(directory))
 
-    for query in SEARCH_HISTORY.list():
+    for query in history.list():
         directory = Directory(
             label=query,
             path=create_addon_path(parameters={
