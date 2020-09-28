@@ -28,28 +28,29 @@ def invoke(context, channel_id, page_token=''):
 
     list_items = []
 
-    if upload_playlist:
-        directory = Directory(
-            label=txt_fmt.bold(context.i18n('Uploads')),
-            path=create_addon_path({
-                'mode': str(MODES.PLAYLIST),
-                'playlist_id': upload_playlist
-            })
-        )
-        list_items.append(tuple(directory))
-
-    if channel_id == 'mine':
-        watch_later_playlist = ' ' + related_playlists.get('watchLater', '')
-
-        if watch_later_playlist:
+    if not page_token:
+        if upload_playlist:
             directory = Directory(
-                label=txt_fmt.bold(context.i18n('Watch Later')),
+                label=txt_fmt.bold(context.i18n('Uploads')),
                 path=create_addon_path({
                     'mode': str(MODES.PLAYLIST),
-                    'playlist_id': watch_later_playlist
+                    'playlist_id': upload_playlist
                 })
             )
             list_items.append(tuple(directory))
+
+        if channel_id == 'mine':
+            watch_later_playlist = ' ' + related_playlists.get('watchLater', '')
+
+            if watch_later_playlist:
+                directory = Directory(
+                    label=txt_fmt.bold(context.i18n('Watch Later')),
+                    path=create_addon_path({
+                        'mode': str(MODES.PLAYLIST),
+                        'playlist_id': watch_later_playlist
+                    })
+                )
+                list_items.append(tuple(directory))
 
     payload = context.api.playlists_of_channel(channel_id=channel_id, page_token=page_token)
     list_items += list(playlist_generator(payload.get('items', [])))
