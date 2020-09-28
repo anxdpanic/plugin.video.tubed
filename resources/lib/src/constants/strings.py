@@ -38,4 +38,7 @@ STRINGS = {
     'Remove...': 30026,
     'Clear history': 30027,
     'Watch Later': 30046,
+    'Language': 30048,
+    'Region': 30050,
+    'Configure regional preferences': 30052,
 }

@@ -200,3 +200,31 @@ msgstr ""
 msgctxt "#30046"
 msgid "Watch Later"
 msgstr ""
+
+msgctxt "#30047"
+msgid "Regional"
+msgstr ""
+
+msgctxt "#30048"
+msgid "Language"
+msgstr ""
+
+msgctxt "#30049"
+msgid "Your preferred YouTube UI language"
+msgstr ""
+
+msgctxt "#30050"
+msgid "Region"
+msgstr ""
+
+msgctxt "#30051"
+msgid "Your preferred content region"
+msgstr ""
+
+msgctxt "#30052"
+msgid "Configure regional preferences"
+msgstr ""
+
+msgctxt "#30053"
+msgid "Configure your preferred language and region"
+msgstr ""

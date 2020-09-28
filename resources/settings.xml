@@ -5,6 +5,37 @@
             <group id="1" label="">
 
             </group>
+            <group id="2" label="30047">
+                <setting id="configure.regional" type="action" label="30052" help="30053">
+                    <level>0</level>
+                    <data>RunScript(plugin.video.tubed,mode=configure_regional)</data>
+                    <control type="button" format="action">
+                        <close>true</close>
+                    </control>
+                </setting>
+                <setting id="language" type="string" label="30048" help="30049">
+                    <level>0</level>
+                    <default>en-US</default>
+                    <enable>false</enable>
+                    <constraints>
+                        <allowempty>false</allowempty>
+                    </constraints>
+                    <control type="edit" format="string">
+                        <heading>30048</heading>
+                    </control>
+                </setting>
+                <setting id="region" type="string" label="30050" help="30051">
+                    <level>0</level>
+                    <default>US</default>
+                    <enable>false</enable>
+                    <constraints>
+                        <allowempty>false</allowempty>
+                    </constraints>
+                    <control type="edit" format="string">
+                        <heading>30050</heading>
+                    </control>
+                </setting>
+            </group>
         </category>
         <category id="playback" label="30045" help="">
             <group id="1" label="">
@@ -38,6 +69,6 @@
                     <control type="toggle"/>
                 </setting>
             </group>
-    </category>
+        </category>
     </section>
 </settings>

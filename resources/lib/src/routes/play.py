@@ -15,9 +15,9 @@ from ..items.stream import Stream
 
 def invoke(context, video_id):
     quality = context.api.quality(
-        context.settings.video_quality(),
-        limit_30fps=context.settings.limit_to_30fps(),
-        hdr=context.settings.hdr()
+        context.settings.video_quality,
+        limit_30fps=context.settings.limit_to_30fps,
+        hdr=context.settings.hdr
     )
 
     video = context.api.resolve(video_id=video_id, quality=quality)

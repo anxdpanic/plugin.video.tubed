@@ -14,6 +14,7 @@ from enum import Enum
 class SCRIPT_MODES(Enum):  # pylint: disable=invalid-name
     MAIN = 'main'
     SEARCH_HISTORY = 'search_history'
+    CONFIGURE_REGIONAL = 'configure_regional'
 
     def __str__(self):
         return str(self.value).lower()
