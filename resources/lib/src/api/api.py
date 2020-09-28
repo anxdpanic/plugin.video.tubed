@@ -42,6 +42,8 @@ class API:  # pylint: disable=too-many-public-methods
 
         self._usher = usher
 
+        self.quality = self._usher.Quality
+
         self.api = v3
         self.client = oauth.Client()
         self.refresh_token()

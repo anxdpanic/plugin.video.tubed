@@ -14,7 +14,13 @@ from ..items.stream import Stream
 
 
 def invoke(context, video_id):
-    video = context.api.resolve(video_id=video_id, quality=2160)  # TODO: Quality setting
+    quality = context.api.quality(
+        context.settings.video_quality(),
+        limit_30fps=context.settings.limit_to_30fps(),
+        hdr=context.settings.hdr()
+    )
+
+    video = context.api.resolve(video_id=video_id, quality=quality)
     channel = video.get('channel', {})
     license_data = video.get('license', {})
     metadata = video.get('metadata', {})
