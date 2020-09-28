@@ -124,3 +124,75 @@ msgstr ""
 msgctxt "#30027"
 msgid "Clear history"
 msgstr ""
+
+msgctxt "#30028"
+msgid "General"
+msgstr ""
+
+msgctxt "#30029"
+msgid "Quality"
+msgstr ""
+
+msgctxt "#30030"
+msgid "Choose the maximum playback quality for videos and live content"
+msgstr ""
+
+msgctxt "#30031"
+msgid "Limit to 30 fps"
+msgstr ""
+
+msgctxt "#30032"
+msgid "Limit playback quality to 30 fps or less"
+msgstr ""
+
+msgctxt "#30033"
+msgid "HDR"
+msgstr ""
+
+msgctxt "#30034"
+msgid "Use the best matching HDR streams for videos"
+msgstr ""
+
+msgctxt "#30035"
+msgid "Adaptive (MP4/H264)"
+msgstr ""
+
+msgctxt "#30036"
+msgid "Adaptive (WEBM/VP9)"
+msgstr ""
+
+msgctxt "#30037"
+msgid "240p"
+msgstr ""
+
+msgctxt "#30038"
+msgid "360p"
+msgstr ""
+
+msgctxt "#30039"
+msgid "480p"
+msgstr ""
+
+msgctxt "#30040"
+msgid "720p (HD)"
+msgstr ""
+
+msgctxt "#30041"
+msgid "1080p (FHD)"
+msgstr ""
+
+msgctxt "#30042"
+msgid "1440p (QHD)"
+msgstr ""
+
+msgctxt "#30043"
+msgid "2160p (4K)"
+msgstr ""
+
+msgctxt "#30044"
+msgid "4320p (8K)"
+msgstr ""
+
+msgctxt "#30045"
+msgid "Playback"
+msgstr ""

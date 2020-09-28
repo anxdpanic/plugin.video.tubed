@@ -100,3 +100,25 @@ class Settings:
 
         self.addon.setSetting(setting_id, setting_value)
         return
+
+    def video_quality(self):
+        _map = {
+            0: 240,
+            1: 360,
+            2: 480,
+            3: 720,
+            4: 1080,
+            5: 1440,
+            6: 2160,
+            7: 4320,
+            8: 'mp4',
+            9: 'webm'
+        }
+
+        return _map.get(self.get_int('quality'), 4)
+
+    def limit_to_30fps(self):
+        return self.get_bool('limit30')
+
+    def hdr(self):
+        return self.get_bool('hdr')
