@@ -125,3 +125,19 @@ class Settings:
     @property
     def hdr(self):
         return self.get_bool('hdr')
+
+    @property
+    def language(self):
+        return self.get_string('language')
+
+    @language.setter
+    def language(self, value):
+        self.set_string('language', value)
+
+    @property
+    def region(self):
+        return self.get_string('region')
+
+    @region.setter
+    def region(self, value):
+        self.set_string('region', value)

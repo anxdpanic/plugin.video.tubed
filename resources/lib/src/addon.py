@@ -138,6 +138,9 @@ def invoke(argv):
     CONTEXT.query = parse_query(argv[2])
     CONTEXT.mode = CONTEXT.query.get('mode', str(MODES.MAIN))
 
-    CONTEXT.api = API()
+    CONTEXT.api = API(
+        language=CONTEXT.settings.language,
+        region=CONTEXT.settings.region
+    )
 
     router.invoke(CONTEXT.query)

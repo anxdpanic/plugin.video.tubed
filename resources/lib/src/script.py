@@ -32,6 +32,12 @@ def _search_history():
     search_history.invoke(CONTEXT)
 
 
+@router.route(SCRIPT_MODES.CONFIGURE_REGIONAL)
+def _configure_regional():
+    from .scripts import configure_regional
+    configure_regional.invoke(CONTEXT)
+
+
 def invoke(argv):
     global CONTEXT  # pylint: disable=global-statement
 
@@ -40,6 +46,9 @@ def invoke(argv):
     CONTEXT.query = parse_script_query(CONTEXT.argv[1])
     CONTEXT.mode = CONTEXT.query.get('mode', str(SCRIPT_MODES.MAIN))
 
-    CONTEXT.api = API()
+    CONTEXT.api = API(
+        language=CONTEXT.settings.language,
+        region=CONTEXT.settings.region
+    )
 
     router.invoke(CONTEXT.query)
