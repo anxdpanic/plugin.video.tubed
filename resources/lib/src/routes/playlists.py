@@ -22,8 +22,9 @@ def invoke(context, channel_id, page_token=''):
     payload = context.api.channels(channel_id=channel_id)
 
     channel_item = payload.get('items', [{}])[0]
-    upload_playlist = channel_item.get('contentDetails', {}) \
-        .get('relatedPlaylists', {}).get('uploads', '')
+    content_details = channel_item.get('contentDetails', {})
+    related_playlists = content_details.get('relatedPlaylists', {})
+    upload_playlist = related_playlists.get('uploads', '')
 
     list_items = []
 
@@ -36,6 +37,19 @@ def invoke(context, channel_id, page_token=''):
             })
         )
         list_items.append(tuple(directory))
+
+    if channel_id == 'mine':
+        watch_later_playlist = ' ' + related_playlists.get('watchLater', '')
+
+        if watch_later_playlist:
+            directory = Directory(
+                label=txt_fmt.bold(context.i18n('Watch Later')),
+                path=create_addon_path({
+                    'mode': str(MODES.PLAYLIST),
+                    'playlist_id': watch_later_playlist
+                })
+            )
+            list_items.append(tuple(directory))
 
     payload = context.api.playlists_of_channel(channel_id=channel_id, page_token=page_token)
     list_items += list(playlist_generator(payload.get('items', [])))

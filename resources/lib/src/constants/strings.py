@@ -37,4 +37,5 @@ STRINGS = {
     'Categories': 30025,
     'Remove...': 30026,
     'Clear history': 30027,
+    'Watch Later': 30046,
 }
