@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<addon id="plugin.video.tubed" name="Tubed" version="0.0.1~alpha3" provider-name="anxdpanic">
+<addon id="plugin.video.tubed" name="Tubed" version="0.0.1~alpha4" provider-name="anxdpanic">
     <requires>
         <import addon="xbmc.python" version="3.0.0"/>
         <import addon="script.module.requests" version="2.12.4"/>
         <import addon="script.module.pyxbmct" version="1.2.0"/>
-        <import addon="script.module.tubed.api" version="0.0.1~alpha1"/>
+        <import addon="script.module.tubed.api" version="0.0.1~alpha2"/>
     </requires>
     <extension point="xbmc.python.pluginsource" library="resources/lib/addon.py">
         <provides>video</provides>
