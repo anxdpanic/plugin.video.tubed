@@ -15,20 +15,26 @@ import xbmc  # pylint: disable=import-error
 import xbmcplugin  # pylint: disable=import-error
 
 from ..constants import MODES
+from ..generators.channel import channel_generator
+from ..generators.playlist import playlist_generator
 from ..generators.video import video_generator
 from ..items.next_page import NextPage
+from ..items.search_query import SearchQuery
 from ..lib.url_utils import create_addon_path
 from ..storage.search_cache import SearchCache
 from ..storage.search_history import SearchHistory
 
-SEARCH_CACHE = SearchCache()
-SEARCH_HISTORY = SearchHistory()
 
+def invoke(context, query='', page_token='', search_type='video'):
+    if search_type not in ['video', 'channel', 'playlist']:
+        return
 
-def invoke(context, query='', page_token=''):
+    search_cache = SearchCache()
+    search_history = SearchHistory()
+
     if (not query and
             'mode=%s' % str(MODES.SEARCH_QUERY) in xbmc.getInfoLabel('Container.FolderPath')):
-        query = SEARCH_CACHE.item
+        query = search_cache.item
 
     if query and '%' in query:
         try:
@@ -48,21 +54,58 @@ def invoke(context, query='', page_token=''):
         xbmcplugin.endOfDirectory(context.handle, False)
         return
 
-    xbmcplugin.setContent(context.handle, 'videos')
-    payload = context.api.search(query=query, page_token=page_token)
-    list_items = list(video_generator(payload.get('items', [])))
-
+    list_items = []
     quoted_query = quote(query)
+
+    if not page_token and search_type == 'video':
+
+        directory = SearchQuery(
+            label=context.i18n('Channels'),
+            path=create_addon_path(parameters={
+                'mode': str(MODES.SEARCH_QUERY),
+                'query': quoted_query,
+                'search_type': 'channel'
+            })
+        )
+
+        list_items.append(tuple(directory))
+
+        directory = SearchQuery(
+            label=context.i18n('Playlists'),
+            path=create_addon_path(parameters={
+                'mode': str(MODES.SEARCH_QUERY),
+                'query': quoted_query,
+                'search_type': 'playlist'
+            })
+        )
+
+        list_items.append(tuple(directory))
+
+    payload = context.api.search(query=query, page_token=page_token, search_type=search_type)
+
+    addon_query = {
+        'mode': str(MODES.SEARCH_QUERY),
+        'query': quoted_query,
+        'search_type': search_type
+    }
+
+    if search_type == 'video':
+        xbmcplugin.setContent(context.handle, 'videos')
+        list_items += list(video_generator(payload.get('items', [])))
+        del addon_query['search_type']
+
+    elif search_type == 'channel':
+        list_items += list(channel_generator(payload.get('items', [])))
+
+    elif search_type == 'playlist':
+        list_items += list(playlist_generator(payload.get('items', [])))
 
     page_token = payload.get('nextPageToken')
     if page_token:
+        addon_query['page_token'] = page_token
         directory = NextPage(
             label=context.i18n('Next Page'),
-            path=create_addon_path({
-                'mode': str(MODES.SEARCH_QUERY),
-                'query': quoted_query,
-                'page_token': page_token
-            })
+            path=create_addon_path(addon_query)
         )
         list_items.append(tuple(directory))
 
@@ -70,8 +113,8 @@ def invoke(context, query='', page_token=''):
         xbmcplugin.endOfDirectory(context.handle, False)
         return
 
-    SEARCH_CACHE.item = quoted_query
-    SEARCH_HISTORY.update(query)
+    search_cache.item = quoted_query
+    search_history.update(query)
 
     xbmcplugin.addDirectoryItems(context.handle, list_items, len(list_items))
 
