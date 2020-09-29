@@ -15,34 +15,34 @@ from ..items.directory import Directory
 from ..lib.url_utils import create_addon_path
 
 
-def playlist_generator(items):
+def channel_generator(items):
     for item in items:
-        playlist_id = ''
+        channel_id = ''
 
         kind = item.get('kind', '')
         snippet = item.get('snippet', {})
 
-        if not kind or kind not in ['youtube#playlist', 'youtube#searchResult']:
+        if not kind or kind not in ['youtube#channel', 'youtube#searchResult']:
             continue
 
         if not snippet:
             continue
 
-        if kind == 'youtube#playlist':
-            playlist_id = item.get('id', '')
+        if kind == 'youtube#channel':
+            channel_id = item.get('id', '')
 
         elif kind == 'youtube#searchResult':
-            playlist_id = item.get('id', {}).get('playlistId')
+            channel_id = item.get('id', {}).get('channelId')
 
-        if not playlist_id:
+        if not channel_id:
             continue
 
         payload = Directory(
             label=unescape(snippet.get('title', '')),
             label2=unescape(snippet.get('channelTitle', '')),
             path=create_addon_path({
-                'mode': str(MODES.PLAYLIST),
-                'playlist_id': playlist_id
+                'mode': str(MODES.CHANNEL),
+                'channel_id': channel_id
             })
         )
 
