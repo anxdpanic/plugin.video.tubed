@@ -69,6 +69,35 @@
                     <control type="toggle"/>
                 </setting>
             </group>
+            <group id="2" label="30058">
+                <setting id="configure.subtitles" type="action" label="30054" help="30055">
+                    <level>0</level>
+                    <data>RunScript(plugin.video.tubed,mode=configure_subtitles)</data>
+                    <control type="button" format="action">
+                        <close>true</close>
+                    </control>
+                </setting>
+                <setting id="subtitle.language" type="integer" label="" help="">
+                    <level>0</level>
+                    <default>0</default>
+                    <enable>true</enable>
+                    <visible>false</visible>
+                    <control type="edit" format="integer">
+                        <heading></heading>
+                    </control>
+                </setting>
+                <setting id="subtitle.label" type="string" label="30056" help="30057">
+                    <level>0</level>
+                    <default>None</default>
+                    <enable>false</enable>
+                    <constraints>
+                        <allowempty>true</allowempty>
+                    </constraints>
+                    <control type="edit" format="string">
+                        <heading>30056</heading>
+                    </control>
+                </setting>
+            </group>
         </category>
     </section>
 </settings>

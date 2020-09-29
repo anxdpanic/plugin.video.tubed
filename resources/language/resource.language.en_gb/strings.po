@@ -228,3 +228,39 @@ msgstr ""
 msgctxt "#30053"
 msgid "Configure your preferred language and region"
 msgstr ""
+
+msgctxt "#30054"
+msgid "Configure subtitles"
+msgstr ""
+
+msgctxt "#30055"
+msgid "Configure your preferred subtitle language"
+msgstr ""
+
+msgctxt "#30056"
+msgid "Subtitle language"
+msgstr ""
+
+msgctxt "#30057"
+msgid "Your preferred subtitle language"
+msgstr ""
+
+msgctxt "#30058"
+msgid "Subtitles"
+msgstr ""
+
+msgctxt "#30059"
+msgid "%s with %s fallback"
+msgstr ""
+
+msgctxt "#30060"
+msgid "No auto-generated"
+msgstr ""
+
+msgctxt "#30061"
+msgid "None"
+msgstr ""
+
+msgctxt "#30062"
+msgid "Prompt"
+msgstr ""

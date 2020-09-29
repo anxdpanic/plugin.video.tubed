@@ -15,6 +15,7 @@ class SCRIPT_MODES(Enum):  # pylint: disable=invalid-name
     MAIN = 'main'
     SEARCH_HISTORY = 'search_history'
     CONFIGURE_REGIONAL = 'configure_regional'
+    CONFIGURE_SUBTITLES = 'configure_subtitles'
 
     def __str__(self):
         return str(self.value).lower()

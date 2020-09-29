@@ -38,6 +38,12 @@ def _configure_regional():
     configure_regional.invoke(CONTEXT)
 
 
+@router.route(SCRIPT_MODES.CONFIGURE_SUBTITLES)
+def _configure_subtitles():
+    from .scripts import configure_subtitles
+    configure_subtitles.invoke(CONTEXT)
+
+
 def invoke(argv):
     global CONTEXT  # pylint: disable=global-statement
 

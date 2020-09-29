@@ -41,4 +41,9 @@ STRINGS = {
     'Language': 30048,
     'Region': 30050,
     'Configure regional preferences': 30052,
+    'Subtitle language': 30056,
+    '%s with %s fallback': 30059,
+    'No auto-generated': 30060,
+    'None': 30061,
+    'Prompt': 30062,
 }
