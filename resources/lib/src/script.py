@@ -23,7 +23,7 @@ router = Router()
 
 @router.route(SCRIPT_MODES.MAIN)
 def _main():
-    return
+    CONTEXT.addon.openSettings()  # TODO: possibly replace with configuration wizard
 
 
 @router.route(SCRIPT_MODES.SEARCH_HISTORY)
@@ -38,12 +38,23 @@ def _configure_regional():
     configure_regional.invoke(CONTEXT)
 
 
+@router.route(SCRIPT_MODES.CONFIGURE_SUBTITLES)
+def _configure_subtitles():
+    from .scripts import configure_subtitles
+    configure_subtitles.invoke(CONTEXT)
+
+
 def invoke(argv):
     global CONTEXT  # pylint: disable=global-statement
 
     CONTEXT.argv = argv
     CONTEXT.handle = -1
-    CONTEXT.query = parse_script_query(CONTEXT.argv[1])
+
+    try:
+        CONTEXT.query = parse_script_query(CONTEXT.argv[1])
+    except IndexError:
+        CONTEXT.query = parse_script_query('')
+
     CONTEXT.mode = CONTEXT.query.get('mode', str(SCRIPT_MODES.MAIN))
 
     CONTEXT.api = API(

@@ -10,6 +10,8 @@
 
 import xbmcaddon  # pylint: disable=import-error
 
+from ..constants import SUBTITLE_LANGUAGE
+
 
 class Settings:
 
@@ -141,3 +143,27 @@ class Settings:
     @region.setter
     def region(self, value):
         self.set_string('region', value)
+
+    @property
+    def subtitle_language(self):
+        _map = {
+            0: SUBTITLE_LANGUAGE.NONE,
+            1: SUBTITLE_LANGUAGE.PROMPT,
+            2: SUBTITLE_LANGUAGE.CURRENT_W_FALLBACK,
+            3: SUBTITLE_LANGUAGE.CURRENT,
+            4: SUBTITLE_LANGUAGE.CURRENT_WO_ASR,
+        }
+
+        return _map.get(self.get_int('subtitle.language'), SUBTITLE_LANGUAGE.NONE)
+
+    @subtitle_language.setter
+    def subtitle_language(self, value):
+        self.set_int('subtitle.language', int(value))
+
+    @property
+    def subtitle_label(self):
+        return self.get_string('subtitle.label')
+
+    @subtitle_label.setter
+    def subtitle_label(self, value):
+        self.set_string('subtitle.label', value)
