@@ -56,6 +56,8 @@ def choose_subtitles(context, subtitles):
     if not subtitles:
         return []
 
+    subtitles = sorted(subtitles, key=lambda sub: sub[1])
+
     youtube_language = context.settings.language
     subtitle_language = context.settings.subtitle_language
 

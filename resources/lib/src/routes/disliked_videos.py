@@ -20,7 +20,7 @@ def invoke(context, page_token=''):
     xbmcplugin.setContent(context.handle, 'videos')
 
     payload = context.api.my_rating(rating='dislike', page_token=page_token)
-    list_items = list(video_generator(payload.get('items', [])))
+    list_items = list(video_generator(context, payload.get('items', [])))
 
     page_token = payload.get('nextPageToken')
     if page_token:

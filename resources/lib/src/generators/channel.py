@@ -13,29 +13,21 @@ from html import unescape
 from ..constants import MODES
 from ..items.directory import Directory
 from ..lib.url_utils import create_addon_path
+from .data_cache import get_cached
 
 
-def channel_generator(items):
+def channel_generator(context, items):
+    cached_channels = \
+        get_cached(context.api.channels, [get_id(item) for item in items if get_id(item)])
+
     for item in items:
-        channel_id = ''
-
-        kind = item.get('kind', '')
-        snippet = item.get('snippet', {})
-
-        if not kind or kind not in ['youtube#channel', 'youtube#searchResult']:
-            continue
-
-        if not snippet:
-            continue
-
-        if kind == 'youtube#channel':
-            channel_id = item.get('id', '')
-
-        elif kind == 'youtube#searchResult':
-            channel_id = item.get('id', {}).get('channelId')
+        channel_id = get_id(item)
 
         if not channel_id:
             continue
+
+        channel = cached_channels.get(channel_id, item)
+        snippet = channel.get('snippet', {})
 
         payload = Directory(
             label=unescape(snippet.get('title', '')),
@@ -67,3 +59,14 @@ def channel_generator(items):
         })
 
         yield tuple(payload)
+
+
+def get_id(item):
+    kind = item.get('kind', '')
+    if kind == 'youtube#channel':
+        return item.get('id', '')
+
+    if kind == 'youtube#searchResult':
+        return item.get('id', {}).get('channelId')
+
+    return ''

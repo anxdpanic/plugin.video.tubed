@@ -91,14 +91,14 @@ def invoke(context, query='', page_token='', search_type='video'):
 
     if search_type == 'video':
         xbmcplugin.setContent(context.handle, 'videos')
-        list_items += list(video_generator(payload.get('items', [])))
+        list_items += list(video_generator(context, payload.get('items', [])))
         del addon_query['search_type']
 
     elif search_type == 'channel':
-        list_items += list(channel_generator(payload.get('items', [])))
+        list_items += list(channel_generator(context, payload.get('items', [])))
 
     elif search_type == 'playlist':
-        list_items += list(playlist_generator(payload.get('items', [])))
+        list_items += list(playlist_generator(context, payload.get('items', [])))
 
     page_token = payload.get('nextPageToken')
     if page_token:

@@ -13,29 +13,21 @@ from html import unescape
 from ..constants import MODES
 from ..items.directory import Directory
 from ..lib.url_utils import create_addon_path
+from .data_cache import get_cached
 
 
-def playlist_generator(items):
+def playlist_generator(context, items):
+    cached_playlists = \
+        get_cached(context.api.playlists, [get_id(item) for item in items if get_id(item)])
+
     for item in items:
-        playlist_id = ''
-
-        kind = item.get('kind', '')
-        snippet = item.get('snippet', {})
-
-        if not kind or kind not in ['youtube#playlist', 'youtube#searchResult']:
-            continue
-
-        if not snippet:
-            continue
-
-        if kind == 'youtube#playlist':
-            playlist_id = item.get('id', '')
-
-        elif kind == 'youtube#searchResult':
-            playlist_id = item.get('id', {}).get('playlistId')
+        playlist_id = get_id(item)
 
         if not playlist_id:
             continue
+
+        playlist = cached_playlists.get(playlist_id, item)
+        snippet = playlist.get('snippet', {})
 
         payload = Directory(
             label=unescape(snippet.get('title', '')),
@@ -67,3 +59,14 @@ def playlist_generator(items):
         })
 
         yield tuple(payload)
+
+
+def get_id(item):
+    kind = item.get('kind', '')
+    if kind == 'youtube#playlist':
+        return item.get('id', '')
+
+    if kind == 'youtube#searchResult':
+        return item.get('id', {}).get('playlistId', '')
+
+    return ''

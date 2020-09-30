@@ -13,31 +13,23 @@ from html import unescape
 from ..constants import MODES
 from ..items.video import Video
 from ..lib.url_utils import create_addon_path
+from .data_cache import get_cached
 
 
-def video_generator(items):
+def video_generator(context, items):
+    cached_videos = \
+        get_cached(context.api.videos, [get_id(item) for item in items if get_id(item)])
+
     for item in items:
-        video_id = ''
-
-        kind = item.get('kind', '')
-        if not kind:
-            continue
-
-        snippet = item.get('snippet', {})
-        if not snippet:
-            continue
-
-        if kind == 'youtube#video':
-            video_id = item.get('id', '')
-
-        elif kind == 'youtube#playlistItem':
-            video_id = snippet.get('resourceId', {}).get('videoId', '')
-
-        elif kind == 'youtube#searchResult':
-            if isinstance(item.get('id', {}), dict):
-                video_id = item.get('id', {}).get('videoId', '')
+        video_id = get_id(item)
 
         if not video_id:
+            continue
+
+        video = cached_videos.get(video_id, item)
+
+        snippet = video.get('snippet', {})
+        if not snippet:
             continue
 
         payload = Video(
@@ -71,3 +63,18 @@ def video_generator(items):
         })
 
         yield tuple(payload)
+
+
+def get_id(item):
+    kind = item.get('kind', '')
+    if kind == 'youtube#video':
+        return item.get('id', '')
+
+    if kind == 'youtube#playlistItem':
+        return item.get('snippet', {}).get('resourceId', {}).get('videoId', '')
+
+    if kind == 'youtube#searchResult':
+        if isinstance(item.get('id', {}), dict):
+            return item.get('id', {}).get('videoId', '')
+
+    return ''
