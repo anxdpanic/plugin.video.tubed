@@ -8,6 +8,8 @@
     See LICENSES/GPL-2.0-only.txt for more information.
 """
 
+import re
+
 
 def bold(string):
     return string.join(['[B]', '[/B]'])
@@ -35,3 +37,7 @@ def capitalize(string):
 
 def color(string, string_color):
     return string.join(['[COLOR %s]' % string_color, '[/COLOR]'])
+
+
+def strip_html(string):
+    return re.sub('<[^<]+?>', '', string)

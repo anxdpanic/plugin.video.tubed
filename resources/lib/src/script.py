@@ -26,10 +26,10 @@ def _main():
     CONTEXT.addon.openSettings()  # TODO: possibly replace with configuration wizard
 
 
-@router.route(SCRIPT_MODES.SEARCH_HISTORY)
-def _search_history():
+@router.route(SCRIPT_MODES.SEARCH_HISTORY, args=['action'])
+def _search_history(action):
     from .scripts import search_history
-    search_history.invoke(CONTEXT)
+    search_history.invoke(CONTEXT, action)
 
 
 @router.route(SCRIPT_MODES.CONFIGURE_REGIONAL)
@@ -42,6 +42,12 @@ def _configure_regional():
 def _configure_subtitles():
     from .scripts import configure_subtitles
     configure_subtitles.invoke(CONTEXT)
+
+
+@router.route(SCRIPT_MODES.SUBSCRIPTIONS, args=['action'])
+def _subscriptions(action):
+    from .scripts import subscriptions
+    subscriptions.invoke(CONTEXT, action)
 
 
 def invoke(argv):

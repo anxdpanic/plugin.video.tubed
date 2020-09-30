@@ -10,7 +10,9 @@
 
 from html import unescape
 
+from ..constants import ADDON_ID
 from ..constants import MODES
+from ..constants import SCRIPT_MODES
 from ..items.video import Video
 from ..lib.url_utils import create_addon_path
 from .data_cache import get_cached
@@ -31,6 +33,8 @@ def video_generator(context, items):
         snippet = video.get('snippet', {})
         if not snippet:
             continue
+
+        channel_id = snippet.get('channelId', '')
 
         payload = Video(
             label=unescape(snippet.get('title', '')),
@@ -62,6 +66,13 @@ def video_generator(context, items):
             'thumb': thumbnail,
         })
 
+        context_menus = [
+            (context.i18n('Subscribe'),
+             'RunScript(%s,mode=%s&action=add&channel_id=%s)' %
+             (ADDON_ID, str(SCRIPT_MODES.SUBSCRIPTIONS), channel_id)),
+        ]
+
+        payload.ListItem.addContextMenuItems(context_menus)
         yield tuple(payload)
 
 

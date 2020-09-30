@@ -264,3 +264,23 @@ msgstr ""
 msgctxt "#30062"
 msgid "Prompt"
 msgstr ""
+
+msgctxt "#30063"
+msgid "Subscribe"
+msgstr ""
+
+msgctxt "#30064"
+msgid "Subscribed"
+msgstr ""
+
+msgctxt "#30065"
+msgid "Unsubscribe"
+msgstr ""
+
+msgctxt "#30066"
+msgid "Unsubscribed"
+msgstr ""
+
+msgctxt "#30067"
+msgid "Error"
+msgstr ""
