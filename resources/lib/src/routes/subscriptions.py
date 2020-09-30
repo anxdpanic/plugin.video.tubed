@@ -18,7 +18,7 @@ from ..lib.url_utils import create_addon_path
 
 def invoke(context, page_token=''):
     payload = context.api.subscriptions('mine', page_token=page_token)
-    list_items = list(subscription_generator(payload.get('items', [])))
+    list_items = list(subscription_generator(context, payload.get('items', [])))
 
     page_token = payload.get('nextPageToken')
     if page_token:

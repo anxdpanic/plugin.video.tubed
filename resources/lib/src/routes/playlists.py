@@ -53,7 +53,7 @@ def invoke(context, channel_id, page_token=''):
                 list_items.append(tuple(directory))
 
     payload = context.api.playlists_of_channel(channel_id=channel_id, page_token=page_token)
-    list_items += list(playlist_generator(payload.get('items', [])))
+    list_items += list(playlist_generator(context, payload.get('items', [])))
 
     page_token = payload.get('nextPageToken')
     if page_token:

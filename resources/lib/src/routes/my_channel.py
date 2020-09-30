@@ -37,7 +37,7 @@ def invoke(context, page_token=''):
         return
 
     payload = context.api.playlist_items(upload_playlist, page_token=page_token)
-    list_items = list(video_generator(payload.get('items', [])))
+    list_items = list(video_generator(context, payload.get('items', [])))
 
     page_token = payload.get('nextPageToken')
     if page_token:

@@ -20,6 +20,7 @@ from ..constants import ONE_MINUTE
 from ..constants import ONE_WEEK
 from ..exceptions.decorators import catch_api_exceptions
 from ..lib import memoizer
+from ..storage.data_cache import DataCache
 from ..storage.users import UserStorage
 
 USERS = UserStorage()
@@ -594,6 +595,7 @@ class API:  # pylint: disable=too-many-public-methods
         self._api.ACCESS_TOKEN = USERS.access_token
         self.client = oauth.Client()
         memoizer.reset_cache()
+        DataCache().clear()
 
     def calculate_next_page_token(self, page):
         """

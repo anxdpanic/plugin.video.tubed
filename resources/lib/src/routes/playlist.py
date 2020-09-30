@@ -20,7 +20,7 @@ def invoke(context, playlist_id, page_token=''):
     xbmcplugin.setContent(context.handle, 'videos')
 
     payload = context.api.playlist_items(playlist_id, page_token=page_token)
-    list_items = list(video_generator(payload.get('items', [])))
+    list_items = list(video_generator(context, payload.get('items', [])))
 
     page_token = payload.get('nextPageToken')
     if page_token:

@@ -8,4 +8,4 @@
     See LICENSES/GPL-2.0-only.txt for more information.
 """
 
-__all__ = ['search_cache', 'search_history', 'users']
+__all__ = ['data_cache', 'search_cache', 'search_history', 'users']

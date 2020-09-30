@@ -13,12 +13,21 @@ from html import unescape
 from ..constants import MODES
 from ..items.directory import Directory
 from ..lib.url_utils import create_addon_path
+from .data_cache import get_cached
 
 
-def subscription_generator(items):
+def subscription_generator(context, items):
+    cached_channels = \
+        get_cached(context.api.channels, [get_id(item) for item in items if get_id(item)])
+
     for item in items:
-        snippet = item.get('snippet', {})
-        channel_id = snippet.get('resourceId', {}).get('channelId', snippet.get('channelId', ''))
+        channel_id = get_id(item)
+
+        if not channel_id:
+            continue
+
+        channel = cached_channels.get(channel_id, item)
+        snippet = channel.get('snippet', {})
 
         payload = Directory(
             label=unescape(snippet.get('title', '')),
@@ -49,3 +58,8 @@ def subscription_generator(items):
         })
 
         yield tuple(payload)
+
+
+def get_id(item):
+    snippet = item.get('snippet', {})
+    return snippet.get('resourceId', {}).get('channelId', snippet.get('channelId', ''))
