@@ -10,7 +10,9 @@
 
 from html import unescape
 
+from ..constants import ADDON_ID
 from ..constants import MODES
+from ..constants import SCRIPT_MODES
 from ..items.directory import Directory
 from ..lib.url_utils import create_addon_path
 from .data_cache import get_cached
@@ -58,6 +60,13 @@ def channel_generator(context, items):
             'thumb': thumbnail,
         })
 
+        context_menus = [
+            (context.i18n('Subscribe'),
+             'RunScript(%s,mode=%s&action=add&channel_id=%s)' %
+             (ADDON_ID, str(SCRIPT_MODES.SUBSCRIPTIONS), channel_id)),
+        ]
+
+        payload.ListItem.addContextMenuItems(context_menus)
         yield tuple(payload)
 
 

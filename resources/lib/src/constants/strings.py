@@ -46,5 +46,9 @@ STRINGS = {
     'No auto-generated': 30060,
     'None': 30061,
     'Prompt': 30062,
+    'Subscribe': 30063,
+    'Subscribed': 30064,
+    'Unsubscribe': 30065,
+    'Unsubscribed': 30066,
     'Error': 30067,
 }

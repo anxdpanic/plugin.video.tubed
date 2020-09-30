@@ -10,7 +10,9 @@
 
 from html import unescape
 
+from ..constants import ADDON_ID
 from ..constants import MODES
+from ..constants import SCRIPT_MODES
 from ..items.directory import Directory
 from ..lib.url_utils import create_addon_path
 from .data_cache import get_cached
@@ -25,6 +27,8 @@ def subscription_generator(context, items):
 
         if not channel_id:
             continue
+
+        subscription_id = item.get('id', '')
 
         channel = cached_channels.get(channel_id, item)
         snippet = channel.get('snippet', {})
@@ -57,6 +61,13 @@ def subscription_generator(context, items):
             'thumb': thumbnail,
         })
 
+        context_menus = [
+            (context.i18n('Unsubscribe'),
+             'RunScript(%s,mode=%s&action=remove&subscription_id=%s)' %
+             (ADDON_ID, str(SCRIPT_MODES.SUBSCRIPTIONS), subscription_id)),
+        ]
+
+        payload.ListItem.addContextMenuItems(context_menus)
         yield tuple(payload)
 
 

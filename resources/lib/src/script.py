@@ -44,6 +44,12 @@ def _configure_subtitles():
     configure_subtitles.invoke(CONTEXT)
 
 
+@router.route(SCRIPT_MODES.SUBSCRIPTIONS, args=['action'])
+def _subscriptions(action):
+    from .scripts import subscriptions
+    subscriptions.invoke(CONTEXT, action)
+
+
 def invoke(argv):
     global CONTEXT  # pylint: disable=global-statement
 
