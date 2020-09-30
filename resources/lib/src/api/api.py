@@ -191,7 +191,6 @@ class API:  # pylint: disable=too-many-public-methods
             'part': 'snippet'
         }
         data = {
-            'kind': 'youtube#subscription',
             'snippet': {
                 'resourceId': {
                     'kind': 'youtube#channel',
