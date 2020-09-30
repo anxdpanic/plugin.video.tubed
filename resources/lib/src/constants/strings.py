@@ -46,4 +46,5 @@ STRINGS = {
     'No auto-generated': 30060,
     'None': 30061,
     'Prompt': 30062,
+    'Error': 30067,
 }

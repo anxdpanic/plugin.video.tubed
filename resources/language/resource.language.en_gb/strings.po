@@ -264,3 +264,7 @@ msgstr ""
 msgctxt "#30062"
 msgid "Prompt"
 msgstr ""
+
+msgctxt "#30067"
+msgid "Error"
+msgstr ""
