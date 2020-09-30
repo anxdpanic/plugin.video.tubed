@@ -26,10 +26,10 @@ def _main():
     CONTEXT.addon.openSettings()  # TODO: possibly replace with configuration wizard
 
 
-@router.route(SCRIPT_MODES.SEARCH_HISTORY)
-def _search_history():
+@router.route(SCRIPT_MODES.SEARCH_HISTORY, args=['action'])
+def _search_history(action):
     from .scripts import search_history
-    search_history.invoke(CONTEXT)
+    search_history.invoke(CONTEXT, action)
 
 
 @router.route(SCRIPT_MODES.CONFIGURE_REGIONAL)

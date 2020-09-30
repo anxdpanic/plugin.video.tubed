@@ -15,12 +15,8 @@ import xbmc  # pylint: disable=import-error
 from ..storage.search_history import SearchHistory
 
 
-def invoke(context):
+def invoke(context, action):
     history = SearchHistory()
-
-    action = context.query.get('action', '')
-    if not action:
-        return
 
     if action == 'clear':
         history.clear()
