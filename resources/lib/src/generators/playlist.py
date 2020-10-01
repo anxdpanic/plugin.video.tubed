@@ -10,7 +10,9 @@
 
 from html import unescape
 
+from ..constants import ADDON_ID
 from ..constants import MODES
+from ..constants import SCRIPT_MODES
 from ..items.directory import Directory
 from ..lib.url_utils import create_addon_path
 from .data_cache import get_cached
@@ -28,6 +30,8 @@ def playlist_generator(context, items):
 
         playlist = cached_playlists.get(playlist_id, item)
         snippet = playlist.get('snippet', {})
+
+        channel_id = snippet.get('channelId', '')
 
         payload = Directory(
             label=unescape(snippet.get('title', '')),
@@ -57,6 +61,18 @@ def playlist_generator(context, items):
             'icon': thumbnail,
             'thumb': thumbnail,
         })
+
+        context_menus = [
+            (context.i18n('Subscribe'),
+             'RunScript(%s,mode=%s&action=add&channel_id=%s)' %
+             (ADDON_ID, str(SCRIPT_MODES.SUBSCRIPTIONS), channel_id)),
+
+            (context.i18n('Go to %s') % unescape(snippet.get('channelTitle', '')),
+             'Container.Update(plugin://%s/?mode=%s&channel_id=%s)' %
+             (ADDON_ID, str(MODES.CHANNEL), channel_id)),
+        ]
+
+        payload.ListItem.addContextMenuItems(context_menus)
 
         yield tuple(payload)
 
