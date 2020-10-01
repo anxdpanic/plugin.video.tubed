@@ -67,6 +67,10 @@ def video_generator(context, items):
         })
 
         context_menus = [
+            (context.i18n('Play (Prompt for subtitles)'),
+             'RunScript(%s,mode=%s&video_id=%s&prompt_subtitles=true)' %
+             (ADDON_ID, str(MODES.PLAY), video_id)),
+
             (context.i18n('Subscribe'),
              'RunScript(%s,mode=%s&action=add&channel_id=%s)' %
              (ADDON_ID, str(SCRIPT_MODES.SUBSCRIPTIONS), channel_id)),

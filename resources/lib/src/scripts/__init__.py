@@ -8,4 +8,4 @@
     See LICENSES/GPL-2.0-only.txt for more information.
 """
 
-__all__ = ['configure_regional', 'configure_subtitles', 'search_history', 'subscriptions']
+__all__ = ['configure_regional', 'configure_subtitles', 'play', 'search_history', 'subscriptions']

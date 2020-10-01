@@ -8,7 +8,7 @@
     See LICENSES/GPL-2.0-only.txt for more information.
 """
 
-import xbmcplugin  # pylint: disable=import-error
+import xbmc  # pylint: disable=import-error
 
 from ..api.subtitles import choose_subtitles
 from ..items.stream import Stream
@@ -34,7 +34,12 @@ def invoke(context, video_id):
         license_key=license_data.get('proxy', '')
     )
 
-    subtitles = choose_subtitles(context, subtitles=metadata.get('subtitles', []))
+    prompt_subtitles = context.query.get('prompt_subtitles', 'false').lower() == 'true'
+    subtitles = choose_subtitles(
+        context,
+        subtitles=metadata.get('subtitles', []),
+        prompt_override=prompt_subtitles
+    )
     stream.ListItem.setSubtitles(subtitles)
 
-    xbmcplugin.setResolvedUrl(context.handle, True, stream.ListItem)
+    xbmc.Player().play(item=stream.ListItem.getPath(), listitem=stream.ListItem)
