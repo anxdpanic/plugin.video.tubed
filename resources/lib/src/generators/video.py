@@ -75,10 +75,6 @@ def video_generator(context, items):
         })
 
         context_menus = [
-            (context.i18n('Play (Prompt for subtitles)'),
-             'RunScript(%s,mode=%s&video_id=%s&prompt_subtitles=true)' %
-             (ADDON_ID, str(SCRIPT_MODES.PLAY), video_id)),
-
             (context.i18n('Subscribe'),
              'RunScript(%s,mode=%s&action=add&channel_id=%s&channel_name=%s)' %
              (ADDON_ID, str(SCRIPT_MODES.SUBSCRIPTIONS), channel_id, quote(channel_name))),
@@ -90,6 +86,10 @@ def video_generator(context, items):
             (context.i18n('Go to %s') % unescape(snippet.get('channelTitle', '')),
              'Container.Update(plugin://%s/?mode=%s&channel_id=%s)' %
              (ADDON_ID, str(MODES.CHANNEL), channel_id)),
+
+            (context.i18n('Play (Prompt for subtitles)'),
+             'RunScript(%s,mode=%s&video_id=%s&prompt_subtitles=true)' %
+             (ADDON_ID, str(SCRIPT_MODES.PLAY), video_id)),
         ]
 
         payload.ListItem.addContextMenuItems(context_menus)
