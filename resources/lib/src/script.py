@@ -51,6 +51,12 @@ def _subscriptions(action, channel_id='', subscription_id='', channel_name=''):
     subscriptions.invoke(CONTEXT, action, channel_id, subscription_id, channel_name)
 
 
+@router.route(SCRIPT_MODES.RATE, args=['video_id'], kwargs=['video_title'])
+def _rate(video_id, video_title=''):
+    from .scripts import rate
+    rate.invoke(CONTEXT, video_id, video_title)
+
+
 @router.route(SCRIPT_MODES.PLAY, args=['video_id'])
 def _play(video_id):
     from .scripts import play

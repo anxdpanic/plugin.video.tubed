@@ -38,8 +38,10 @@ def video_generator(context, items):
         channel_id = snippet.get('channelId', '')
         channel_name = unescape(snippet.get('channelTitle', ''))
 
+        video_title = unescape(snippet.get('title', ''))
+
         payload = Video(
-            label=unescape(snippet.get('title', '')),
+            label=video_title,
             label2=channel_name,
             path=create_addon_path({
                 'mode': str(MODES.PLAY),
@@ -51,8 +53,8 @@ def video_generator(context, items):
             'mediatype': 'video',
             'plot': unescape(snippet.get('description', '')),
             'plotoutline': unescape(snippet.get('description', '')),
-            'originaltitle': unescape(snippet.get('title', '')),
-            'sorttitle': unescape(snippet.get('title', '')),
+            'originaltitle': video_title,
+            'sorttitle': video_title,
             'studio': channel_name
         }
 
@@ -80,6 +82,10 @@ def video_generator(context, items):
             (context.i18n('Subscribe'),
              'RunScript(%s,mode=%s&action=add&channel_id=%s&channel_name=%s)' %
              (ADDON_ID, str(SCRIPT_MODES.SUBSCRIPTIONS), channel_id, quote(channel_name))),
+
+            (context.i18n('Rate'),
+             'RunScript(%s,mode=%s&video_id=%s&video_title=%s)' %
+             (ADDON_ID, str(SCRIPT_MODES.RATE), video_id, quote(video_title))),
 
             (context.i18n('Go to %s') % unescape(snippet.get('channelTitle', '')),
              'Container.Update(plugin://%s/?mode=%s&channel_id=%s)' %
