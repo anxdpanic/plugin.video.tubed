@@ -53,6 +53,10 @@ def video_generator(context, items):
             'sorttitle': unescape(snippet.get('title', '')),
             'studio': unescape(snippet.get('channelTitle', ''))
         }
+
+        if snippet.get('liveBroadcastContent', 'none') != 'none':
+            info_labels['playcount'] = 0
+
         payload.ListItem.setInfo('video', info_labels)
 
         thumbnails = snippet.get('thumbnails', {})
