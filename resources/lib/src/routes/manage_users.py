@@ -105,6 +105,6 @@ def invoke(context):
             USERS.remove(choice['uuid'])
             USERS.save()
 
-    xbmc.executebuiltin('Container.Refresh')
     reset_cache()
     DataCache().clear()
+    xbmc.executebuiltin('Container.Refresh')

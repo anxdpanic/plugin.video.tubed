@@ -85,5 +85,5 @@ def invoke(context, video_id, video_title=''):
             sound=False
         )
 
-        xbmc.executebuiltin('Container.Refresh')
         reset_cache()
+        xbmc.executebuiltin('Container.Refresh')

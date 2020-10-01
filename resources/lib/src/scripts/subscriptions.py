@@ -67,5 +67,5 @@ def invoke(context, action, channel_id='', subscription_id='', channel_name=''):
                 sound=False
             )
 
-            xbmc.executebuiltin('Container.Refresh')
             reset_cache()
+            xbmc.executebuiltin('Container.Refresh')
