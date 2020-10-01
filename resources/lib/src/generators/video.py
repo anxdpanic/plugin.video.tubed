@@ -9,6 +9,7 @@
 """
 
 from html import unescape
+from urllib.parse import quote
 
 from ..constants import ADDON_ID
 from ..constants import MODES
@@ -35,10 +36,11 @@ def video_generator(context, items):
             continue
 
         channel_id = snippet.get('channelId', '')
+        channel_name = unescape(snippet.get('channelTitle', ''))
 
         payload = Video(
             label=unescape(snippet.get('title', '')),
-            label2=unescape(snippet.get('channelTitle', '')),
+            label2=channel_name,
             path=create_addon_path({
                 'mode': str(MODES.PLAY),
                 'video_id': video_id
@@ -51,7 +53,7 @@ def video_generator(context, items):
             'plotoutline': unescape(snippet.get('description', '')),
             'originaltitle': unescape(snippet.get('title', '')),
             'sorttitle': unescape(snippet.get('title', '')),
-            'studio': unescape(snippet.get('channelTitle', ''))
+            'studio': channel_name
         }
 
         if snippet.get('liveBroadcastContent', 'none') != 'none':
@@ -73,11 +75,11 @@ def video_generator(context, items):
         context_menus = [
             (context.i18n('Play (Prompt for subtitles)'),
              'RunScript(%s,mode=%s&video_id=%s&prompt_subtitles=true)' %
-             (ADDON_ID, str(MODES.PLAY), video_id)),
+             (ADDON_ID, str(SCRIPT_MODES.PLAY), video_id)),
 
             (context.i18n('Subscribe'),
-             'RunScript(%s,mode=%s&action=add&channel_id=%s)' %
-             (ADDON_ID, str(SCRIPT_MODES.SUBSCRIPTIONS), channel_id)),
+             'RunScript(%s,mode=%s&action=add&channel_id=%s&channel_name=%s)' %
+             (ADDON_ID, str(SCRIPT_MODES.SUBSCRIPTIONS), channel_id, quote(channel_name))),
 
             (context.i18n('Go to %s') % unescape(snippet.get('channelTitle', '')),
              'Container.Update(plugin://%s/?mode=%s&channel_id=%s)' %

@@ -53,4 +53,6 @@ STRINGS = {
     'Error': 30067,
     'Play (Prompt for subtitles)': 30068,
     'Go to %s': 30069,
+    'Subscribed to %s': 30070,
+    'Unsubscribed from %s': 30071,
 }
