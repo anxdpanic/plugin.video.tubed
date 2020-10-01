@@ -8,10 +8,9 @@
     See LICENSES/GPL-2.0-only.txt for more information.
 """
 
-from urllib.parse import unquote
-
 import xbmc  # pylint: disable=import-error
 
+from ..lib.url_utils import unquote
 from ..storage.search_history import SearchHistory
 
 
@@ -26,10 +25,7 @@ def invoke(context, action, item=''):  # pylint: disable=unused-argument
             return
 
         if '%' in item:
-            try:
-                item = unquote(item)
-            except:  # pylint: disable=bare-except
-                pass
+            item = unquote(item)
 
         history.remove(item)
 
