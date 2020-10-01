@@ -74,6 +74,10 @@ def video_generator(context, items):
             (context.i18n('Subscribe'),
              'RunScript(%s,mode=%s&action=add&channel_id=%s)' %
              (ADDON_ID, str(SCRIPT_MODES.SUBSCRIPTIONS), channel_id)),
+
+            (context.i18n('Go to %s') % unescape(snippet.get('channelTitle', '')),
+             'Container.Update(plugin://%s/?mode=%s&channel_id=%s)' %
+             (ADDON_ID, str(MODES.CHANNEL), channel_id)),
         ]
 
         payload.ListItem.addContextMenuItems(context_menus)

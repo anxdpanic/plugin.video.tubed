@@ -288,3 +288,7 @@ msgstr ""
 msgctxt "#30068"
 msgid "Play (Prompt for subtitles)"
 msgstr ""
+
+msgctxt "#30069"
+msgid "Go to %s"
+msgstr ""
