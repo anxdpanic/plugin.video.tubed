@@ -8,15 +8,22 @@
     See LICENSES/GPL-2.0-only.txt for more information.
 """
 
+from urllib.parse import unquote
+
 import xbmc  # pylint: disable=import-error
 import xbmcgui  # pylint: disable=import-error
 
 from ..lib.memoizer import reset_cache
 
 
-def invoke(context, action):
+def invoke(context, action, channel_id='', subscription_id='', channel_name=''):
+    if channel_name:
+        try:
+            channel_name = unquote(channel_name)
+        except:  # pylint: disable=bare-except
+            pass
+
     if action == 'add':
-        channel_id = context.query.get('channel_id', '')
         if not channel_id:
             return
 
@@ -28,9 +35,13 @@ def invoke(context, action):
             successful = False
 
         if successful:
+            message = context.i18n('Subscribed')
+            if channel_name:
+                message = context.i18n('Subscribed to %s') % channel_name
+
             xbmcgui.Dialog().notification(
                 context.addon.getAddonInfo('name'),
-                context.i18n('Subscribed'),
+                message,
                 context.addon.getAddonInfo('icon'),
                 sound=False
             )
@@ -38,7 +49,6 @@ def invoke(context, action):
             reset_cache()
 
     elif action == 'remove':
-        subscription_id = context.query.get('subscription_id', '')
         if not subscription_id:
             return
 
@@ -50,9 +60,13 @@ def invoke(context, action):
             successful = False
 
         if successful:
+            message = context.i18n('Unsubscribed')
+            if channel_name:
+                message = context.i18n('Unsubscribed from %s') % channel_name
+
             xbmcgui.Dialog().notification(
                 context.addon.getAddonInfo('name'),
-                context.i18n('Unsubscribed'),
+                message,
                 context.addon.getAddonInfo('icon'),
                 sound=False
             )

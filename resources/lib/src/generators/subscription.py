@@ -9,6 +9,7 @@
 """
 
 from html import unescape
+from urllib.parse import quote
 
 from ..constants import ADDON_ID
 from ..constants import MODES
@@ -33,6 +34,8 @@ def subscription_generator(context, items):
         channel = cached_channels.get(channel_id, item)
         snippet = channel.get('snippet', {})
 
+        channel_name = unescape(snippet.get('title', ''))
+
         payload = Directory(
             label=unescape(snippet.get('title', '')),
             path=create_addon_path({
@@ -44,9 +47,9 @@ def subscription_generator(context, items):
         info_labels = {
             'plot': unescape(snippet.get('description', '')),
             'plotoutline': unescape(snippet.get('description', '')),
-            'originaltitle': unescape(snippet.get('title', '')),
-            'sorttitle': unescape(snippet.get('title', '')),
-            'studio': unescape(snippet.get('title', ''))
+            'originaltitle': channel_name,
+            'sorttitle': channel_name,
+            'studio': channel_name
         }
         payload.ListItem.setInfo('video', info_labels)
 
@@ -63,8 +66,8 @@ def subscription_generator(context, items):
 
         context_menus = [
             (context.i18n('Unsubscribe'),
-             'RunScript(%s,mode=%s&action=remove&subscription_id=%s)' %
-             (ADDON_ID, str(SCRIPT_MODES.SUBSCRIPTIONS), subscription_id)),
+             'RunScript(%s,mode=%s&action=remove&subscription_id=%s&channel_name=%s)' %
+             (ADDON_ID, str(SCRIPT_MODES.SUBSCRIPTIONS), subscription_id, quote(channel_name))),
         ]
 
         payload.ListItem.addContextMenuItems(context_menus)

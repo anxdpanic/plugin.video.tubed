@@ -44,10 +44,11 @@ def _configure_subtitles():
     configure_subtitles.invoke(CONTEXT)
 
 
-@router.route(SCRIPT_MODES.SUBSCRIPTIONS, args=['action'])
-def _subscriptions(action):
+@router.route(SCRIPT_MODES.SUBSCRIPTIONS, args=['action'],
+              kwargs=['channel_id', 'subscription_id', 'channel_name'])
+def _subscriptions(action, channel_id='', subscription_id='', channel_name=''):
     from .scripts import subscriptions
-    subscriptions.invoke(CONTEXT, action)
+    subscriptions.invoke(CONTEXT, action, channel_id, subscription_id, channel_name)
 
 
 @router.route(SCRIPT_MODES.PLAY, args=['video_id'])
