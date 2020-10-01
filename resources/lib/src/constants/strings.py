@@ -51,4 +51,5 @@ STRINGS = {
     'Unsubscribe': 30065,
     'Unsubscribed': 30066,
     'Error': 30067,
+    'Play (Prompt for subtitles)': 30068,
 }

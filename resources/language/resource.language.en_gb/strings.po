@@ -284,3 +284,7 @@ msgstr ""
 msgctxt "#30067"
 msgid "Error"
 msgstr ""
+
+msgctxt "#30068"
+msgid "Play (Prompt for subtitles)"
+msgstr ""

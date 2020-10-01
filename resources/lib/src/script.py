@@ -50,6 +50,12 @@ def _subscriptions(action):
     subscriptions.invoke(CONTEXT, action)
 
 
+@router.route(SCRIPT_MODES.PLAY, args=['video_id'])
+def _play(video_id):
+    from .scripts import play
+    play.invoke(CONTEXT, video_id=video_id)
+
+
 def invoke(argv):
     global CONTEXT  # pylint: disable=global-statement
 

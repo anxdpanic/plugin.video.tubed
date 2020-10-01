@@ -17,6 +17,7 @@ class SCRIPT_MODES(Enum):  # pylint: disable=invalid-name
     CONFIGURE_REGIONAL = 'configure_regional'
     CONFIGURE_SUBTITLES = 'configure_subtitles'
     SUBSCRIPTIONS = 'subscriptions'
+    PLAY = 'play'
 
     def __str__(self):
         return str(self.value).lower()
