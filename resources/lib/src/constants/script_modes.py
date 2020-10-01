@@ -19,6 +19,7 @@ class SCRIPT_MODES(Enum):  # pylint: disable=invalid-name
     SUBSCRIPTIONS = 'subscriptions'
     PLAY = 'play'
     RATE = 'rate'
+    PLAYLIST = 'playlist'
 
     def __str__(self):
         return str(self.value).lower()

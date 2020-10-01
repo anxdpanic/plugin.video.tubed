@@ -57,6 +57,16 @@ def _rate(video_id, video_title=''):
     rate.invoke(CONTEXT, video_id, video_title)
 
 
+@router.route(SCRIPT_MODES.PLAYLIST, args=['action'],
+              kwargs=['video_id', 'video_title', 'playlist_id',
+                      'playlist_title', 'playlistitem_id'])
+def _playlist(action, video_id='', video_title='', playlist_id='',
+              playlist_title='', playlistitem_id=''):
+    from .scripts import playlist
+    playlist.invoke(CONTEXT, action, video_id, video_title, playlist_id,
+                    playlist_title, playlistitem_id)
+
+
 @router.route(SCRIPT_MODES.PLAY, args=['video_id'])
 def _play(video_id):
     from .scripts import play

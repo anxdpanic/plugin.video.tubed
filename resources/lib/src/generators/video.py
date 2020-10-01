@@ -19,7 +19,7 @@ from ..lib.url_utils import create_addon_path
 from .data_cache import get_cached
 
 
-def video_generator(context, items):
+def video_generator(context, items, mine=False):
     cached_videos = \
         get_cached(context.api.videos, [get_id(item) for item in items if get_id(item)])
 
@@ -83,6 +83,19 @@ def video_generator(context, items):
              'RunScript(%s,mode=%s&video_id=%s&video_title=%s)' %
              (ADDON_ID, str(SCRIPT_MODES.RATE), video_id, quote(video_title))),
 
+            (context.i18n('Add to playlist'),
+             'RunScript(%s,mode=%s&action=add&video_id=%s)' %
+             (ADDON_ID, str(SCRIPT_MODES.PLAYLIST), video_id)),
+        ]
+
+        if mine and 'snippet' in item and 'playlistId' in item['snippet']:
+            context_menus += [
+                (context.i18n('Remove from playlist'),
+                 'RunScript(%s,mode=%s&action=remove&playlistitem_id=%s&video_title=%s)' %
+                 (ADDON_ID, str(SCRIPT_MODES.PLAYLIST), item['id'], quote(video_title)))
+            ]
+
+        context_menus += [
             (context.i18n('Go to %s') % unescape(snippet.get('channelTitle', '')),
              'Container.Update(plugin://%s/?mode=%s&channel_id=%s)' %
              (ADDON_ID, str(MODES.CHANNEL), channel_id)),

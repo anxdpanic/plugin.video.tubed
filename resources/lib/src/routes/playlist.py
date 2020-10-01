@@ -16,11 +16,11 @@ from ..items.next_page import NextPage
 from ..lib.url_utils import create_addon_path
 
 
-def invoke(context, playlist_id, page_token=''):
+def invoke(context, playlist_id, page_token='', mine=False):
     xbmcplugin.setContent(context.handle, 'videos')
 
     payload = context.api.playlist_items(playlist_id, page_token=page_token)
-    list_items = list(video_generator(context, payload.get('items', [])))
+    list_items = list(video_generator(context, payload.get('items', []), mine=mine))
 
     page_token = payload.get('nextPageToken')
     if page_token:

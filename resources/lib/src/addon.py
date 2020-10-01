@@ -88,10 +88,10 @@ def _playlists(channel_id, page_token=''):
     playlists.invoke(CONTEXT, channel_id, page_token=page_token)
 
 
-@router.route(MODES.PLAYLIST, args=['playlist_id'], kwargs=['page_token'])
-def _playlist(playlist_id, page_token=''):
+@router.route(MODES.PLAYLIST, args=['playlist_id'], kwargs=['page_token', 'mine'])
+def _playlist(playlist_id, page_token='', mine=False):
     from .routes import playlist
-    playlist.invoke(CONTEXT, playlist_id, page_token)
+    playlist.invoke(CONTEXT, playlist_id, page_token, mine)
 
 
 @router.route(MODES.PLAY, args=['video_id'])
