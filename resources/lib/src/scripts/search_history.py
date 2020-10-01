@@ -15,23 +15,22 @@ import xbmc  # pylint: disable=import-error
 from ..storage.search_history import SearchHistory
 
 
-def invoke(context, action):
+def invoke(context, action, item=''):  # pylint: disable=unused-argument
     history = SearchHistory()
 
     if action == 'clear':
         history.clear()
 
     elif action == 'remove':
-        query = context.query.get('item', '')
-        if not query:
+        if not item:
             return
 
-        if '%' in query:
+        if '%' in item:
             try:
-                query = unquote(query)
+                item = unquote(item)
             except:  # pylint: disable=bare-except
                 pass
 
-        history.remove(query)
+        history.remove(item)
 
     xbmc.executebuiltin('Container.Refresh')
