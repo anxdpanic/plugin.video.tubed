@@ -8,20 +8,16 @@
     See LICENSES/GPL-2.0-only.txt for more information.
 """
 
-from urllib.parse import unquote
-
 import xbmc  # pylint: disable=import-error
 import xbmcgui  # pylint: disable=import-error
 
 from ..lib.memoizer import reset_cache
+from ..lib.url_utils import unquote
 
 
 def invoke(context, video_id, video_title=''):
-    if video_title:
-        try:
-            video_title = unquote(video_title)
-        except:  # pylint: disable=bare-except
-            pass
+    if '%' in video_title:
+        video_title = unquote(video_title)
 
     payload = context.api.rating(video_id)
     try:
@@ -89,5 +85,5 @@ def invoke(context, video_id, video_title=''):
             sound=False
         )
 
-        xbmc.executebuiltin('Container.Refresh')
         reset_cache()
+        xbmc.executebuiltin('Container.Refresh')

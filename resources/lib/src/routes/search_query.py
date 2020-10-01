@@ -9,7 +9,6 @@
 """
 
 from urllib.parse import quote
-from urllib.parse import unquote
 
 import xbmc  # pylint: disable=import-error
 import xbmcplugin  # pylint: disable=import-error
@@ -21,6 +20,7 @@ from ..generators.video import video_generator
 from ..items.next_page import NextPage
 from ..items.search_query import SearchQuery
 from ..lib.url_utils import create_addon_path
+from ..lib.url_utils import unquote
 from ..storage.search_cache import SearchCache
 from ..storage.search_history import SearchHistory
 
@@ -37,10 +37,7 @@ def invoke(context, query='', page_token='', search_type='video'):
         query = search_cache.item
 
     if query and '%' in query:
-        try:
-            query = unquote(query)
-        except:  # pylint: disable=bare-except
-            pass
+        query = unquote(query)
 
     if not query:
         keyboard = xbmc.Keyboard()

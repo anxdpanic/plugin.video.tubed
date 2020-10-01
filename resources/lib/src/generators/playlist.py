@@ -23,6 +23,8 @@ def playlist_generator(context, items):
     cached_playlists = \
         get_cached(context.api.playlists, [get_id(item) for item in items if get_id(item)])
 
+    is_mine = context.query.get('channel_id', '') == 'mine'
+
     for item in items:
         playlist_id = get_id(item)
 
@@ -35,20 +37,23 @@ def playlist_generator(context, items):
         channel_id = snippet.get('channelId', '')
         channel_name = unescape(snippet.get('channelTitle', ''))
 
+        playlist_title = unescape(snippet.get('title', ''))
+
         payload = Directory(
-            label=unescape(snippet.get('title', '')),
+            label=playlist_title,
             label2=channel_name,
             path=create_addon_path({
                 'mode': str(MODES.PLAYLIST),
-                'playlist_id': playlist_id
+                'playlist_id': playlist_id,
+                'mine': str(is_mine).lower()
             })
         )
 
         info_labels = {
             'plot': unescape(snippet.get('description', '')),
             'plotoutline': unescape(snippet.get('description', '')),
-            'originaltitle': unescape(snippet.get('title', '')),
-            'sorttitle': unescape(snippet.get('title', '')),
+            'originaltitle': playlist_title,
+            'sorttitle': playlist_title,
             'studio': channel_name
         }
         payload.ListItem.setInfo('video', info_labels)
@@ -64,15 +69,29 @@ def playlist_generator(context, items):
             'thumb': thumbnail,
         })
 
-        context_menus = [
-            (context.i18n('Subscribe'),
-             'RunScript(%s,mode=%s&action=add&channel_id=%s&channel_name=%s)' %
-             (ADDON_ID, str(SCRIPT_MODES.SUBSCRIPTIONS), channel_id, quote(channel_name))),
+        context_menus = []
 
-            (context.i18n('Go to %s') % unescape(snippet.get('channelTitle', '')),
-             'Container.Update(plugin://%s/?mode=%s&channel_id=%s)' %
-             (ADDON_ID, str(MODES.CHANNEL), channel_id)),
-        ]
+        if not is_mine:
+            context_menus += [
+                (context.i18n('Subscribe'),
+                 'RunScript(%s,mode=%s&action=add&channel_id=%s&channel_name=%s)' %
+                 (ADDON_ID, str(SCRIPT_MODES.SUBSCRIPTIONS), channel_id, quote(channel_name))),
+
+                (context.i18n('Go to %s') % unescape(snippet.get('channelTitle', '')),
+                 'Container.Update(plugin://%s/?mode=%s&channel_id=%s)' %
+                 (ADDON_ID, str(MODES.CHANNEL), channel_id))
+            ]
+
+        if is_mine:
+            context_menus += [
+                (context.i18n('Rename playlist'),
+                 'RunScript(%s,mode=%s&action=rename&playlist_id=%s&playlist_title=%s)' %
+                 (ADDON_ID, str(SCRIPT_MODES.PLAYLIST), playlist_id, quote(playlist_title))),
+
+                (context.i18n('Delete playlist'),
+                 'RunScript(%s,mode=%s&action=delete&playlist_id=%s&playlist_title=%s)' %
+                 (ADDON_ID, str(SCRIPT_MODES.PLAYLIST), playlist_id, quote(playlist_title)))
+            ]
 
         payload.ListItem.addContextMenuItems(context_menus)
 

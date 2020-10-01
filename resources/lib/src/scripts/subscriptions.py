@@ -8,20 +8,16 @@
     See LICENSES/GPL-2.0-only.txt for more information.
 """
 
-from urllib.parse import unquote
-
 import xbmc  # pylint: disable=import-error
 import xbmcgui  # pylint: disable=import-error
 
 from ..lib.memoizer import reset_cache
+from ..lib.url_utils import unquote
 
 
 def invoke(context, action, channel_id='', subscription_id='', channel_name=''):
-    if channel_name:
-        try:
-            channel_name = unquote(channel_name)
-        except:  # pylint: disable=bare-except
-            pass
+    if '%' in channel_name:
+        channel_name = unquote(channel_name)
 
     if action == 'add':
         if not channel_id:
@@ -71,5 +67,5 @@ def invoke(context, action, channel_id='', subscription_id='', channel_name=''):
                 sound=False
             )
 
-            xbmc.executebuiltin('Container.Refresh')
             reset_cache()
+            xbmc.executebuiltin('Container.Refresh')

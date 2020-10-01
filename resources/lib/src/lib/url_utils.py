@@ -9,6 +9,7 @@
 """
 
 from urllib.parse import parse_qs
+from urllib.parse import unquote as uquote
 from urllib.parse import urlencode
 
 from ..constants import ADDON_ID
@@ -50,3 +51,10 @@ def parse_script_query(argv):
 
 def create_addon_path(parameters):
     return '?'.join(['plugin://%s/' % ADDON_ID, urlencode(parameters)])
+
+
+def unquote(string):
+    try:
+        return uquote(string)
+    except:  # pylint: disable=bare-except
+        return string

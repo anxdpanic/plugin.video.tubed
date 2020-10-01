@@ -340,3 +340,63 @@ msgstr ""
 msgctxt "#30081"
 msgid "Rating removed from %s"
 msgstr ""
+
+msgctxt "#30082"
+msgid "New playlist"
+msgstr ""
+
+msgctxt "#30083"
+msgid "Add to playlist"
+msgstr ""
+
+msgctxt "#30084"
+msgid "Remove from playlist"
+msgstr ""
+
+msgctxt "#30085"
+msgid "Delete playlist"
+msgstr ""
+
+msgctxt "#30086"
+msgid "Enter your playlist title"
+msgstr ""
+
+msgctxt "#30087"
+msgid "Added %s to %s"
+msgstr ""
+
+msgctxt "#30088"
+msgid "Removed from playlist"
+msgstr ""
+
+msgctxt "#30089"
+msgid "Removed %s from playlist"
+msgstr ""
+
+msgctxt "#30090"
+msgid "Playlist deleted"
+msgstr ""
+
+msgctxt "#30091"
+msgid "%s playlist deleted"
+msgstr ""
+
+msgctxt "#30092"
+msgid "Rename playlist"
+msgstr ""
+
+msgctxt "#30093"
+msgid "Playlist renamed to %s"
+msgstr ""
+
+msgctxt "#30094"
+msgid "%s renamed to %s"
+msgstr ""
+
+msgctxt "#30095"
+msgid "You are about to delete %s, are you sure?"
+msgstr ""
+
+msgctxt "#30096"
+msgid "You are about to delete a playlist, are you sure?"
+msgstr ""
