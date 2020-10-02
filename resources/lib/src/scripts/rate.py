@@ -12,6 +12,7 @@ import xbmc  # pylint: disable=import-error
 import xbmcgui  # pylint: disable=import-error
 
 from ..lib.memoizer import reset_cache
+from ..lib.txt_fmt import bold
 from ..lib.url_utils import unquote
 
 
@@ -59,6 +60,7 @@ def invoke(context, video_id, video_title=''):
         message = ''
 
         if video_title:
+            video_title = bold(video_title)
             if rating == 'none':
                 message = context.i18n('Rating removed from %s') % video_title
 

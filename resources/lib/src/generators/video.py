@@ -15,6 +15,7 @@ from ..constants import ADDON_ID
 from ..constants import MODES
 from ..constants import SCRIPT_MODES
 from ..items.video import Video
+from ..lib.txt_fmt import bold
 from ..lib.url_utils import create_addon_path
 from .data_cache import get_cached
 
@@ -96,7 +97,7 @@ def video_generator(context, items, mine=False):
             ]
 
         context_menus += [
-            (context.i18n('Go to %s') % unescape(snippet.get('channelTitle', '')),
+            (context.i18n('Go to %s') % bold(unescape(snippet.get('channelTitle', ''))),
              'Container.Update(plugin://%s/?mode=%s&channel_id=%s)' %
              (ADDON_ID, str(MODES.CHANNEL), channel_id)),
 

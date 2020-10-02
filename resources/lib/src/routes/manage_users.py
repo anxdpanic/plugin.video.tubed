@@ -11,8 +11,9 @@
 import xbmc  # pylint: disable=import-error
 import xbmcgui  # pylint: disable=import-error
 
-from ..lib import txt_fmt
 from ..lib.memoizer import reset_cache
+from ..lib.txt_fmt import bold
+from ..lib.txt_fmt import color
 from ..storage.data_cache import DataCache
 from ..storage.users import UserStorage
 
@@ -28,22 +29,22 @@ def invoke(context):
 
         name = user['name']
         if user['uuid'] == USERS.uuid:
-            name = txt_fmt.bold(txt_fmt.color(name, 'lightgreen'))
+            name = bold(color(name, 'lightgreen'))
 
         choices.append(name)
 
     action_count = 2
     action_reference = []
 
-    choices.append(txt_fmt.bold(context.i18n('New user...')))
+    choices.append(bold(context.i18n('New user...')))
     action_reference.append('new')
 
-    choices.append(txt_fmt.bold(context.i18n('Rename user...')))
+    choices.append(bold(context.i18n('Rename user...')))
     action_reference.append('rename')
 
     if len(reference) > 1:
         action_count = 3
-        choices.append(txt_fmt.bold(context.i18n('Remove user...')))
+        choices.append(bold(context.i18n('Remove user...')))
         action_reference.append('remove')
 
     result = xbmcgui.Dialog().select(context.i18n('Manage Users'), choices)

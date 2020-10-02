@@ -12,6 +12,7 @@ import xbmc  # pylint: disable=import-error
 import xbmcgui  # pylint: disable=import-error
 
 from ..lib.memoizer import reset_cache
+from ..lib.txt_fmt import bold
 from ..lib.url_utils import unquote
 
 
@@ -33,7 +34,7 @@ def invoke(context, action, channel_id='', subscription_id='', channel_name=''):
         if successful:
             message = context.i18n('Subscribed')
             if channel_name:
-                message = context.i18n('Subscribed to %s') % channel_name
+                message = context.i18n('Subscribed to %s') % bold(channel_name)
 
             xbmcgui.Dialog().notification(
                 context.addon.getAddonInfo('name'),
@@ -58,7 +59,7 @@ def invoke(context, action, channel_id='', subscription_id='', channel_name=''):
         if successful:
             message = context.i18n('Unsubscribed')
             if channel_name:
-                message = context.i18n('Unsubscribed from %s') % channel_name
+                message = context.i18n('Unsubscribed from %s') % bold(channel_name)
 
             xbmcgui.Dialog().notification(
                 context.addon.getAddonInfo('name'),
