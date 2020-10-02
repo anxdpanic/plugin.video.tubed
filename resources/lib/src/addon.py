@@ -63,10 +63,10 @@ def _disliked_videos(page_token=''):
     disliked_videos.invoke(CONTEXT, page_token=page_token)
 
 
-@router.route(MODES.LIVE, kwargs=['page_token'])
-def _live(page_token=''):
+@router.route(MODES.LIVE, kwargs=['page_token', 'event_type'])
+def _live(page_token='', event_type='live'):
     from .routes import live
-    live.invoke(CONTEXT, page_token=page_token)
+    live.invoke(CONTEXT, page_token=page_token, event_type=event_type)
 
 
 @router.route(MODES.SUBSCRIPTIONS, kwargs=['page_token'])

@@ -80,4 +80,6 @@ STRINGS = {
     '%s renamed to %s': 30094,
     'You are about to delete %s, are you sure?': 30095,
     'You are about to delete a playlist, are you sure?': 30096,
+    'Upcoming': 30097,
+    'Completed': 30098,
 }
