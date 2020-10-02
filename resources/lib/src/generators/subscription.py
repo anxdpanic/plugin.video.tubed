@@ -17,6 +17,7 @@ from ..constants import SCRIPT_MODES
 from ..items.directory import Directory
 from ..lib.url_utils import create_addon_path
 from .data_cache import get_cached
+from .utils import get_thumbnail
 
 
 def subscription_generator(context, items):
@@ -53,11 +54,7 @@ def subscription_generator(context, items):
         }
         payload.ListItem.setInfo('video', info_labels)
 
-        thumbnails = snippet.get('thumbnails', {})
-        thumbnail = thumbnails.get('standard', thumbnails.get('high', {}))
-        if not thumbnail:
-            thumbnail = thumbnails.get('medium', thumbnails.get('default', {}))
-        thumbnail = thumbnail.get('url', '')
+        thumbnail = get_thumbnail(snippet)
 
         payload.ListItem.setArt({
             'icon': thumbnail,
