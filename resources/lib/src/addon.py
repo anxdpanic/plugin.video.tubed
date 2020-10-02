@@ -81,6 +81,12 @@ def _subscriptions(page_token=''):
     subscriptions.invoke(CONTEXT, page_token=page_token)
 
 
+@router.route(MODES.RELATED_VIDEOS, args=['video_id'], kwargs=['page_token'])
+def _related_videos(video_id, page_token=''):
+    from .routes import related_videos
+    related_videos.invoke(CONTEXT, video_id, page_token=page_token)
+
+
 @router.route(MODES.CHANNEL, args=['channel_id'], kwargs=['page_token'])
 def _channel(channel_id, page_token=''):
     # alias of MODES.PLAYLISTS

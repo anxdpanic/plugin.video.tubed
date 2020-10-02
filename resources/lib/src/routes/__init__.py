@@ -10,5 +10,5 @@
 
 __all__ = ['categories', 'category', 'disliked_videos', 'liked_videos', 'live',
            'main_menu', 'manage_users', 'most_popular', 'my_channel', 'play', 'playlist',
-           'playlists', 'search', 'search_query', 'sign_in', 'sign_out', 'subscriptions',
-           'upcoming_notification']
+           'playlists', 'related_videos', 'search', 'search_query', 'sign_in', 'sign_out',
+           'subscriptions', 'upcoming_notification']

@@ -31,6 +31,7 @@ class MODES(Enum):
     CATEGORIES = 'categories'
     CATEGORY = 'category'
     UPCOMING_NOTIFICATION = 'upcoming_notification'
+    RELATED_VIDEOS = 'related_videos'
 
     def __str__(self):
         return str(self.value).lower()
