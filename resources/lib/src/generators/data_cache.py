@@ -12,7 +12,7 @@ from ..constants import ONE_MONTH
 from ..storage.data_cache import DataCache
 
 
-def get_cached(endpoint, content_ids):
+def get_cached(endpoint, content_ids, parameters=None):
     cache = DataCache()
 
     payload = {}
@@ -32,7 +32,11 @@ def get_cached(endpoint, content_ids):
     if len(uncached_ids) > 0:
         uncached_data = {}
 
-        api_payload = endpoint(uncached_ids)
+        if parameters and isinstance(parameters, dict):
+            api_payload = endpoint(uncached_ids, **parameters)
+        else:
+            api_payload = endpoint(uncached_ids)
+
         items = api_payload.get('items', [])
         for item in items:
             content_id = str(item['id'])

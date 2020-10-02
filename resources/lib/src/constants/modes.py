@@ -30,6 +30,7 @@ class MODES(Enum):
     PLAYLIST = 'playlist'
     CATEGORIES = 'categories'
     CATEGORY = 'category'
+    UPCOMING_NOTIFICATION = 'upcoming_notification'
 
     def __str__(self):
         return str(self.value).lower()

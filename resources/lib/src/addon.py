@@ -69,6 +69,12 @@ def _live(page_token='', event_type='live'):
     live.invoke(CONTEXT, page_token=page_token, event_type=event_type)
 
 
+@router.route(MODES.UPCOMING_NOTIFICATION, args=['title', 'timestamp'])
+def _upcoming_notification(title, timestamp):
+    from .routes import upcoming_notification
+    upcoming_notification.invoke(CONTEXT, title=title, timestamp=timestamp)
+
+
 @router.route(MODES.SUBSCRIPTIONS, kwargs=['page_token'])
 def _subscriptions(page_token=''):
     from .routes import subscriptions

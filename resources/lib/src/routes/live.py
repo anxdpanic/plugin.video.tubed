@@ -23,7 +23,8 @@ def invoke(context, page_token='', event_type='live'):
     if event_type not in ['live', 'completed', 'upcoming']:
         return
 
-    xbmcplugin.setContent(context.handle, 'videos')
+    if event_type != 'upcoming':
+        xbmcplugin.setContent(context.handle, 'videos')
 
     list_items = []
 

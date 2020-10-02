@@ -82,4 +82,6 @@ STRINGS = {
     'You are about to delete a playlist, are you sure?': 30096,
     'Upcoming': 30097,
     'Completed': 30098,
+    '%s was scheduled to start %s': 30099,
+    '%s is scheduled to start %s': 30100,
 }
