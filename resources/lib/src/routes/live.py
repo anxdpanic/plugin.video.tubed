@@ -14,6 +14,7 @@ from ..constants import MODES
 from ..generators.video import video_generator
 from ..items.directory import Directory
 from ..items.next_page import NextPage
+from ..lib.txt_fmt import bold
 from ..lib.url_utils import create_addon_path
 
 
@@ -29,7 +30,7 @@ def invoke(context, page_token='', event_type='live'):
     if not page_token and event_type == 'live':
 
         directory = Directory(
-            label=context.i18n('Upcoming'),
+            label=bold(context.i18n('Upcoming')),
             path=create_addon_path(parameters={
                 'mode': str(MODES.LIVE),
                 'event_type': 'upcoming'
@@ -39,7 +40,7 @@ def invoke(context, page_token='', event_type='live'):
         list_items.append(tuple(directory))
 
         directory = Directory(
-            label=context.i18n('Completed'),
+            label=bold(context.i18n('Completed')),
             path=create_addon_path(parameters={
                 'mode': str(MODES.LIVE),
                 'event_type': 'completed'

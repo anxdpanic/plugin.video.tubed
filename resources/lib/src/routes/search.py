@@ -16,6 +16,7 @@ from ..constants import ADDON_ID
 from ..constants import MODES
 from ..items.directory import Directory
 from ..items.search_query import SearchQuery
+from ..lib.txt_fmt import bold
 from ..lib.url_utils import create_addon_path
 from ..storage.search_history import SearchHistory
 
@@ -26,7 +27,7 @@ def invoke(context):
     items = []
 
     directory = SearchQuery(
-        label=context.i18n('New Search'),
+        label=bold(context.i18n('New Search')),
         path=create_addon_path(parameters={
             'mode': str(MODES.SEARCH_QUERY)
         })

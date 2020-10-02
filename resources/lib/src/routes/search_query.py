@@ -19,6 +19,7 @@ from ..generators.playlist import playlist_generator
 from ..generators.video import video_generator
 from ..items.next_page import NextPage
 from ..items.search_query import SearchQuery
+from ..lib.txt_fmt import bold
 from ..lib.url_utils import create_addon_path
 from ..lib.url_utils import unquote
 from ..storage.search_cache import SearchCache
@@ -57,7 +58,7 @@ def invoke(context, query='', page_token='', search_type='video'):
     if not page_token and search_type == 'video':
 
         directory = SearchQuery(
-            label=context.i18n('Channels'),
+            label=bold(context.i18n('Channels')),
             path=create_addon_path(parameters={
                 'mode': str(MODES.SEARCH_QUERY),
                 'query': quoted_query,
@@ -68,7 +69,7 @@ def invoke(context, query='', page_token='', search_type='video'):
         list_items.append(tuple(directory))
 
         directory = SearchQuery(
-            label=context.i18n('Playlists'),
+            label=bold(context.i18n('Playlists')),
             path=create_addon_path(parameters={
                 'mode': str(MODES.SEARCH_QUERY),
                 'query': quoted_query,

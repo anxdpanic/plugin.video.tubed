@@ -14,7 +14,7 @@ from ..constants import MODES
 from ..generators.playlist import playlist_generator
 from ..items.directory import Directory
 from ..items.next_page import NextPage
-from ..lib import txt_fmt
+from ..lib.txt_fmt import bold
 from ..lib.url_utils import create_addon_path
 
 
@@ -31,7 +31,7 @@ def invoke(context, channel_id, page_token=''):
     if not page_token:
         if upload_playlist:
             directory = Directory(
-                label=txt_fmt.bold(context.i18n('Uploads')),
+                label=bold(context.i18n('Uploads')),
                 path=create_addon_path({
                     'mode': str(MODES.PLAYLIST),
                     'playlist_id': upload_playlist
@@ -44,7 +44,7 @@ def invoke(context, channel_id, page_token=''):
 
             if watch_later_playlist:
                 directory = Directory(
-                    label=txt_fmt.bold(context.i18n('Watch Later')),
+                    label=bold(context.i18n('Watch Later')),
                     path=create_addon_path({
                         'mode': str(MODES.PLAYLIST),
                         'playlist_id': watch_later_playlist

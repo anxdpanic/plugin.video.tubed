@@ -15,6 +15,7 @@ from ..constants import ADDON_ID
 from ..constants import MODES
 from ..constants import SCRIPT_MODES
 from ..items.directory import Directory
+from ..lib.txt_fmt import bold
 from ..lib.url_utils import create_addon_path
 from .data_cache import get_cached
 
@@ -77,7 +78,7 @@ def playlist_generator(context, items):
                  'RunScript(%s,mode=%s&action=add&channel_id=%s&channel_name=%s)' %
                  (ADDON_ID, str(SCRIPT_MODES.SUBSCRIPTIONS), channel_id, quote(channel_name))),
 
-                (context.i18n('Go to %s') % unescape(snippet.get('channelTitle', '')),
+                (context.i18n('Go to %s') % bold(unescape(snippet.get('channelTitle', ''))),
                  'Container.Update(plugin://%s/?mode=%s&channel_id=%s)' %
                  (ADDON_ID, str(MODES.CHANNEL), channel_id))
             ]

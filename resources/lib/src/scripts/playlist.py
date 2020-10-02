@@ -14,6 +14,7 @@ import xbmc  # pylint: disable=import-error
 import xbmcgui  # pylint: disable=import-error
 
 from ..lib.memoizer import reset_cache
+from ..lib.txt_fmt import bold
 from ..lib.url_utils import unquote
 
 
@@ -36,7 +37,7 @@ def invoke(context, action, video_id='', video_title='', playlist_id='',
             return
 
         video_title, playlist_title = result
-        message = context.i18n('Added %s to %s') % (video_title, playlist_title)
+        message = context.i18n('Added %s to %s') % (bold(video_title), bold(playlist_title))
 
     elif action == 'delete':
         result = delete(context, playlist_id, playlist_title)
@@ -45,7 +46,7 @@ def invoke(context, action, video_id='', video_title='', playlist_id='',
 
         message = context.i18n('Playlist deleted')
         if playlist_title:
-            message = context.i18n('%s playlist deleted') % playlist_title
+            message = context.i18n('%s playlist deleted') % bold(playlist_title)
 
     elif action == 'remove':
         result = remove(context, playlistitem_id)
@@ -54,16 +55,16 @@ def invoke(context, action, video_id='', video_title='', playlist_id='',
 
         message = context.i18n('Removed from playlist')
         if video_title:
-            message = context.i18n('Removed %s from playlist') % video_title
+            message = context.i18n('Removed %s from playlist') % bold(video_title)
 
     elif action == 'rename':
         result = rename(context, playlist_id)
         if not result:
             return
 
-        message = context.i18n('Playlist renamed to %s') % result
+        message = context.i18n('Playlist renamed to %s') % bold(result)
         if playlist_title:
-            message = context.i18n('%s renamed to %s') % (playlist_title, result)
+            message = context.i18n('%s renamed to %s') % (bold(playlist_title), bold(result))
 
     if message:
         xbmcgui.Dialog().notification(
@@ -102,7 +103,7 @@ def add(context, video_id):
         playlist_titles = []
 
     playlist_ids = ['new'] + list(playlist_ids)
-    playlist_titles = [context.i18n('New playlist')] + list(playlist_titles)
+    playlist_titles = [bold(context.i18n('New playlist'))] + list(playlist_titles)
 
     result = xbmcgui.Dialog().select(context.i18n('Add to playlist'), playlist_titles)
     if result == -1:
@@ -138,7 +139,7 @@ def add(context, video_id):
 def delete(context, playlist_id, playlist_title):
     message = context.i18n('You are about to delete a playlist, are you sure?')
     if playlist_title:
-        message = context.i18n('You are about to delete %s, are you sure?') % playlist_title
+        message = context.i18n('You are about to delete %s, are you sure?') % bold(playlist_title)
 
     result = xbmcgui.Dialog().yesno(context.i18n('Delete playlist'), message)
     if not result:

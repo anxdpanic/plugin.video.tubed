@@ -11,6 +11,7 @@
 import xbmc  # pylint: disable=import-error
 import xbmcgui  # pylint: disable=import-error
 
+from ..lib.txt_fmt import bold
 from ..storage.users import UserStorage
 
 USERS = UserStorage()
@@ -26,8 +27,8 @@ def invoke(context):
     user_code = data['user_code']
     verification_url = data.get('verification_url', 'google.com/device').lstrip('https://www.')
 
-    message = context.i18n('Go to %s and enter the following code:') % verification_url
-    message += ' ' + user_code
+    message = context.i18n('Go to %s and enter the following code:') % bold(verification_url)
+    message += ' ' + bold(user_code)
 
     dialog = xbmcgui.DialogProgress()
     dialog.create(heading=context.i18n('Sign In'), message=message)
