@@ -11,9 +11,12 @@
 from html import unescape
 from urllib.parse import quote
 
+import arrow  # pylint: disable=import-error
+
 from ..constants import ADDON_ID
 from ..constants import MODES
 from ..constants import SCRIPT_MODES
+from ..items.action import Action
 from ..items.video import Video
 from ..lib.txt_fmt import bold
 from ..lib.url_utils import create_addon_path
@@ -21,8 +24,17 @@ from .data_cache import get_cached
 
 
 def video_generator(context, items, mine=False):
+    parameters = None
+    event_type = ''
+
+    if context.mode == str(MODES.LIVE):
+        parameters = {
+            'live_details': True
+        }
+        event_type = context.query.get('event_type', '')
+
     cached_videos = \
-        get_cached(context.api.videos, [get_id(item) for item in items if get_id(item)])
+        get_cached(context.api.videos, [get_id(item) for item in items if get_id(item)], parameters)
 
     for item in items:
         video_id = get_id(item)
@@ -41,14 +53,41 @@ def video_generator(context, items, mine=False):
 
         video_title = unescape(snippet.get('title', ''))
 
-        payload = Video(
-            label=video_title,
-            label2=channel_name,
-            path=create_addon_path({
-                'mode': str(MODES.PLAY),
-                'video_id': video_id
-            })
-        )
+        published_arrow = None
+        scheduled_start = None
+        live_details = video.get('liveStreamingDetails')
+
+        if live_details:
+            actual_start = live_details.get('actualStartTime')
+            actual_end = live_details.get('actualEndTime')
+            scheduled_start = live_details.get('scheduledStartTime')
+
+            published = actual_end or actual_start or scheduled_start
+            if published:
+                published_arrow = arrow.get(published).to('local')
+
+        if not published_arrow:
+            published_arrow = arrow.get(snippet['publishedAt']).to('local')
+
+        if event_type == 'upcoming':
+            payload = Action(
+                label=video_title,
+                label2=channel_name,
+                path=create_addon_path({
+                    'mode': str(MODES.UPCOMING_NOTIFICATION),
+                    'title': quote(video_title),
+                    'timestamp': scheduled_start
+                })
+            )
+        else:
+            payload = Video(
+                label=video_title,
+                label2=channel_name,
+                path=create_addon_path({
+                    'mode': str(MODES.PLAY),
+                    'video_id': video_id
+                })
+            )
 
         info_labels = {
             'mediatype': 'video',
@@ -56,7 +95,10 @@ def video_generator(context, items, mine=False):
             'plotoutline': unescape(snippet.get('description', '')),
             'originaltitle': video_title,
             'sorttitle': video_title,
-            'studio': channel_name
+            'studio': channel_name,
+            'year': published_arrow.year,
+            'premiered': published_arrow.format('YYYY-MM-DD'),
+            'dateadded': published_arrow.format('YYYY-MM-DD HH:mm:ss'),
         }
 
         if snippet.get('liveBroadcastContent', 'none') != 'none':
@@ -79,32 +121,38 @@ def video_generator(context, items, mine=False):
             (context.i18n('Subscribe'),
              'RunScript(%s,mode=%s&action=add&channel_id=%s&channel_name=%s)' %
              (ADDON_ID, str(SCRIPT_MODES.SUBSCRIPTIONS), channel_id, quote(channel_name))),
-
-            (context.i18n('Rate'),
-             'RunScript(%s,mode=%s&video_id=%s&video_title=%s)' %
-             (ADDON_ID, str(SCRIPT_MODES.RATE), video_id, quote(video_title))),
-
-            (context.i18n('Add to playlist'),
-             'RunScript(%s,mode=%s&action=add&video_id=%s)' %
-             (ADDON_ID, str(SCRIPT_MODES.PLAYLIST), video_id)),
         ]
 
-        if mine and 'snippet' in item and 'playlistId' in item['snippet']:
+        if event_type != 'upcoming':
             context_menus += [
-                (context.i18n('Remove from playlist'),
-                 'RunScript(%s,mode=%s&action=remove&playlistitem_id=%s&video_title=%s)' %
-                 (ADDON_ID, str(SCRIPT_MODES.PLAYLIST), item['id'], quote(video_title)))
+                (context.i18n('Rate'),
+                 'RunScript(%s,mode=%s&video_id=%s&video_title=%s)' %
+                 (ADDON_ID, str(SCRIPT_MODES.RATE), video_id, quote(video_title))),
+
+                (context.i18n('Add to playlist'),
+                 'RunScript(%s,mode=%s&action=add&video_id=%s)' %
+                 (ADDON_ID, str(SCRIPT_MODES.PLAYLIST), video_id)),
             ]
+
+            if mine and 'snippet' in item and 'playlistId' in item['snippet']:
+                context_menus += [
+                    (context.i18n('Remove from playlist'),
+                     'RunScript(%s,mode=%s&action=remove&playlistitem_id=%s&video_title=%s)' %
+                     (ADDON_ID, str(SCRIPT_MODES.PLAYLIST), item['id'], quote(video_title)))
+                ]
 
         context_menus += [
             (context.i18n('Go to %s') % bold(unescape(snippet.get('channelTitle', ''))),
              'Container.Update(plugin://%s/?mode=%s&channel_id=%s)' %
              (ADDON_ID, str(MODES.CHANNEL), channel_id)),
-
-            (context.i18n('Play (Prompt for subtitles)'),
-             'RunScript(%s,mode=%s&video_id=%s&prompt_subtitles=true)' %
-             (ADDON_ID, str(SCRIPT_MODES.PLAY), video_id)),
         ]
+
+        if event_type != 'upcoming':
+            context_menus += [
+                (context.i18n('Play (Prompt for subtitles)'),
+                 'RunScript(%s,mode=%s&video_id=%s&prompt_subtitles=true)' %
+                 (ADDON_ID, str(SCRIPT_MODES.PLAY), video_id)),
+            ]
 
         payload.ListItem.addContextMenuItems(context_menus)
         yield tuple(payload)
