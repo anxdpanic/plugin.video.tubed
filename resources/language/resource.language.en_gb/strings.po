@@ -400,3 +400,11 @@ msgstr ""
 msgctxt "#30096"
 msgid "You are about to delete a playlist, are you sure?"
 msgstr ""
+
+msgctxt "#30097"
+msgid "Upcoming"
+msgstr ""
+
+msgctxt "#30098"
+msgid "Completed"
+msgstr ""
