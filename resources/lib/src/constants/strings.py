@@ -84,4 +84,5 @@ STRINGS = {
     'Completed': 30098,
     '%s was scheduled to start %s': 30099,
     '%s is scheduled to start %s': 30100,
+    'Related videos': 30101,
 }
