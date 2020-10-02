@@ -11,7 +11,7 @@
 from html import unescape
 from urllib.parse import quote
 
-import arrow  # pylint: disable=import-error
+import arrow
 
 from ..constants import ADDON_ID
 from ..constants import MODES

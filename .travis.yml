@@ -18,6 +18,7 @@ before_install:
     git clone --single-branch --branch indev https://github.com/anxdpanic/addon-check.git $ADDON_CHECK_PATH
 
 install:
+  - pip install arrow
   - pip install isort
   - pip install pylint
   - pip install $ADDON_CHECK_PATH

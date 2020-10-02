@@ -8,7 +8,7 @@
     See LICENSES/GPL-2.0-only.txt for more information.
 """
 
-import arrow  # pylint: disable=import-error
+import arrow
 import xbmcgui  # pylint: disable=import-error
 
 from ..lib.txt_fmt import bold
