@@ -21,6 +21,7 @@ from ..items.video import Video
 from ..lib.txt_fmt import bold
 from ..lib.url_utils import create_addon_path
 from .data_cache import get_cached
+from .utils import get_thumbnail
 
 
 def video_generator(context, items, mine=False):
@@ -106,11 +107,7 @@ def video_generator(context, items, mine=False):
 
         payload.ListItem.setInfo('video', info_labels)
 
-        thumbnails = snippet.get('thumbnails', {})
-        thumbnail = thumbnails.get('standard', thumbnails.get('high', {}))
-        if not thumbnail:
-            thumbnail = thumbnails.get('medium', thumbnails.get('default', {}))
-        thumbnail = thumbnail.get('url', '')
+        thumbnail = get_thumbnail(snippet)
 
         payload.ListItem.setArt({
             'icon': thumbnail,
