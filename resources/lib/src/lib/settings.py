@@ -175,3 +175,7 @@ class Settings:  # pylint: disable=too-many-public-methods
     @property
     def function_cache_ttl(self):
         return self.get_int('cache.ttl.function')
+
+    @property
+    def log_api_requests(self):
+        return self.get_bool('log.api.requests')

@@ -11,12 +11,14 @@
 from .api import API
 from .constants import MODES
 from .lib.context import Context
+from .lib.logger import Log
 from .lib.routing import Router
 from .lib.url_utils import parse_query
 
 # pylint: disable=import-outside-toplevel
 
 CONTEXT = Context()
+LOG = Log('entrypoint', __file__)
 
 router = Router()
 
@@ -149,6 +151,11 @@ def invoke(argv):
     CONTEXT.handle = argv[1]
     CONTEXT.query = parse_query(argv[2])
     CONTEXT.mode = CONTEXT.query.get('mode', str(MODES.MAIN))
+
+    LOG.debug(
+        'Invoker:\n  Handle: %s\n  Mode: %s\n  Parameters: %s\n' %
+        (str(CONTEXT.handle), CONTEXT.mode, CONTEXT.query)
+    )
 
     CONTEXT.api = API(
         language=CONTEXT.settings.language,

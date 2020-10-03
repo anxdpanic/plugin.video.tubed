@@ -157,5 +157,14 @@
                 </setting>
             </group>
         </category>
+        <category id="debug" label="30125" help="">
+            <group id="1" label="30126">
+                <setting id="log.api.requests" type="boolean" label="30127" help="30128">
+                    <level>0</level>
+                    <default>false</default>
+                    <control type="toggle"/>
+                </setting>
+            </group>
+        </category>
     </section>
 </settings>

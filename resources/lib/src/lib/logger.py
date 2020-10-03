@@ -9,19 +9,21 @@
 """
 
 import logging
+import os
 
 try:
     import xbmc
 except ImportError:
     xbmc = None
 
+LOGGER_NAME = 'plugin.video.tubed'
+
 
 class Log:
-    def __init__(self, name='logger.tubed', package='', module='', filename=''):
+    def __init__(self, package='', module='', filename=''):
         """
         A simple logger for logging to the Kodi log, Console or a separate Log file
-        :param name: Name of the logger
-        :type name: str
+
         :param package: name of the calling package if relevant
         :type package: str
         :param module: name of the calling module if relevant
@@ -30,10 +32,11 @@ class Log:
         :type filename: str
         """
         self._package = package
+
+        module = os.path.basename(module)
         self._module = module.replace('.pyo', '').replace('.pyc', '').replace('.py', '')
 
         self._filename = filename
-        self._name = name
 
         if xbmc:
             self._log = xbmc.log
@@ -128,22 +131,22 @@ class Log:
         :rtype: str
         """
         if self._package and not self._module:
-            return '[%s] %s' % (self._package, message)
+            return '[%s][%s] %s' % (LOGGER_NAME, self._package, message)
 
         if not self._package and self._module:
-            return '[%s][%s] %s' % (self._name, self._module, message)
+            return '[%s][%s] %s' % (LOGGER_NAME, self._module, message)
 
         if self._package and self._module:
-            return '[%s][%s] %s' % (self._package, self._module, message)
+            return '[%s][%s][%s] %s' % (LOGGER_NAME, self._package, self._module, message)
 
-        return '[%s] %s' % (self._name, message)
+        return '[%s] %s' % (LOGGER_NAME, message)
 
     def _create_logger(self):
         """
         Create a python logger
         Creates a file based logger if a filename was provided, otherwise use console based logging
         """
-        self._log = logging.getLogger(self._name)
+        self._log = logging.getLogger(LOGGER_NAME)
 
         self._log.setLevel(logging.DEBUG)
         self._log.propagate = False

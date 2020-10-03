@@ -512,3 +512,19 @@ msgstr ""
 msgctxt "#30124"
 msgid "Failed to delete data cache"
 msgstr ""
+
+msgctxt "#30125"
+msgid "Debug"
+msgstr ""
+
+msgctxt "#30126"
+msgid "Component Logging"
+msgstr ""
+
+msgctxt "#30127"
+msgid "API requests"
+msgstr ""
+
+msgctxt "#30128"
+msgid "Enable logging of API requests and responses"
+msgstr ""
