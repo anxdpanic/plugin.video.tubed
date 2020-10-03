@@ -8,6 +8,7 @@
     See LICENSES/GPL-2.0-only.txt for more information.
 """
 
+from . import utils
 from ..constants import ONE_MONTH
 from ..storage.data_cache import DataCache
 
@@ -44,5 +45,17 @@ def get_cached(endpoint, content_ids, parameters=None):
             payload[content_id] = item
 
         cache.set_all(uncached_data)
+
+    return payload
+
+
+def get_fanart(endpoint, channel_ids):
+    channel_ids = list(set(channel_ids))
+
+    channels = get_cached(endpoint, channel_ids)
+
+    payload = {}
+    for channel_id, channel in channels.items():
+        payload[channel_id] = utils.get_fanart(channel.get('brandingSettings', {}))
 
     return payload

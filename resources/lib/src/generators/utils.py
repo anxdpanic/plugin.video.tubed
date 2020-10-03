@@ -17,3 +17,13 @@ def get_thumbnail(snippet):
         thumbnail = thumbnails.get('medium', thumbnails.get('default', {}))
 
     return thumbnail.get('url', '')
+
+
+def get_fanart(branding_settings):
+    banners = branding_settings.get('image', {})
+    banner = banners.get('bannerTvImageUrl', banners.get('bannerTvHighImageUrl', ''))
+
+    if not banner:
+        banner = banners.get('bannerTvMediumImageUrl', banners.get('bannerTvLowImageUrl', ''))
+
+    return banner

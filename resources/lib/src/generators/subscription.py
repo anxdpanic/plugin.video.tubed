@@ -17,6 +17,7 @@ from ..constants import SCRIPT_MODES
 from ..items.directory import Directory
 from ..lib.url_utils import create_addon_path
 from .data_cache import get_cached
+from .utils import get_fanart
 from .utils import get_thumbnail
 
 
@@ -59,6 +60,7 @@ def subscription_generator(context, items):
         payload.ListItem.setArt({
             'icon': thumbnail,
             'thumb': thumbnail,
+            'fanart': get_fanart(channel.get('brandingSettings', {})),
         })
 
         context_menus = [
