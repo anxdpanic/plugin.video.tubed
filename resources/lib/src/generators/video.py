@@ -35,12 +35,19 @@ def video_generator(context, items, mine=False):
         }
         event_type = context.query.get('event_type', '')
 
-    cached_videos = \
-        get_cached(context.api.videos, [get_id(item) for item in items if get_id(item)], parameters)
+    cached_videos = get_cached(
+        context.api.videos,
+        [get_id(item) for item in items if get_id(item)],
+        parameters,
+        cache_ttl=context.settings.data_cache_ttl
+    )
 
-    fanart = get_fanart(context.api.channels,
-                        [item.get('snippet', {}).get('channelId')
-                         for item in items if item.get('snippet', {}).get('channelId')])
+    fanart = get_fanart(
+        context.api.channels,
+        [item.get('snippet', {}).get('channelId')
+         for item in items if item.get('snippet', {}).get('channelId')],
+        cache_ttl=context.settings.data_cache_ttl
+    )
 
     for item in items:
         video_id = get_id(item)

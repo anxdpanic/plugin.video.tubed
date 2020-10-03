@@ -99,5 +99,63 @@
                 </setting>
             </group>
         </category>
+        <category id="cache" label="30102" help="">
+            <group id="1" label="30113">
+                <setting id="cache.ttl.data" type="integer" label="30103" help="30115">
+                    <level>0</level>
+                    <default>4</default>
+                    <constraints>
+                        <minimum>1</minimum>
+                        <step>1</step>
+                        <maximum>8</maximum>
+                    </constraints>
+                    <control type="slider" format="integer">
+                        <popup>false</popup>
+                    </control>
+                </setting>
+                <setting id="cache.ttl.function" type="integer" label="30104" help="30116">
+                    <level>0</level>
+                    <default>7</default>
+                    <constraints>
+                        <minimum>0</minimum>
+                        <step>1</step>
+                        <maximum>30</maximum>
+                    </constraints>
+                    <control type="slider" format="integer">
+                        <popup>false</popup>
+                    </control>
+                </setting>
+            </group>
+            <group id="2" label="30114">
+                <setting id="cache.clear.data" type="action" label="30105" help="30117">
+                    <level>0</level>
+                    <data>RunScript(plugin.video.tubed,mode=cache&amp;action=clear&amp;cache_type=data)</data>
+                    <control type="button" format="action">
+                        <close>false</close>
+                    </control>
+                </setting>
+                <setting id="cache.clear.function" type="action" label="30106" help="30118">
+                    <level>0</level>
+                    <data>RunScript(plugin.video.tubed,mode=cache&amp;action=clear&amp;cache_type=function)</data>
+                    <control type="button" format="action">
+                        <close>false</close>
+                    </control>
+                </setting>
+                <setting id="cache.delete.data" type="action" label="30109" help="30119">
+                    <level>0</level>
+                    <data>RunScript(plugin.video.tubed,mode=cache&amp;action=delete&amp;cache_type=data)</data>
+                    <control type="button" format="action">
+                        <close>false</close>
+                    </control>
+                </setting>
+                <setting id="cache.delete.function" type="action" label="30110" help="30120">
+                    <level>0</level>
+                    <data>RunScript(plugin.video.tubed,mode=cache&amp;action=delete&amp;cache_type=function)</data>
+                    <control type="button" format="action">
+                        <close>false</close>
+                    </control>
+                </setting>
+            </group>
+        </category>
     </section>
 </settings>

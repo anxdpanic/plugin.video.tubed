@@ -22,8 +22,11 @@ from .utils import get_thumbnail
 
 
 def subscription_generator(context, items):
-    cached_channels = \
-        get_cached(context.api.channels, [get_id(item) for item in items if get_id(item)])
+    cached_channels = get_cached(
+        context.api.channels,
+        [get_id(item) for item in items if get_id(item)],
+        cache_ttl=context.settings.data_cache_ttl
+    )
 
     for item in items:
         channel_id = get_id(item)

@@ -20,6 +20,7 @@ class SCRIPT_MODES(Enum):  # pylint: disable=invalid-name
     PLAY = 'play'
     RATE = 'rate'
     PLAYLIST = 'playlist'
+    CACHE = 'cache'
 
     def __str__(self):
         return str(self.value).lower()

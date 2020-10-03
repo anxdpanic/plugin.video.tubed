@@ -13,7 +13,7 @@ import xbmcaddon  # pylint: disable=import-error
 from ..constants import SUBTITLE_LANGUAGE
 
 
-class Settings:
+class Settings:  # pylint: disable=too-many-public-methods
 
     def __init__(self, addon=None):
         self._addon = addon
@@ -167,3 +167,11 @@ class Settings:
     @subtitle_label.setter
     def subtitle_label(self, value):
         self.set_string('subtitle.label', value)
+
+    @property
+    def data_cache_ttl(self):
+        return self.get_int('cache.ttl.data')
+
+    @property
+    def function_cache_ttl(self):
+        return self.get_int('cache.ttl.function')

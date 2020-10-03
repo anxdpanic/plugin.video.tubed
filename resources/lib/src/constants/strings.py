@@ -85,4 +85,12 @@ STRINGS = {
     '%s was scheduled to start %s': 30099,
     '%s is scheduled to start %s': 30100,
     'Related videos': 30101,
+    'Data cache was cleared': 30107,
+    'Function cache was cleared': 30108,
+    'Data cache was deleted': 30111,
+    'Function cache was deleted': 30112,
+    'Failed to clear function cache': 30121,
+    'Failed to clear data cache': 30122,
+    'Failed to delete function cache': 30123,
+    'Failed to delete data cache': 30124,
 }
