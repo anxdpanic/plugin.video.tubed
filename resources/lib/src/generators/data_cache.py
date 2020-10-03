@@ -9,8 +9,11 @@
 """
 
 from ..constants import ONE_WEEK
+from ..lib.logger import Log
 from ..storage.data_cache import DataCache
 from . import utils
+
+LOG = Log('generators', __file__)
 
 
 def get_cached(endpoint, content_ids, parameters=None, cache_ttl=4):
@@ -29,6 +32,7 @@ def get_cached(endpoint, content_ids, parameters=None, cache_ttl=4):
             cached_ids.append(content_id)
 
     payload.update(cached_content)
+    LOG.debug('Caching: \n  Cached Items: %s\n  Uncached Items: %s' % (cached_ids, uncached_ids))
 
     if len(uncached_ids) > 0:
         uncached_data = {}
@@ -38,13 +42,16 @@ def get_cached(endpoint, content_ids, parameters=None, cache_ttl=4):
         else:
             api_payload = endpoint(uncached_ids)
 
+        cached_ids = []
         items = api_payload.get('items', [])
         for item in items:
             content_id = str(item['id'])
+            cached_ids.append(content_id)
             uncached_data[content_id] = item
             payload[content_id] = item
 
         cache.set_all(uncached_data)
+        LOG.debug('Caching: \n  Cached Items: %s' % cached_ids)
 
     return payload
 

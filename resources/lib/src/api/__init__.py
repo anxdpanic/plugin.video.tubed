@@ -10,4 +10,4 @@
 
 from .api import API
 
-__all__ = ['api', 'API', 'subtitles']
+__all__ = ['api', 'API', 'decorators', 'subtitles']
