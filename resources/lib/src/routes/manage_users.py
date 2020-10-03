@@ -14,7 +14,6 @@ import xbmcgui  # pylint: disable=import-error
 from ..lib.memoizer import reset_cache
 from ..lib.txt_fmt import bold
 from ..lib.txt_fmt import color
-from ..storage.data_cache import DataCache
 from ..storage.users import UserStorage
 
 USERS = UserStorage()
@@ -107,5 +106,4 @@ def invoke(context):
             USERS.save()
 
     reset_cache()
-    DataCache().clear()
     xbmc.executebuiltin('Container.Refresh')

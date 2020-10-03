@@ -420,3 +420,95 @@ msgstr ""
 msgctxt "#30101"
 msgid "Related videos"
 msgstr ""
+
+msgctxt "#30102"
+msgid "Cache"
+msgstr ""
+
+msgctxt "#30103"
+msgid "Data cache TTL (weeks)"
+msgstr ""
+
+msgctxt "#30104"
+msgid "Function cache TTL (minutes)"
+msgstr ""
+
+msgctxt "#30105"
+msgid "Clear data cache"
+msgstr ""
+
+msgctxt "#30106"
+msgid "Clear function cache"
+msgstr ""
+
+msgctxt "#30107"
+msgid "Data cache was cleared"
+msgstr ""
+
+msgctxt "#30108"
+msgid "Function cache was cleared"
+msgstr ""
+
+msgctxt "#30109"
+msgid "Delete data cache"
+msgstr ""
+
+msgctxt "#30110"
+msgid "Delete function cache"
+msgstr ""
+
+msgctxt "#30111"
+msgid "Data cache was deleted"
+msgstr ""
+
+msgctxt "#30112"
+msgid "Function cache was deleted"
+msgstr ""
+
+msgctxt "#30113"
+msgid "Time to Live"
+msgstr ""
+
+msgctxt "#30114"
+msgid "Maintenance"
+msgstr ""
+
+msgctxt "#30115"
+msgid "How long until long term data cache expires in weeks"
+msgstr ""
+
+msgctxt "#30116"
+msgid "How long until short term function cache expires in minutes"
+msgstr ""
+
+msgctxt "#30117"
+msgid "Clear long term data cache"
+msgstr ""
+
+msgctxt "#30118"
+msgid "Clear short term function cache"
+msgstr ""
+
+msgctxt "#30119"
+msgid "Delete long term data cache"
+msgstr ""
+
+msgctxt "#30120"
+msgid "Delete short term function cache"
+msgstr ""
+
+msgctxt "#30121"
+msgid "Failed to clear function cache"
+msgstr ""
+
+msgctxt "#30122"
+msgid "Failed to clear data cache"
+msgstr ""
+
+msgctxt "#30123"
+msgid "Failed to delete function cache"
+msgstr ""
+
+msgctxt "#30124"
+msgid "Failed to delete data cache"
+msgstr ""

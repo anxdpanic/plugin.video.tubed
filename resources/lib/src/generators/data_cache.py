@@ -8,12 +8,12 @@
     See LICENSES/GPL-2.0-only.txt for more information.
 """
 
-from . import utils
-from ..constants import ONE_MONTH
+from ..constants import ONE_WEEK
 from ..storage.data_cache import DataCache
+from . import utils
 
 
-def get_cached(endpoint, content_ids, parameters=None):
+def get_cached(endpoint, content_ids, parameters=None, cache_ttl=4):
     cache = DataCache()
 
     payload = {}
@@ -21,7 +21,7 @@ def get_cached(endpoint, content_ids, parameters=None):
     cached_ids = []
     uncached_ids = []
 
-    cached_content = cache.get_items(ONE_MONTH, content_ids)
+    cached_content = cache.get_items(ONE_WEEK * cache_ttl, content_ids)
     for content_id in content_ids:
         if not cached_content.get(content_id):
             uncached_ids.append(content_id)
@@ -49,10 +49,10 @@ def get_cached(endpoint, content_ids, parameters=None):
     return payload
 
 
-def get_fanart(endpoint, channel_ids):
+def get_fanart(endpoint, channel_ids, cache_ttl=4):
     channel_ids = list(set(channel_ids))
 
-    channels = get_cached(endpoint, channel_ids)
+    channels = get_cached(endpoint, channel_ids, cache_ttl)
 
     payload = {}
     for channel_id, channel in channels.items():

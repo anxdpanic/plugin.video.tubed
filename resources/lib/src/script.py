@@ -67,6 +67,12 @@ def _playlist(action, video_id='', video_title='', playlist_id='',
                     playlist_title, playlistitem_id)
 
 
+@router.route(SCRIPT_MODES.CACHE, args=['action', 'cache_type'])
+def _search_history(action, cache_type):
+    from .scripts import cache
+    cache.invoke(CONTEXT, action, cache_type)
+
+
 @router.route(SCRIPT_MODES.PLAY, args=['video_id'])
 def _play(video_id):
     from .scripts import play
