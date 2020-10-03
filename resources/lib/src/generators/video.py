@@ -26,26 +26,36 @@ from .utils import get_thumbnail
 
 
 def video_generator(context, items, mine=False):
-    parameters = None
     event_type = ''
 
     if context.mode == str(MODES.LIVE):
-        parameters = {
-            'live_details': True
-        }
         event_type = context.query.get('event_type', '')
 
-    cached_videos = get_cached(
-        context.api.videos,
-        [get_id(item) for item in items if get_id(item)],
-        parameters,
-        cache_ttl=context.settings.data_cache_ttl
-    )
+    if event_type == 'upcoming':
+        # don't add upcoming video items to long term cache since
+        # they will change when in progress or completed
+        cached_videos = {}
+
+        videos = context.api.videos(
+            [get_id(item) for item in items if get_id(item)],
+            live_details=True
+        )
+
+        for video in videos.get('items', []):
+            cached_videos[get_id(video)] = video
+
+    else:
+        cached_videos = get_cached(
+            context.api.videos,
+            [get_id(item) for item in items if get_id(item)],
+            cache_ttl=context.settings.data_cache_ttl
+        )
 
     fanart = get_fanart(
         context.api.channels,
         [item.get('snippet', {}).get('channelId')
-         for _, item in cached_videos.items() if item.get('snippet', {}).get('channelId')],
+         for _, item in cached_videos.items()
+         if item.get('snippet', {}).get('channelId')],
         cache_ttl=context.settings.data_cache_ttl
     )
 
