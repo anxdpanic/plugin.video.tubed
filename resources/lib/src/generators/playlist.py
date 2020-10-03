@@ -18,12 +18,17 @@ from ..items.directory import Directory
 from ..lib.txt_fmt import bold
 from ..lib.url_utils import create_addon_path
 from .data_cache import get_cached
+from .data_cache import get_fanart
 from .utils import get_thumbnail
 
 
 def playlist_generator(context, items):
     cached_playlists = \
         get_cached(context.api.playlists, [get_id(item) for item in items if get_id(item)])
+
+    fanart = get_fanart(context.api.channels,
+                        [item.get('snippet', {}).get('channelId')
+                         for item in items if item.get('snippet', {}).get('channelId')])
 
     is_mine = context.query.get('channel_id', '') == 'mine'
 
@@ -65,6 +70,7 @@ def playlist_generator(context, items):
         payload.ListItem.setArt({
             'icon': thumbnail,
             'thumb': thumbnail,
+            'fanart': fanart.get(channel_id, ''),
         })
 
         context_menus = []
