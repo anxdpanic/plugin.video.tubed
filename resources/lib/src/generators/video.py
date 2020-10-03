@@ -45,7 +45,7 @@ def video_generator(context, items, mine=False):
     fanart = get_fanart(
         context.api.channels,
         [item.get('snippet', {}).get('channelId')
-         for item in items if item.get('snippet', {}).get('channelId')],
+         for _, item in cached_videos.items() if item.get('snippet', {}).get('channelId')],
         cache_ttl=context.settings.data_cache_ttl
     )
 
