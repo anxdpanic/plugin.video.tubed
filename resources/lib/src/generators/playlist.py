@@ -24,12 +24,14 @@ from .utils import get_thumbnail
 
 def playlist_generator(context, items):
     cached_playlists = get_cached(
+        context,
         context.api.playlists,
         [get_id(item) for item in items if get_id(item)],
         cache_ttl=context.settings.data_cache_ttl
     )
 
     fanart = get_fanart(
+        context,
         context.api.channels,
         [item.get('snippet', {}).get('channelId')
          for _, item in cached_playlists.items() if item.get('snippet', {}).get('channelId')],

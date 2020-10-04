@@ -12,12 +12,16 @@ import xbmcvfs  # pylint: disable=import-error
 
 from ..constants import ADDON_ID
 from ..lib.cache import Cache
+from ..lib.context import Context
 
 
 class DataCache(Cache):
-    def __init__(self):
+    def __init__(self, context=None):
         filename = xbmcvfs.translatePath(
             'special://profile/addon_data/%s/data/cache.sqlite' % ADDON_ID
         )
 
-        super().__init__(filename, max_file_size_mb=15)
+        if not context:
+            context = Context()
+
+        super().__init__(filename, max_file_size_mb=context.settings.data_cache_limit)
