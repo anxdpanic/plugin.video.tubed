@@ -92,25 +92,44 @@ def required_arguments_check(action, video_id, playlist_id, playlistitem_id):
 
 
 def add(context, video_id):
-    payload = context.api.playlists_of_channel('mine')
-    playlists = [(unescape(item['snippet'].get('title', '')), item['id'])
-                 for item in payload['items']]
+    page_token = ''
+    playlist_id = ''
+    playlist_title = ''
 
-    if playlists:
-        playlist_titles, playlist_ids = zip(*playlists)
-    else:
-        playlist_ids = []
-        playlist_titles = []
+    while not playlist_id and not playlist_title:
 
-    playlist_ids = ['new'] + list(playlist_ids)
-    playlist_titles = [bold(context.i18n('New playlist'))] + list(playlist_titles)
+        payload = context.api.playlists_of_channel('mine', page_token=page_token)
+        playlists = [(unescape(item['snippet'].get('title', '')), item['id'])
+                     for item in payload['items']]
 
-    result = xbmcgui.Dialog().select(context.i18n('Add to playlist'), playlist_titles)
-    if result == -1:
-        return None
+        if playlists:
+            playlist_titles, playlist_ids = zip(*playlists)
+            playlist_titles = list(playlist_titles)
+            playlist_ids = list(playlist_ids)
+        else:
+            playlist_ids = []
+            playlist_titles = []
 
-    playlist_id = playlist_ids[result]
-    playlist_title = playlist_titles[result]
+        if not page_token:
+            playlist_ids = ['new'] + playlist_ids
+            playlist_titles = [bold(context.i18n('New playlist'))] + playlist_titles
+
+        page_token = payload.get('nextPageToken')
+        if page_token:
+            playlist_ids += ['next']
+            playlist_titles += [bold(context.i18n('Next Page'))]
+
+        result = xbmcgui.Dialog().select(context.i18n('Add to playlist'), playlist_titles)
+        if result == -1:
+            return None
+
+        playlist_id = playlist_ids[result]
+        if playlist_id == 'next':
+            playlist_id = ''
+            continue
+
+        playlist_title = playlist_titles[result]
+        break
 
     if playlist_id == 'new':
         playlist_title = _get_title_from_user(context)
