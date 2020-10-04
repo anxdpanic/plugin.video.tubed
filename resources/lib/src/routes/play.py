@@ -14,7 +14,7 @@ from ..api.utils import choose_subtitles
 from ..items.stream import Stream
 
 
-def invoke(context, video_id):
+def invoke(context, video_id, prompt_subtitles=False):
     quality = context.api.quality(
         context.settings.video_quality,
         limit_30fps=context.settings.limit_to_30fps,
@@ -34,7 +34,11 @@ def invoke(context, video_id):
         license_key=license_data.get('proxy', '')
     )
 
-    subtitles = choose_subtitles(context, subtitles=metadata.get('subtitles', []))
+    subtitles = choose_subtitles(
+        context,
+        subtitles=metadata.get('subtitles', []),
+        prompt_override=prompt_subtitles
+    )
     stream.ListItem.setSubtitles(subtitles)
 
     xbmcplugin.setResolvedUrl(context.handle, True, stream.ListItem)

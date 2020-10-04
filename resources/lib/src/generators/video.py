@@ -180,8 +180,8 @@ def video_generator(context, items, mine=False):
         if event_type != 'upcoming':
             context_menus += [
                 (context.i18n('Play (Prompt for subtitles)'),
-                 'RunScript(%s,mode=%s&video_id=%s&prompt_subtitles=true)' %
-                 (ADDON_ID, str(SCRIPT_MODES.PLAY), video_id)),
+                 'PlayMedia(plugin://%s/?mode=%s&video_id=%s&prompt_subtitles=true)' %
+                 (ADDON_ID, str(MODES.PLAY), video_id)),
             ]
 
         payload.ListItem.addContextMenuItems(context_menus)
