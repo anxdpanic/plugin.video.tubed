@@ -8,5 +8,8 @@
     See LICENSES/GPL-2.0-only.txt for more information.
 """
 
-__all__ = ['category', 'channel', 'comments', 'data_cache',
-           'playlist', 'subscription', 'utils', 'video']
+from ..routes import read_comment
+
+
+def invoke(context, thread_id='', comment_id=''):
+    read_comment.invoke(context, thread_id, comment_id)

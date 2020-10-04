@@ -169,6 +169,10 @@ def video_generator(context, items, mine=False):
             (context.i18n('Go to %s') % bold(unescape(snippet.get('channelTitle', ''))),
              'Container.Update(plugin://%s/?mode=%s&channel_id=%s)' %
              (ADDON_ID, str(MODES.CHANNEL), channel_id)),
+
+            (context.i18n('Comments'),
+             'Container.Update(plugin://%s/?mode=%s&video_id=%s)' %
+             (ADDON_ID, str(MODES.COMMENTS_THREADS), video_id)),
         ]
 
         if event_type != 'upcoming':

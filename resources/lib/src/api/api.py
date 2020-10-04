@@ -383,34 +383,56 @@ class API:  # pylint: disable=too-many-public-methods
 
     @api_request
     @memoizer.cache_method(limit=ONE_MINUTE * CACHE_TTL)
-    def parent_comments(self, video_id, page_token='', max_results=None):
+    def comment_thread(self, thread_id):
+        parameters = {
+            'part': 'snippet',
+            'id': thread_id,
+            'textFormat': 'plainText',
+        }
+
+        return self.api.comment_threads.get(parameters=parameters, unauthorized=True)
+
+    @api_request
+    @memoizer.cache_method(limit=ONE_MINUTE * CACHE_TTL)
+    def comment(self, comment_id):
+        parameters = {
+            'part': 'snippet',
+            'id': comment_id,
+            'textFormat': 'plainText',
+        }
+
+        return self.api.comments.get(parameters=parameters, unauthorized=True)
+
+    @api_request
+    @memoizer.cache_method(limit=ONE_MINUTE * CACHE_TTL)
+    def comment_threads(self, video_id, page_token='', max_results=None):
         parameters = {
             'part': 'snippet',
             'videoId': video_id,
             'order': 'relevance',
             'textFormat': 'plainText',
-            'maxResults': max_results or str(self.max_results)
+            'maxResults': max_results or '100'
         }
 
         if page_token:
             parameters['pageToken'] = page_token
 
-        return self.api.comment_threads.get(parameters=parameters)
+        return self.api.comment_threads.get(parameters=parameters, unauthorized=True)
 
     @api_request
     @memoizer.cache_method(limit=ONE_MINUTE * CACHE_TTL)
-    def child_comments(self, parent_id, page_token='', max_results=None):
+    def comments(self, parent_id, page_token='', max_results=None):
         parameters = {
             'part': 'snippet',
             'parentId': parent_id,
             'textFormat': 'plainText',
-            'maxResults': max_results or str(self.max_results)
+            'maxResults': max_results or '100'
         }
 
         if page_token:
             parameters['pageToken'] = page_token
 
-        return self.api.comments.get(parameters=parameters)
+        return self.api.comments.get(parameters=parameters, unauthorized=True)
 
     @api_request
     @memoizer.cache_method(limit=ONE_MINUTE * CACHE_TTL)

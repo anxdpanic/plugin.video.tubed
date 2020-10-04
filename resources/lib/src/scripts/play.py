@@ -10,7 +10,7 @@
 
 import xbmc  # pylint: disable=import-error
 
-from ..api.subtitles import choose_subtitles
+from ..api.utils import choose_subtitles
 from ..items.stream import Stream
 
 
