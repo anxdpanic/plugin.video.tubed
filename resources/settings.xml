@@ -126,7 +126,21 @@
                     </control>
                 </setting>
             </group>
-            <group id="2" label="30114">
+            <group id="2" label="30135">
+                <setting id="cache.limit.data" type="integer" label="30136" help="30137">
+                    <level>0</level>
+                    <default>15</default>
+                    <constraints>
+                        <minimum>5</minimum>
+                        <step>1</step>
+                        <maximum>1000</maximum>
+                    </constraints>
+                    <control type="slider" format="integer">
+                        <popup>false</popup>
+                    </control>
+                </setting>
+            </group>
+            <group id="3" label="30114">
                 <setting id="cache.clear.data" type="action" label="30105" help="30117">
                     <level>0</level>
                     <data>RunScript(plugin.video.tubed,mode=cache&amp;action=clear&amp;cache_type=data)</data>

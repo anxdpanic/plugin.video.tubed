@@ -16,8 +16,8 @@ from . import utils
 LOG = Log('generators', __file__)
 
 
-def get_cached(endpoint, content_ids, parameters=None, cache_ttl=4):
-    cache = DataCache()
+def get_cached(context, endpoint, content_ids, parameters=None, cache_ttl=4):
+    cache = DataCache(context)
 
     payload = {}
 
@@ -56,10 +56,10 @@ def get_cached(endpoint, content_ids, parameters=None, cache_ttl=4):
     return payload
 
 
-def get_fanart(endpoint, channel_ids, cache_ttl=4):
+def get_fanart(context, endpoint, channel_ids, cache_ttl=4):
     channel_ids = list(set(channel_ids))
 
-    channels = get_cached(endpoint, channel_ids, cache_ttl)
+    channels = get_cached(context, endpoint, channel_ids, cache_ttl)
 
     payload = {}
     for channel_id, channel in channels.items():

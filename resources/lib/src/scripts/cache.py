@@ -27,7 +27,7 @@ def invoke(context, action, cache_type):
     addon_icon = context.addon.getAddonInfo('icon')
 
     if cache_type == 'data':
-        cache = DataCache()
+        cache = DataCache(context)
 
         if action == 'clear':
             try:
