@@ -528,3 +528,27 @@ msgstr ""
 msgctxt "#30128"
 msgid "Enable logging of API requests and responses"
 msgstr ""
+
+msgctxt "#30129"
+msgid "Comments"
+msgstr ""
+
+msgctxt "#30130"
+msgid "Comment"
+msgstr ""
+
+msgctxt "#30131"
+msgid "Read comment"
+msgstr ""
+
+msgctxt "#30132"
+msgid "Likes"
+msgstr ""
+
+msgctxt "#30133"
+msgid "Replies"
+msgstr ""
+
+msgctxt "#30134"
+msgid "Comment has been edited"
+msgstr ""

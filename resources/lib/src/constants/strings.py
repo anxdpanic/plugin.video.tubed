@@ -93,4 +93,10 @@ STRINGS = {
     'Failed to clear data cache': 30122,
     'Failed to delete function cache': 30123,
     'Failed to delete data cache': 30124,
+    'Comments': 30129,
+    'Comment': 30130,
+    'Read comment': 30131,
+    'Likes': 30132,
+    'Replies': 30133,
+    'Comment has been edited': 30134,
 }

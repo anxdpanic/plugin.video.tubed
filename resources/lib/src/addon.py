@@ -138,6 +138,24 @@ def _categories(page_token=''):
     categories.invoke(CONTEXT, page_token)
 
 
+@router.route(MODES.READ_COMMENT, kwargs=['thread_id', 'comment_id'])
+def _read_comment(thread_id='', comment_id=''):
+    from .routes import read_comment
+    read_comment.invoke(CONTEXT, thread_id, comment_id)
+
+
+@router.route(MODES.COMMENTS, args=['thread_id'], kwargs=['page_token'])
+def _comments(thread_id, page_token=''):
+    from .routes import comments
+    comments.invoke(CONTEXT, thread_id, page_token)
+
+
+@router.route(MODES.COMMENTS_THREADS, args=['video_id'], kwargs=['page_token'])
+def _comment_threads(video_id, page_token=''):
+    from .routes import comment_threads
+    comment_threads.invoke(CONTEXT, video_id, page_token)
+
+
 @router.route(MODES.CATEGORY, args=['category_id'], kwargs=['page_token'])
 def _category(category_id, page_token=''):
     from .routes import category

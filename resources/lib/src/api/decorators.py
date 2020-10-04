@@ -80,5 +80,6 @@ def __api_error_check(payload):
                 CONTEXT.addon.getAddonInfo('icon'),
                 sound=False
             )
+            LOG.error('API request failed:\n  %s' % payload)
 
     return payload

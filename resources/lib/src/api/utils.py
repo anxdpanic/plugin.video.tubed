@@ -8,9 +8,15 @@
     See LICENSES/GPL-2.0-only.txt for more information.
 """
 
+import re
+from html import unescape
+
 import xbmcgui  # pylint: disable=import-error
 
 from ..constants import SUBTITLE_LANGUAGE
+from ..lib.txt_fmt import bold
+from ..lib.txt_fmt import color
+from ..lib.txt_fmt import italic
 
 
 def choose_subtitles(context, subtitles, prompt_override=False):
@@ -73,3 +79,55 @@ def find_subtitle(subtitles, language, include_asr=True):
             return subtitle_url
 
     return None
+
+
+def formatted_comment(context, snippet, replies=None):
+    author = snippet.get('authorDisplayName', '')
+    if author:
+        author = bold(author)
+
+    description_body = unescape(snippet.get('textDisplay', ''))
+
+    label_body = re.sub(r'\s\s+', ' ', description_body)
+    label_body = re.sub(r'\n', ' ', label_body)
+
+    try:
+        likes = int(snippet.get('likeCount', 0))
+    except ValueError:
+        likes = 0
+
+    if likes > 1000:
+        likes = '%.1fK' % (likes / 1000.0)
+    else:
+        likes = str(likes)
+
+    if isinstance(replies, int):
+        if replies > 1000:
+            replies = '%.1fK' % (replies / 1000.0)
+        else:
+            replies = str(replies)
+    else:
+        replies = None
+
+    edited = snippet['publishedAt'] != snippet['updatedAt']
+    label_edited = italic('*') if edited else ''
+    description_edited = \
+        '[CR]%s' % italic(context.i18n('Comment has been edited')) if edited else ''
+
+    if replies is not None:
+        label_properties = color('[', 'grey') + color('+%s' % likes, 'lightgreen') + \
+                           color('|', 'grey') + color(replies, 'cyan') + color(']', 'grey')
+        description_properties = \
+            color('%s %s' % (likes, bold(context.i18n('Likes'))), 'lightgreen') + \
+            '  ' + color('%s %s' % (replies, bold(context.i18n('Replies'))), 'cyan')
+
+    else:
+        label_properties = \
+            color('[', 'grey') + color('+%s' % likes, 'lightgreen') + color(']', 'grey')
+        description_properties = color('%s %s' % (likes, bold(context.i18n('Likes'))), 'lightgreen')
+
+    label = '%s %s%s  %s' % (author, label_properties, label_edited, label_body)
+    description = '%s [CR]%s%s[CR][CR]%s' % \
+                  (author, description_properties, description_edited, label_body)
+
+    return label, description
