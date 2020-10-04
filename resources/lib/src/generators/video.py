@@ -45,10 +45,17 @@ def video_generator(context, items, mine=False):
             cached_videos[get_id(video)] = video
 
     else:
+        parameters = None
+        if event_type in ['live', 'completed']:
+            parameters = {
+                'live_details': True,
+            }
+
         cached_videos = get_cached(
             context,
             context.api.videos,
             [get_id(item) for item in items if get_id(item)],
+            parameters,
             cache_ttl=context.settings.data_cache_ttl
         )
 
