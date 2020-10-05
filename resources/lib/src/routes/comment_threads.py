@@ -19,7 +19,7 @@ from .utils import get_sort_order
 DEFAULT_ORDER = 'relevance'
 
 
-def invoke(context, video_id, page_token='', order='relevance'):
+def invoke(context, video_id, page_token='', order=DEFAULT_ORDER):
     if order == 'prompt':
         order = get_sort_order(context)
         order = order or DEFAULT_ORDER
@@ -36,7 +36,7 @@ def invoke(context, video_id, page_token='', order='relevance'):
             'video_id': video_id,
             'page_token': page_token
         }
-        if order != 'relevance':
+        if order != DEFAULT_ORDER:
             query['order'] = order
 
         directory = NextPage(

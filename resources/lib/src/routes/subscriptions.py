@@ -35,7 +35,7 @@ def invoke(context, page_token='', order=DEFAULT_ORDER):
             'mode': str(MODES.SUBSCRIPTIONS),
             'page_token': page_token
         }
-        if order != 'alphabetical':
+        if order != DEFAULT_ORDER:
             query['order'] = order
 
         directory = NextPage(
