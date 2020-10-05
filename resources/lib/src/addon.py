@@ -108,10 +108,10 @@ def _playlist(playlist_id, page_token='', mine=False):
     playlist.invoke(CONTEXT, playlist_id, page_token, mine)
 
 
-@router.route(MODES.PLAY, args=['video_id'])
-def _play(video_id):
+@router.route(MODES.PLAY, args=['video_id'], kwargs=['prompt_subtitles'])
+def _play(video_id, prompt_subtitles=False):
     from .routes import play
-    play.invoke(CONTEXT, video_id=video_id)
+    play.invoke(CONTEXT, video_id, prompt_subtitles)
 
 
 @router.route(MODES.SEARCH)

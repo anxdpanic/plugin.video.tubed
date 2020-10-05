@@ -81,10 +81,10 @@ def _search_history(action, cache_type):
     cache.invoke(CONTEXT, action, cache_type)
 
 
-@router.route(SCRIPT_MODES.PLAY, args=['video_id'])
-def _play(video_id):
+@router.route(SCRIPT_MODES.PLAY, args=['video_id'], kwargs=['prompt_subtitles'])
+def _play(video_id, prompt_subtitles=False):
     from .scripts import play
-    play.invoke(CONTEXT, video_id=video_id)
+    play.invoke(CONTEXT, video_id, prompt_subtitles)
 
 
 def invoke(argv):
