@@ -31,33 +31,7 @@ def video_generator(context, items, mine=False):
     if context.mode == str(MODES.LIVE):
         event_type = context.query.get('event_type', '')
 
-    if event_type == 'upcoming':
-        # don't add upcoming video items to long term cache since
-        # they will change when in progress or completed
-        cached_videos = {}
-
-        videos = context.api.videos(
-            [get_id(item) for item in items if get_id(item)],
-            live_details=True
-        )
-
-        for video in videos.get('items', []):
-            cached_videos[get_id(video)] = video
-
-    else:
-        parameters = None
-        if event_type in ['live', 'completed']:
-            parameters = {
-                'live_details': True,
-            }
-
-        cached_videos = get_cached(
-            context,
-            context.api.videos,
-            [get_id(item) for item in items if get_id(item)],
-            parameters,
-            cache_ttl=context.settings.data_cache_ttl
-        )
+    cached_videos = get_cached_videos(context, items, event_type)
 
     fanart = get_fanart(
         context,
@@ -146,50 +120,8 @@ def video_generator(context, items, mine=False):
             'fanart': fanart.get(channel_id, ''),
         })
 
-        context_menus = [
-            (context.i18n('Subscribe'),
-             'RunScript(%s,mode=%s&action=add&channel_id=%s&channel_name=%s)' %
-             (ADDON_ID, str(SCRIPT_MODES.SUBSCRIPTIONS), channel_id, quote(channel_name))),
-        ]
-
-        if event_type != 'upcoming':
-            context_menus += [
-                (context.i18n('Rate'),
-                 'RunScript(%s,mode=%s&video_id=%s&video_title=%s)' %
-                 (ADDON_ID, str(SCRIPT_MODES.RATE), video_id, quote(video_title))),
-
-                (context.i18n('Add to playlist'),
-                 'RunScript(%s,mode=%s&action=add&video_id=%s)' %
-                 (ADDON_ID, str(SCRIPT_MODES.PLAYLIST), video_id)),
-            ]
-
-            if mine and 'snippet' in item and 'playlistId' in item['snippet']:
-                context_menus += [
-                    (context.i18n('Remove from playlist'),
-                     'RunScript(%s,mode=%s&action=remove&playlistitem_id=%s&video_title=%s)' %
-                     (ADDON_ID, str(SCRIPT_MODES.PLAYLIST), item['id'], quote(video_title)))
-                ]
-
-        context_menus += [
-            (context.i18n('Related videos'),
-             'Container.Update(plugin://%s/?mode=%s&video_id=%s)' %
-             (ADDON_ID, str(MODES.RELATED_VIDEOS), video_id)),
-
-            (context.i18n('Go to %s') % bold(unescape(snippet.get('channelTitle', ''))),
-             'Container.Update(plugin://%s/?mode=%s&channel_id=%s)' %
-             (ADDON_ID, str(MODES.CHANNEL), channel_id)),
-
-            (context.i18n('Comments'),
-             'Container.Update(plugin://%s/?mode=%s&video_id=%s)' %
-             (ADDON_ID, str(MODES.COMMENTS_THREADS), video_id)),
-        ]
-
-        if event_type != 'upcoming':
-            context_menus += [
-                (context.i18n('Play (Prompt for subtitles)'),
-                 'PlayMedia(plugin://%s/?mode=%s&video_id=%s&prompt_subtitles=true)' %
-                 (ADDON_ID, str(MODES.PLAY), video_id)),
-            ]
+        context_menus = get_context_menu(context, item, video_id, video_title,
+                                         channel_id, channel_name, event_type, mine)
 
         payload.ListItem.addContextMenuItems(context_menus)
         yield tuple(payload)
@@ -208,3 +140,85 @@ def get_id(item):
             return item.get('id', {}).get('videoId', '')
 
     return ''
+
+
+def get_cached_videos(context, items, event_type):
+    if event_type == 'upcoming':
+        # don't add upcoming video items to long term cache since
+        # they will change when in progress or completed
+        cached_videos = {}
+
+        videos = context.api.videos(
+            [get_id(item) for item in items if get_id(item)],
+            live_details=True
+        )
+
+        for video in videos.get('items', []):
+            cached_videos[get_id(video)] = video
+
+    else:
+        parameters = None
+        if event_type in ['live', 'completed']:
+            parameters = {
+                'live_details': True,
+            }
+
+        cached_videos = get_cached(
+            context,
+            context.api.videos,
+            [get_id(item) for item in items if get_id(item)],
+            parameters,
+            cache_ttl=context.settings.data_cache_ttl
+        )
+
+    return cached_videos
+
+
+def get_context_menu(context, item, video_id, video_title,
+                     channel_id, channel_name, event_type, mine):
+    context_menus = [
+        (context.i18n('Subscribe'),
+         'RunScript(%s,mode=%s&action=add&channel_id=%s&channel_name=%s)' %
+         (ADDON_ID, str(SCRIPT_MODES.SUBSCRIPTIONS), channel_id, quote(channel_name))),
+    ]
+
+    if event_type != 'upcoming':
+        context_menus += [
+            (context.i18n('Rate'),
+             'RunScript(%s,mode=%s&video_id=%s&video_title=%s)' %
+             (ADDON_ID, str(SCRIPT_MODES.RATE), video_id, quote(video_title))),
+
+            (context.i18n('Add to playlist'),
+             'RunScript(%s,mode=%s&action=add&video_id=%s)' %
+             (ADDON_ID, str(SCRIPT_MODES.PLAYLIST), video_id)),
+        ]
+
+        if mine and 'snippet' in item and 'playlistId' in item['snippet']:
+            context_menus += [
+                (context.i18n('Remove from playlist'),
+                 'RunScript(%s,mode=%s&action=remove&playlistitem_id=%s&video_title=%s)' %
+                 (ADDON_ID, str(SCRIPT_MODES.PLAYLIST), item['id'], quote(video_title)))
+            ]
+
+    context_menus += [
+        (context.i18n('Related videos'),
+         'Container.Update(plugin://%s/?mode=%s&video_id=%s)' %
+         (ADDON_ID, str(MODES.RELATED_VIDEOS), video_id)),
+
+        (context.i18n('Go to %s') % bold(channel_name),
+         'Container.Update(plugin://%s/?mode=%s&channel_id=%s)' %
+         (ADDON_ID, str(MODES.CHANNEL), channel_id)),
+
+        (context.i18n('Comments'),
+         'Container.Update(plugin://%s/?mode=%s&video_id=%s)' %
+         (ADDON_ID, str(MODES.COMMENTS_THREADS), video_id)),
+    ]
+
+    if event_type != 'upcoming':
+        context_menus += [
+            (context.i18n('Play (Prompt for subtitles)'),
+             'PlayMedia(plugin://%s/?mode=%s&video_id=%s&prompt_subtitles=true)' %
+             (ADDON_ID, str(MODES.PLAY), video_id)),
+        ]
+
+    return context_menus
