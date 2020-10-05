@@ -8,6 +8,7 @@
     See LICENSES/GPL-2.0-only.txt for more information.
 """
 
+from copy import deepcopy
 from html import unescape
 from urllib.parse import quote
 
@@ -82,6 +83,13 @@ def playlist_generator(context, items):
         })
 
         context_menus = []
+        if item.get('kind', '') == 'youtube#searchResult':
+            query = deepcopy(context.query)
+            query['order'] = 'prompt'
+            context_menus += [
+                (context.i18n('Sort order'),
+                 'Container.Update(%s)' % create_addon_path(query))
+            ]
 
         if not is_mine:
             context_menus += [

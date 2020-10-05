@@ -25,15 +25,24 @@ from ..lib.url_utils import unquote
 from ..storage.search_cache import SearchCache
 from ..storage.search_history import SearchHistory
 from ..storage.users import UserStorage
+from .utils import get_sort_order
+
+DEFAULT_ORDER = 'relevance'
 
 
-def invoke(context, query='', page_token='', search_type='video'):
+def invoke(context, query='', page_token='', search_type='video', order='relevance'):
     if search_type not in ['video', 'channel', 'playlist']:
         return
 
     uuid = UserStorage().uuid
     search_cache = SearchCache(uuid)
     search_history = SearchHistory(uuid)
+
+    if order == 'prompt':
+        order = get_sort_order(context)
+        order = order or DEFAULT_ORDER
+        if order != DEFAULT_ORDER:
+            page_token = ''
 
     if (not query and
             'mode=%s' % str(MODES.SEARCH_QUERY) in xbmc.getInfoLabel('Container.FolderPath')):
@@ -102,7 +111,11 @@ def invoke(context, query='', page_token='', search_type='video'):
 
     page_token = payload.get('nextPageToken')
     if page_token:
+        if order != 'relevance':
+            addon_query['order'] = order
+
         addon_query['page_token'] = page_token
+
         directory = NextPage(
             label=context.i18n('Next Page'),
             path=create_addon_path(addon_query)

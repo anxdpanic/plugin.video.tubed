@@ -564,3 +564,47 @@ msgstr ""
 msgctxt "#30137"
 msgid "The maximum size of long term data cache before being automatically resized"
 msgstr ""
+
+msgctxt "#30138"
+msgid "Sort order"
+msgstr ""
+
+msgctxt "#30139"
+msgid "Choose a sort order"
+msgstr ""
+
+msgctxt "#30140"
+msgid "Alphabetical"
+msgstr ""
+
+msgctxt "#30141"
+msgid "Relevance"
+msgstr ""
+
+msgctxt "#30142"
+msgid "Activity"
+msgstr ""
+
+msgctxt "#30143"
+msgid "Time"
+msgstr ""
+
+msgctxt "#30144"
+msgid "Date"
+msgstr ""
+
+msgctxt "#30145"
+msgid "Rating"
+msgstr ""
+
+msgctxt "#30146"
+msgid "Title"
+msgstr ""
+
+msgctxt "#30147"
+msgid "Video Count"
+msgstr ""
+
+msgctxt "#30148"
+msgid "View Count"
+msgstr ""

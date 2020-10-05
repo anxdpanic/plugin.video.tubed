@@ -8,6 +8,8 @@
     See LICENSES/GPL-2.0-only.txt for more information.
 """
 
+from copy import deepcopy
+
 import arrow
 
 from ..api.utils import formatted_comment
@@ -81,10 +83,15 @@ def thread_generator(context, items):
             'thumb': comment_snippet.get('authorProfileImageUrl', 'DefaultUser.png')
         })
 
+        query = deepcopy(context.query)
+        query['order'] = 'prompt'
         context_menus = [
             (context.i18n('Read comment'),
              'RunScript(%s,mode=%s&thread_id=%s)' %
              (ADDON_ID, str(SCRIPT_MODES.READ_COMMENT), thread_id)),
+
+            (context.i18n('Sort order'),
+             'Container.Update(%s)' % create_addon_path(query)),
         ]
 
         payload.ListItem.addContextMenuItems(context_menus)

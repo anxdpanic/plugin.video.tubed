@@ -405,11 +405,11 @@ class API:  # pylint: disable=too-many-public-methods
 
     @api_request
     @memoizer.cache_method(limit=ONE_MINUTE * CACHE_TTL)
-    def comment_threads(self, video_id, page_token='', max_results=None):
+    def comment_threads(self, video_id, order='relevance', page_token='', max_results=None):
         parameters = {
             'part': 'snippet',
             'videoId': video_id,
-            'order': 'relevance',
+            'order': order,
             'textFormat': 'plainText',
             'maxResults': max_results or '100'
         }
