@@ -12,10 +12,11 @@ import xbmc  # pylint: disable=import-error
 
 from ..lib.url_utils import unquote
 from ..storage.search_history import SearchHistory
+from ..storage.users import UserStorage
 
 
 def invoke(context, action, item=''):  # pylint: disable=unused-argument
-    history = SearchHistory()
+    history = SearchHistory(UserStorage().uuid)
 
     if action == 'clear':
         history.clear()

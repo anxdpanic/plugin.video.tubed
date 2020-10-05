@@ -24,14 +24,16 @@ from ..lib.url_utils import create_addon_path
 from ..lib.url_utils import unquote
 from ..storage.search_cache import SearchCache
 from ..storage.search_history import SearchHistory
+from ..storage.users import UserStorage
 
 
 def invoke(context, query='', page_token='', search_type='video'):
     if search_type not in ['video', 'channel', 'playlist']:
         return
 
-    search_cache = SearchCache()
-    search_history = SearchHistory()
+    uuid = UserStorage().uuid
+    search_cache = SearchCache(uuid)
+    search_history = SearchHistory(uuid)
 
     if (not query and
             'mode=%s' % str(MODES.SEARCH_QUERY) in xbmc.getInfoLabel('Container.FolderPath')):

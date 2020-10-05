@@ -10,14 +10,18 @@
 
 import xbmcvfs  # pylint: disable=import-error
 
+from .users import UserStorage
 from ..constants import ADDON_ID
 from ..lib.sql_storage import Storage
 
 
 class SearchHistory(Storage):
-    def __init__(self):
+    def __init__(self, uuid=''):
+        if not uuid:
+            uuid = UserStorage().uuid
+
         filename = xbmcvfs.translatePath(
-            'special://profile/addon_data/%s/search/search_history.sqlite' % ADDON_ID
+            'special://profile/addon_data/%s/search/%s/search_history.sqlite' % (ADDON_ID, uuid)
         )
 
         super().__init__(filename, max_item_count=100)
