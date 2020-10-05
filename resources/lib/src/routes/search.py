@@ -19,10 +19,11 @@ from ..items.search_query import SearchQuery
 from ..lib.txt_fmt import bold
 from ..lib.url_utils import create_addon_path
 from ..storage.search_history import SearchHistory
+from ..storage.users import UserStorage
 
 
 def invoke(context):
-    history = SearchHistory()
+    history = SearchHistory(UserStorage().uuid)
 
     items = []
 
