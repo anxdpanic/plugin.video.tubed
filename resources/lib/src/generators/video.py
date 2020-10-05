@@ -8,6 +8,7 @@
     See LICENSES/GPL-2.0-only.txt for more information.
 """
 
+from copy import deepcopy
 from html import unescape
 from urllib.parse import quote
 
@@ -176,7 +177,17 @@ def get_cached_videos(context, items, event_type):
 
 def get_context_menu(context, item, video_id, video_title,
                      channel_id, channel_name, event_type, mine):
-    context_menus = [
+    context_menus = []
+    kind = item.get('kind', '')
+    if kind == 'youtube#searchResult' or event_type:
+        query = deepcopy(context.query)
+        query['order'] = 'prompt'
+        context_menus += [
+            (context.i18n('Sort order'),
+             'Container.Update(%s)' % create_addon_path(query))
+        ]
+
+    context_menus += [
         (context.i18n('Subscribe'),
          'RunScript(%s,mode=%s&action=add&channel_id=%s&channel_name=%s)' %
          (ADDON_ID, str(SCRIPT_MODES.SUBSCRIPTIONS), channel_id, quote(channel_name))),

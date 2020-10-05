@@ -65,10 +65,10 @@ def _disliked_videos(page_token=''):
     disliked_videos.invoke(CONTEXT, page_token=page_token)
 
 
-@router.route(MODES.LIVE, kwargs=['page_token', 'event_type'])
-def _live(page_token='', event_type='live'):
+@router.route(MODES.LIVE, kwargs=['page_token', 'event_type', 'order'])
+def _live(page_token='', event_type='live', order='relevance'):
     from .routes import live
-    live.invoke(CONTEXT, page_token=page_token, event_type=event_type)
+    live.invoke(CONTEXT, page_token=page_token, event_type=event_type, order=order)
 
 
 @router.route(MODES.UPCOMING_NOTIFICATION, args=['title', 'timestamp'])
@@ -77,10 +77,10 @@ def _upcoming_notification(title, timestamp):
     upcoming_notification.invoke(CONTEXT, title=title, timestamp=timestamp)
 
 
-@router.route(MODES.SUBSCRIPTIONS, kwargs=['page_token'])
-def _subscriptions(page_token=''):
+@router.route(MODES.SUBSCRIPTIONS, kwargs=['page_token', 'order'])
+def _subscriptions(page_token='', order='alphabetical'):
     from .routes import subscriptions
-    subscriptions.invoke(CONTEXT, page_token=page_token)
+    subscriptions.invoke(CONTEXT, page_token=page_token, order=order)
 
 
 @router.route(MODES.RELATED_VIDEOS, args=['video_id'], kwargs=['page_token'])
@@ -120,10 +120,10 @@ def _search():
     search.invoke(CONTEXT)
 
 
-@router.route(MODES.SEARCH_QUERY, kwargs=['page_token', 'query', 'search_type'])
-def _search_query(query='', page_token='', search_type='video'):
+@router.route(MODES.SEARCH_QUERY, kwargs=['page_token', 'query', 'search_type', 'order'])
+def _search_query(query='', page_token='', search_type='video', order='relevance'):
     from .routes import search_query
-    search_query.invoke(CONTEXT, query, page_token, search_type)
+    search_query.invoke(CONTEXT, query, page_token, search_type, order)
 
 
 @router.route(MODES.MY_CHANNEL, kwargs=['page_token'])
@@ -150,10 +150,10 @@ def _comments(thread_id, page_token=''):
     comments.invoke(CONTEXT, thread_id, page_token)
 
 
-@router.route(MODES.COMMENTS_THREADS, args=['video_id'], kwargs=['page_token'])
-def _comment_threads(video_id, page_token=''):
+@router.route(MODES.COMMENTS_THREADS, args=['video_id'], kwargs=['page_token', 'order'])
+def _comment_threads(video_id, page_token='', order='relevance'):
     from .routes import comment_threads
-    comment_threads.invoke(CONTEXT, video_id, page_token)
+    comment_threads.invoke(CONTEXT, video_id, page_token, order)
 
 
 @router.route(MODES.CATEGORY, args=['category_id'], kwargs=['page_token'])

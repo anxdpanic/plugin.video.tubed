@@ -10,9 +10,9 @@
 
 import xbmcvfs  # pylint: disable=import-error
 
-from .users import UserStorage
 from ..constants import ADDON_ID
 from ..lib.sql_storage import Storage
+from .users import UserStorage
 
 
 class SearchCache(Storage):

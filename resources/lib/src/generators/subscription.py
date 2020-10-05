@@ -8,6 +8,7 @@
     See LICENSES/GPL-2.0-only.txt for more information.
 """
 
+from copy import deepcopy
 from html import unescape
 from urllib.parse import quote
 
@@ -67,7 +68,12 @@ def subscription_generator(context, items):
             'fanart': get_fanart(channel.get('brandingSettings', {})),
         })
 
+        query = deepcopy(context.query)
+        query['order'] = 'prompt'
         context_menus = [
+            (context.i18n('Sort order'),
+             'Container.Update(%s)' % create_addon_path(query)),
+
             (context.i18n('Unsubscribe'),
              'RunScript(%s,mode=%s&action=remove&subscription_id=%s&channel_name=%s)' %
              (ADDON_ID, str(SCRIPT_MODES.SUBSCRIPTIONS), subscription_id, quote(channel_name))),

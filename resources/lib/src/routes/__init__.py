@@ -11,4 +11,5 @@
 __all__ = ['categories', 'category', 'comment_threads', 'comments', 'disliked_videos',
            'liked_videos', 'live', 'main_menu', 'manage_users', 'most_popular', 'my_channel',
            'play', 'playlist', 'playlists', 'read_comment', 'related_videos', 'search',
-           'search_query', 'sign_in', 'sign_out', 'subscriptions', 'upcoming_notification']
+           'search_query', 'sign_in', 'sign_out', 'subscriptions', 'upcoming_notification',
+           'utils']
