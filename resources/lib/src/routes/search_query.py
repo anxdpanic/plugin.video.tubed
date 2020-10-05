@@ -30,7 +30,7 @@ from .utils import get_sort_order
 DEFAULT_ORDER = 'relevance'
 
 
-def invoke(context, query='', page_token='', search_type='video', order='relevance'):
+def invoke(context, query='', page_token='', search_type='video', order=DEFAULT_ORDER):
     if search_type not in ['video', 'channel', 'playlist']:
         return
 
@@ -111,7 +111,7 @@ def invoke(context, query='', page_token='', search_type='video', order='relevan
 
     page_token = payload.get('nextPageToken')
     if page_token:
-        if order != 'relevance':
+        if order != DEFAULT_ORDER:
             addon_query['order'] = order
 
         addon_query['page_token'] = page_token

@@ -21,7 +21,7 @@ from .utils import get_sort_order
 DEFAULT_ORDER = 'relevance'
 
 
-def invoke(context, page_token='', event_type='live', order='relevance'):
+def invoke(context, page_token='', event_type='live', order=DEFAULT_ORDER):
     event_type = event_type.lower()
     if event_type not in ['live', 'completed', 'upcoming']:
         return
@@ -69,7 +69,7 @@ def invoke(context, page_token='', event_type='live', order='relevance'):
             'page_token': page_token,
             'event_type': event_type
         }
-        if order != 'relevance':
+        if order != DEFAULT_ORDER:
             query['order'] = order
 
         directory = NextPage(
