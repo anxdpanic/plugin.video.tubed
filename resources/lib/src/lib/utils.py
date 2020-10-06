@@ -8,14 +8,35 @@
     See LICENSES/GPL-2.0-only.txt for more information.
 """
 
+import json
 import time
+from binascii import hexlify
+from copy import deepcopy
 
 import xbmc  # pylint: disable=import-error
 import xbmcgui  # pylint: disable=import-error
 
+from ..constants import ADDON_ID
 from .logger import Log
 
 LOG = Log('lib', __file__)
+
+
+def event_notification(method, data):
+    data = json.dumps(deepcopy(data)).encode('utf-8')
+    data = hexlify(data).decode('utf-8')
+    jsonrpc_request = {
+        "jsonrpc": "2.0",
+        "id": 1,
+        "method": "JSONRPC.NotifyAll",
+        "params": {
+            "sender": "%s.SIGNAL" % ADDON_ID,
+            "message": method,
+            "data": [data],
+        }
+    }
+
+    xbmc.executeJSONRPC(json.dumps(jsonrpc_request))
 
 
 def wait_for_busy_dialog():
