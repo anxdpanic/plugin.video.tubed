@@ -632,3 +632,11 @@ msgstr ""
 msgctxt "#30154"
 msgid "Should rating be requested while watching playlists"
 msgstr ""
+
+msgctxt "#30155"
+msgid "Autoplay related videos"
+msgstr ""
+
+msgctxt "#30156"
+msgid "Autoplay videos related to the previously played video"
+msgstr ""

@@ -109,6 +109,8 @@ class PlaybackMonitorThread(threading.Thread):
 
         self._player_dict = player_dict
 
+        self.playlist_position = str(xbmc.PlayList(xbmc.PLAYLIST_VIDEO).getposition())
+
         self.daemon = True
         self.start()
 
@@ -232,5 +234,6 @@ class PlaybackMonitorThread(threading.Thread):
             waited += wait_time
 
         if progress >= self.context.settings.post_play_minimum_progress:
-            xbmc.executebuiltin('RunScript(%s,mode=%s&video_id=%s)' %
-                                (ADDON_ID, str(SCRIPT_MODES.POST_PLAY), self.video_id))
+            xbmc.executebuiltin('RunScript(%s,mode=%s&video_id=%s&position=%s)' %
+                                (ADDON_ID, str(SCRIPT_MODES.POST_PLAY),
+                                 self.video_id, self.playlist_position))

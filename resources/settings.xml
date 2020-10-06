@@ -111,6 +111,11 @@
                         <popup>false</popup>
                     </control>
                 </setting>
+                <setting id="post.play.autoplay.related" type="boolean" label="30155" help="30156">
+                    <level>0</level>
+                    <default>false</default>
+                    <control type="toggle"/>
+                </setting>
                 <setting id="post.play.rate" type="boolean" label="30072" help="30152">
                     <level>0</level>
                     <default>false</default>

@@ -190,6 +190,10 @@ class Settings:  # pylint: disable=too-many-public-methods
         return self.get_int('post.play.min.progress')
 
     @property
+    def autoplay_related(self):
+        return self.get_bool('post.play.autoplay.related')
+
+    @property
     def post_play_rate(self):
         if not self.get_bool('post.play.rate'):
             return False
