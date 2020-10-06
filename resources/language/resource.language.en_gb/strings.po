@@ -608,3 +608,27 @@ msgstr ""
 msgctxt "#30148"
 msgid "View Count"
 msgstr ""
+
+msgctxt "#30149"
+msgid "Post Play"
+msgstr ""
+
+msgctxt "#30150"
+msgid "Post play minimum watch percentage"
+msgstr ""
+
+msgctxt "#30151"
+msgid "What percent of the video's duration must be watched to trigger post play events"
+msgstr ""
+
+msgctxt "#30152"
+msgid "Rate the video that just finished playing"
+msgstr ""
+
+msgctxt "#30153"
+msgid "Rate during playlists"
+msgstr ""
+
+msgctxt "#30154"
+msgid "Should rating be requested while watching playlists"
+msgstr ""

@@ -8,6 +8,7 @@
     See LICENSES/GPL-2.0-only.txt for more information.
 """
 
+import xbmc  # pylint: disable=import-error
 import xbmcaddon  # pylint: disable=import-error
 
 from ..constants import SUBTITLE_LANGUAGE
@@ -183,3 +184,19 @@ class Settings:  # pylint: disable=too-many-public-methods
     @property
     def log_api_requests(self):
         return self.get_bool('log.api.requests')
+
+    @property
+    def post_play_minimum_progress(self):
+        return self.get_int('post.play.min.progress')
+
+    @property
+    def post_play_rate(self):
+        if not self.get_bool('post.play.rate'):
+            return False
+
+        is_playlist = int(xbmc.PlayList(xbmc.PLAYLIST_VIDEO).size()) >= 2
+
+        if not self.get_bool('post.play.rate.playlist') and is_playlist:
+            return False
+
+        return self.get_bool('post.play.rate')

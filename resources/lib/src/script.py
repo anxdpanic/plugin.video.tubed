@@ -81,6 +81,12 @@ def _cache(action, cache_type):
     cache.invoke(CONTEXT, action, cache_type)
 
 
+@router.route(SCRIPT_MODES.POST_PLAY, args=['video_id'])
+def _post_play(video_id):
+    from .scripts import post_play
+    post_play.invoke(CONTEXT, video_id)
+
+
 @router.route(SCRIPT_MODES.PLAY, args=['video_id'], kwargs=['prompt_subtitles'])
 def _play(video_id, prompt_subtitles=False):
     from .scripts import play
