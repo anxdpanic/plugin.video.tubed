@@ -18,6 +18,7 @@ from ..constants import ADDON_ID
 from ..constants import SCRIPT_MODES
 from .logger import Log
 from .pickle import read_pickled
+from .utils import event_notification
 
 LOG = Log('lib', __file__)
 
@@ -80,6 +81,7 @@ class CallbackPlayer(xbmc.Player):
         self.cleanup_threads()
         if player_dict:
             self.threads.append(PlaybackMonitorThread(self.context, self.window, player_dict))
+            event_notification('playback.started', player_dict)
 
         elif not player_dict:
             LOG.debug('Playback monitoring failed to start, missing required {} ...')
