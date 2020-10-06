@@ -8,6 +8,7 @@
     See LICENSES/GPL-2.0-only.txt for more information.
 """
 
+from copy import deepcopy
 from html import unescape
 
 import arrow
@@ -18,6 +19,7 @@ from ..api.utils import choose_subtitles
 from ..generators.data_cache import get_cached
 from ..generators.utils import get_thumbnail
 from ..items.stream import Stream
+from ..lib.pickle import write_pickled
 
 
 def invoke(context, video_id, prompt_subtitles=False):
@@ -88,13 +90,35 @@ def invoke(context, video_id, prompt_subtitles=False):
         if snippet.get('liveBroadcastContent', 'none') != 'none':
             info_labels['playcount'] = 0
 
-        stream.ListItem.setInfo('video', info_labels)
-
         thumbnail = get_thumbnail(snippet)
+
+    else:
+        info_labels = {
+            'mediatype': 'video',
+            'originaltitle': video_title,
+            'sorttitle': video_title,
+            'studio': channel_name,
+        }
+
+    stream.ListItem.setInfo('video', info_labels)
 
     stream.ListItem.setArt({
         'icon': thumbnail,
         'thumb': thumbnail,
+    })
+
+    metadata = deepcopy(info_labels)
+    metadata.update({
+        'art': {
+            'icon': thumbnail,
+            'thumb': thumbnail,
+        }
+    })
+
+    write_pickled('playback.pickle', {
+        'video_id': video_id,
+        'playing_file': stream.ListItem.getPath(),
+        'metadata': metadata,
     })
 
     if context.handle != -1:

@@ -98,6 +98,33 @@
                     </control>
                 </setting>
             </group>
+            <group id="3" label="30149">
+                <setting id="post.play.min.progress" type="integer" label="30150" help="30151">
+                    <level>0</level>
+                    <default>80</default>
+                    <constraints>
+                        <minimum>2</minimum>
+                        <step>1</step>
+                        <maximum>98</maximum>
+                    </constraints>
+                    <control type="slider" format="integer">
+                        <popup>false</popup>
+                    </control>
+                </setting>
+                <setting id="post.play.rate" type="boolean" label="30072" help="30152">
+                    <level>0</level>
+                    <default>false</default>
+                    <control type="toggle"/>
+                </setting>
+                <setting id="post.play.rate.playlist" type="boolean" label="30153" help="30154" parent="post.play.rate">
+                    <level>0</level>
+                    <default>false</default>
+                    <control type="toggle"/>
+                    <dependencies>
+                        <dependency type="enable" setting="post.play.rate">true</dependency>
+                    </dependencies>
+                </setting>
+            </group>
         </category>
         <category id="cache" label="30102" help="">
             <group id="1" label="30113">
