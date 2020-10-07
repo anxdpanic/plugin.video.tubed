@@ -59,6 +59,13 @@ def _rate(video_id, video_title=''):
     rate.invoke(CONTEXT, video_id, video_title)
 
 
+@router.route(SCRIPT_MODES.CONFIGURE_PLAYLISTS,
+              args=['action', 'playlist_type', 'playlist_id'], kwargs=['playlist_title'])
+def _configure_playlists(action, playlist_type, playlist_id, playlist_title=''):
+    from .scripts import configure_playlists
+    configure_playlists.invoke(CONTEXT, action, playlist_type, playlist_id, playlist_title)
+
+
 @router.route(SCRIPT_MODES.READ_COMMENT, kwargs=['thread_id', 'comment_id'])
 def _read_comment(thread_id='', comment_id=''):
     from .scripts import read_comment

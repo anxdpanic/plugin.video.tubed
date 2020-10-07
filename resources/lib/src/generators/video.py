@@ -21,9 +21,12 @@ from ..items.action import Action
 from ..items.video import Video
 from ..lib.txt_fmt import bold
 from ..lib.url_utils import create_addon_path
+from ..storage.users import UserStorage
 from .data_cache import get_cached
 from .data_cache import get_fanart
 from .utils import get_thumbnail
+
+WATCH_LATER_PLAYLIST = UserStorage().watchlater_playlist
 
 
 def video_generator(context, items, mine=False):
@@ -179,12 +182,22 @@ def get_context_menu(context, item, video_id, video_title,
                      channel_id, channel_name, event_type, mine):
     context_menus = []
     kind = item.get('kind', '')
+    snippet = item.get('snippet', {})
+
     if kind == 'youtube#searchResult' or event_type:
         query = deepcopy(context.query)
         query['order'] = 'prompt'
         context_menus += [
             (context.i18n('Sort order'),
              'Container.Update(%s)' % create_addon_path(query))
+        ]
+
+    if WATCH_LATER_PLAYLIST and WATCH_LATER_PLAYLIST != snippet.get('playlistId'):
+        context_menus += [
+            (context.i18n('Add to watch later'),
+             'RunScript(%s,mode=%s&action=add&video_id=%s&playlist_id=%s&playlist_title=%s)' %
+             (ADDON_ID, str(SCRIPT_MODES.PLAYLIST), video_id,
+              WATCH_LATER_PLAYLIST, quote(context.i18n('Watch Later')))),
         ]
 
     context_menus += [

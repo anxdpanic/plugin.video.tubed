@@ -14,10 +14,19 @@ from ..constants import MODES
 from ..generators.video import video_generator
 from ..items.next_page import NextPage
 from ..lib.url_utils import create_addon_path
+from ..storage.users import UserStorage
+
+users = UserStorage()
+WATCH_LATER_PLAYLIST = users.watchlater_playlist
+HISTORY_PLAYLIST = users.history_playlist
+del users
 
 
 def invoke(context, playlist_id, page_token='', mine=False):
     xbmcplugin.setContent(context.handle, 'videos')
+
+    if not mine and playlist_id in [WATCH_LATER_PLAYLIST, HISTORY_PLAYLIST]:
+        mine = True
 
     payload = context.api.playlist_items(playlist_id, page_token=page_token)
     list_items = list(video_generator(context, payload.get('items', []), mine=mine))

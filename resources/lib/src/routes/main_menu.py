@@ -14,6 +14,7 @@ from ..constants import MODES
 from ..items.action import Action
 from ..items.directory import Directory
 from ..lib.url_utils import create_addon_path
+from ..storage.users import UserStorage
 
 
 def invoke(context):
@@ -94,6 +95,35 @@ def invoke(context):
             'thumb': 'DefaultTVShows.png'
         })
         items.append(tuple(directory))
+
+        users = UserStorage()
+        if users.history_playlist:
+            directory = Directory(
+                label=context.i18n('History'),
+                path=create_addon_path(parameters={
+                    'mode': str(MODES.PLAYLIST),
+                    'playlist_id': users.history_playlist
+                })
+            )
+            directory.ListItem.setArt({
+                'icon': 'DefaultVideoPlaylists.png',
+                'thumb': 'DefaultVideoPlaylists.png'
+            })
+            items.append(tuple(directory))
+
+        if users.watchlater_playlist:
+            directory = Directory(
+                label=context.i18n('Watch Later'),
+                path=create_addon_path(parameters={
+                    'mode': str(MODES.PLAYLIST),
+                    'playlist_id': users.watchlater_playlist
+                })
+            )
+            directory.ListItem.setArt({
+                'icon': 'DefaultVideoPlaylists.png',
+                'thumb': 'DefaultVideoPlaylists.png'
+            })
+            items.append(tuple(directory))
 
         directory = Directory(
             label=context.i18n('Playlists'),
