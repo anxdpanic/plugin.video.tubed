@@ -23,6 +23,8 @@ from .utils import get_thumbnail
 
 
 def channel_generator(context, items):
+    logged_in = context.api.logged_in
+
     cached_channels = get_cached(
         context,
         context.api.channels,
@@ -76,11 +78,12 @@ def channel_generator(context, items):
                  'Container.Update(%s)' % create_addon_path(query))
             ]
 
-        context_menus += [
-            (context.i18n('Subscribe'),
-             'RunScript(%s,mode=%s&action=add&channel_id=%s&channel_name=%s)' %
-             (ADDON_ID, str(SCRIPT_MODES.SUBSCRIPTIONS), channel_id, quote(channel_name))),
-        ]
+        if logged_in:
+            context_menus += [
+                (context.i18n('Subscribe'),
+                 'RunScript(%s,mode=%s&action=add&channel_id=%s&channel_name=%s)' %
+                 (ADDON_ID, str(SCRIPT_MODES.SUBSCRIPTIONS), channel_id, quote(channel_name))),
+            ]
 
         payload.ListItem.addContextMenuItems(context_menus)
         yield tuple(payload)

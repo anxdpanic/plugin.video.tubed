@@ -180,6 +180,8 @@ def get_cached_videos(context, items, event_type):
 
 def get_context_menu(context, item, video_id, video_title,
                      channel_id, channel_name, event_type, mine):
+    logged_in = context.api.logged_in
+
     context_menus = []
     kind = item.get('kind', '')
     snippet = item.get('snippet', {})
@@ -192,37 +194,39 @@ def get_context_menu(context, item, video_id, video_title,
              'Container.Update(%s)' % create_addon_path(query))
         ]
 
-    if WATCH_LATER_PLAYLIST and WATCH_LATER_PLAYLIST != snippet.get('playlistId'):
-        context_menus += [
-            (context.i18n('Add to watch later'),
-             'RunScript(%s,mode=%s&action=add&video_id=%s&playlist_id=%s&playlist_title=%s)' %
-             (ADDON_ID, str(SCRIPT_MODES.PLAYLIST), video_id,
-              WATCH_LATER_PLAYLIST, quote(context.i18n('Watch Later')))),
-        ]
+    if logged_in:
+        if WATCH_LATER_PLAYLIST and WATCH_LATER_PLAYLIST != snippet.get('playlistId'):
+            context_menus += [
+                (context.i18n('Add to watch later'),
+                 'RunScript(%s,mode=%s&action=add&video_id=%s&playlist_id=%s&playlist_title=%s)' %
+                 (ADDON_ID, str(SCRIPT_MODES.PLAYLIST), video_id,
+                  WATCH_LATER_PLAYLIST, quote(context.i18n('Watch Later')))),
+            ]
 
-    context_menus += [
-        (context.i18n('Subscribe'),
-         'RunScript(%s,mode=%s&action=add&channel_id=%s&channel_name=%s)' %
-         (ADDON_ID, str(SCRIPT_MODES.SUBSCRIPTIONS), channel_id, quote(channel_name))),
-    ]
+        context_menus += [
+            (context.i18n('Subscribe'),
+             'RunScript(%s,mode=%s&action=add&channel_id=%s&channel_name=%s)' %
+             (ADDON_ID, str(SCRIPT_MODES.SUBSCRIPTIONS), channel_id, quote(channel_name))),
+        ]
 
     if event_type != 'upcoming':
-        context_menus += [
-            (context.i18n('Rate'),
-             'RunScript(%s,mode=%s&video_id=%s&video_title=%s)' %
-             (ADDON_ID, str(SCRIPT_MODES.RATE), video_id, quote(video_title))),
-
-            (context.i18n('Add to playlist'),
-             'RunScript(%s,mode=%s&action=add&video_id=%s)' %
-             (ADDON_ID, str(SCRIPT_MODES.PLAYLIST), video_id)),
-        ]
-
-        if mine and 'snippet' in item and 'playlistId' in item['snippet']:
+        if logged_in:
             context_menus += [
-                (context.i18n('Remove from playlist'),
-                 'RunScript(%s,mode=%s&action=remove&playlistitem_id=%s&video_title=%s)' %
-                 (ADDON_ID, str(SCRIPT_MODES.PLAYLIST), item['id'], quote(video_title)))
+                (context.i18n('Rate'),
+                 'RunScript(%s,mode=%s&video_id=%s&video_title=%s)' %
+                 (ADDON_ID, str(SCRIPT_MODES.RATE), video_id, quote(video_title))),
+
+                (context.i18n('Add to playlist'),
+                 'RunScript(%s,mode=%s&action=add&video_id=%s)' %
+                 (ADDON_ID, str(SCRIPT_MODES.PLAYLIST), video_id)),
             ]
+
+            if mine and 'snippet' in item and 'playlistId' in item['snippet']:
+                context_menus += [
+                    (context.i18n('Remove from playlist'),
+                     'RunScript(%s,mode=%s&action=remove&playlistitem_id=%s&video_title=%s)' %
+                     (ADDON_ID, str(SCRIPT_MODES.PLAYLIST), item['id'], quote(video_title)))
+                ]
 
     context_menus += [
         (context.i18n('Related videos'),
