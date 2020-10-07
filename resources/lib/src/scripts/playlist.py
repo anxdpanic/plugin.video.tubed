@@ -16,6 +16,7 @@ import xbmcgui  # pylint: disable=import-error
 from ..lib.memoizer import reset_cache
 from ..lib.txt_fmt import bold
 from ..lib.url_utils import unquote
+from ..storage.users import UserStorage
 
 
 def invoke(context, action, video_id='', video_title='', playlist_id='',
@@ -163,10 +164,24 @@ def delete(context, playlist_id, playlist_title):
         return False
 
     payload = context.api.remove_playlist(playlist_id)
+
     try:
-        return int(payload.get('error', {}).get('code', 204)) == 204
+        success = int(payload.get('error', {}).get('code', 204)) == 204
     except ValueError:
-        return False
+        success = False
+
+    if success:
+
+        users = UserStorage()
+        if playlist_id == users.history_playlist:
+            users.history_playlist = ''
+            users.save()
+
+        elif playlist_id == users.watchlater_playlist:
+            users.watchlater_playlist = ''
+            users.save()
+
+    return success
 
 
 def remove(context, playlistitem_id):
