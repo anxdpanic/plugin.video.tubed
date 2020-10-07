@@ -108,6 +108,7 @@ def get_id(item):
 
 def get_context_menus(context, item, snippet, channel_id,
                       channel_name, playlist_id, playlist_title):
+    logged_in = context.api.logged_in
     is_mine = context.query.get('channel_id', '') == 'mine'
     context_menus = []
 
@@ -120,17 +121,20 @@ def get_context_menus(context, item, snippet, channel_id,
         ]
 
     if not is_mine:
-        context_menus += [
-            (context.i18n('Subscribe'),
-             'RunScript(%s,mode=%s&action=add&channel_id=%s&channel_name=%s)' %
-             (ADDON_ID, str(SCRIPT_MODES.SUBSCRIPTIONS), channel_id, quote(channel_name))),
+        if logged_in:
+            context_menus += [
+                (context.i18n('Subscribe'),
+                 'RunScript(%s,mode=%s&action=add&channel_id=%s&channel_name=%s)' %
+                 (ADDON_ID, str(SCRIPT_MODES.SUBSCRIPTIONS), channel_id, quote(channel_name))),
+            ]
 
+        context_menus += [
             (context.i18n('Go to %s') % bold(unescape(snippet.get('channelTitle', ''))),
              'Container.Update(plugin://%s/?mode=%s&channel_id=%s)' %
              (ADDON_ID, str(MODES.CHANNEL), channel_id))
         ]
 
-    if is_mine:
+    if is_mine and logged_in:
         context_menus += [
             (context.i18n('Rename playlist'),
              'RunScript(%s,mode=%s&action=rename&playlist_id=%s&playlist_title=%s)' %

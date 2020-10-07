@@ -23,6 +23,8 @@ from .utils import get_thumbnail
 
 
 def subscription_generator(context, items):
+    logged_in = context.api.logged_in
+
     cached_channels = get_cached(
         context,
         context.api.channels,
@@ -68,16 +70,21 @@ def subscription_generator(context, items):
             'fanart': get_fanart(channel.get('brandingSettings', {})),
         })
 
+        context_menus = []
+
         query = deepcopy(context.query)
         query['order'] = 'prompt'
-        context_menus = [
+        context_menus += [
             (context.i18n('Sort order'),
              'Container.Update(%s)' % create_addon_path(query)),
-
-            (context.i18n('Unsubscribe'),
-             'RunScript(%s,mode=%s&action=remove&subscription_id=%s&channel_name=%s)' %
-             (ADDON_ID, str(SCRIPT_MODES.SUBSCRIPTIONS), subscription_id, quote(channel_name))),
         ]
+
+        if logged_in:
+            context_menus +=[
+                (context.i18n('Unsubscribe'),
+                 'RunScript(%s,mode=%s&action=remove&subscription_id=%s&channel_name=%s)' %
+                 (ADDON_ID, str(SCRIPT_MODES.SUBSCRIPTIONS), subscription_id, quote(channel_name))),
+            ]
 
         payload.ListItem.addContextMenuItems(context_menus)
         yield tuple(payload)
