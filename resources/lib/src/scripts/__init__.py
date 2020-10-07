@@ -8,5 +8,5 @@
     See LICENSES/GPL-2.0-only.txt for more information.
 """
 
-__all__ = ['cache', 'configure_regional', 'configure_subtitles', 'play', 'playlist', 'rate',
-           'search_history', 'subscriptions', 'utils']
+__all__ = ['cache', 'configure_playlists', 'configure_regional', 'configure_subtitles',
+           'play', 'playlist', 'rate', 'read_comment', 'search_history', 'subscriptions', 'utils']

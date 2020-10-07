@@ -32,7 +32,7 @@ def invoke(context, action, video_id='', video_title='', playlist_id='',
     message = ''
 
     if action == 'add':
-        result = add(context, video_id)
+        result = add(context, video_id, playlist_id, playlist_title)
         if not result:
             return
 
@@ -91,10 +91,8 @@ def required_arguments_check(action, video_id, playlist_id, playlistitem_id):
     return True
 
 
-def add(context, video_id):
+def add(context, video_id, playlist_id='', playlist_title=''):
     page_token = ''
-    playlist_id = ''
-    playlist_title = ''
 
     while not playlist_id and not playlist_title:
 

@@ -558,6 +558,27 @@ class API:  # pylint: disable=too-many-public-methods
 
         return self.api.videos.get(parameters=parameters)
 
+    @memoizer.cache_method(limit=ONE_MINUTE * CACHE_TTL)
+    def video_id_to_playlist_item_id(self, playlist_id, video_id, page_token=''):
+        payload = self.playlist_items(playlist_id=playlist_id,
+                                      page_token=page_token,
+                                      max_results=50)
+
+        items = payload.get('items', [])
+
+        for item in items:
+            source_video_id = item.get('snippet', {}).get('resourceId', {}).get('videoId', '')
+            if source_video_id and source_video_id == video_id:
+                return item['id']
+
+        page_token = payload.get('nextPageToken', '')
+        if page_token:
+            return self.video_id_to_playlist_item_id(playlist_id=playlist_id,
+                                                     video_id=video_id,
+                                                     page_token=page_token)
+
+        return None
+
     @memoizer.cache_method(limit=ONE_MINUTE * 7)
     def resolve(self, video_id, quality=None):
         if isinstance(quality, (int, str)):

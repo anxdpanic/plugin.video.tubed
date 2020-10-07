@@ -23,6 +23,7 @@ class SCRIPT_MODES(Enum):  # pylint: disable=invalid-name
     CACHE = 'cache'
     READ_COMMENT = 'read_comment'
     POST_PLAY = 'post_play'
+    CONFIGURE_PLAYLISTS = 'configure_playlists'
 
     def __str__(self):
         return str(self.value).lower()

@@ -15,12 +15,14 @@ import xbmc  # pylint: disable=import-error
 from ..generators.data_cache import get_cached
 from ..lib.memoizer import reset_cache
 from ..lib.utils import wait_for_busy_dialog
+from ..storage.users import UserStorage
 from .utils import add_related_video_to_playlist
 from .utils import rate
 
 
 def invoke(context, video_id, position=-1):
-    if not post_play(context):
+    users = UserStorage()
+    if not post_play(context, users):
         return
 
     try:
@@ -49,14 +51,36 @@ def invoke(context, video_id, position=-1):
                 if safe:
                     xbmc.Player().play(item=playlist, startpos=start_position)
 
+    if users.history_playlist:
+        try:
+            _ = context.api.add_to_playlist(users.history_playlist, video_id)
+        except:  # pylint: disable=bare-except
+            pass
+
+    if users.watchlater_playlist:
+        try:
+            playlist_item_id = \
+                context.api.video_id_to_playlist_item_id(users.watchlater_playlist, video_id)
+
+            if playlist_item_id:
+                _ = context.api.remove_from_playlist(playlist_item_id)
+        except:  # pylint: disable=bare-except
+            pass
+
     reset_cache()
 
 
-def post_play(context):
+def post_play(context, users):
     if context.settings.post_play_rate:
         return True
 
     if context.settings.autoplay_related:
+        return True
+
+    if users.history_playlist:
+        return True
+
+    if users.watchlater_playlist:
         return True
 
     return False

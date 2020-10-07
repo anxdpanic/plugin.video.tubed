@@ -640,3 +640,59 @@ msgstr ""
 msgctxt "#30156"
 msgid "Autoplay videos related to the previously played video"
 msgstr ""
+
+msgctxt "#30157"
+msgid "Set as History"
+msgstr ""
+
+msgctxt "#30158"
+msgid "Set as Watch Later"
+msgstr ""
+
+msgctxt "#30159"
+msgid "Remove as History"
+msgstr ""
+
+msgctxt "#30160"
+msgid "Remove as Watch Later"
+msgstr ""
+
+msgctxt "#30161"
+msgid "History"
+msgstr ""
+
+msgctxt "#30162"
+msgid "Watch later playlist configured"
+msgstr ""
+
+msgctxt "#30163"
+msgid "History playlist configured"
+msgstr ""
+
+msgctxt "#30164"
+msgid "%s was configured as your watch later playlist"
+msgstr ""
+
+msgctxt "#30165"
+msgid "%s was configured as your history playlist"
+msgstr ""
+
+msgctxt "#30166"
+msgid "Watch later playlist is no longer configured"
+msgstr ""
+
+msgctxt "#30167"
+msgid "History playlist is no longer configured"
+msgstr ""
+
+msgctxt "#30168"
+msgid "%s is no longer configured as your watch later playlist"
+msgstr ""
+
+msgctxt "#30169"
+msgid "%s is no longer configured as your history playlist"
+msgstr ""
+
+msgctxt "#30170"
+msgid "Add to watch later"
+msgstr ""

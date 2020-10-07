@@ -27,6 +27,8 @@ class UserStorage:
         <refresh_token></refresh_token>
         <access_token></access_token>
         <token_expiry>-1</token_expiry>
+        <history_playlist></history_playlist>
+        <watchlater_playlist></watchlater_playlist>
     </user>
 </users>
         '''
@@ -39,6 +41,8 @@ class UserStorage:
         <refresh_token></refresh_token>
         <access_token></access_token>
         <token_expiry>-1</token_expiry>
+        <history_playlist></history_playlist>
+        <watchlater_playlist></watchlater_playlist>
     </user>
         '''
 
@@ -72,14 +76,27 @@ class UserStorage:
                 token_expiry = user.find('token_expiry').text
                 current = user.attrib.get('current', 'false').lower() == 'true'
 
+                history_playlist = ''
+                element = user.find('history_playlist')
+                if hasattr(element, 'text'):
+                    history_playlist = element.text
+
+                watchlater_playlist = ''
+                element = user.find('watchlater_playlist')
+                if hasattr(element, 'text'):
+                    watchlater_playlist = element.text
+
                 payload.append({
                     'uuid': uuid,
                     'name': name,
                     'current': current,
                     'refresh_token': refresh_token or '',
                     'access_token': access_token or '',
-                    'token_expiry': token_expiry or -1
+                    'token_expiry': token_expiry or -1,
+                    'history_playlist': history_playlist,
+                    'watchlater_playlist': watchlater_playlist,
                 })
+
             except:  # pylint: disable=bare-except
                 pass
 
@@ -113,6 +130,22 @@ class UserStorage:
     @access_token.setter
     def access_token(self, value):
         self._current_user_set('access_token', value)
+
+    @property
+    def history_playlist(self):
+        return self._current_user_get('history_playlist', '')
+
+    @history_playlist.setter
+    def history_playlist(self, value):
+        self._current_user_set('history_playlist', value)
+
+    @property
+    def watchlater_playlist(self):
+        return self._current_user_get('watchlater_playlist', '')
+
+    @watchlater_playlist.setter
+    def watchlater_playlist(self, value):
+        self._current_user_set('watchlater_playlist', value)
 
     @property
     def token_expiry(self):
@@ -229,10 +262,14 @@ class UserStorage:
 
         element = user.find(attrib)
         if not hasattr(element, 'text'):
-            return
+            element = None
 
         self._reset()
-        element.text = value
+        if element is None:
+            new_element = ElementTree.SubElement(user, attrib)
+            new_element.text = value
+        else:
+            element.text = value
 
     def _reset(self):
         self._users = None
