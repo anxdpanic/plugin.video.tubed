@@ -85,6 +85,12 @@ def channel_generator(context, items):
                  (ADDON_ID, str(SCRIPT_MODES.SUBSCRIPTIONS), channel_id, quote(channel_name))),
             ]
 
+        context_menus += [
+            (context.i18n('Add to favorite channels'),
+             'RunScript(%s,mode=%s&action=add&channel_id=%s&channel_name=%s)' %
+             (ADDON_ID, str(SCRIPT_MODES.FAVORITE_CHANNELS), channel_id, quote(channel_name))),
+        ]
+
         payload.ListItem.addContextMenuItems(context_menus)
         yield tuple(payload)
 

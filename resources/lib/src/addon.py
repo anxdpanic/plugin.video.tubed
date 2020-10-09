@@ -114,6 +114,12 @@ def _play(video_id, prompt_subtitles=False):
     play.invoke(CONTEXT, video_id, prompt_subtitles)
 
 
+@router.route(MODES.FAVORITE_CHANNELS, kwargs=['page'])
+def _favorite_channels(page=1):
+    from .routes import favorite_channels
+    favorite_channels.invoke(CONTEXT, page)
+
+
 @router.route(MODES.SEARCH)
 def _search():
     from .routes import search

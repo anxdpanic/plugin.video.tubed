@@ -24,6 +24,7 @@ class SCRIPT_MODES(Enum):  # pylint: disable=invalid-name
     READ_COMMENT = 'read_comment'
     POST_PLAY = 'post_play'
     CONFIGURE_PLAYLISTS = 'configure_playlists'
+    FAVORITE_CHANNELS = 'favorite_channels'
 
     def __str__(self):
         return str(self.value).lower()
