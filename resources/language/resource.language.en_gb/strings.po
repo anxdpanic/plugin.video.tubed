@@ -760,3 +760,11 @@ msgstr ""
 msgctxt "#30186"
 msgid "Short term function cache will be cleared when using Refresh from the context menu"
 msgstr ""
+
+msgctxt "#30187"
+msgid "Choose watch later playlist"
+msgstr ""
+
+msgctxt "#30188"
+msgid "Added %s to the new watch later playlist %s"
+msgstr ""

@@ -138,4 +138,6 @@ STRINGS = {
     'Added %s to favorite channels': 30182,
     'Removed %s from favorite channels': 30183,
     'Refresh': 30184,
+    'Choose watch later playlist': 30187,
+    'Added %s to the new watch later playlist %s': 30188,
 }

@@ -19,7 +19,7 @@ from ..lib.url_utils import unquote
 from ..storage.users import UserStorage
 
 
-def invoke(context, action, video_id='', video_title='', playlist_id='',
+def invoke(context, action, video_id='', video_title='', playlist_id='',  # pylint: disable=too-many-branches
            playlist_title='', playlistitem_id=''):
     if not required_arguments_check(action, video_id, playlist_id, playlistitem_id):
         return
@@ -30,6 +30,8 @@ def invoke(context, action, video_id='', video_title='', playlist_id='',
     if '%' in playlist_title:
         playlist_title = unquote(playlist_title)
 
+    choosing_watch_later = playlist_id == 'watch_later_prompt'
+
     message = ''
 
     if action == 'add':
@@ -38,7 +40,13 @@ def invoke(context, action, video_id='', video_title='', playlist_id='',
             return
 
         video_title, playlist_title = result
-        message = context.i18n('Added %s to %s') % (bold(video_title), bold(playlist_title))
+
+        if choosing_watch_later:
+            message = context.i18n('Added %s to the new watch later playlist %s') % \
+                      (bold(video_title), bold(playlist_title))
+
+        else:
+            message = context.i18n('Added %s to %s') % (bold(video_title), bold(playlist_title))
 
     elif action == 'delete':
         result = delete(context, playlist_id, playlist_title)
@@ -94,6 +102,13 @@ def required_arguments_check(action, video_id, playlist_id, playlistitem_id):
 
 def add(context, video_id, playlist_id='', playlist_title=''):
     page_token = ''
+    default_title = ''
+
+    choosing_watch_later = playlist_id == 'watch_later_prompt'
+    if choosing_watch_later:
+        default_title = playlist_title
+        playlist_id = ''
+        playlist_title = ''
 
     while not playlist_id and not playlist_title:
 
@@ -118,7 +133,12 @@ def add(context, video_id, playlist_id='', playlist_title=''):
             playlist_ids += ['next']
             playlist_titles += [bold(context.i18n('Next Page'))]
 
-        result = xbmcgui.Dialog().select(context.i18n('Add to playlist'), playlist_titles)
+        if choosing_watch_later:
+            heading = context.i18n('Choose watch later playlist')
+        else:
+            heading = context.i18n('Add to playlist')
+
+        result = xbmcgui.Dialog().select(heading, playlist_titles)
         if result == -1:
             return None
 
@@ -131,7 +151,7 @@ def add(context, video_id, playlist_id='', playlist_title=''):
         break
 
     if playlist_id == 'new':
-        playlist_title = _get_title_from_user(context)
+        playlist_title = _get_title_from_user(context, default_title)
         if not playlist_title:
             return None
 
@@ -150,6 +170,11 @@ def add(context, video_id, playlist_id='', playlist_title=''):
         return None
 
     video_title = unescape(payload['snippet'].get('title', ''))
+
+    if choosing_watch_later:
+        users = UserStorage()
+        users.watchlater_playlist = playlist_id
+        users.save()
 
     return video_title, playlist_title
 
@@ -209,9 +234,10 @@ def rename(context, playlist_id):
     return False
 
 
-def _get_title_from_user(context):
+def _get_title_from_user(context, default=''):
     keyboard = xbmc.Keyboard()
     keyboard.setHeading(context.i18n('Enter your playlist title'))
+    keyboard.setDefault(default)
     keyboard.doModal()
     if not keyboard.isConfirmed():
         return None
