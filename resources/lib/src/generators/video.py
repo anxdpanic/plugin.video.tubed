@@ -30,7 +30,7 @@ from .utils import get_thumbnail
 WATCH_LATER_PLAYLIST = UserStorage().watchlater_playlist
 
 
-def video_generator(context, items, mine=False):
+def video_generator(context, items, mine=False):  # pylint: disable=too-many-locals
     event_type = ''
 
     if context.mode == str(MODES.LIVE):
@@ -60,6 +60,8 @@ def video_generator(context, items, mine=False):
             continue
 
         content_details = video.get('contentDetails', {})
+        statistics = video.get('statistics', {})
+
         duration = iso8601_duration_to_seconds(content_details.get('duration', ''))
 
         channel_id = snippet.get('channelId', '')
@@ -103,6 +105,9 @@ def video_generator(context, items, mine=False):
                 })
             )
 
+        votes = int(statistics.get('likeCount', '0')) + int(statistics.get('dislikeCount', '0'))
+        rating = '%0.1f' % ((int(statistics.get('likeCount', '0')) / votes) * 10)
+
         info_labels = {
             'mediatype': 'video',
             'plot': unescape(snippet.get('description', '')),
@@ -113,6 +118,9 @@ def video_generator(context, items, mine=False):
             'year': published_arrow.year,
             'premiered': published_arrow.format('YYYY-MM-DD'),
             'dateadded': published_arrow.format('YYYY-MM-DD HH:mm:ss'),
+            'tag': snippet.get('tags', ''),
+            'rating': rating,
+            'votes': votes,
         }
 
         if duration:
