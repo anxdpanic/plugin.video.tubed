@@ -195,12 +195,15 @@ def get_context_menu(context, item, video_id, video_title,
         ]
 
     if logged_in:
-        if WATCH_LATER_PLAYLIST and WATCH_LATER_PLAYLIST != snippet.get('playlistId'):
+        if ((WATCH_LATER_PLAYLIST and WATCH_LATER_PLAYLIST != snippet.get('playlistId')) or
+                not WATCH_LATER_PLAYLIST):
+
+            watch_later_playlist = WATCH_LATER_PLAYLIST or 'watch_later_prompt'
             context_menus += [
                 (context.i18n('Add to watch later'),
                  'RunScript(%s,mode=%s&action=add&video_id=%s&playlist_id=%s&playlist_title=%s)' %
                  (ADDON_ID, str(SCRIPT_MODES.PLAYLIST), video_id,
-                  WATCH_LATER_PLAYLIST, quote(context.i18n('Watch Later')))),
+                  watch_later_playlist, quote(context.i18n('Watch Later')))),
             ]
 
         context_menus += [
