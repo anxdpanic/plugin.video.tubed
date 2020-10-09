@@ -740,3 +740,11 @@ msgstr ""
 msgctxt "#30181"
 msgid "Add %s to favorite channels"
 msgstr ""
+
+msgctxt "#30182"
+msgid "Added %s to favorite channels"
+msgstr ""
+
+msgctxt "#30183"
+msgid "Removed %s from favorite channels"
+msgstr ""

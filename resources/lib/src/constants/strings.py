@@ -135,4 +135,6 @@ STRINGS = {
     'You are about to clear your favorite channels, are you sure?': 30179,
     'Favorite channels cleared': 30180,
     'Add %s to favorite channels': 30181,
+    'Added %s to favorite channels': 30182,
+    'Removed %s from favorite channels': 30183,
 }

@@ -18,7 +18,6 @@ from ..lib.sql_storage import Storage
 from ..lib.time import now
 from .users import UserStorage
 
-
 # pylint: disable=arguments-differ
 
 class FavoriteChannels(Storage):
@@ -32,6 +31,16 @@ class FavoriteChannels(Storage):
         )
 
         super().__init__(filename, max_item_count=2500)  # arbitrary maximum of 50 pages
+
+    def pop(self, channel_id):
+        payload = None
+
+        item = self._get(channel_id)
+        if item:
+            payload = (channel_id, item[0])
+            self._remove(channel_id)
+
+        return payload
 
     def remove(self, channel_id):
         self._remove(channel_id)
