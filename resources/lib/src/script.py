@@ -34,6 +34,13 @@ def _search_history(action, item=''):
     search_history.invoke(CONTEXT, action, item)
 
 
+@router.route(SCRIPT_MODES.FAVORITE_CHANNELS, args=['action'],
+              kwargs=['channel_id', 'channel_name'])
+def _favorite_channel(action, channel_id='', channel_name=''):
+    from .scripts import favorite_channels
+    favorite_channels.invoke(CONTEXT, action, channel_id, channel_name)
+
+
 @router.route(SCRIPT_MODES.CONFIGURE_REGIONAL)
 def _configure_regional():
     from .scripts import configure_regional

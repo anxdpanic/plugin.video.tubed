@@ -229,6 +229,10 @@ def get_context_menu(context, item, video_id, video_title,
                 ]
 
     context_menus += [
+        (context.i18n('Add %s to favorite channels') % bold(channel_name),
+         'RunScript(%s,mode=%s&action=add&channel_id=%s&channel_name=%s)' %
+         (ADDON_ID, str(SCRIPT_MODES.FAVORITE_CHANNELS), channel_id, quote(channel_name))),
+
         (context.i18n('Related videos'),
          'Container.Update(plugin://%s/?mode=%s&video_id=%s)' %
          (ADDON_ID, str(MODES.RELATED_VIDEOS), video_id)),

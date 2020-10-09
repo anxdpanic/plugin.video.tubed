@@ -35,6 +35,7 @@ class MODES(Enum):
     COMMENTS_THREADS = 'comment_threads'
     COMMENTS = 'comments'
     READ_COMMENT = 'read_comment'
+    FAVORITE_CHANNELS = 'favorite_channels'
 
     def __str__(self):
         return str(self.value).lower()

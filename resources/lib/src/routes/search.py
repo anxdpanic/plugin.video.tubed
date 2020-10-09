@@ -14,6 +14,7 @@ import xbmcplugin  # pylint: disable=import-error
 
 from ..constants import ADDON_ID
 from ..constants import MODES
+from ..constants import SCRIPT_MODES
 from ..items.directory import Directory
 from ..items.search_query import SearchQuery
 from ..lib.txt_fmt import bold
@@ -46,10 +47,11 @@ def invoke(context):
 
         context_menus = [
             (context.i18n('Remove...'),
-             'RunScript(%s,mode=search_history&action=remove&item=%s)' % (ADDON_ID, quote(query))),
+             'RunScript(%s,mode=%s&action=remove&item=%s)' %
+             (ADDON_ID, str(SCRIPT_MODES.SEARCH_HISTORY), quote(query))),
 
             (context.i18n('Clear history'),
-             'RunScript(%s,mode=search_history&action=clear)' % ADDON_ID),
+             'RunScript(%s,mode=%s&action=clear)' % (ADDON_ID, str(SCRIPT_MODES.SEARCH_HISTORY))),
         ]
 
         directory.ListItem.addContextMenuItems(context_menus)

@@ -10,7 +10,9 @@
 
 import xbmcplugin  # pylint: disable=import-error
 
+from ..constants import ADDON_ID
 from ..constants import MODES
+from ..constants import SCRIPT_MODES
 from ..items.action import Action
 from ..items.directory import Directory
 from ..lib.url_utils import create_addon_path
@@ -149,6 +151,24 @@ def invoke(context):
             'thumb': 'DefaultStudios.png'
         })
         items.append(tuple(directory))
+
+    directory = Directory(
+        label=context.i18n('Favorite Channels'),
+        path=create_addon_path(parameters={
+            'mode': str(MODES.FAVORITE_CHANNELS)
+        })
+    )
+    directory.ListItem.setArt({
+        'icon': 'DefaultStudios.png',
+        'thumb': 'DefaultStudios.png'
+    })
+    context_menus = [
+        (context.i18n('Import from xml'),
+         'RunScript(%s,mode=%s&action=import)' %
+         (ADDON_ID, str(SCRIPT_MODES.FAVORITE_CHANNELS))),
+    ]
+    directory.ListItem.addContextMenuItems(context_menus)
+    items.append(tuple(directory))
 
     directory = Directory(
         label=context.i18n('Live'),

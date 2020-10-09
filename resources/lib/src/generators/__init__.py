@@ -8,5 +8,5 @@
     See LICENSES/GPL-2.0-only.txt for more information.
 """
 
-__all__ = ['category', 'channel', 'comments', 'data_cache',
+__all__ = ['category', 'channel', 'comments', 'data_cache', 'favorite_channels',
            'playlist', 'subscription', 'utils', 'video']
