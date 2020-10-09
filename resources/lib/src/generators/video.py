@@ -19,6 +19,7 @@ from ..constants import MODES
 from ..constants import SCRIPT_MODES
 from ..items.action import Action
 from ..items.video import Video
+from ..lib.time import iso8601_duration_to_seconds
 from ..lib.txt_fmt import bold
 from ..lib.url_utils import create_addon_path
 from ..storage.users import UserStorage
@@ -57,6 +58,9 @@ def video_generator(context, items, mine=False):
         snippet = video.get('snippet', {})
         if not snippet:
             continue
+
+        content_details = video.get('contentDetails', {})
+        duration = iso8601_duration_to_seconds(content_details.get('duration', ''))
 
         channel_id = snippet.get('channelId', '')
         channel_name = unescape(snippet.get('channelTitle', ''))
@@ -110,6 +114,9 @@ def video_generator(context, items, mine=False):
             'premiered': published_arrow.format('YYYY-MM-DD'),
             'dateadded': published_arrow.format('YYYY-MM-DD HH:mm:ss'),
         }
+
+        if duration:
+            info_labels['duration'] = duration
 
         if snippet.get('liveBroadcastContent', 'none') != 'none':
             info_labels['playcount'] = 0
