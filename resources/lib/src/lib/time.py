@@ -46,3 +46,53 @@ def timestamp_diff(timestamp=None):
     delta = now() - then
 
     return delta.total_seconds()
+
+
+def iso8601_duration_to_seconds(duration):
+    macro_string = ''
+    micro_string = duration
+
+    years = 0
+    months = 0
+    weeks = 0
+    days = 0
+    hours = 0
+    minutes = 0
+    seconds = 0
+
+    string = duration.split('P')[-1]
+
+    if 'T' in string:
+        macro_string, micro_string = duration.split('T')
+
+    if macro_string:
+        years, macro_string = _iso8601_duration_token(macro_string, 'Y')
+        months, macro_string = _iso8601_duration_token(macro_string, 'M')
+        weeks, macro_string = _iso8601_duration_token(macro_string, 'W')
+        days, macro_string = _iso8601_duration_token(macro_string, 'D')
+
+    if micro_string:
+        hours, micro_string = _iso8601_duration_token(micro_string, 'H')
+        minutes, micro_string = _iso8601_duration_token(micro_string, 'M')
+        seconds, micro_string = _iso8601_duration_token(micro_string, 'S')
+
+    # add weeks, months and years to days, assume 30 day month and 365 day year for simplicity
+    days = int(days) + (7 * int(weeks)) + (30 * int(months)) + (365 * int(years))
+
+    time_delta = datetime.timedelta(
+        days=int(days),
+        hours=int(hours),
+        minutes=int(minutes),
+        seconds=int(seconds)
+    )
+
+    return int(time_delta.total_seconds())
+
+
+def _iso8601_duration_token(string, token):
+    payload = 0
+
+    if token in string:
+        payload, string = string.split(token)
+
+    return payload, string
