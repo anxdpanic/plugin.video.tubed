@@ -186,4 +186,8 @@ def get_context_menus(context, item, snippet, channel_id,
                       playlist_id, quote(playlist_title)))
                 ]
 
+    context_menus += [
+        (context.i18n('Refresh'), 'RunScript(%s,mode=%s)' % (ADDON_ID, str(SCRIPT_MODES.REFRESH))),
+    ]
+
     return context_menus

@@ -80,11 +80,16 @@ def subscription_generator(context, items):
         ]
 
         if logged_in:
-            context_menus +=[
+            context_menus += [
                 (context.i18n('Unsubscribe'),
                  'RunScript(%s,mode=%s&action=remove&subscription_id=%s&channel_name=%s)' %
                  (ADDON_ID, str(SCRIPT_MODES.SUBSCRIPTIONS), subscription_id, quote(channel_name))),
             ]
+
+        context_menus += [
+            (context.i18n('Refresh'), 'RunScript(%s,mode=%s)' %
+             (ADDON_ID, str(SCRIPT_MODES.REFRESH))),
+        ]
 
         payload.ListItem.addContextMenuItems(context_menus)
         yield tuple(payload)

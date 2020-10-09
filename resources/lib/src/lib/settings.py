@@ -182,6 +182,10 @@ class Settings:  # pylint: disable=too-many-public-methods
         return self.get_int('cache.limit.data')
 
     @property
+    def reset_function_cache_refresh(self):
+        return self.get_bool('cache.clear.function.refresh')
+
+    @property
     def log_api_requests(self):
         return self.get_bool('log.api.requests')
 

@@ -246,6 +246,10 @@ def get_context_menu(context, item, video_id, video_title,
          (ADDON_ID, str(MODES.COMMENTS_THREADS), video_id)),
     ]
 
+    context_menus += [
+        (context.i18n('Refresh'), 'RunScript(%s,mode=%s)' % (ADDON_ID, str(SCRIPT_MODES.REFRESH))),
+    ]
+
     if event_type != 'upcoming':
         context_menus += [
             (context.i18n('Play (Prompt for subtitles)'),

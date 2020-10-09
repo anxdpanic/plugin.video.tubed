@@ -68,6 +68,9 @@ def favorite_channels_generator(context, channel_ids):
             (context.i18n('Clear favorite channels'),
              'RunScript(%s,mode=%s&action=clear)' %
              (ADDON_ID, str(SCRIPT_MODES.FAVORITE_CHANNELS))),
+
+            (context.i18n('Refresh'), 'RunScript(%s,mode=%s)' %
+             (ADDON_ID, str(SCRIPT_MODES.REFRESH))),
         ]
 
         payload.ListItem.addContextMenuItems(context_menus)
