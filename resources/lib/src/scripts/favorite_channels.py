@@ -21,7 +21,8 @@ from ..storage.users import UserStorage
 
 
 def invoke(context, action, channel_id='', channel_name=''):
-    favorite_channels = FavoriteChannels(UserStorage().uuid)
+    favorite_channels = FavoriteChannels(UserStorage().uuid,
+                                         context.settings.favorite_channel_maximum)
 
     if action == 'add':
         if not channel_id or not channel_name:

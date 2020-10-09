@@ -208,3 +208,11 @@ class Settings:  # pylint: disable=too-many-public-methods
             return False
 
         return self.get_bool('post.play.rate')
+
+    @property
+    def search_history_maximum(self):
+        return self.get_int('search.history.items')
+
+    @property
+    def favorite_channel_maximum(self):
+        return self.get_int('favorite.channel.items')

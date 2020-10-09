@@ -152,23 +152,24 @@ def invoke(context):
         })
         items.append(tuple(directory))
 
-    directory = Directory(
-        label=context.i18n('Favorite Channels'),
-        path=create_addon_path(parameters={
-            'mode': str(MODES.FAVORITE_CHANNELS)
+    if context.settings.favorite_channel_maximum > 0:
+        directory = Directory(
+            label=context.i18n('Favorite Channels'),
+            path=create_addon_path(parameters={
+                'mode': str(MODES.FAVORITE_CHANNELS)
+            })
+        )
+        directory.ListItem.setArt({
+            'icon': 'DefaultStudios.png',
+            'thumb': 'DefaultStudios.png'
         })
-    )
-    directory.ListItem.setArt({
-        'icon': 'DefaultStudios.png',
-        'thumb': 'DefaultStudios.png'
-    })
-    context_menus = [
-        (context.i18n('Import from xml'),
-         'RunScript(%s,mode=%s&action=import)' %
-         (ADDON_ID, str(SCRIPT_MODES.FAVORITE_CHANNELS))),
-    ]
-    directory.ListItem.addContextMenuItems(context_menus)
-    items.append(tuple(directory))
+        context_menus = [
+            (context.i18n('Import from xml'),
+             'RunScript(%s,mode=%s&action=import)' %
+             (ADDON_ID, str(SCRIPT_MODES.FAVORITE_CHANNELS))),
+        ]
+        directory.ListItem.addContextMenuItems(context_menus)
+        items.append(tuple(directory))
 
     directory = Directory(
         label=context.i18n('Live'),

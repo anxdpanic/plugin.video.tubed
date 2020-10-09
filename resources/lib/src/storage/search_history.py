@@ -16,7 +16,7 @@ from .users import UserStorage
 
 
 class SearchHistory(Storage):
-    def __init__(self, uuid=''):
+    def __init__(self, uuid='', maximum_items=100):
         if not uuid:
             uuid = UserStorage().uuid
 
@@ -24,4 +24,4 @@ class SearchHistory(Storage):
             'special://profile/addon_data/%s/search/%s/search_history.sqlite' % (ADDON_ID, uuid)
         )
 
-        super().__init__(filename, max_item_count=100)
+        super().__init__(filename, max_item_count=maximum_items)

@@ -16,7 +16,7 @@ from ..storage.users import UserStorage
 
 
 def invoke(context, action, item=''):  # pylint: disable=unused-argument
-    history = SearchHistory(UserStorage().uuid)
+    history = SearchHistory(UserStorage().uuid, context.settings.search_history_maximum)
 
     if action == 'clear':
         history.clear()

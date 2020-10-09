@@ -768,3 +768,19 @@ msgstr ""
 msgctxt "#30188"
 msgid "Added %s to the new watch later playlist %s"
 msgstr ""
+
+msgctxt "#30189"
+msgid "Search history items"
+msgstr ""
+
+msgctxt "#30190"
+msgid "How many search history items should be kept for each user"
+msgstr ""
+
+msgctxt "#30191"
+msgid "Favorite channels"
+msgstr ""
+
+msgctxt "#30192"
+msgid "How many favorite channels should be kept for each user"
+msgstr ""
