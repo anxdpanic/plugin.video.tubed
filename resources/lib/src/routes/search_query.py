@@ -19,6 +19,7 @@ from ..generators.playlist import playlist_generator
 from ..generators.video import video_generator
 from ..items.next_page import NextPage
 from ..items.search_query import SearchQuery
+from ..lib.sorting import set_video_sort_methods
 from ..lib.txt_fmt import bold
 from ..lib.url_utils import create_addon_path
 from ..lib.url_utils import unquote
@@ -130,5 +131,8 @@ def invoke(context, query='', page_token='', search_type='video', order=DEFAULT_
     search_history.update(query)
 
     xbmcplugin.addDirectoryItems(context.handle, list_items, len(list_items))
+
+    if search_type == 'video':
+        set_video_sort_methods(context)
 
     xbmcplugin.endOfDirectory(context.handle, True)

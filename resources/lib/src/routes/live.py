@@ -14,6 +14,7 @@ from ..constants import MODES
 from ..generators.video import video_generator
 from ..items.directory import Directory
 from ..items.next_page import NextPage
+from ..lib.sorting import set_video_sort_methods
 from ..lib.txt_fmt import bold
 from ..lib.url_utils import create_addon_path
 from .utils import get_sort_order
@@ -79,5 +80,7 @@ def invoke(context, page_token='', event_type='live', order=DEFAULT_ORDER):
         list_items.append(tuple(directory))
 
     xbmcplugin.addDirectoryItems(context.handle, list_items, len(list_items))
+
+    set_video_sort_methods(context)
 
     xbmcplugin.endOfDirectory(context.handle, True)

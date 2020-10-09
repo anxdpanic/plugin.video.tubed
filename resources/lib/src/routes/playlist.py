@@ -13,6 +13,7 @@ import xbmcplugin  # pylint: disable=import-error
 from ..constants import MODES
 from ..generators.video import video_generator
 from ..items.next_page import NextPage
+from ..lib.sorting import set_video_sort_methods
 from ..lib.url_utils import create_addon_path
 from ..storage.users import UserStorage
 
@@ -44,5 +45,7 @@ def invoke(context, playlist_id, page_token='', mine=False):
         list_items.append(tuple(directory))
 
     xbmcplugin.addDirectoryItems(context.handle, list_items, len(list_items))
+
+    set_video_sort_methods(context)
 
     xbmcplugin.endOfDirectory(context.handle, True)
