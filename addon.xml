@@ -26,6 +26,6 @@ Development in progress
         <source>https://github.com/anxdpanic/plugin.video.tubed</source>
         <forum></forum>
         <description lang="en_GB">Watch your favorite YouTube content on Kodi</description>
-        <reuselanguageinvoker>false</reuselanguageinvoker>
+        <reuselanguageinvoker>true</reuselanguageinvoker>
     </extension>
 </addon>
