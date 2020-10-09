@@ -19,6 +19,8 @@ from ..lib.time import now
 from .users import UserStorage
 
 
+# pylint: disable=arguments-differ
+
 class FavoriteChannels(Storage):
     def __init__(self, uuid=''):
         if not uuid:
