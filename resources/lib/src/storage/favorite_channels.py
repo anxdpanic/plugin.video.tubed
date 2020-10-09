@@ -18,11 +18,12 @@ from ..lib.sql_storage import Storage
 from ..lib.time import now
 from .users import UserStorage
 
+
 # pylint: disable=arguments-differ
 
 
 class FavoriteChannels(Storage):
-    def __init__(self, uuid=''):
+    def __init__(self, uuid='', maximum_items=2500):
         if not uuid:
             uuid = UserStorage().uuid
 
@@ -31,7 +32,7 @@ class FavoriteChannels(Storage):
             (ADDON_ID, uuid)
         )
 
-        super().__init__(filename, max_item_count=2500)  # arbitrary maximum of 50 pages
+        super().__init__(filename, max_item_count=maximum_items)
 
     def pop(self, channel_id):
         payload = None

@@ -24,8 +24,6 @@ from ..storage.users import UserStorage
 
 
 def invoke(context):
-    history = SearchHistory(UserStorage().uuid)
-
     items = []
 
     directory = SearchQuery(
@@ -36,26 +34,30 @@ def invoke(context):
     )
     items.append(tuple(directory))
 
-    for query in history.list():
-        directory = Directory(
-            label=query,
-            path=create_addon_path(parameters={
-                'mode': str(MODES.SEARCH_QUERY),
-                'query': quote(query)
-            })
-        )
+    if context.settings.search_history_maximum > 0:
+        history = SearchHistory(UserStorage().uuid, context.settings.search_history_maximum)
 
-        context_menus = [
-            (context.i18n('Remove...'),
-             'RunScript(%s,mode=%s&action=remove&item=%s)' %
-             (ADDON_ID, str(SCRIPT_MODES.SEARCH_HISTORY), quote(query))),
+        for query in history.list():
+            directory = Directory(
+                label=query,
+                path=create_addon_path(parameters={
+                    'mode': str(MODES.SEARCH_QUERY),
+                    'query': quote(query)
+                })
+            )
 
-            (context.i18n('Clear history'),
-             'RunScript(%s,mode=%s&action=clear)' % (ADDON_ID, str(SCRIPT_MODES.SEARCH_HISTORY))),
-        ]
+            context_menus = [
+                (context.i18n('Remove...'),
+                 'RunScript(%s,mode=%s&action=remove&item=%s)' %
+                 (ADDON_ID, str(SCRIPT_MODES.SEARCH_HISTORY), quote(query))),
 
-        directory.ListItem.addContextMenuItems(context_menus)
-        items.append(tuple(directory))
+                (context.i18n('Clear history'),
+                 'RunScript(%s,mode=%s&action=clear)' %
+                 (ADDON_ID, str(SCRIPT_MODES.SEARCH_HISTORY))),
+            ]
+
+            directory.ListItem.addContextMenuItems(context_menus)
+            items.append(tuple(directory))
 
     xbmcplugin.addDirectoryItems(context.handle, items, len(items))
 

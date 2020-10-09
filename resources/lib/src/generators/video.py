@@ -106,7 +106,10 @@ def video_generator(context, items, mine=False):  # pylint: disable=too-many-loc
             )
 
         votes = int(statistics.get('likeCount', '0')) + int(statistics.get('dislikeCount', '0'))
-        rating = '%0.1f' % ((int(statistics.get('likeCount', '0')) / votes) * 10)
+        try:
+            rating = '%0.1f' % ((int(statistics.get('likeCount', '0')) / votes) * 10)
+        except ZeroDivisionError:
+            rating = '0.0'
 
         info_labels = {
             'mediatype': 'video',

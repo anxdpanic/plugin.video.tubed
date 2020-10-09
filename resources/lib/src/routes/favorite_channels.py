@@ -29,7 +29,8 @@ def invoke(context, page=1):
 
     max_channels = 50
 
-    favorite_channels = FavoriteChannels(UserStorage().uuid)
+    favorite_channels = FavoriteChannels(UserStorage().uuid,
+                                         context.settings.favorite_channel_maximum)
 
     channels = favorite_channels.list((page - 1) * max_channels, max_channels)
     channel_ids = [channel_id for channel_id, _ in channels]

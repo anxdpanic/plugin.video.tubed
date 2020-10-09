@@ -37,7 +37,7 @@ def invoke(context, query='', page_token='', search_type='video', order=DEFAULT_
 
     uuid = UserStorage().uuid
     search_cache = SearchCache(uuid)
-    search_history = SearchHistory(uuid)
+    search_history = SearchHistory(uuid, context.settings.search_history_maximum)
 
     if order == 'prompt':
         order = get_sort_order(context)

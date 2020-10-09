@@ -2,8 +2,31 @@
 <settings version="1">
     <section id="plugin.video.tubed">
         <category id="general" label="30028" help="">
-            <group id="1" label="">
-
+            <group id="1" label="30028">
+                <setting id="search.history.items" type="integer" label="30189" help="30190">
+                    <level>0</level>
+                    <default>100</default>
+                    <constraints>
+                        <minimum>0</minimum>
+                        <step>1</step>
+                        <maximum>250</maximum>
+                    </constraints>
+                    <control type="slider" format="integer">
+                        <popup>false</popup>
+                    </control>
+                </setting>
+                <setting id="favorite.channel.items" type="integer" label="30191" help="30192">
+                    <level>0</level>
+                    <default>2500</default>
+                    <constraints>
+                        <minimum>0</minimum>
+                        <step>1</step>
+                        <maximum>5000</maximum>
+                    </constraints>
+                    <control type="slider" format="integer">
+                        <popup>false</popup>
+                    </control>
+                </setting>
             </group>
             <group id="2" label="30047">
                 <setting id="configure.regional" type="action" label="30052" help="30053">
