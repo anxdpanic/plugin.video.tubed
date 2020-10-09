@@ -14,6 +14,7 @@ from xml.etree import ElementTree
 import xbmc  # pylint: disable=import-error
 import xbmcgui  # pylint: disable=import-error
 
+from ..lib.txt_fmt import bold
 from ..lib.url_utils import unquote
 from ..storage.favorite_channels import FavoriteChannels
 from ..storage.users import UserStorage
@@ -33,7 +34,7 @@ def invoke(context, action, channel_id='', channel_name=''):
 
         xbmcgui.Dialog().notification(
             context.i18n('Favorite Channels'),
-            context.i18n('Added to favorite channels'),
+            context.i18n('Added %s to favorite channels') % bold(channel_name),
             context.addon.getAddonInfo('icon'),
             sound=False
         )
@@ -59,11 +60,20 @@ def invoke(context, action, channel_id='', channel_name=''):
         if not channel_id:
             return
 
-        favorite_channels.remove(channel_id)
+        favorite = favorite_channels.pop(channel_id)
+        if not favorite:
+            return
+
+        _, favorite_name = favorite
+
+        if not favorite_name:
+            message = context.i18n('Removed from favorite channels')
+        else:
+            message = context.i18n('Removed %s from favorite channels') % bold(favorite_name)
 
         xbmcgui.Dialog().notification(
             context.i18n('Favorite Channels'),
-            context.i18n('Removed from favorite channels'),
+            message,
             context.addon.getAddonInfo('icon'),
             sound=False
         )
