@@ -748,3 +748,15 @@ msgstr ""
 msgctxt "#30183"
 msgid "Removed %s from favorite channels"
 msgstr ""
+
+msgctxt "#30184"
+msgid "Refresh"
+msgstr ""
+
+msgctxt "#30185"
+msgid "Clear function cache on refresh"
+msgstr ""
+
+msgctxt "#30186"
+msgid "Short term function cache will be cleared when using Refresh from the context menu"
+msgstr ""
