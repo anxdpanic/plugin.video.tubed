@@ -128,11 +128,14 @@ def get_context_menus(context, item, snippet, channel_id,
                  (ADDON_ID, str(SCRIPT_MODES.SUBSCRIPTIONS), channel_id, quote(channel_name))),
             ]
 
-        context_menus += [
-            (context.i18n('Add %s to favorite channels') % bold(channel_name),
-             'RunScript(%s,mode=%s&action=add&channel_id=%s&channel_name=%s)' %
-             (ADDON_ID, str(SCRIPT_MODES.FAVORITE_CHANNELS), channel_id, quote(channel_name))),
+        if context.settings.favorite_channel_maximum > 0:
+            context_menus += [
+                (context.i18n('Add %s to favorite channels') % bold(channel_name),
+                 'RunScript(%s,mode=%s&action=add&channel_id=%s&channel_name=%s)' %
+                 (ADDON_ID, str(SCRIPT_MODES.FAVORITE_CHANNELS), channel_id, quote(channel_name))),
+            ]
 
+        context_menus += [
             (context.i18n('Go to %s') % bold(unescape(snippet.get('channelTitle', ''))),
              'Container.Update(plugin://%s/?mode=%s&channel_id=%s)' %
              (ADDON_ID, str(MODES.CHANNEL), channel_id))
