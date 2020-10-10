@@ -40,7 +40,7 @@ def subscription_generator(context, items):
 
         subscription_id = item.get('id', '')
 
-        channel = cached_channels.get(channel_id, item)
+        channel = cached_channels.get(channel_id)
         snippet = channel.get('snippet', {})
 
         channel_name = unescape(snippet.get('title', ''))

@@ -26,7 +26,13 @@ def invoke(context, page_token='', order=DEFAULT_ORDER):
         if order != DEFAULT_ORDER:
             page_token = ''
 
-    payload = context.api.subscriptions('mine', order=order, page_token=page_token)
+    payload = context.api.subscriptions(
+        'mine',
+        order=order,
+        page_token=page_token,
+        fields='items(kind,id,snippet(resourceId/channelId))'
+    )
+
     list_items = list(subscription_generator(context, payload.get('items', [])))
 
     page_token = payload.get('nextPageToken')
