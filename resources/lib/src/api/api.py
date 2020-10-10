@@ -294,12 +294,15 @@ class API:  # pylint: disable=too-many-public-methods
 
     @api_request
     @memoizer.cache_method(limit=ONE_MINUTE * CACHE_TTL)
-    def playlist_items(self, playlist_id, page_token='', max_results=None):
+    def playlist_items(self, playlist_id, page_token='', max_results=None, fields=None):
         parameters = {
             'part': 'snippet',
             'maxResults': max_results or str(self.max_results),
             'playlistId': playlist_id
         }
+
+        if fields:
+            parameters['fields'] = fields
 
         if page_token:
             parameters['pageToken'] = page_token
