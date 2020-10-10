@@ -108,7 +108,7 @@ class API:  # pylint: disable=too-many-public-methods
         return self.api.playlists.delete(parameters=parameters)
 
     @api_request
-    def rename_playlist(self, playlist_id, title, privacy_status='private'):
+    def rename_playlist(self, playlist_id, title, privacy_status='private', fields=None):
         parameters = {
             'part': 'snippet,id,status'
         }
@@ -123,10 +123,13 @@ class API:  # pylint: disable=too-many-public-methods
             }
         }
 
+        if fields:
+            parameters['fields'] = fields
+
         return self.api.playlists.update(parameters=parameters, data=data)
 
     @api_request
-    def create_playlist(self, title, privacy_status='private'):
+    def create_playlist(self, title, privacy_status='private', fields=None):
         parameters = {
             'part': 'snippet,status'
         }
@@ -140,10 +143,13 @@ class API:  # pylint: disable=too-many-public-methods
             }
         }
 
+        if fields:
+            parameters['fields'] = fields
+
         return self.api.playlists.insert(parameters=parameters, data=data)
 
     @api_request
-    def add_to_playlist(self, playlist_id, video_id):
+    def add_to_playlist(self, playlist_id, video_id, fields=None):
         parameters = {
             'part': 'snippet',
             'mine': 'true'
@@ -158,6 +164,9 @@ class API:  # pylint: disable=too-many-public-methods
                 }
             }
         }
+
+        if fields:
+            parameters['fields'] = fields
 
         return self.api.playlist_items.insert(parameters=parameters, data=data)
 
@@ -280,7 +289,7 @@ class API:  # pylint: disable=too-many-public-methods
 
     @api_request
     @memoizer.cache_method(limit=ONE_MINUTE * CACHE_TTL)
-    def playlists_of_channel(self, channel_id, page_token=''):
+    def playlists_of_channel(self, channel_id, page_token='', fields=None):
         parameters = {
             'part': 'snippet',
             'maxResults': str(self.max_results)
@@ -290,6 +299,9 @@ class API:  # pylint: disable=too-many-public-methods
             parameters['channelId'] = channel_id
         else:
             parameters['mine'] = 'true'
+
+        if fields:
+            parameters['fields'] = fields
 
         if page_token:
             parameters['pageToken'] = page_token

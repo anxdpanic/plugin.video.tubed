@@ -53,13 +53,13 @@ def playlist_generator(context, items):
         if not playlist_id:
             continue
 
-        playlist = cached_playlists.get(playlist_id, item)
+        playlist = cached_playlists.get(playlist_id)
         snippet = playlist.get('snippet', {})
 
         channel_id = snippet.get('channelId', '')
         channel_name = unescape(snippet.get('channelTitle', ''))
 
-        playlist_title = unescape(snippet.get('title', ''))
+        playlist_title = unescape(item.get('snippet', snippet).get('title', ''))
 
         payload = Directory(
             label=playlist_title,
