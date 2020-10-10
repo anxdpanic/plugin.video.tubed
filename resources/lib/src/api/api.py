@@ -243,7 +243,7 @@ class API:  # pylint: disable=too-many-public-methods
 
     @api_request
     @memoizer.cache_method(limit=ONE_MINUTE * CACHE_TTL)
-    def video_category(self, category_id, page_token=''):
+    def video_category(self, category_id, page_token='', fields=None):
         parameters = {
             'part': 'snippet,contentDetails,status',
             'maxResults': str(self.max_results),
@@ -252,6 +252,10 @@ class API:  # pylint: disable=too-many-public-methods
             'regionCode': self.region,
             'hl': self.language
         }
+
+        if fields:
+            parameters['fields'] = fields
+
         if page_token:
             parameters['pageToken'] = page_token
 
@@ -358,12 +362,15 @@ class API:  # pylint: disable=too-many-public-methods
 
     @api_request
     @memoizer.cache_method(limit=ONE_MINUTE * CACHE_TTL)
-    def my_rating(self, rating='like', page_token=''):
+    def my_rating(self, rating='like', page_token='', fields=None):
         parameters = {
             'part': 'snippet,status',
             'myRating': rating,
             'maxResults': str(self.max_results)
         }
+
+        if fields:
+            parameters['fields'] = fields
 
         if page_token:
             parameters['pageToken'] = page_token
@@ -372,7 +379,7 @@ class API:  # pylint: disable=too-many-public-methods
 
     @api_request
     @memoizer.cache_method(limit=ONE_MINUTE * CACHE_TTL)
-    def videos(self, video_id, live_details=False):
+    def videos(self, video_id, live_details=False, fields=None):
         if isinstance(video_id, list):
             video_id = ','.join(video_id)
 
@@ -384,6 +391,9 @@ class API:  # pylint: disable=too-many-public-methods
             'part': ','.join(parts),
             'id': video_id
         }
+
+        if fields:
+            parameters['fields'] = fields
 
         return self.api.videos.get(parameters=parameters)
 
@@ -455,7 +465,7 @@ class API:  # pylint: disable=too-many-public-methods
 
     @api_request
     @memoizer.cache_method(limit=ONE_MINUTE * CACHE_TTL)
-    def channel_videos(self, channel_id, page_token=''):
+    def channel_videos(self, channel_id, page_token='', fields=None):
         parameters = {
             'part': 'snippet',
             'hl': self.language,
@@ -470,6 +480,9 @@ class API:  # pylint: disable=too-many-public-methods
         else:
             parameters['channelId'] = channel_id
 
+        if fields:
+            parameters['fields'] = fields
+
         if page_token:
             parameters['pageToken'] = page_token
 
@@ -477,7 +490,7 @@ class API:  # pylint: disable=too-many-public-methods
 
     @api_request
     @memoizer.cache_method(limit=ONE_MINUTE * CACHE_TTL)
-    def live_events(self, event_type='live', order='relevance', page_token=''):
+    def live_events(self, event_type='live', order='relevance', page_token='', fields=None):
         parameters = {
             'part': 'snippet',
             'type': 'video',
@@ -489,6 +502,9 @@ class API:  # pylint: disable=too-many-public-methods
             'maxResults': str(self.max_results)
         }
 
+        if fields:
+            parameters['fields'] = fields
+
         if page_token:
             parameters['pageToken'] = page_token
 
@@ -496,7 +512,7 @@ class API:  # pylint: disable=too-many-public-methods
 
     @api_request
     @memoizer.cache_method(limit=ONE_MINUTE * CACHE_TTL)
-    def related_videos(self, video_id, page_token='', max_results=None):
+    def related_videos(self, video_id, page_token='', max_results=None, fields=None):
         parameters = {
             'relatedToVideoId': video_id,
             'part': 'snippet',
@@ -505,6 +521,9 @@ class API:  # pylint: disable=too-many-public-methods
             'hl': self.language,
             'maxResults': max_results or str(self.max_results)
         }
+
+        if fields:
+            parameters['fields'] = fields
 
         if page_token:
             parameters['pageToken'] = page_token
@@ -568,7 +587,7 @@ class API:  # pylint: disable=too-many-public-methods
 
     @api_request
     @memoizer.cache_method(limit=ONE_MINUTE * CACHE_TTL)
-    def most_popular(self, page_token=''):
+    def most_popular(self, page_token='', fields=None):
         parameters = {
             'part': 'snippet,status',
             'maxResults': str(self.max_results),
@@ -576,6 +595,10 @@ class API:  # pylint: disable=too-many-public-methods
             'hl': self.language,
             'chart': 'mostPopular'
         }
+
+        if fields:
+            parameters['fields'] = fields
+
         if page_token:
             parameters['pageToken'] = page_token
 
@@ -585,7 +608,8 @@ class API:  # pylint: disable=too-many-public-methods
     def video_id_to_playlist_item_id(self, playlist_id, video_id, page_token=''):
         payload = self.playlist_items(playlist_id=playlist_id,
                                       page_token=page_token,
-                                      max_results=50)
+                                      max_results=50,
+                                      fields='items(id,snippet(resourceId/videoId))')
 
         items = payload.get('items', [])
 

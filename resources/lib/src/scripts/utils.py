@@ -106,7 +106,8 @@ def add_related_video_to_playlist(context, video_id):
                 payload = context.api.related_videos(
                     video_id,
                     page_token=page_token,
-                    max_results=17
+                    max_results=17,
+                    fields='items(kind,id(videoId),snippet(title))'
                 )
                 result_items = payload.get('items', [])
                 page_token = payload.get('nextPageToken', '')

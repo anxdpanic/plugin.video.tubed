@@ -37,7 +37,11 @@ def invoke(context, page_token=''):
         xbmcplugin.endOfDirectory(context.handle, False)
         return
 
-    payload = context.api.playlist_items(upload_playlist, page_token=page_token)
+    payload = context.api.playlist_items(
+        upload_playlist,
+        page_token=page_token,
+        fields='items(kind,id,snippet(playlistId,resourceId/videoId))'
+    )
     list_items = list(video_generator(context, payload.get('items', [])))
 
     page_token = payload.get('nextPageToken')

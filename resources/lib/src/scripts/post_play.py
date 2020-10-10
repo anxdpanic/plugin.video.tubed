@@ -44,9 +44,9 @@ def invoke(context, video_id, position=-1):
         playlist = xbmc.PlayList(xbmc.PLAYLIST_VIDEO)
         if position > -1 and ((position + 1) == playlist.size()):
             start_position = position + 1
-            video_id = add_related_video_to_playlist(context, video_id)
+            related_id = add_related_video_to_playlist(context, video_id)
 
-            if video_id and start_position < playlist.size():
+            if related_id and start_position < playlist.size():
                 safe = wait_for_busy_dialog()
                 if safe:
                     xbmc.Player().play(item=playlist, startpos=start_position)
