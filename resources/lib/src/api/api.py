@@ -513,8 +513,9 @@ class API:  # pylint: disable=too-many-public-methods
 
     @api_request
     @memoizer.cache_method(limit=ONE_MINUTE * CACHE_TTL)
-    def search(self, query, search_type=None, event_type='', channel_id='',
-               order='relevance', safe_search='moderate', page_token=''):
+    def search(self, query, search_type=None, event_type='', channel_id='',  # pylint: disable=too-many-arguments
+               order='relevance', safe_search='moderate', page_token='', fields=None):
+
         parameters = {
             'q': query,
             'part': 'snippet',
@@ -559,6 +560,9 @@ class API:  # pylint: disable=too-many-public-methods
             if parameters.get(key) is not None:
                 parameters['type'] = 'video'
                 break
+
+        if fields:
+            parameters['fields'] = fields
 
         return self.api.search.get(parameters=parameters)
 

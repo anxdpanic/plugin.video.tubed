@@ -31,7 +31,7 @@ from .utils import get_sort_order
 DEFAULT_ORDER = 'relevance'
 
 
-def invoke(context, query='', page_token='', search_type='video', order=DEFAULT_ORDER):
+def invoke(context, query='', page_token='', search_type='video', order=DEFAULT_ORDER):  # pylint: disable=too-many-branches
     if search_type not in ['video', 'channel', 'playlist']:
         return
 
@@ -91,24 +91,45 @@ def invoke(context, query='', page_token='', search_type='video', order=DEFAULT_
 
         list_items.append(tuple(directory))
 
-    payload = context.api.search(query=query, page_token=page_token, search_type=search_type)
-
     addon_query = {
         'mode': str(MODES.SEARCH_QUERY),
         'query': quoted_query,
         'search_type': search_type
     }
 
+    payload = {}
+
     if search_type == 'video':
         xbmcplugin.setContent(context.handle, 'videos')
+        payload = context.api.search(
+            query=query,
+            page_token=page_token,
+            search_type=search_type
+        )
+
         list_items += list(video_generator(context, payload.get('items', [])))
         del addon_query['search_type']
 
     elif search_type == 'channel':
+        payload = context.api.search(
+            query=query,
+            page_token=page_token,
+            search_type=search_type,
+            fields='items(kind,id(channelId))'
+        )
         list_items += list(channel_generator(context, payload.get('items', [])))
 
     elif search_type == 'playlist':
+        payload = context.api.search(
+            query=query,
+            page_token=page_token,
+            search_type=search_type,
+            fields='items(kind,id(playlistId),snippet(title))'
+        )
         list_items += list(playlist_generator(context, payload.get('items', [])))
+
+    if not payload:
+        return
 
     page_token = payload.get('nextPageToken')
     if page_token:
