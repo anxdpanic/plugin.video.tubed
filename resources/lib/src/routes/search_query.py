@@ -104,7 +104,8 @@ def invoke(context, query='', page_token='', search_type='video', order=DEFAULT_
         payload = context.api.search(
             query=query,
             page_token=page_token,
-            search_type=search_type
+            search_type=search_type,
+            fields='items(kind,id(videoId))'
         )
 
         list_items += list(video_generator(context, payload.get('items', [])))

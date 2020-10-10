@@ -60,7 +60,12 @@ def invoke(context, page_token='', event_type='live', order=DEFAULT_ORDER):
 
         list_items.append(tuple(directory))
 
-    payload = context.api.live_events(event_type=event_type, order=order, page_token=page_token)
+    payload = context.api.live_events(
+        event_type=event_type,
+        order=order,
+        page_token=page_token,
+        fields='items(kind,id(videoId))'
+    )
     list_items += list(video_generator(context, payload.get('items', [])))
 
     page_token = payload.get('nextPageToken')
