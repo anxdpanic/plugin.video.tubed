@@ -784,3 +784,11 @@ msgstr ""
 msgctxt "#30192"
 msgid "How many favorite channels should be kept for each user"
 msgstr ""
+
+msgctxt "#30193"
+msgid "Play"
+msgstr ""
+
+msgctxt "#30194"
+msgid "Play from %s"
+msgstr ""

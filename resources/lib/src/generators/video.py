@@ -146,6 +146,9 @@ def video_generator(context, items, mine=False):  # pylint: disable=too-many-loc
                                          channel_id, channel_name, event_type, mine)
 
         payload.ListItem.addContextMenuItems(context_menus)
+
+        payload.ListItem.setProperty('video_id', video_id)
+
         yield tuple(payload)
 
 
@@ -203,6 +206,7 @@ def get_context_menu(context, item, video_id, video_title,
     context_menus = []
     kind = item.get('kind', '')
     snippet = item.get('snippet', {})
+    playlist_id = snippet.get('playlistId', '')
 
     if kind == 'youtube#searchResult' or event_type:
         query = deepcopy(context.query)
@@ -213,7 +217,7 @@ def get_context_menu(context, item, video_id, video_title,
         ]
 
     if logged_in:
-        if ((WATCH_LATER_PLAYLIST and WATCH_LATER_PLAYLIST != snippet.get('playlistId')) or
+        if ((WATCH_LATER_PLAYLIST and WATCH_LATER_PLAYLIST != playlist_id) or
                 not WATCH_LATER_PLAYLIST):
 
             watch_later_playlist = WATCH_LATER_PLAYLIST or 'watch_later_prompt'
@@ -279,6 +283,13 @@ def get_context_menu(context, item, video_id, video_title,
             (context.i18n('Play (Prompt for subtitles)'),
              'PlayMedia(plugin://%s/?mode=%s&video_id=%s&prompt_subtitles=true)' %
              (ADDON_ID, str(MODES.PLAY), video_id)),
+        ]
+
+    if playlist_id:
+        context_menus += [
+            (context.i18n('Play from %s') % bold(video_title),
+             'RunScript(%s,mode=%s&playlist_id=%s&video_id=%s)' %
+             (ADDON_ID, str(SCRIPT_MODES.PLAY), playlist_id, video_id)),
         ]
 
     return context_menus

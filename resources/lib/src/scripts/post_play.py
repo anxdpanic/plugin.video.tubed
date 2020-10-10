@@ -42,7 +42,7 @@ def invoke(context, video_id, position=-1):
 
     if context.settings.autoplay_related:
         playlist = xbmc.PlayList(xbmc.PLAYLIST_VIDEO)
-        if position > -1:
+        if position > -1 and ((position + 1) == playlist.size()):
             start_position = position + 1
             video_id = add_related_video_to_playlist(context, video_id)
 

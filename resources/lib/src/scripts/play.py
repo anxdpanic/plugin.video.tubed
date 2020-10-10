@@ -11,5 +11,5 @@
 from ..routes import play
 
 
-def invoke(context, video_id, prompt_subtitles=False):
-    play.invoke(context, video_id, prompt_subtitles)
+def invoke(context, video_id, playlist_id='', prompt_subtitles=False):
+    play.invoke(context, video_id, playlist_id, prompt_subtitles)
