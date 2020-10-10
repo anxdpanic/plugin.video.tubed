@@ -112,7 +112,12 @@ def add(context, video_id, playlist_id='', playlist_title=''):
 
     while not playlist_id and not playlist_title:
 
-        payload = context.api.playlists_of_channel('mine', page_token=page_token)
+        payload = context.api.playlists_of_channel(
+            'mine',
+            page_token=page_token,
+            fields='items(kind,id,snippet(title))'
+        )
+
         playlists = [(unescape(item['snippet'].get('title', '')), item['id'])
                      for item in payload['items']]
 
@@ -155,7 +160,8 @@ def add(context, video_id, playlist_id='', playlist_title=''):
         if not playlist_title:
             return None
 
-        payload = context.api.create_playlist(playlist_title)
+        payload = context.api.create_playlist(playlist_title,
+                                              fields='kind,id,snippet(title)')
         if payload.get('kind') != 'youtube#playlist':
             return None
 
@@ -165,7 +171,7 @@ def add(context, video_id, playlist_id='', playlist_title=''):
     if not playlist_id:
         return None
 
-    payload = context.api.add_to_playlist(playlist_id, video_id)
+    payload = context.api.add_to_playlist(playlist_id, video_id, fields='kind,snippet(title)')
     if payload.get('kind') != 'youtube#playlistItem':
         return None
 
@@ -222,16 +228,11 @@ def rename(context, playlist_id):
     if not playlist_title:
         return False
 
-    payload = context.api.rename_playlist(playlist_id, playlist_title)
-    try:
-        success = int(payload.get('error', {}).get('code', 204)) == 204
-    except ValueError:
-        success = False
+    payload = context.api.rename_playlist(playlist_id, playlist_title, fields='kind,snippet(title)')
+    if payload.get('kind', '') != 'youtube#playlist':
+        return False
 
-    if success:
-        return playlist_title
-
-    return False
+    return unescape(payload['snippet'].get('title', '')) or playlist_title
 
 
 def _get_title_from_user(context, default=''):
