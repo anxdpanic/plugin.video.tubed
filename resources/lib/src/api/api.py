@@ -212,16 +212,20 @@ class API:  # pylint: disable=too-many-public-methods
 
     @api_request
     @memoizer.cache_method(limit=ONE_MINUTE * CACHE_TTL)
-    def subscriptions(self, channel_id, order='alphabetical', page_token=''):
+    def subscriptions(self, channel_id, order='alphabetical', page_token='', fields=None):
         parameters = {
             'part': 'snippet',
             'maxResults': str(self.max_results),
             'order': order
         }
+
         if channel_id == 'mine':
             parameters['mine'] = 'true'
         else:
             parameters['channelId'] = channel_id
+
+        if fields:
+            parameters['fields'] = fields
 
         if page_token:
             parameters['pageToken'] = page_token
