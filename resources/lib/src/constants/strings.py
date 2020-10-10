@@ -140,4 +140,6 @@ STRINGS = {
     'Refresh': 30184,
     'Choose watch later playlist': 30187,
     'Added %s to the new watch later playlist %s': 30188,
+    'Play': 30193,
+    'Play from %s': 30194
 }

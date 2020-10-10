@@ -18,11 +18,79 @@ import xbmcplugin  # pylint: disable=import-error
 from ..api.utils import choose_subtitles
 from ..generators.data_cache import get_cached
 from ..generators.utils import get_thumbnail
+from ..generators.video import video_generator
 from ..items.stream import Stream
 from ..lib.pickle import write_pickled
 
 
-def invoke(context, video_id, prompt_subtitles=False):
+def invoke(context, video_id='', playlist_id='', prompt_subtitles=False):
+    if video_id and not playlist_id:
+        play_single(context, video_id, prompt_subtitles)
+        return
+
+    if playlist_id:
+        play_playlist(context, playlist_id, video_id)
+        return
+
+
+def play_playlist(context, playlist_id, video_id):
+    successful = create_playlist(context, playlist_id, video_id)
+    if successful:
+
+        playlist, start_position, start_item = successful
+        if context.handle != -1:
+            xbmcplugin.setResolvedUrl(context.handle, True, start_item)
+
+        else:  # called from script use Player().play()
+            xbmc.Player().play(item=playlist, startpos=start_position)
+
+
+def create_playlist(context, playlist_id, video_id):
+    playlist_items = []
+
+    page_token = True
+    while page_token:
+        if page_token is True:
+            page_token = ''
+
+        payload = context.api.playlist_items(playlist_id, page_token=page_token)
+
+        playlist_items.extend(payload.get('items', []))
+
+        page_token = payload.get('nextPageToken')
+        if not page_token:
+            break
+
+    if not playlist_items:
+        return None
+
+    list_items = []
+
+    # make lists of 50 for api requests that follow
+    groups = [playlist_items[index:index + 50] for index in range(0, len(playlist_items), 50)]
+    for group in groups:
+        list_items += list(video_generator(context, group))
+
+    if not list_items:
+        return None
+
+    start_position = 0
+    start_item = None
+
+    playlist = xbmc.PlayList(xbmc.PLAYLIST_VIDEO)
+    playlist.clear()
+
+    for index, (path, list_item, _) in enumerate(list_items):
+        if list_item.getProperty('video_id') == video_id:
+            start_position = index
+            start_item = list_item
+
+        playlist.add(path, list_item)
+
+    return playlist, start_position, start_item
+
+
+def play_single(context, video_id, prompt_subtitles=False):
     quality = context.api.quality(
         context.settings.video_quality,
         limit_30fps=context.settings.limit_to_30fps,
@@ -124,5 +192,5 @@ def invoke(context, video_id, prompt_subtitles=False):
     if context.handle != -1:
         xbmcplugin.setResolvedUrl(context.handle, True, stream.ListItem)
 
-    else:
+    else:  # called from script use Player().play()
         xbmc.Player().play(item=stream.ListItem.getPath(), listitem=stream.ListItem)
