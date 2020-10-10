@@ -20,7 +20,11 @@ from ..lib.url_utils import create_addon_path
 def invoke(context, category_id, page_token=''):
     xbmcplugin.setContent(context.handle, 'videos')
 
-    payload = context.api.video_category(category_id, page_token=page_token)
+    payload = context.api.video_category(
+        category_id,
+        page_token=page_token,
+        fields='items(kind,id)'
+    )
     list_items = list(video_generator(context, payload.get('items', [])))
 
     page_token = payload.get('nextPageToken')
