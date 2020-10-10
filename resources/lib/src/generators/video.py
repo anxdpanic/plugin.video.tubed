@@ -53,7 +53,7 @@ def video_generator(context, items, mine=False):  # pylint: disable=too-many-loc
         if not video_id:
             continue
 
-        video = cached_videos.get(video_id, item)
+        video = cached_videos.get(video_id)
 
         snippet = video.get('snippet', {})
         if not snippet:
@@ -246,7 +246,7 @@ def get_context_menu(context, item, video_id, video_title,
                  (ADDON_ID, str(SCRIPT_MODES.PLAYLIST), video_id)),
             ]
 
-            if mine and 'snippet' in item and 'playlistId' in item['snippet']:
+            if mine and snippet and playlist_id:
                 context_menus += [
                     (context.i18n('Remove from playlist'),
                      'RunScript(%s,mode=%s&action=remove&playlistitem_id=%s&video_title=%s)' %

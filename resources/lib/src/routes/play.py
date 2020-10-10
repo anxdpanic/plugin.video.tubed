@@ -53,7 +53,11 @@ def create_playlist(context, playlist_id, video_id):
         if page_token is True:
             page_token = ''
 
-        payload = context.api.playlist_items(playlist_id, page_token=page_token)
+        payload = context.api.playlist_items(
+            playlist_id,
+            page_token=page_token,
+            fields='items(kind,id,snippet(channelId,playlistId,resourceId/videoId))'
+        )
 
         playlist_items.extend(payload.get('items', []))
 

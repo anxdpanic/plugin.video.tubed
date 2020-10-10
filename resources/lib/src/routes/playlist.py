@@ -29,7 +29,11 @@ def invoke(context, playlist_id, page_token='', mine=False):
     if not mine and playlist_id in [WATCH_LATER_PLAYLIST, HISTORY_PLAYLIST]:
         mine = True
 
-    payload = context.api.playlist_items(playlist_id, page_token=page_token)
+    payload = context.api.playlist_items(
+        playlist_id,
+        page_token=page_token,
+        fields='items(kind,id,snippet(channelId,playlistId,resourceId/videoId))'
+    )
     list_items = list(video_generator(context, payload.get('items', []), mine=mine))
 
     page_token = payload.get('nextPageToken')
