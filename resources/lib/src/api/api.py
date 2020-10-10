@@ -234,7 +234,7 @@ class API:  # pylint: disable=too-many-public-methods
             parameters['channelId'] = channel_id
 
         if fields:
-            parameters['fields'] = fields
+            parameters['fields'] = fields + ',nextPageToken'
 
         if page_token:
             parameters['pageToken'] = page_token
@@ -254,7 +254,7 @@ class API:  # pylint: disable=too-many-public-methods
         }
 
         if fields:
-            parameters['fields'] = fields
+            parameters['fields'] = fields + ',nextPageToken'
 
         if page_token:
             parameters['pageToken'] = page_token
@@ -305,7 +305,7 @@ class API:  # pylint: disable=too-many-public-methods
             parameters['mine'] = 'true'
 
         if fields:
-            parameters['fields'] = fields
+            parameters['fields'] = fields + ',nextPageToken'
 
         if page_token:
             parameters['pageToken'] = page_token
@@ -322,7 +322,7 @@ class API:  # pylint: disable=too-many-public-methods
         }
 
         if fields:
-            parameters['fields'] = fields
+            parameters['fields'] = fields + ',nextPageToken'
 
         if page_token:
             parameters['pageToken'] = page_token
@@ -370,7 +370,7 @@ class API:  # pylint: disable=too-many-public-methods
         }
 
         if fields:
-            parameters['fields'] = fields
+            parameters['fields'] = fields + ',nextPageToken'
 
         if page_token:
             parameters['pageToken'] = page_token
@@ -481,7 +481,7 @@ class API:  # pylint: disable=too-many-public-methods
             parameters['channelId'] = channel_id
 
         if fields:
-            parameters['fields'] = fields
+            parameters['fields'] = fields + ',nextPageToken'
 
         if page_token:
             parameters['pageToken'] = page_token
@@ -503,7 +503,7 @@ class API:  # pylint: disable=too-many-public-methods
         }
 
         if fields:
-            parameters['fields'] = fields
+            parameters['fields'] = fields + ',nextPageToken'
 
         if page_token:
             parameters['pageToken'] = page_token
@@ -523,7 +523,7 @@ class API:  # pylint: disable=too-many-public-methods
         }
 
         if fields:
-            parameters['fields'] = fields
+            parameters['fields'] = fields + ',nextPageToken'
 
         if page_token:
             parameters['pageToken'] = page_token
@@ -581,7 +581,7 @@ class API:  # pylint: disable=too-many-public-methods
                 break
 
         if fields:
-            parameters['fields'] = fields
+            parameters['fields'] = fields + ',nextPageToken'
 
         return self.api.search.get(parameters=parameters)
 
@@ -597,7 +597,7 @@ class API:  # pylint: disable=too-many-public-methods
         }
 
         if fields:
-            parameters['fields'] = fields
+            parameters['fields'] = fields + ',nextPageToken'
 
         if page_token:
             parameters['pageToken'] = page_token
@@ -606,10 +606,12 @@ class API:  # pylint: disable=too-many-public-methods
 
     @memoizer.cache_method(limit=ONE_MINUTE * CACHE_TTL)
     def video_id_to_playlist_item_id(self, playlist_id, video_id, page_token=''):
-        payload = self.playlist_items(playlist_id=playlist_id,
-                                      page_token=page_token,
-                                      max_results=50,
-                                      fields='items(id,snippet(resourceId/videoId))')
+        payload = self.playlist_items(
+            playlist_id=playlist_id,
+            page_token=page_token,
+            max_results=50,
+            fields='items(id,snippet(resourceId/videoId)),nextPageToken'
+        )
 
         items = payload.get('items', [])
 
