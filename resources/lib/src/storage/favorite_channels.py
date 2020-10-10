@@ -18,7 +18,6 @@ from ..lib.sql_storage import Storage
 from ..lib.time import now
 from .users import UserStorage
 
-
 # pylint: disable=arguments-differ
 
 
