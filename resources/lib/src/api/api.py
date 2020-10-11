@@ -86,7 +86,8 @@ class API:  # pylint: disable=too-many-public-methods
 
         return self.api.i18n_languages.get({
             'part': 'snippet',
-            'hl': self.language
+            'hl': self.language,
+            'fields': 'items(id,snippet(name,hl))'
         })
 
     @api_request
@@ -95,7 +96,8 @@ class API:  # pylint: disable=too-many-public-methods
 
         return self.api.i18n_regions.get({
             'part': 'snippet',
-            'hl': self.language
+            'hl': self.language,
+            'fields': 'items(id,snippet(name,gl))'
         })
 
     @api_request
