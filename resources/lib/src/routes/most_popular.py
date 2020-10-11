@@ -17,11 +17,12 @@ from ..lib.sorting import set_video_sort_methods
 from ..lib.url_utils import create_addon_path
 
 
-def invoke(context, page_token=''):
+def invoke(context, page_token='', region_code=''):
     xbmcplugin.setContent(context.handle, 'videos')
 
     payload = context.api.most_popular(
         page_token=page_token,
+        region_code=region_code,
         fields='items(kind,id)'
     )
     list_items = list(video_generator(context, payload.get('items', [])))

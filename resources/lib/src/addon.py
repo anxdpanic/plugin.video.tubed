@@ -47,10 +47,16 @@ def _manage_users():
     manage_users.invoke(CONTEXT)
 
 
-@router.route(MODES.MOST_POPULAR, kwargs=['page_token'])
-def _most_popular(page_token=''):
+@router.route(MODES.MOST_POPULAR, kwargs=['page_token', 'region_code'])
+def _most_popular(page_token='', region_code=''):
     from .routes import most_popular
-    most_popular.invoke(CONTEXT, page_token=page_token)
+    most_popular.invoke(CONTEXT, page_token=page_token, region_code=region_code)
+
+
+@router.route(MODES.MOST_POPULAR_REGIONALLY)
+def _most_popular_regionally():
+    from .routes import most_popular_regionally
+    most_popular_regionally.invoke(CONTEXT)
 
 
 @router.route(MODES.LIKED_VIDEOS, kwargs=['page_token'])

@@ -50,6 +50,18 @@ def invoke(context):
     items.append(tuple(directory))
 
     directory = Directory(
+        label=context.i18n('Most Popular Regionally'),
+        path=create_addon_path(parameters={
+            'mode': str(MODES.MOST_POPULAR_REGIONALLY)
+        })
+    )
+    directory.ListItem.setArt({
+        'icon': 'DefaultCountry.png',
+        'thumb': 'DefaultCountry.png'
+    })
+    items.append(tuple(directory))
+
+    directory = Directory(
         label=context.i18n('Categories'),
         path=create_addon_path(parameters={
             'mode': str(MODES.CATEGORIES)
