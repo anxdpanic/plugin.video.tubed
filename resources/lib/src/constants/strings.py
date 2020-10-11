@@ -143,4 +143,6 @@ STRINGS = {
     'Play': 30193,
     'Play from %s': 30194,
     'Most Popular Regionally': 30195,
+    'Hide %s': 30198,
+    '%s was hidden from the main menu': 30199,
 }

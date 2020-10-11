@@ -216,3 +216,9 @@ class Settings:  # pylint: disable=too-many-public-methods
     @property
     def favorite_channel_maximum(self):
         return self.get_int('favorite.channel.items')
+
+    def show_main_menu_item(self, item, value=None):
+        if not isinstance(value, bool):
+            return self.get_bool('main.menu.%s' % item)
+
+        return self.set_bool('main.menu.%s' % item, value)

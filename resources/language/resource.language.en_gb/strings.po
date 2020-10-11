@@ -796,3 +796,19 @@ msgstr ""
 msgctxt "#30195"
 msgid "Most Popular Regionally"
 msgstr ""
+
+msgctxt "#30196"
+msgid "Main Menu"
+msgstr ""
+
+msgctxt "#30197"
+msgid "Show/Hide this item on the main menu"
+msgstr ""
+
+msgctxt "#30198"
+msgid "Hide %s"
+msgstr ""
+
+msgctxt "#30199"
+msgid "%s was hidden from the main menu"
+msgstr ""
