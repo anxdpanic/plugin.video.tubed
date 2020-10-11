@@ -72,6 +72,12 @@ def _rate(video_id, video_title=''):
     rate.invoke(CONTEXT, video_id, video_title)
 
 
+@router.route(SCRIPT_MODES.HIDE_MENU, args=['setting_id', 'menu_title'])
+def _hide_menu(setting_id, menu_title):
+    from .scripts import hide_menu
+    hide_menu.invoke(CONTEXT, setting_id, menu_title)
+
+
 @router.route(SCRIPT_MODES.CONFIGURE_PLAYLISTS,
               args=['action', 'playlist_type', 'playlist_id'], kwargs=['playlist_title'])
 def _configure_playlists(action, playlist_type, playlist_id, playlist_title=''):

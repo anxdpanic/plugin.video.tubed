@@ -60,6 +60,90 @@
                 </setting>
             </group>
         </category>
+        <category id="main.menu" label="30196" help="">
+            <group id="1" label="">
+                <setting id="main.menu.sign.in" type="boolean" label="30011" help="30197">
+                    <level>0</level>
+                    <default>true</default>
+                    <control type="toggle"/>
+                </setting>
+                <setting id="main.menu.most.popular" type="boolean" label="30000" help="30197">
+                    <level>0</level>
+                    <default>true</default>
+                    <control type="toggle"/>
+                </setting>
+                <setting id="main.menu.most.popular.regionally" type="boolean" label="30195" help="30197">
+                    <level>0</level>
+                    <default>true</default>
+                    <control type="toggle"/>
+                </setting>
+                <setting id="main.menu.categories" type="boolean" label="30025" help="30197">
+                    <level>0</level>
+                    <default>true</default>
+                    <control type="toggle"/>
+                </setting>
+                <setting id="main.menu.my.channel" type="boolean" label="30004" help="30197">
+                    <level>0</level>
+                    <default>true</default>
+                    <control type="toggle"/>
+                </setting>
+                <setting id="main.menu.liked.videos" type="boolean" label="30005" help="30197">
+                    <level>0</level>
+                    <default>true</default>
+                    <control type="toggle"/>
+                </setting>
+                <setting id="main.menu.disliked.videos" type="boolean" label="30006" help="30197">
+                    <level>0</level>
+                    <default>true</default>
+                    <control type="toggle"/>
+                </setting>
+                <setting id="main.menu.history" type="boolean" label="30161" help="30197">
+                    <level>0</level>
+                    <default>true</default>
+                    <control type="toggle"/>
+                </setting>
+                <setting id="main.menu.watch.later" type="boolean" label="30046" help="30197">
+                    <level>0</level>
+                    <default>true</default>
+                    <control type="toggle"/>
+                </setting>
+                <setting id="main.menu.playlists" type="boolean" label="30007" help="30197">
+                    <level>0</level>
+                    <default>true</default>
+                    <control type="toggle"/>
+                </setting>
+                <setting id="main.menu.subscriptions" type="boolean" label="30009" help="30197">
+                    <level>0</level>
+                    <default>true</default>
+                    <control type="toggle"/>
+                </setting>
+                <setting id="main.menu.favorite.channels" type="boolean" label="30171" help="30197">
+                    <level>0</level>
+                    <default>true</default>
+                    <control type="toggle"/>
+                </setting>
+                <setting id="main.menu.live" type="boolean" label="30010" help="30197">
+                    <level>0</level>
+                    <default>true</default>
+                    <control type="toggle"/>
+                </setting>
+                <setting id="main.menu.search" type="boolean" label="30003" help="30197">
+                    <level>0</level>
+                    <default>true</default>
+                    <control type="toggle"/>
+                </setting>
+                <setting id="main.menu.sign.out" type="boolean" label="30012" help="30197">
+                    <level>0</level>
+                    <default>true</default>
+                    <control type="toggle"/>
+                </setting>
+                <setting id="main.menu.manage.users" type="boolean" label="30013" help="30197">
+                    <level>0</level>
+                    <default>true</default>
+                    <control type="toggle"/>
+                </setting>
+            </group>
+        </category>
         <category id="playback" label="30045" help="">
             <group id="1" label="">
                 <setting id="quality" type="integer" label="30029" help="30030">
