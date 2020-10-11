@@ -589,11 +589,11 @@ class API:  # pylint: disable=too-many-public-methods
 
     @api_request
     @memoizer.cache_method(limit=ONE_MINUTE * CACHE_TTL)
-    def most_popular(self, page_token='', fields=None):
+    def most_popular(self, page_token='', region_code='', fields=None):
         parameters = {
             'part': 'snippet,status',
             'maxResults': str(self.max_results),
-            'regionCode': self.region,
+            'regionCode': region_code or self.region,
             'hl': self.language,
             'chart': 'mostPopular'
         }
