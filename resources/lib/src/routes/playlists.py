@@ -14,6 +14,7 @@ from ..constants import MODES
 from ..generators.playlist import playlist_generator
 from ..items.directory import Directory
 from ..items.next_page import NextPage
+from ..items.search_query import SearchQuery
 from ..lib.txt_fmt import bold
 from ..lib.url_utils import create_addon_path
 
@@ -29,6 +30,15 @@ def invoke(context, channel_id, page_token=''):
     list_items = []
 
     if not page_token:
+        directory = SearchQuery(
+            label=bold(context.i18n('Search')),
+            path=create_addon_path(parameters={
+                'mode': str(MODES.SEARCH_QUERY),
+                'channel_id': channel_id
+            })
+        )
+        list_items.append(tuple(directory))
+
         if upload_playlist:
             directory = Directory(
                 label=bold(context.i18n('Uploads')),
