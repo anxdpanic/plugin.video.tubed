@@ -126,10 +126,11 @@ def _search():
     search.invoke(CONTEXT)
 
 
-@router.route(MODES.SEARCH_QUERY, kwargs=['page_token', 'query', 'search_type', 'order'])
-def _search_query(query='', page_token='', search_type='video', order='relevance'):
+@router.route(MODES.SEARCH_QUERY, kwargs=['page_token', 'query', 'search_type',
+                                          'order', 'channel_id'])
+def _search_query(query='', page_token='', search_type='video', order='relevance', channel_id=None):
     from .routes import search_query
-    search_query.invoke(CONTEXT, query, page_token, search_type, order)
+    search_query.invoke(CONTEXT, query, page_token, search_type, order, channel_id)
 
 
 @router.route(MODES.MY_CHANNEL, kwargs=['page_token'])
