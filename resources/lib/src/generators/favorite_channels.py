@@ -30,8 +30,11 @@ def favorite_channels_generator(context, channel_ids):
 
     for channel_id in channel_ids:
 
-        channel = cached_channels.get(channel_id)
+        channel = cached_channels.get(channel_id, {})
+
         snippet = channel.get('snippet', {})
+        if not snippet:
+            continue
 
         channel_name = unescape(snippet.get('title', ''))
 

@@ -53,8 +53,11 @@ def playlist_generator(context, items):
         if not playlist_id:
             continue
 
-        playlist = cached_playlists.get(playlist_id)
+        playlist = cached_playlists.get(playlist_id, {})
+
         snippet = playlist.get('snippet', {})
+        if not snippet:
+            continue
 
         channel_id = snippet.get('channelId', '')
         channel_name = unescape(snippet.get('channelTitle', ''))

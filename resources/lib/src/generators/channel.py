@@ -38,8 +38,11 @@ def channel_generator(context, items):
         if not channel_id:
             continue
 
-        channel = cached_channels.get(channel_id)
+        channel = cached_channels.get(channel_id, {})
+
         snippet = channel.get('snippet', {})
+        if not snippet:
+            continue
 
         channel_name = unescape(snippet.get('channelTitle', ''))
 
