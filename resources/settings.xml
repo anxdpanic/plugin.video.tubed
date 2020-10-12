@@ -242,11 +242,11 @@
             <group id="1" label="30113">
                 <setting id="cache.ttl.data" type="integer" label="30103" help="30115">
                     <level>0</level>
-                    <default>4</default>
+                    <default>6</default>
                     <constraints>
                         <minimum>1</minimum>
                         <step>1</step>
-                        <maximum>8</maximum>
+                        <maximum>16</maximum>
                     </constraints>
                     <control type="slider" format="integer">
                         <popup>false</popup>
