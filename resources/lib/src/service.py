@@ -12,10 +12,13 @@ import xbmc  # pylint: disable=import-error
 import xbmcgui  # pylint: disable=import-error
 
 from .lib.context import Context
+from .lib.memoizer import reset_cache
 from .lib.playback import CallbackPlayer
 
 
 def invoke():
+    reset_cache()
+
     sleep_time = 10
 
     context = Context()

@@ -53,7 +53,7 @@ def video_generator(context, items, mine=False):  # pylint: disable=too-many-loc
         if not video_id:
             continue
 
-        video = cached_videos.get(video_id)
+        video = cached_videos.get(video_id, {})
 
         snippet = video.get('snippet', {})
         if not snippet:

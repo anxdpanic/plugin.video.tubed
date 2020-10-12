@@ -30,14 +30,15 @@ def invoke(context, channel_id, page_token=''):
     list_items = []
 
     if not page_token:
-        directory = SearchQuery(
-            label=bold(context.i18n('Search')),
-            path=create_addon_path(parameters={
-                'mode': str(MODES.SEARCH_QUERY),
-                'channel_id': channel_id
-            })
-        )
-        list_items.append(tuple(directory))
+        if channel_id != 'mine':
+            directory = SearchQuery(
+                label=bold(context.i18n('Search')),
+                path=create_addon_path(parameters={
+                    'mode': str(MODES.SEARCH_QUERY),
+                    'channel_id': channel_id
+                })
+            )
+            list_items.append(tuple(directory))
 
         if upload_playlist:
             directory = Directory(
