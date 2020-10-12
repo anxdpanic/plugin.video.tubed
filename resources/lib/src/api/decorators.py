@@ -25,6 +25,12 @@ LOG = Log('api', __file__)
 def api_request(func):
     @wraps(func)
     def wrapper(*args, **kwargs):
+        if len(args) > 0 and not func.__name__.endswith('refresh_token'):
+            try:
+                args[0].refresh_token()
+            except AttributeError:
+                pass
+
         uuid = ''
 
         if CONTEXT.settings.log_api_requests:
