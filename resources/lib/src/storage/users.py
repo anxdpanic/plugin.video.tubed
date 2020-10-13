@@ -29,6 +29,7 @@ class UserStorage:
         <token_expiry>-1</token_expiry>
         <history_playlist></history_playlist>
         <watchlater_playlist></watchlater_playlist>
+        <avatar></avatar>
     </user>
 </users>
         '''
@@ -43,6 +44,7 @@ class UserStorage:
         <token_expiry>-1</token_expiry>
         <history_playlist></history_playlist>
         <watchlater_playlist></watchlater_playlist>
+        <avatar></avatar>
     </user>
         '''
 
@@ -71,30 +73,28 @@ class UserStorage:
             try:
                 uuid = user.find('uuid').text
                 name = user.find('name').text
-                refresh_token = user.find('refresh_token').text
-                access_token = user.find('access_token').text
-                token_expiry = user.find('token_expiry').text
+
+                avatar = self._get_elements_text(user, 'avatar')
+
+                refresh_token = self._get_elements_text(user, 'refresh_token')
+                access_token = self._get_elements_text(user, 'access_token')
+                token_expiry = self._get_elements_text(user, 'token_expiry', -1)
+
                 current = user.attrib.get('current', 'false').lower() == 'true'
 
-                history_playlist = ''
-                element = user.find('history_playlist')
-                if hasattr(element, 'text'):
-                    history_playlist = element.text
-
-                watchlater_playlist = ''
-                element = user.find('watchlater_playlist')
-                if hasattr(element, 'text'):
-                    watchlater_playlist = element.text
+                history_playlist = self._get_elements_text(user, 'history_playlist')
+                watchlater_playlist = self._get_elements_text(user, 'watchlater_playlist')
 
                 payload.append({
                     'uuid': uuid,
                     'name': name,
                     'current': current,
-                    'refresh_token': refresh_token or '',
-                    'access_token': access_token or '',
-                    'token_expiry': token_expiry or -1,
+                    'refresh_token': refresh_token,
+                    'access_token': access_token,
+                    'token_expiry': token_expiry,
                     'history_playlist': history_playlist,
                     'watchlater_playlist': watchlater_playlist,
+                    'avatar': avatar,
                 })
 
             except:  # pylint: disable=bare-except
@@ -110,6 +110,14 @@ class UserStorage:
     @username.setter
     def username(self, value):
         self._current_user_set('name', value)
+
+    @property
+    def avatar(self):
+        return self._current_user_get('avatar', '')
+
+    @avatar.setter
+    def avatar(self, value):
+        self._current_user_set('avatar', value)
 
     @property
     def uuid(self):
@@ -274,3 +282,13 @@ class UserStorage:
     def _reset(self):
         self._users = None
         self._user = None
+
+    @staticmethod
+    def _get_elements_text(user, element_name, default=''):
+        payload = default
+
+        element = user.find(element_name)
+        if hasattr(element, 'text'):
+            payload = element.text
+
+        return payload
