@@ -291,4 +291,7 @@ class UserStorage:
         if hasattr(element, 'text'):
             payload = element.text
 
+        if payload is None:
+            payload = default
+
         return payload

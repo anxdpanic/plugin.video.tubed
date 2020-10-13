@@ -25,7 +25,6 @@ from ..storage.users import UserStorage
 from .decorators import api_request
 
 CACHE_TTL = xbmcaddon.Addon(ADDON_ID).getSettingInt('cache.ttl.function')
-USERS = UserStorage()
 
 
 class API:  # pylint: disable=too-many-public-methods
@@ -35,13 +34,14 @@ class API:  # pylint: disable=too-many-public-methods
         self._region = region
         self._max_results = 50
 
+        self.users = UserStorage()
         self._api = tubed_api
 
         self._api.CLIENT_ID = str(CREDENTIALS.ID)
         self._api.CLIENT_SECRET = str(CREDENTIALS.SECRET)
         self._api.API_KEY = str(CREDENTIALS.KEY)
 
-        self._api.ACCESS_TOKEN = USERS.access_token
+        self._api.ACCESS_TOKEN = self.users.access_token
 
         self._usher = usher
 
@@ -54,7 +54,7 @@ class API:  # pylint: disable=too-many-public-methods
     @property
     def logged_in(self):
         self.refresh_token()
-        return USERS.access_token and not USERS.token_expired
+        return self.users.access_token and not self.users.token_expired
 
     @property
     def language(self):
@@ -643,21 +643,21 @@ class API:  # pylint: disable=too-many-public-methods
 
     @api_request
     def refresh_token(self):
-        if USERS.access_token and USERS.token_expired:
-            access_token, expiry = self.client.refresh_token(USERS.refresh_token)
-            USERS.access_token = access_token
-            USERS.token_expiry = time.time() + int(expiry)
-            USERS.save()
+        if self.users.access_token and self.users.token_expired:
+            access_token, expiry = self.client.refresh_token(self.users.refresh_token)
+            self.users.access_token = access_token
+            self.users.token_expiry = time.time() + int(expiry)
+            self.users.save()
             self.refresh_client()
 
     @api_request
     def revoke_token(self):
-        if USERS.refresh_token:
-            self.client.revoke_token(USERS.refresh_token)
-            USERS.access_token = ''
-            USERS.refresh_token = ''
-            USERS.token_expiry = -1
-            USERS.save()
+        if self.users.refresh_token:
+            self.client.revoke_token(self.users.refresh_token)
+            self.users.access_token = ''
+            self.users.refresh_token = ''
+            self.users.token_expiry = -1
+            self.users.save()
             self.refresh_client()
 
     @api_request
@@ -676,10 +676,10 @@ class API:  # pylint: disable=too-many-public-methods
             if not access_token and not refresh_token:
                 token_expiry = -1
 
-            USERS.access_token = access_token
-            USERS.refresh_token = refresh_token
-            USERS.token_expiry = token_expiry
-            USERS.save()
+            self.users.access_token = access_token
+            self.users.refresh_token = refresh_token
+            self.users.token_expiry = token_expiry
+            self.users.save()
             self.refresh_client()
             return True
 
@@ -689,8 +689,8 @@ class API:  # pylint: disable=too-many-public-methods
         return data
 
     def refresh_client(self):
-        USERS.load()
-        self._api.ACCESS_TOKEN = USERS.access_token
+        self.users.load()
+        self._api.ACCESS_TOKEN = self.users.access_token
         self.client = oauth.Client()
         memoizer.reset_cache()
 

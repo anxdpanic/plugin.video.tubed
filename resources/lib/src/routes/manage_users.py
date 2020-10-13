@@ -17,29 +17,30 @@ from ..lib.txt_fmt import bold
 from ..lib.txt_fmt import color
 from ..storage.users import UserStorage
 
-USERS = UserStorage()
-
 
 def invoke(context):  # pylint: disable=too-many-branches,too-many-statements
+    users = UserStorage()
+
     reference = []
     choices = []
 
-    if not USERS.avatar and USERS.access_token:
+    if not users.avatar and users.access_token:
         _payload = context.api.channels('mine', fields='items(snippet(thumbnails))')
         _items = _payload.get('items', [{}])
         _snippet = _items[0].get('snippet', {})
         thumbnail = get_thumbnail(_snippet)
         if thumbnail:
-            USERS.avatar = thumbnail
-            USERS.save()
+            users.avatar = thumbnail
+            users.save()
+            users.load()
 
-    for user in USERS.users:
+    for user in users.users:
         reference.append(user)
 
         name = user['name']
         avatar = user['avatar'] or 'DefaultUser.png'
 
-        if user['uuid'] == USERS.uuid:
+        if user['uuid'] == users.uuid:
             name = bold(color(name, 'lightgreen'))
 
         if user.get('access_token'):
@@ -106,8 +107,8 @@ def invoke(context):  # pylint: disable=too-many-branches,too-many-statements
     is_user = result <= (len(choices) - 1)
     if is_user:
         choice = reference[result]
-        USERS.change_current(choice['uuid'])
-        USERS.save()
+        users.change_current(choice['uuid'])
+        users.save()
 
     else:
         choice = action_reference[result - len(reference)]
@@ -124,8 +125,8 @@ def invoke(context):  # pylint: disable=too-many-branches,too-many-statements
                 if not new_username:
                     return
 
-                USERS.add(new_username)
-                USERS.save()
+                users.add(new_username)
+                users.save()
 
         elif choice == 'rename':
             result = xbmcgui.Dialog().select(context.i18n('Rename user...'),
@@ -145,8 +146,8 @@ def invoke(context):  # pylint: disable=too-many-branches,too-many-statements
                     return
 
                 choice = reference[result]
-                USERS.rename(choice['uuid'], new_username)
-                USERS.save()
+                users.rename(choice['uuid'], new_username)
+                users.save()
 
         elif choice == 'avatar':
             result = xbmcgui.Dialog().select(context.i18n('Change avatar...'),
@@ -161,8 +162,8 @@ def invoke(context):  # pylint: disable=too-many-branches,too-many-statements
                 useThumbs=True
             )
             if file:
-                USERS.avatar = file
-                USERS.save()
+                users.avatar = file
+                users.save()
 
         elif choice == 'remove':
             result = xbmcgui.Dialog().select(context.i18n('Remove user...'),
@@ -171,8 +172,8 @@ def invoke(context):  # pylint: disable=too-many-branches,too-many-statements
                 return
 
             choice = reference[result]
-            USERS.remove(choice['uuid'])
-            USERS.save()
+            users.remove(choice['uuid'])
+            users.save()
 
     reset_cache()
     xbmc.executebuiltin('Container.Refresh')

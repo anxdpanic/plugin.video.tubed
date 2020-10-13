@@ -12,9 +12,6 @@ import xbmc  # pylint: disable=import-error
 import xbmcgui  # pylint: disable=import-error
 
 from ..lib.txt_fmt import bold
-from ..storage.users import UserStorage
-
-USERS = UserStorage()
 
 
 def invoke(context):
