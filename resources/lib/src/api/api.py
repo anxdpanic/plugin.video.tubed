@@ -347,7 +347,7 @@ class API:  # pylint: disable=too-many-public-methods
 
     @api_request
     @memoizer.cache_method(limit=ONE_MINUTE * CACHE_TTL)
-    def channels(self, channel_id):
+    def channels(self, channel_id, fields=None):
         if isinstance(channel_id, list):
             channel_id = ','.join(channel_id)
 
@@ -359,6 +359,9 @@ class API:  # pylint: disable=too-many-public-methods
             parameters['id'] = channel_id
         else:
             parameters['mine'] = 'true'
+
+        if fields:
+            parameters['fields'] = fields
 
         return self.api.channels.get(parameters=parameters)
 

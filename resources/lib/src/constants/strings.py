@@ -145,4 +145,9 @@ STRINGS = {
     'Most Popular Regionally': 30195,
     'Hide %s': 30198,
     '%s was hidden from the main menu': 30199,
+    'User is authenticated': 30200,
+    'User is not authenticated': 30201,
+    'Create a new user': 30202,
+    'Rename a current user': 30203,
+    'Remove a current user': 30204,
 }

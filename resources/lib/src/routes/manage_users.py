@@ -11,6 +11,7 @@
 import xbmc  # pylint: disable=import-error
 import xbmcgui  # pylint: disable=import-error
 
+from ..generators.utils import get_thumbnail
 from ..lib.memoizer import reset_cache
 from ..lib.txt_fmt import bold
 from ..lib.txt_fmt import color
@@ -23,30 +24,71 @@ def invoke(context):
     reference = []
     choices = []
 
+    if not USERS.avatar and USERS.access_token:
+        _payload = context.api.channels('mine', fields='items(snippet(thumbnails))')
+        _items = _payload.get('items', [{}])
+        _snippet = _items[0].get('snippet', {})
+        thumbnail = get_thumbnail(_snippet)
+        if thumbnail:
+            USERS.avatar = thumbnail
+            USERS.save()
+
     for user in USERS.users:
         reference.append(user)
 
         name = user['name']
+        avatar = user['avatar'] or 'DefaultUser.png'
+
         if user['uuid'] == USERS.uuid:
             name = bold(color(name, 'lightgreen'))
 
-        choices.append(name)
+        if user.get('access_token'):
+            authenticated_message = context.i18n('User is authenticated')
+        else:
+            authenticated_message = context.i18n('User is not authenticated')
+
+        item = xbmcgui.ListItem(label=name, label2=authenticated_message)
+        item.setArt({
+            'icon': avatar,
+            'thumb': avatar,
+        })
+
+        choices.append(item)
 
     action_count = 2
     action_reference = []
+    default_action_thumbnail = 'DefaultProgram.png'
 
-    choices.append(bold(context.i18n('New user...')))
+    item = xbmcgui.ListItem(label=bold(context.i18n('New user...')),
+                            label2=context.i18n('Create a new user'))
+    item.setArt({
+        'icon': default_action_thumbnail,
+        'thumb': default_action_thumbnail,
+    })
+    choices.append(item)
     action_reference.append('new')
 
-    choices.append(bold(context.i18n('Rename user...')))
+    item = xbmcgui.ListItem(label=bold(context.i18n('Rename user...')),
+                            label2=context.i18n('Rename a current user'))
+    item.setArt({
+        'icon': default_action_thumbnail,
+        'thumb': default_action_thumbnail,
+    })
+    choices.append(item)
     action_reference.append('rename')
 
     if len(reference) > 1:
         action_count = 3
-        choices.append(bold(context.i18n('Remove user...')))
+        item = xbmcgui.ListItem(label=bold(context.i18n('Remove user...')),
+                                label2=context.i18n('Remove a current user'))
+        item.setArt({
+            'icon': 'DefaultIconWarning.png',
+            'thumb': 'DefaultIconWarning.png',
+        })
+        choices.append(item)
         action_reference.append('remove')
 
-    result = xbmcgui.Dialog().select(context.i18n('Manage Users'), choices)
+    result = xbmcgui.Dialog().select(context.i18n('Manage Users'), choices, useDetails=True)
     if result == -1:
         return
 
@@ -77,7 +119,8 @@ def invoke(context):
                 USERS.save()
 
         elif choice == 'rename':
-            result = xbmcgui.Dialog().select(context.i18n('Rename user...'), choices)
+            result = xbmcgui.Dialog().select(context.i18n('Rename user...'),
+                                             choices, useDetails=True)
             if result == -1:
                 return
 
@@ -97,7 +140,8 @@ def invoke(context):
                 USERS.save()
 
         elif choice == 'remove':
-            result = xbmcgui.Dialog().select(context.i18n('Remove user...'), choices)
+            result = xbmcgui.Dialog().select(context.i18n('Remove user...'),
+                                             choices, useDetails=True)
             if result == -1:
                 return
 
