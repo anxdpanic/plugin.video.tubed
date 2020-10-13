@@ -150,4 +150,7 @@ STRINGS = {
     'Create a new user': 30202,
     'Rename a current user': 30203,
     'Remove a current user': 30204,
+    'Change avatar...': 30205,
+    'Change a current user\'s avatar': 30206,
+    'Choose a new avatar': 30207,
 }

@@ -835,3 +835,15 @@ msgstr ""
 msgctxt "#30204"
 msgid "Remove a current user"
 msgstr ""
+
+msgctxt "#30205"
+msgid "Change avatar..."
+msgstr ""
+
+msgctxt "#30206"
+msgid "Change a current user's avatar"
+msgstr ""
+
+msgctxt "#30207"
+msgid "Choose a new avatar"
+msgstr ""

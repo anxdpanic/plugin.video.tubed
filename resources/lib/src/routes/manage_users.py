@@ -55,7 +55,7 @@ def invoke(context):
 
         choices.append(item)
 
-    action_count = 2
+    action_count = 3
     action_reference = []
     default_action_thumbnail = 'DefaultProgram.png'
 
@@ -77,8 +77,17 @@ def invoke(context):
     choices.append(item)
     action_reference.append('rename')
 
+    item = xbmcgui.ListItem(label=bold(context.i18n('Change avatar...')),
+                            label2=context.i18n('Change a current user\'s avatar'))
+    item.setArt({
+        'icon': 'DefaultPicture.png',
+        'thumb': 'DefaultPicture.png',
+    })
+    choices.append(item)
+    action_reference.append('avatar')
+
     if len(reference) > 1:
-        action_count = 3
+        action_count += 1
         item = xbmcgui.ListItem(label=bold(context.i18n('Remove user...')),
                                 label2=context.i18n('Remove a current user'))
         item.setArt({
@@ -137,6 +146,22 @@ def invoke(context):
 
                 choice = reference[result]
                 USERS.rename(choice['uuid'], new_username)
+                USERS.save()
+
+        elif choice == 'avatar':
+            result = xbmcgui.Dialog().select(context.i18n('Change avatar...'),
+                                             choices, useDetails=True)
+            if result == -1:
+                return
+
+            file = xbmcgui.Dialog().browseSingle(
+                2,
+                context.i18n('Choose a new avatar'),
+                'local',
+                useThumbs=True
+            )
+            if file:
+                USERS.avatar = file
                 USERS.save()
 
         elif choice == 'remove':
