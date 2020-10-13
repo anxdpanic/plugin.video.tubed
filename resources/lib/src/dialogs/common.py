@@ -10,8 +10,8 @@
 
 import os
 
-import xbmcgui  # pylint: disable=import-error
 import pyxbmct.addonwindow as pyxbmct  # pylint: disable=import-error
+import xbmcgui  # pylint: disable=import-error
 
 from . import DialogActiveException
 

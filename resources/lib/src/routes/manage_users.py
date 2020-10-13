@@ -20,7 +20,7 @@ from ..storage.users import UserStorage
 USERS = UserStorage()
 
 
-def invoke(context):
+def invoke(context):  # pylint: disable=too-many-branches,too-many-statements
     reference = []
     choices = []
 
