@@ -26,6 +26,7 @@ def invoke(context):  # pylint: disable=too-many-branches,too-many-statements
     show_main_menu_item = context.settings.show_main_menu_item
 
     items = []
+    users = None
 
     logged_in = context.api.logged_in
 
@@ -143,7 +144,6 @@ def invoke(context):  # pylint: disable=too-many-branches,too-many-statements
             directory.ListItem.addContextMenuItems(context_menus)
             items.append(tuple(directory))
 
-        users = None
         if show_main_menu_item('history'):
             users = UserStorage()
             if users.history_playlist:
@@ -288,6 +288,9 @@ def invoke(context):  # pylint: disable=too-many-branches,too-many-statements
             items.append(tuple(action))
 
     if show_main_menu_item('manage.users'):
+        if not users:
+            users = UserStorage()
+
         label = context.i18n('Manage Users')
         action = Action(
             label=label,
@@ -296,8 +299,8 @@ def invoke(context):  # pylint: disable=too-many-branches,too-many-statements
             })
         )
         action.ListItem.setArt({
-            'icon': 'DefaultUser.png',
-            'thumb': 'DefaultUser.png'
+            'icon': users.avatar or 'DefaultUser.png',
+            'thumb': users.avatar or 'DefaultUser.png'
         })
         context_menus = _context_menu_hide_menu_item(context, 'manage.users', label)
         action.ListItem.addContextMenuItems(context_menus)
