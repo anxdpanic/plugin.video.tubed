@@ -13,7 +13,23 @@ import os
 import pyxbmct.addonwindow as pyxbmct  # pylint: disable=import-error
 import xbmcgui  # pylint: disable=import-error
 
+from ..constants import ADDON_ID
 from . import DialogActiveException
+
+PROPERTY_ACTIVE = '-'.join([ADDON_ID, 'dialog_active'])
+
+
+class AddonFullWindow(pyxbmct.AddonFullWindow):
+
+    def __enter__(self):
+        if self.window.getProperty(PROPERTY_ACTIVE) == 'true':
+            raise DialogActiveException
+
+        self.window.setProperty(PROPERTY_ACTIVE, 'true')
+        return self
+
+    def __exit__(self, exc_type, exc_val, exc_tb):
+        self.window.clearProperty(PROPERTY_ACTIVE)
 
 
 class RadioButton(pyxbmct.CompareMixin, xbmcgui.ControlRadioButton):
@@ -36,9 +52,9 @@ class RadioButton(pyxbmct.CompareMixin, xbmcgui.ControlRadioButton):
 pyxbmct.RadioButton = RadioButton
 
 
-def open_dialog(context, dialog_class):
+def open_dialog(context, dialog_class, **kwargs):
     try:
-        with dialog_class(context=context, window=xbmcgui.Window(10000)) as dialog:
+        with dialog_class(context=context, window=xbmcgui.Window(10000), **kwargs) as dialog:
             payload = dialog.start()
 
     except DialogActiveException:
