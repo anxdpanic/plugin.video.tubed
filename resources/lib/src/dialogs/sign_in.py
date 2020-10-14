@@ -89,7 +89,7 @@ class SignInDialog(AddonFullWindow):
         # create instructions here so user_code is updated
         self.user_code_label = pyxbmct.Label(
             self.user_code,
-            font='font60',
+            font='font_MainMenu',
             alignment=2
         )
         self.placeControl(self.user_code_label, 12, 2, columnspan=68, rowspan=10)
