@@ -13,4 +13,4 @@ class DialogActiveException(Exception):
     pass
 
 
-__all__ = ['DialogActiveException', 'common']
+__all__ = ['DialogActiveException', 'common', 'sign_in']
