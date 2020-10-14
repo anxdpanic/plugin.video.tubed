@@ -9,8 +9,8 @@
 """
 
 import time
-from uuid import uuid4
 from urllib.parse import quote
+from uuid import uuid4
 from xml.etree import ElementTree
 
 import xbmcvfs  # pylint: disable=import-error
