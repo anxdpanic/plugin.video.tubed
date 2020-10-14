@@ -59,7 +59,7 @@ class UserStorage:
         self._users = None
         self._user = None
 
-        self.load()
+        self.init()
 
     @property
     def users(self):
@@ -237,14 +237,21 @@ class UserStorage:
                 name_element.text = new_name
                 break
 
-    def load(self):
+    def init(self):
         self._reset()
-
         try:
-            self.root = ElementTree.parse(self.filename).getroot()
-        except (ElementTree.ParseError, FileNotFoundError):
+            if xbmcvfs.exists(self.filename):
+                self.root = ElementTree.parse(self.filename).getroot()
+            else:
+                self.root = ElementTree.fromstring(self.__template_root % str(uuid4()))
+                self.save()
+        except FileNotFoundError:
             self.root = ElementTree.fromstring(self.__template_root % str(uuid4()))
             self.save()
+
+    def load(self):
+        self._reset()
+        self.root = ElementTree.parse(self.filename).getroot()
 
     def save(self):
         with open(self.filename, 'wb') as file_handle:
