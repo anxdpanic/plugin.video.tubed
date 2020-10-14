@@ -817,3 +817,35 @@ msgstr ""
 msgctxt "#30199"
 msgid "%s was hidden from the main menu"
 msgstr ""
+
+msgctxt "#30200"
+msgid "User is authenticated"
+msgstr ""
+
+msgctxt "#30201"
+msgid "User is not authenticated"
+msgstr ""
+
+msgctxt "#30202"
+msgid "Create a new user"
+msgstr ""
+
+msgctxt "#30203"
+msgid "Rename a current user"
+msgstr ""
+
+msgctxt "#30204"
+msgid "Remove a current user"
+msgstr ""
+
+msgctxt "#30205"
+msgid "Change avatar..."
+msgstr ""
+
+msgctxt "#30206"
+msgid "Change a current user's avatar"
+msgstr ""
+
+msgctxt "#30207"
+msgid "Choose a new avatar"
+msgstr ""
