@@ -219,7 +219,9 @@ class UserStorage:
                 break
 
         if remove and new_uuid:
-            self.change_current(new_uuid)
+            if self.uuid == user_uuid:
+                self.change_current(new_uuid)
+
             self.root.remove(remove)
 
     def rename(self, user_uuid, new_name):
