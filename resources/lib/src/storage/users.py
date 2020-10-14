@@ -10,11 +10,13 @@
 
 import time
 from uuid import uuid4
+from urllib.parse import quote
 from xml.etree import ElementTree
 
 import xbmcvfs  # pylint: disable=import-error
 
 from ..constants import ADDON_ID
+from ..lib.url_utils import unquote
 
 
 class UserStorage:
@@ -86,8 +88,8 @@ class UserStorage:
                 watchlater_playlist = self._get_elements_text(user, 'watchlater_playlist')
 
                 payload.append({
-                    'uuid': uuid,
-                    'name': name,
+                    'uuid': unquote(uuid),
+                    'name': unquote(name),
                     'current': current,
                     'refresh_token': refresh_token,
                     'access_token': access_token,
@@ -184,7 +186,7 @@ class UserStorage:
             if not hasattr(uuid_element, 'text'):
                 continue
 
-            if uuid_element.text == user_uuid:
+            if unquote(uuid_element.text) == user_uuid:
                 self._reset()
 
                 user.attrib['current'] = 'false'
@@ -194,7 +196,7 @@ class UserStorage:
     def add(self, name):
         self._reset()
 
-        user_template = self.__template_user % (name, str(uuid4()))
+        user_template = self.__template_user % (quote(name), quote(str(uuid4())))
         user_element = ElementTree.fromstring(user_template)
         self.root.append(user_element)
 
@@ -210,16 +212,18 @@ class UserStorage:
             if not hasattr(uuid_element, 'text'):
                 continue
 
-            if uuid_element.text == user_uuid:
+            if unquote(uuid_element.text) == user_uuid:
                 remove = user_element
             else:
-                new_uuid = uuid_element.text
+                new_uuid = unquote(uuid_element.text)
 
             if remove and new_uuid:
                 break
 
         if remove and new_uuid:
-            self.change_current(new_uuid)
+            if self.uuid == user_uuid:
+                self.change_current(new_uuid)
+
             self.root.remove(remove)
 
     def rename(self, user_uuid, new_name):
@@ -234,7 +238,7 @@ class UserStorage:
                 continue
 
             if uuid_element.text == user_uuid:
-                name_element.text = new_name
+                name_element.text = quote(new_name)
                 break
 
     def init(self):
@@ -261,12 +265,12 @@ class UserStorage:
 
     def _current_user_get(self, attrib, default=''):
         if self._user:
-            return self._user.get(attrib, default)
+            return unquote(self._user.get(attrib, default))
 
         for user in self.users:
             if user.get('current'):
                 self._user = user.copy()
-                return user.get(attrib, default)
+                return unquote(user.get(attrib, default))
 
         return default
 
@@ -282,9 +286,9 @@ class UserStorage:
         self._reset()
         if element is None:
             new_element = ElementTree.SubElement(user, attrib)
-            new_element.text = value
+            new_element.text = quote(value)
         else:
-            element.text = value
+            element.text = quote(value)
 
     def _reset(self):
         self._users = None
@@ -301,4 +305,4 @@ class UserStorage:
         if payload is None:
             payload = default
 
-        return payload
+        return unquote(payload)
