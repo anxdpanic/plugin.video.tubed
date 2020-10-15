@@ -8,6 +8,7 @@
     See LICENSES/GPL-2.0-only.txt for more information.
 """
 
+import re
 from urllib.parse import parse_qs
 from urllib.parse import unquote as uquote
 from urllib.parse import urlencode
@@ -58,3 +59,11 @@ def unquote(string):
         return uquote(string)
     except:  # pylint: disable=bare-except
         return string
+
+
+def extract_urls(string):
+    compiled = re.compile(r'(https?://[^\s]+)')
+    matches = compiled.findall(string)
+
+    result = matches or []
+    return result

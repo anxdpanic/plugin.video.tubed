@@ -265,6 +265,10 @@ def get_context_menu(context, item, video_id, video_title,
          'Container.Update(plugin://%s/?mode=%s&video_id=%s)' %
          (ADDON_ID, str(MODES.RELATED_VIDEOS), video_id)),
 
+        (context.i18n('Links in the description'),
+         'Container.Update(plugin://%s/?mode=%s&video_id=%s)' %
+         (ADDON_ID, str(MODES.LINKS_IN_DESCRIPTION), video_id)),
+
         (context.i18n('Go to %s') % bold(channel_name),
          'Container.Update(plugin://%s/?mode=%s&channel_id=%s)' %
          (ADDON_ID, str(MODES.CHANNEL), channel_id)),
