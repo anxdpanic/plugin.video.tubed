@@ -12,11 +12,12 @@ from html import unescape
 
 import xbmc  # pylint: disable=import-error
 
+from ..dialogs.autoplay_related import AutoplayRelated
+from ..dialogs.common import open_dialog
 from ..generators.data_cache import get_cached
 from ..lib.memoizer import reset_cache
 from ..lib.utils import wait_for_busy_dialog
 from ..storage.users import UserStorage
-from .utils import add_related_video_to_playlist
 from .utils import rate
 
 
@@ -44,9 +45,9 @@ def invoke(context, video_id, position=-1):
         playlist = xbmc.PlayList(xbmc.PLAYLIST_VIDEO)
         if position > -1 and ((position + 1) == playlist.size()):
             start_position = position + 1
-            related_id = add_related_video_to_playlist(context, video_id)
+            successful = open_dialog(context, AutoplayRelated, video_id=video_id)
 
-            if related_id and start_position < playlist.size():
+            if successful and start_position < playlist.size():
                 safe = wait_for_busy_dialog()
                 if safe:
                     xbmc.Player().play(item=playlist, startpos=start_position)

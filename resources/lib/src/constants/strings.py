@@ -153,4 +153,5 @@ STRINGS = {
     'Change avatar...': 30205,
     'Change a current user\'s avatar': 30206,
     'Choose a new avatar': 30207,
+    'Up Next': 30208,
 }
