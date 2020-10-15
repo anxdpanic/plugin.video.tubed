@@ -154,4 +154,5 @@ STRINGS = {
     'Change a current user\'s avatar': 30206,
     'Choose a new avatar': 30207,
     'Up Next': 30208,
+    'Links in the description': 30209,
 }

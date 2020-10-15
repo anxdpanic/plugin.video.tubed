@@ -169,6 +169,12 @@ def _comment_threads(video_id, page_token='', order='relevance'):
     comment_threads.invoke(CONTEXT, video_id, page_token, order)
 
 
+@router.route(MODES.LINKS_IN_DESCRIPTION, args=['video_id'])
+def _links_in_description(video_id):
+    from .routes import links_in_description
+    links_in_description.invoke(CONTEXT, video_id)
+
+
 @router.route(MODES.CATEGORY, args=['category_id'], kwargs=['page_token'])
 def _category(category_id, page_token=''):
     from .routes import category

@@ -335,7 +335,8 @@ class API:  # pylint: disable=too-many-public-methods
     @memoizer.cache_method(limit=ONE_MINUTE * CACHE_TTL)
     def channel_by_username(self, username):
         parameters = {
-            'part': 'id'
+            'part': 'id',
+            'fields': 'items(id)'
         }
 
         if username == 'mine':
@@ -404,7 +405,7 @@ class API:  # pylint: disable=too-many-public-methods
 
     @api_request
     @memoizer.cache_method(limit=ONE_MINUTE * CACHE_TTL)
-    def playlists(self, playlist_id):
+    def playlists(self, playlist_id, fields=None):
         if isinstance(playlist_id, list):
             playlist_id = ','.join(playlist_id)
 
@@ -412,6 +413,9 @@ class API:  # pylint: disable=too-many-public-methods
             'part': 'snippet,contentDetails',
             'id': playlist_id
         }
+
+        if fields:
+            parameters['fields'] = fields
 
         return self.api.playlists.get(parameters=parameters)
 

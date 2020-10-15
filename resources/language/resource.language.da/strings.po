@@ -853,3 +853,7 @@ msgstr ""
 msgctxt "#30208"
 msgid "Up Next"
 msgstr ""
+
+msgctxt "#30209"
+msgid "Links in the description"
+msgstr ""
