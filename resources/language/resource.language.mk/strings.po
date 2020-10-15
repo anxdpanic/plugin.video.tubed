@@ -847,3 +847,7 @@ msgstr ""
 msgctxt "#30207"
 msgid "Choose a new avatar"
 msgstr ""
+
+msgctxt "#30208"
+msgid "Up Next"
+msgstr ""

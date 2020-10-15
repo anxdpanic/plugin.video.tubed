@@ -150,6 +150,9 @@ class DialogThread(threading.Thread):
         return self._stopped.is_set()
 
     def end(self):
+        if not self._stopped.is_set():
+            self._stopped.set()
+
         self._ended.set()
 
     def ended(self):
