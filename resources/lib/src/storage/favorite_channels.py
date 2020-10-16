@@ -11,9 +11,9 @@
     See LICENSES/GPL-2.0-only.txt for more information.
 """
 
-import xbmcvfs  # pylint: disable=import-error
+import os
 
-from ..constants import ADDON_ID
+from ..constants import ADDONDATA_PATH
 from ..lib.sql_storage import Storage
 from ..lib.time import now
 from .users import UserStorage
@@ -26,10 +26,7 @@ class FavoriteChannels(Storage):
         if not uuid:
             uuid = UserStorage().uuid
 
-        filename = xbmcvfs.translatePath(
-            'special://profile/addon_data/%s/channels/%s/favorite_channels.sqlite' %
-            (ADDON_ID, uuid)
-        )
+        filename = os.path.join(ADDONDATA_PATH, 'channels', uuid, 'favorite_channels.sqlite')
 
         super().__init__(filename, max_item_count=maximum_items)
 

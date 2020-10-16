@@ -8,18 +8,16 @@
     See LICENSES/GPL-2.0-only.txt for more information.
 """
 
-import xbmcvfs  # pylint: disable=import-error
+import os
 
-from ..constants import ADDON_ID
+from ..constants import ADDONDATA_PATH
 from ..lib.cache import Cache
 from ..lib.context import Context
 
 
 class DataCache(Cache):
     def __init__(self, context=None):
-        filename = xbmcvfs.translatePath(
-            'special://profile/addon_data/%s/data/cache.sqlite' % ADDON_ID
-        )
+        filename = os.path.join(ADDONDATA_PATH, 'data', ' cache.sqlite')
 
         if not context:
             context = Context()

@@ -12,4 +12,5 @@ import xbmcvfs  # pylint: disable=import-error
 
 ADDON_ID = 'plugin.video.tubed'
 
+ADDONDATA_PATH = xbmcvfs.translatePath('special://profile/addon_data/%s/' % ADDON_ID)
 MEDIA_PATH = xbmcvfs.translatePath('special://home/addons/%s/resources/media/' % ADDON_ID)
