@@ -861,3 +861,11 @@ msgstr ""
 msgctxt "#30210"
 msgid "There were no links found in the description"
 msgstr ""
+
+msgctxt "#30211"
+msgid "Create a new playlist"
+msgstr ""
+
+msgctxt "#30212"
+msgid "Go to the next page"
+msgstr ""

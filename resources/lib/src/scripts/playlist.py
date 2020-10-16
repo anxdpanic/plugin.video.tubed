@@ -13,6 +13,7 @@ from html import unescape
 import xbmc  # pylint: disable=import-error
 import xbmcgui  # pylint: disable=import-error
 
+from ..generators.utils import get_thumbnail
 from ..lib.memoizer import reset_cache
 from ..lib.txt_fmt import bold
 from ..lib.url_utils import unquote
@@ -100,7 +101,7 @@ def required_arguments_check(action, video_id, playlist_id, playlistitem_id):
     return True
 
 
-def add(context, video_id, playlist_id='', playlist_title=''):
+def add(context, video_id, playlist_id='', playlist_title=''):  # pylint: disable=too-many-branches
     page_token = ''
     default_title = ''
 
@@ -115,35 +116,68 @@ def add(context, video_id, playlist_id='', playlist_title=''):
         payload = context.api.playlists_of_channel(
             'mine',
             page_token=page_token,
-            fields='items(kind,id,snippet(title))'
+            fields='items(kind,id,snippet(title,description,thumbnails))'
         )
 
-        playlists = [(unescape(item['snippet'].get('title', '')), item['id'])
+        playlists = [(item.get('snippet', {}), item.get('id'))
                      for item in payload['items']]
 
         if playlists:
-            playlist_titles, playlist_ids = zip(*playlists)
-            playlist_titles = list(playlist_titles)
+            playlist_snippets, playlist_ids = zip(*playlists)
+            playlist_snippets = list(playlist_snippets)
             playlist_ids = list(playlist_ids)
         else:
             playlist_ids = []
-            playlist_titles = []
+            playlist_snippets = []
 
         if not page_token:
             playlist_ids = ['new'] + playlist_ids
-            playlist_titles = [bold(context.i18n('New playlist'))] + playlist_titles
+            snippet = {
+                'title': bold(context.i18n('New playlist')),
+                'description': context.i18n('Create a new playlist'),
+                'thumbnails': {
+                    'standard': {
+                        'url': 'DefaultVideoPlaylists.png'
+                    }
+                }
+            }
+            playlist_snippets = [snippet] + playlist_snippets
 
         page_token = payload.get('nextPageToken')
         if page_token:
             playlist_ids += ['next']
-            playlist_titles += [bold(context.i18n('Next Page'))]
+            snippet = {
+                'title': bold(context.i18n('Next Page')),
+                'description': context.i18n('Go to the next page'),
+                'thumbnails': {
+                    'standard': {
+                        'url': ''
+                    }
+                }
+            }
+            playlist_snippets += [snippet]
+
+        list_items = []
+        for index, _ in enumerate(playlist_ids):
+            item = xbmcgui.ListItem(
+                label=unescape(playlist_snippets[index].get('title', '')),
+                label2=unescape(playlist_snippets[index].get('description', ''))
+            )
+
+            thumbnail = get_thumbnail(playlist_snippets[index])
+            item.setArt({
+                'icon': thumbnail,
+                'thumb': thumbnail,
+            })
+
+            list_items.append(item)
 
         if choosing_watch_later:
             heading = context.i18n('Choose watch later playlist')
         else:
             heading = context.i18n('Add to playlist')
 
-        result = xbmcgui.Dialog().select(heading, playlist_titles)
+        result = xbmcgui.Dialog().select(heading, list_items, useDetails=True)
         if result == -1:
             return None
 
@@ -152,7 +186,7 @@ def add(context, video_id, playlist_id='', playlist_title=''):
             playlist_id = ''
             continue
 
-        playlist_title = playlist_titles[result]
+        playlist_title = unescape(playlist_snippets[result].get('title', ''))
         break
 
     if playlist_id == 'new':
