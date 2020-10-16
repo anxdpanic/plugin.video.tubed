@@ -869,3 +869,11 @@ msgstr ""
 msgctxt "#30212"
 msgid "Go to the next page"
 msgstr ""
+
+msgctxt "#30213"
+msgid "Rate the selected video"
+msgstr ""
+
+msgctxt "#30214"
+msgid "Rate %s"
+msgstr ""

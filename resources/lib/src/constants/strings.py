@@ -158,4 +158,6 @@ STRINGS = {
     'There were no links found in the description': 30210,
     'Create a new playlist': 30211,
     'Go to the next page': 30212,
+    'Rate the selected video': 30213,
+    'Rate %s': 30214,
 }

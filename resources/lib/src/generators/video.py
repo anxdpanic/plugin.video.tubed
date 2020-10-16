@@ -238,8 +238,8 @@ def get_context_menu(context, item, video_id, video_title,
         if logged_in:
             context_menus += [
                 (context.i18n('Rate'),
-                 'RunScript(%s,mode=%s&video_id=%s&video_title=%s)' %
-                 (ADDON_ID, str(SCRIPT_MODES.RATE), video_id, quote(video_title))),
+                 'RunScript(%s,mode=%s&video_id=%s)' %
+                 (ADDON_ID, str(SCRIPT_MODES.RATE), video_id)),
 
                 (context.i18n('Add to playlist'),
                  'RunScript(%s,mode=%s&action=add&video_id=%s)' %

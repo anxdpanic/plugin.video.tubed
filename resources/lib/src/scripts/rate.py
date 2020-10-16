@@ -11,15 +11,11 @@
 import xbmc  # pylint: disable=import-error
 
 from ..lib.memoizer import reset_cache
-from ..lib.url_utils import unquote
 from .utils import rate
 
 
-def invoke(context, video_id, video_title=''):
-    if '%' in video_title:
-        video_title = unquote(video_title)
-
-    rate(context, video_id, video_title)
+def invoke(context, video_id):
+    rate(context, video_id)
 
     reset_cache()
     xbmc.executebuiltin('Container.Refresh')
