@@ -8,6 +8,7 @@
     See LICENSES/GPL-2.0-only.txt for more information.
 """
 
+import os
 import time
 from urllib.parse import quote
 from uuid import uuid4
@@ -15,7 +16,7 @@ from xml.etree import ElementTree
 
 import xbmcvfs  # pylint: disable=import-error
 
-from ..constants import ADDON_ID
+from ..constants import ADDONDATA_PATH
 from ..lib.url_utils import unquote
 
 
@@ -52,9 +53,7 @@ class UserStorage:
 
     def __init__(self):
 
-        self.filename = xbmcvfs.translatePath(
-            'special://profile/addon_data/%s/users.xml' % ADDON_ID
-        )
+        self.filename = os.path.join(ADDONDATA_PATH, 'users.xml')
 
         self.root = None
 

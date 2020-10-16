@@ -8,9 +8,9 @@
     See LICENSES/GPL-2.0-only.txt for more information.
 """
 
-import xbmcvfs  # pylint: disable=import-error
+import os
 
-from ..constants import ADDON_ID
+from ..constants import ADDONDATA_PATH
 from ..lib.sql_storage import Storage
 from .users import UserStorage
 
@@ -20,9 +20,7 @@ class SearchCache(Storage):
         if not uuid:
             uuid = UserStorage().uuid
 
-        filename = xbmcvfs.translatePath(
-            'special://profile/addon_data/%s/search/%s/search_cache.sqlite' % (ADDON_ID, uuid)
-        )
+        filename = os.path.join(ADDONDATA_PATH, 'search', uuid, 'search_cache.sqlite')
 
         super().__init__(filename, max_item_count=1)
 
