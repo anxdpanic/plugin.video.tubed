@@ -857,3 +857,7 @@ msgstr ""
 msgctxt "#30209"
 msgid "Links in the description"
 msgstr ""
+
+msgctxt "#30210"
+msgid "There were no links found in the description"
+msgstr ""

@@ -155,4 +155,5 @@ STRINGS = {
     'Choose a new avatar': 30207,
     'Up Next': 30208,
     'Links in the description': 30209,
+    'There were no links found in the description': 30210,
 }
