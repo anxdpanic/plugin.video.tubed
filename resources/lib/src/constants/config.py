@@ -8,4 +8,8 @@
     See LICENSES/GPL-2.0-only.txt for more information.
 """
 
+import xbmcvfs  # pylint: disable=import-error
+
 ADDON_ID = 'plugin.video.tubed'
+
+MEDIA_PATH = xbmcvfs.translatePath('special://home/addons/%s/resources/media/' % ADDON_ID)

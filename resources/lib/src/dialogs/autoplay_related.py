@@ -8,11 +8,13 @@
     See LICENSES/GPL-2.0-only.txt for more information.
 """
 
+import os
 import threading
 
 import pyxbmct.addonwindow as pyxbmct  # pylint: disable=import-error
 import xbmc  # pylint: disable=import-error
 
+from ..constants import MEDIA_PATH
 from .common import AddonFullWindow
 from .utils import add_related_video_to_playlist
 
@@ -37,6 +39,9 @@ class AutoplayRelated(AddonFullWindow):  # pylint: disable=too-many-instance-att
         self.l_channel_name = None
         self.l_video_description = None
         self.l_video_thumbnail = None
+
+        self.spinner_image = pyxbmct.Image(os.path.join(MEDIA_PATH, 'spinner.gif'))
+
         self.select_button = pyxbmct.Button('')
 
         self.metadata = {}
@@ -87,7 +92,8 @@ class AutoplayRelated(AddonFullWindow):  # pylint: disable=too-many-instance-att
 
         self.l_video_thumbnail = pyxbmct.Image(self.metadata.get('thumbnail', ''))
         self.placeControl(self.l_video_thumbnail, 12, 3, rowspan=50, columnspan=67)
-        self.connect(self.l_video_thumbnail, self.selected)
+
+        self.placeControl(self.spinner_image, 49, 57, rowspan=10, columnspan=10)
 
         self.l_video_title = pyxbmct.FadeLabel(
             font='font30_title',
