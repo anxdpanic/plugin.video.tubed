@@ -13,6 +13,7 @@ from html import unescape
 
 import xbmc  # pylint: disable=import-error
 
+from ..generators.data_cache import get_cached
 from ..generators.utils import get_thumbnail
 from ..generators.video import video_generator
 from ..lib.logger import Log
@@ -37,8 +38,7 @@ def add_related_video_to_playlist(context, video_id):
                     video_id,
                     page_token=page_token,
                     max_results=17,
-                    fields='items(kind,id(videoId),'
-                           'snippet(title,description,channelTitle,thumbnails))'
+                    fields='items(kind,id(videoId),snippet(title))'
                 )
                 result_items = payload.get('items', [])
                 page_token = payload.get('nextPageToken', '')
@@ -58,14 +58,19 @@ def add_related_video_to_playlist(context, video_id):
                 continue
 
             if add_item:
-                snippet = add_item.get('snippet', {})
+                related_id = add_item.get('id', {}).get('videoId')
+                cached_payload = get_cached(context, context.api.videos, [related_id])
+                cached_video = cached_payload.get(related_id, {})
+                cached_snippet = cached_video.get('snippet', {})
+
                 metadata.update({
-                    'video_id': add_item.get('id', {}).get('videoId'),
-                    'title': unescape(snippet.get('title', '')),
-                    'description': unescape(snippet.get('description', '')),
-                    'channel_name': unescape(snippet.get('channelTitle', '')),
-                    'thumbnail': get_thumbnail(snippet)
+                    'video_id': related_id,
+                    'title': unescape(cached_snippet.get('title', '')),
+                    'description': unescape(cached_snippet.get('description', '')),
+                    'channel_name': unescape(cached_snippet.get('channelTitle', '')),
+                    'thumbnail': get_thumbnail(cached_snippet)
                 })
+
                 generated = list(video_generator(context, [add_item]))
                 path, list_item, _ = generated[0]
                 playlist.add(path, list_item)
