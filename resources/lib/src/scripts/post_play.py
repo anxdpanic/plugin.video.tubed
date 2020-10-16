@@ -8,13 +8,10 @@
     See LICENSES/GPL-2.0-only.txt for more information.
 """
 
-from html import unescape
-
 import xbmc  # pylint: disable=import-error
 
 from ..dialogs.autoplay_related import AutoplayRelated
 from ..dialogs.common import open_dialog
-from ..generators.data_cache import get_cached
 from ..lib.memoizer import reset_cache
 from ..lib.utils import wait_for_busy_dialog
 from ..storage.users import UserStorage
@@ -31,15 +28,8 @@ def invoke(context, video_id, position=-1):
     except ValueError:
         position = -1
 
-    try:
-        video = get_cached(context, context.api.videos, [video_id]).get(video_id, {})
-    except:  # pylint: disable=bare-except
-        video = {}
-
-    video_title = unescape(video.get('snippet', {}).get('title', ''))
-
     if context.settings.post_play_rate:
-        rate(context, video_id, video_title)
+        rate(context, video_id)
 
     if context.settings.autoplay_related:
         playlist = xbmc.PlayList(xbmc.PLAYLIST_VIDEO)

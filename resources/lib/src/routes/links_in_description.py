@@ -12,6 +12,7 @@ from html import unescape
 from urllib.parse import parse_qs
 from urllib.parse import urlparse
 
+import xbmcgui  # pylint: disable=import-error
 import xbmcplugin  # pylint: disable=import-error
 
 from ..generators.channel import channel_generator
@@ -22,42 +23,51 @@ from ..lib.url_utils import extract_urls
 
 
 def invoke(context, video_id):
-    xbmcplugin.setContent(context.handle, 'videos')
-
     cached_payload = get_cached(context, context.api.videos, [video_id])
     cached_video = cached_payload.get(video_id, {})
     cached_snippet = cached_video.get('snippet', {})
 
+    extracted_urls = []
+    list_items = []
+    success = True
+
     description = unescape(cached_snippet.get('description', ''))
     if not description:
-        xbmcplugin.endOfDirectory(context.handle, False)
-        return
+        success = False
 
-    extracted_urls = extract_urls(description)
-    if not extracted_urls:
-        xbmcplugin.endOfDirectory(context.handle, False)
-        return
+    if description:
+        extracted_urls = extract_urls(description)
+        if not extracted_urls:
+            success = False
 
-    parsed_urls = parse_urls(context, extracted_urls)
+    if success:
+        parsed_urls = parse_urls(context, extracted_urls)
 
-    list_items = []
+        if parsed_urls.get('channel_ids'):
+            payload = context.api.channels(parsed_urls.get('channel_ids'), fields='items(kind,id)')
+            list_items += channel_generator(context, payload.get('items', []))
 
-    if parsed_urls.get('channel_ids'):
-        payload = context.api.channels(parsed_urls.get('channel_ids'), fields='items(kind,id)')
-        list_items += channel_generator(context, payload.get('items', []))
+        if parsed_urls.get('playlist_ids'):
+            payload = context.api.playlists(parsed_urls.get('playlist_ids'),
+                                            fields='items(kind,id,snippet(title))')
+            list_items += playlist_generator(context, payload.get('items', []))
 
-    if parsed_urls.get('playlist_ids'):
-        payload = context.api.playlists(parsed_urls.get('playlist_ids'),
-                                     fields='items(kind,id,snippet(title))')
-        list_items += playlist_generator(context, payload.get('items', []))
+        if parsed_urls.get('video_ids'):
+            payload = context.api.videos(parsed_urls.get('video_ids'), fields='items(kind,id)')
+            list_items += video_generator(context, payload.get('items', []))
 
-    if parsed_urls.get('video_ids'):
-        payload = context.api.videos(parsed_urls.get('video_ids'), fields='items(kind,id)')
-        list_items += video_generator(context, payload.get('items', []))
+        success = len(list_items) > 0
 
-    success = len(list_items) > 0
     if success:
         xbmcplugin.addDirectoryItems(context.handle, list_items, len(list_items))
+
+    else:
+        xbmcgui.Dialog().notification(
+            context.addon.getAddonInfo('name'),
+            context.i18n('There were no links found in the description'),
+            context.addon.getAddonInfo('icon'),
+            sound=False
+        )
 
     xbmcplugin.endOfDirectory(context.handle, succeeded=success)
 
@@ -81,7 +91,7 @@ def parse_urls(context, urls):
                 try:
                     playlist_ids.append(parse_qs(parsed_url.query).get('list', [])[0])
                 except IndexError:
-                    pass
+                    continue
 
             elif (parsed_url.path.startswith('/embed/') or
                   parsed_url.path.endswith('/watch') or
@@ -91,13 +101,13 @@ def parse_urls(context, urls):
                     try:
                         video_ids.append(parsed_url.path.lstrip('/embed').lstrip('/').split('/')[0])
                     except IndexError:
-                        pass
+                        continue
 
                 elif parsed_url.path.endswith('/watch'):
                     try:
                         video_ids.append(parse_qs(parsed_url.query).get('v', [])[0])
                     except IndexError:
-                        pass
+                        continue
 
             elif (parsed_url.path.startswith(('/user/', '/c/')) or
                   len(parsed_url.path.lstrip('/').split('/')) == 1):
@@ -105,16 +115,18 @@ def parse_urls(context, urls):
                     username = \
                         parsed_url.path.lstrip('/user').lstrip('/c').lstrip('/').split('/')[0]
                 except IndexError:
-                    username = None
+                    continue
 
-                if username:
-                    payload = context.api.channel_by_username(username)
+                if not username:
+                    continue
 
-                    channel_id = payload.get('items', [{}])[0].get('id', '')
-                    if not channel_id:
-                        continue
+                payload = context.api.channel_by_username(username)
 
-                    channel_ids.append(channel_id)
+                channel_id = payload.get('items', [{}])[0].get('id', '')
+                if not channel_id:
+                    continue
+
+                channel_ids.append(channel_id)
 
     return {
         'channel_ids': channel_ids,

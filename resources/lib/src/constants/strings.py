@@ -155,4 +155,9 @@ STRINGS = {
     'Choose a new avatar': 30207,
     'Up Next': 30208,
     'Links in the description': 30209,
+    'There were no links found in the description': 30210,
+    'Create a new playlist': 30211,
+    'Go to the next page': 30212,
+    'Rate the selected video': 30213,
+    'Rate %s': 30214,
 }
