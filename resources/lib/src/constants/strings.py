@@ -160,4 +160,7 @@ STRINGS = {
     'Go to the next page': 30212,
     'Rate the selected video': 30213,
     'Rate %s': 30214,
+    'likes': 30218,
+    'dislikes': 30219,
+    'views': 30220,
 }

@@ -887,3 +887,15 @@ msgstr ""
 msgctxt "#30217"
 msgid "Open the sign in dialog for debugging"
 msgstr ""
+
+msgctxt "#30218"
+msgid "likes"
+msgstr ""
+
+msgctxt "#30219"
+msgid "dislikes"
+msgstr ""
+
+msgctxt "#30220"
+msgid "views"
+msgstr ""
