@@ -33,8 +33,13 @@ def invoke(context, video_id, position=-1):
 
     if context.settings.autoplay_related:
         playlist = xbmc.PlayList(xbmc.PLAYLIST_VIDEO)
-        if position > -1 and ((position + 1) == playlist.size()):
-            start_position = position + 1
+
+        spread = 1
+        if position == -1:
+            spread += 1
+
+        if (position + spread) == playlist.size():
+            start_position = position + spread
             successful = open_dialog(context, AutoplayRelated, video_id=video_id)
 
             if successful and start_position < playlist.size():
