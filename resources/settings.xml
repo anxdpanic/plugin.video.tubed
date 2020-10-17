@@ -323,6 +323,22 @@
                     <control type="toggle"/>
                 </setting>
             </group>
+            <group id="2" label="30215">
+                <setting id="demo.dialog.sign.in" type="action" label="30011" help="30217">
+                    <level>0</level>
+                    <data>RunScript(plugin.video.tubed,mode=dialog_demo&amp;dialog_id=sign_in)</data>
+                    <control type="button" format="action">
+                        <close>false</close>
+                    </control>
+                </setting>
+                <setting id="demo.dialog.autoplay.related" type="action" label="30155" help="30216">
+                    <level>0</level>
+                    <data>RunScript(plugin.video.tubed,mode=dialog_demo&amp;dialog_id=autoplay_related)</data>
+                    <control type="button" format="action">
+                        <close>false</close>
+                    </control>
+                </setting>
+            </group>
         </category>
     </section>
 </settings>

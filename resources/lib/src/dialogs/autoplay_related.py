@@ -15,6 +15,7 @@ import pyxbmct.addonwindow as pyxbmct  # pylint: disable=import-error
 import xbmc  # pylint: disable=import-error
 
 from ..constants import MEDIA_PATH
+from ..constants.demo import VIDEO_ITEM
 from .common import AddonFullWindow
 from .utils import add_related_video_to_playlist
 
@@ -27,9 +28,15 @@ class AutoplayRelated(AddonFullWindow):  # pylint: disable=too-many-instance-att
         self._context = context
         self.window = window
 
-        self.video_id = kwargs.get('video_id')
-        if not self.video_id:
-            return
+        self.demo = kwargs.get('mode') == 'demo'
+
+        if self.demo:
+            self.video_id = VIDEO_ITEM['id']
+
+        else:
+            self.video_id = kwargs.get('video_id')
+            if not self.video_id:
+                return
 
         self.title = context.i18n('Up Next')
 
@@ -58,7 +65,7 @@ class AutoplayRelated(AddonFullWindow):  # pylint: disable=too-many-instance-att
         self._context = value
 
     def start(self):
-        self.metadata = add_related_video_to_playlist(self.context, self.video_id)
+        self.metadata = add_related_video_to_playlist(self.context, self.video_id, self.demo)
         if not self.metadata:
             return False
 
@@ -73,7 +80,7 @@ class AutoplayRelated(AddonFullWindow):  # pylint: disable=too-many-instance-att
         self.connect(pyxbmct.ACTION_NAV_BACK, self.close)
         self.connect(ACTION_STOP, self.close)
 
-        self.thread = DialogThread(self.context, self.selected, self.close)
+        self.thread = DialogThread(self.context, self.selected, self.close, self.demo)
 
         self.doModal()
 
@@ -125,7 +132,7 @@ class AutoplayRelated(AddonFullWindow):  # pylint: disable=too-many-instance-att
 
 
 class DialogThread(threading.Thread):
-    def __init__(self, context, success_event, fail_event):
+    def __init__(self, context, success_event, fail_event, demo=False):
         super().__init__()
 
         self._stopped = threading.Event()
@@ -134,6 +141,8 @@ class DialogThread(threading.Thread):
         self.context = context
         self.success_event = success_event
         self.fail_event = fail_event
+
+        self.demo = demo
 
         self.monitor = xbmc.Monitor()
 
@@ -144,13 +153,21 @@ class DialogThread(threading.Thread):
         return self.monitor.abortRequested() or self.stopped()
 
     def run(self):
-        for _ in range(7):
-            # self.update_progress(int(float((100.0 // steps)) * index))
+        if self.demo:
+            while True:
+                if self.abort_now():
+                    break
 
-            if self.abort_now():
-                break
+                xbmc.sleep(1000)
 
-            xbmc.sleep(1000)
+        else:
+            for _ in range(7):
+                # self.update_progress(int(float((100.0 // steps)) * index))
+
+                if self.abort_now():
+                    break
+
+                xbmc.sleep(1000)
 
         if not self.abort_now():
             self.success_event()

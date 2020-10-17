@@ -72,6 +72,12 @@ def _rate(video_id):
     rate.invoke(CONTEXT, video_id)
 
 
+@router.route(SCRIPT_MODES.DIALOG_DEMO, args=['dialog_id'])
+def _dialog_demo(dialog_id):
+    from .scripts import dialog_demo
+    dialog_demo.invoke(CONTEXT, dialog_id)
+
+
 @router.route(SCRIPT_MODES.HIDE_MENU, args=['setting_id', 'menu_title'])
 def _hide_menu(setting_id, menu_title):
     from .scripts import hide_menu

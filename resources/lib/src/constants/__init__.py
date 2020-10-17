@@ -28,4 +28,4 @@ __all__ = ['ADDON_ID', 'ADDONDATA_PATH', 'MEDIA_PATH', 'CREDENTIALS', 'MODES', '
            'ONE_MONTH']
 
 # the modules containing the constants
-__all__ += ['config', 'credentials', 'modes', 'script_modes', 'strings', 'subtitle', 'time']
+__all__ += ['config', 'credentials', 'demo', 'modes', 'script_modes', 'strings', 'subtitle', 'time']
