@@ -14,13 +14,17 @@ from urllib.parse import quote
 from uuid import uuid4
 from xml.etree import ElementTree
 
+import xbmc  # pylint: disable=import-error
 import xbmcvfs  # pylint: disable=import-error
 
 from ..constants import ADDONDATA_PATH
+from ..lib.logger import Log
 from ..lib.url_utils import unquote
 
+LOG = Log('storage', __file__)
 
-class UserStorage:
+
+class UserStorage:  # pylint: disable=too-many-instance-attributes
     __template_root = \
         '''
 <users>
@@ -54,6 +58,9 @@ class UserStorage:
     def __init__(self):
 
         self.filename = os.path.join(ADDONDATA_PATH, 'users.xml')
+        self.lock_filename = os.path.join(ADDONDATA_PATH, 'users.lock')
+
+        self.monitor = xbmc.Monitor()
 
         self.root = None
 
@@ -244,7 +251,7 @@ class UserStorage:
         self._reset()
         try:
             if xbmcvfs.exists(self.filename):
-                self.root = ElementTree.parse(self.filename).getroot()
+                self.load()
             else:
                 self.root = ElementTree.fromstring(self.__template_root % str(uuid4()))
                 self.save()
@@ -252,15 +259,52 @@ class UserStorage:
             self.root = ElementTree.fromstring(self.__template_root % str(uuid4()))
             self.save()
 
+    def locked(self):
+        return xbmcvfs.exists(self.lock_filename)
+
+    def lock(self):
+
+        timeout = 60.0
+        sleep_time = 0.1
+        slept_for = 0.0
+
+        while not self.monitor.abortRequested() and slept_for < timeout and self.locked():
+            if self.monitor.waitForAbort(sleep_time):
+                break
+
+            slept_for += sleep_time
+
+        if not self.locked():
+            with xbmcvfs.File(self.lock_filename, 'w') as _:
+                pass
+
+        else:
+            LOG.error('Unable to aquire lock')
+
+    def unlock(self):
+        if self.locked():
+            xbmcvfs.delete(self.lock_filename)
+
     def load(self):
-        self._reset()
-        self.root = ElementTree.parse(self.filename).getroot()
+        self.lock()
+        try:
+            if self.locked():
+                self._reset()
+                self.root = ElementTree.parse(self.filename).getroot()
+
+        finally:
+            self.unlock()
 
     def save(self):
-        with open(self.filename, 'wb') as file_handle:
-            file_handle.write(ElementTree.tostring(self.root,
-                                                   short_empty_elements=False,
-                                                   method='html'))
+        self.lock()
+        try:
+            if self.locked():
+                with open(self.filename, 'wb') as file_handle:
+                    file_handle.write(ElementTree.tostring(self.root,
+                                                           short_empty_elements=False,
+                                                           method='html'))
+        finally:
+            self.unlock()
 
     def _current_user_get(self, attrib, default=''):
         if self._user:
