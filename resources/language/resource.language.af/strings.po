@@ -875,3 +875,15 @@ msgstr ""
 msgctxt "#30214"
 msgid "Rate %s"
 msgstr ""
+
+msgctxt "#30215"
+msgid "Dialogs"
+msgstr ""
+
+msgctxt "#30216"
+msgid "Open the autoplay related video dialog for debugging"
+msgstr ""
+
+msgctxt "#30217"
+msgid "Open the sign in dialog for debugging"
+msgstr ""

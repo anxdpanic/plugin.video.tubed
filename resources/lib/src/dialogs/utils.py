@@ -14,6 +14,8 @@ from html import unescape
 import arrow
 import xbmc  # pylint: disable=import-error
 
+from ..constants.demo import VIDEO_ITEM
+from ..constants.demo import VIDEO_SEARCH
 from ..generators.data_cache import get_cached
 from ..generators.utils import get_thumbnail
 from ..generators.video import video_generator
@@ -23,7 +25,7 @@ from ..lib.time import iso8601_duration_to_seconds
 LOG = Log('dialogs', __file__)
 
 
-def add_related_video_to_playlist(context, video_id):  # pylint: disable=too-many-locals
+def add_related_video_to_playlist(context, video_id, demo=False):  # pylint: disable=too-many-locals
     playlist = xbmc.PlayList(xbmc.PLAYLIST_VIDEO)
     metadata = {}
 
@@ -35,34 +37,45 @@ def add_related_video_to_playlist(context, video_id):  # pylint: disable=too-man
 
         while not add_item and pages <= 2:
             pages += 1
-            try:
-                payload = context.api.related_videos(
-                    video_id,
-                    page_token=page_token,
-                    max_results=17,
-                    fields='items(kind,id(videoId),snippet(title))'
-                )
-                result_items = payload.get('items', [])
-                page_token = payload.get('nextPageToken', '')
+            if demo:
+                add_item = VIDEO_SEARCH
 
-            except:  # pylint: disable=bare-except
-                result_items = []
+            else:
+                try:
+                    payload = context.api.related_videos(
+                        video_id,
+                        page_token=page_token,
+                        max_results=17,
+                        fields='items(kind,id(videoId),snippet(title))'
+                    )
+                    result_items = payload.get('items', [])
+                    page_token = payload.get('nextPageToken', '')
 
-            if result_items:
-                add_item = next((
-                    item for item in result_items
-                    if not any((item.get('id', {}).get('videoId') in playlist_item.get('file') or
-                                (unescape(item.get('snippet', {}).get('title', '')) ==
-                                 playlist_item.get('label'))) for playlist_item in current_items)),
-                    None)
+                except:  # pylint: disable=bare-except
+                    result_items = []
 
-            if not add_item and page_token:
-                continue
+                if result_items:
+                    add_item = next((
+                        item for item in result_items
+                        if not any((item.get('id', {}).get('videoId') in
+                                    playlist_item.get('file') or
+                                    (unescape(item.get('snippet', {}).get('title', '')) ==
+                                     playlist_item.get('label')))
+                                   for playlist_item in current_items)),
+                        None)
+
+                if not add_item and page_token:
+                    continue
 
             if add_item:
                 related_id = add_item.get('id', {}).get('videoId')
-                cached_payload = get_cached(context, context.api.videos, [related_id])
-                cached_video = cached_payload.get(related_id, {})
+                if demo:
+                    cached_video = VIDEO_ITEM
+
+                else:
+                    cached_payload = get_cached(context, context.api.videos, [related_id])
+                    cached_video = cached_payload.get(related_id, {})
+
                 cached_snippet = cached_video.get('snippet', {})
                 cached_content_details = cached_video.get('contentDetails', {})
                 cached_statistics = cached_video.get('statistics', {})

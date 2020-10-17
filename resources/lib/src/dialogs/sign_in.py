@@ -13,17 +13,20 @@ import threading
 import pyxbmct.addonwindow as pyxbmct  # pylint: disable=import-error
 import xbmc  # pylint: disable=import-error
 
+from ..constants.demo import SIGN_IN_CODES
 from ..lib.txt_fmt import bold
 from .common import AddonFullWindow
 
 ACTION_STOP = 13
 
 
-class SignInDialog(AddonFullWindow):
+class SignInDialog(AddonFullWindow):  # pylint: disable=too-many-instance-attributes
 
-    def __init__(self, context, window):
+    def __init__(self, context, window, **kwargs):
         self._context = context
         self.window = window
+
+        self.demo = kwargs.get('mode') == 'demo'
 
         self.title = context.i18n('Sign In')
 
@@ -48,7 +51,11 @@ class SignInDialog(AddonFullWindow):
         self._context = value
 
     def start(self):
-        data = self.context.api.request_codes()
+        if self.demo:
+            data = SIGN_IN_CODES
+        else:
+            data = self.context.api.request_codes()
+
         self.device_code = data['device_code']
         self.user_code = data['user_code']
 
@@ -67,7 +74,8 @@ class SignInDialog(AddonFullWindow):
         self.connect(pyxbmct.ACTION_NAV_BACK, self.close)
         self.connect(ACTION_STOP, self.close)
 
-        self.thread = DialogThread(self.context, self.device_code, self.interval, self.close)
+        self.thread = DialogThread(self.context, self.device_code,
+                                   self.interval, self.close, self.demo)
 
         self.doModal()
 
@@ -99,7 +107,7 @@ class SignInDialog(AddonFullWindow):
 
 
 class DialogThread(threading.Thread):
-    def __init__(self, context, device_code, interval, close):
+    def __init__(self, context, device_code, interval, close, demo=False):
         super().__init__()
 
         self._stopped = threading.Event()
@@ -108,6 +116,8 @@ class DialogThread(threading.Thread):
         self.context = context
         self.device_code = device_code
         self.interval = interval
+
+        self.demo = demo
 
         self.monitor = xbmc.Monitor()
 
@@ -121,23 +131,31 @@ class DialogThread(threading.Thread):
         return self.monitor.abortRequested() or self.stopped()
 
     def run(self):
-        interval = int(self.interval) * 1000
-        if interval > 60000:
-            interval = 5000
+        if self.demo:
+            while True:
+                if self.abort_now():
+                    break
 
-        steps = ((10 * 60 * 1000) // interval)  # 10 Minutes
-        for _ in range(steps):
-            # self.update_progress(int(float((100.0 // steps)) * index))
+                xbmc.sleep(1000)
 
-            signed_in = self.context.api.request_access_token(self.device_code)
-            if signed_in:
-                self.signed_in = True
-                self.stop()
+        else:
+            interval = int(self.interval) * 1000
+            if interval > 60000:
+                interval = 5000
 
-            if self.abort_now():
-                break
+            steps = ((10 * 60 * 1000) // interval)  # 10 Minutes
+            for _ in range(steps):
+                # self.update_progress(int(float((100.0 // steps)) * index))
 
-            xbmc.sleep(interval)
+                signed_in = self.context.api.request_access_token(self.device_code)
+                if signed_in:
+                    self.signed_in = True
+                    self.stop()
+
+                if self.abort_now():
+                    break
+
+                xbmc.sleep(interval)
 
         self.close()
 
