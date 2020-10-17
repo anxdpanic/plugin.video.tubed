@@ -172,3 +172,15 @@ def playlist_items(playlist_id):
 
     LOG.error(error)
     return []
+
+
+def int_to_shortform_string(number):
+    number = float('{:.3g}'.format(number))
+    magnitude = 0
+
+    while abs(number) >= 1000:
+        magnitude += 1
+        number /= 1000.0
+
+    return '{}{}'.format('{:f}'.format(number).rstrip('0').rstrip('.'),
+                         ['', 'K', 'M', 'B'][magnitude])

@@ -18,6 +18,7 @@ from ..constants import MEDIA_PATH
 from ..constants.demo import VIDEO_ITEM
 from .common import AddonFullWindow
 from .utils import add_related_video_to_playlist
+from .utils import int_to_shortform_string
 
 ACTION_STOP = 13
 
@@ -44,8 +45,10 @@ class AutoplayRelated(AddonFullWindow):  # pylint: disable=too-many-instance-att
 
         self.l_video_title = None
         self.l_channel_name = None
+        self.l_premiered = None
         self.l_video_description = None
         self.l_video_thumbnail = None
+        self.l_video_statistics = None
 
         self.spinner_image = pyxbmct.Image(os.path.join(MEDIA_PATH, 'spinner.gif'))
 
@@ -105,20 +108,40 @@ class AutoplayRelated(AddonFullWindow):  # pylint: disable=too-many-instance-att
         self.l_video_title = pyxbmct.FadeLabel(
             font='font30_title',
         )
-        self.placeControl(self.l_video_title, 3, 3, columnspan=185)
+        self.placeControl(self.l_video_title, 3, 3, columnspan=190)
         self.l_video_title.addLabel(self.metadata.get('title'))
 
         self.l_channel_name = pyxbmct.FadeLabel(
             font='font25_title',
         )
-        self.placeControl(self.l_channel_name, 12, 73, columnspan=125)
+        self.placeControl(self.l_channel_name, 12, 73, columnspan=95)
         self.l_channel_name.addLabel(self.metadata.get('channel_name'))
+
+        self.l_premiered = pyxbmct.Label(
+            self.metadata.get('premiered'),
+            font='font20_title',
+            alignment=3,
+        )
+        self.placeControl(self.l_premiered, 12, 157, columnspan=27)
+
+        self.l_video_statistics = pyxbmct.Label(
+            '%s %s / %s %s / %s %s' %
+            (int_to_shortform_string(self.metadata.get('like_count')),
+             self.context.i18n('likes'),
+             int_to_shortform_string(self.metadata.get('dislike_count')),
+             self.context.i18n('dislikes'),
+             int_to_shortform_string(self.metadata.get('view_count')),
+             self.context.i18n('views')),
+            font='font20_title',
+            alignment=2,
+        )
+        self.placeControl(self.l_video_statistics, 19, 73, columnspan=122)
 
         self.l_video_description = pyxbmct.TextBox(
             font='font10'
         )
         self.l_video_description.setText(self.metadata.get('description'))
-        self.placeControl(self.l_video_description, 24, 73, rowspan=35, columnspan=122)
+        self.placeControl(self.l_video_description, 26, 73, rowspan=35, columnspan=122)
         self.l_video_description.autoScroll(1000, 5500, 500)
 
     def set_navigation(self):
