@@ -1,3 +1,5 @@
+<img src="https://raw.githubusercontent.com/anxdpanic/plugin.video.tubed/master/resources/media/icon.png" width="256" height="256" alt="Tubed">
+
 # Tubed
 
 ![Build Status](https://img.shields.io/travis/com/anxdpanic/plugin.video.tubed/master.svg)
