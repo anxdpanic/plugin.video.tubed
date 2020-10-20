@@ -12,6 +12,7 @@ from html import unescape
 
 import xbmcgui  # pylint: disable=import-error
 
+from ..constants.media import NOTIFICATION_ICON
 from ..generators.data_cache import get_cached
 from ..generators.utils import get_thumbnail
 from ..lib.logger import Log
@@ -110,6 +111,6 @@ def rate(context, video_id):
         xbmcgui.Dialog().notification(
             context.addon.getAddonInfo('name'),
             message,
-            context.addon.getAddonInfo('icon'),
+            NOTIFICATION_ICON,
             sound=False
         )

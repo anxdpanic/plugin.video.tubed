@@ -11,6 +11,7 @@
 import xbmc  # pylint: disable=import-error
 import xbmcgui  # pylint: disable=import-error
 
+from ..constants.media import NOTIFICATION_ICON
 from ..lib.txt_fmt import bold
 from ..lib.url_utils import unquote
 from ..storage.users import UserStorage
@@ -68,7 +69,7 @@ def invoke(context, action, playlist_type, playlist_id, playlist_title=''):  # p
         xbmcgui.Dialog().notification(
             context.addon.getAddonInfo('name'),
             message,
-            context.addon.getAddonInfo('icon'),
+            NOTIFICATION_ICON,
             sound=False
         )
         users.save()

@@ -14,6 +14,7 @@ from uuid import uuid4
 
 import xbmcgui  # pylint: disable=import-error
 
+from ..constants.media import NOTIFICATION_ICON
 from ..lib.context import Context
 from ..lib.logger import Log
 from ..lib.txt_fmt import strip_html
@@ -83,7 +84,7 @@ def __api_error_check(payload):
             xbmcgui.Dialog().notification(
                 heading,
                 message,
-                CONTEXT.addon.getAddonInfo('icon'),
+                NOTIFICATION_ICON,
                 sound=False
             )
             LOG.error('API request failed:\n  %s' % payload)
