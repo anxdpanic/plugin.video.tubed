@@ -27,5 +27,12 @@ Watch your favorite YouTube content on Kodi
   
     Post an [issue](https://github.com/anxdpanic/plugin.video.tubed/issues)  
     Post on the [forum](https://forum.kodi.tv/showthread.php?tid=...) 
+
 ---
 
+Artwork
+-
+    
+Thanks to **[sualfred](https://github.com/sualfred)**
+    
+--- 
