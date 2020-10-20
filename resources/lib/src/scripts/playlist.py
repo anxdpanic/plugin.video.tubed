@@ -13,6 +13,7 @@ from html import unescape
 import xbmc  # pylint: disable=import-error
 import xbmcgui  # pylint: disable=import-error
 
+from ..constants.media import NOTIFICATION_ICON
 from ..generators.utils import get_thumbnail
 from ..lib.memoizer import reset_cache
 from ..lib.txt_fmt import bold
@@ -80,7 +81,7 @@ def invoke(context, action, video_id='', video_title='', playlist_id='',  # pyli
         xbmcgui.Dialog().notification(
             context.addon.getAddonInfo('name'),
             message,
-            context.addon.getAddonInfo('icon'),
+            NOTIFICATION_ICON,
             sound=False
         )
 

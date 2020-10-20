@@ -13,6 +13,7 @@ import shutil
 import xbmcgui  # pylint: disable=import-error
 import xbmcvfs  # pylint: disable=import-error
 
+from ..constants.media import NOTIFICATION_ICON
 from ..lib.memoizer import PATH as cache_path
 from ..lib.memoizer import make_path
 from ..lib.memoizer import reset_cache
@@ -24,7 +25,6 @@ def invoke(context, action, cache_type):
         return
 
     addon_name = context.addon.getAddonInfo('name')
-    addon_icon = context.addon.getAddonInfo('icon')
 
     if cache_type == 'data':
         cache = DataCache(context)
@@ -35,7 +35,7 @@ def invoke(context, action, cache_type):
                 xbmcgui.Dialog().notification(
                     addon_name,
                     context.i18n('Data cache was cleared'),
-                    addon_icon,
+                    NOTIFICATION_ICON,
                     sound=False
                 )
                 return
@@ -44,7 +44,7 @@ def invoke(context, action, cache_type):
                 xbmcgui.Dialog().notification(
                     addon_name,
                     context.i18n('Failed to clear data cache'),
-                    addon_icon,
+                    NOTIFICATION_ICON,
                     sound=False
                 )
                 return
@@ -59,7 +59,7 @@ def invoke(context, action, cache_type):
                 xbmcgui.Dialog().notification(
                     addon_name,
                     context.i18n('Data cache was deleted'),
-                    addon_icon,
+                    NOTIFICATION_ICON,
                     sound=False
                 )
                 return
@@ -68,7 +68,7 @@ def invoke(context, action, cache_type):
                 xbmcgui.Dialog().notification(
                     addon_name,
                     context.i18n('Failed to delete data cache'),
-                    addon_icon,
+                    NOTIFICATION_ICON,
                     sound=False
                 )
                 return
@@ -80,7 +80,7 @@ def invoke(context, action, cache_type):
                 xbmcgui.Dialog().notification(
                     addon_name,
                     context.i18n('Function cache was cleared'),
-                    addon_icon,
+                    NOTIFICATION_ICON,
                     sound=False
                 )
                 return
@@ -89,7 +89,7 @@ def invoke(context, action, cache_type):
                 xbmcgui.Dialog().notification(
                     addon_name,
                     context.i18n('Failed to clear function cache'),
-                    addon_icon,
+                    NOTIFICATION_ICON,
                     sound=False
                 )
                 return
@@ -102,7 +102,7 @@ def invoke(context, action, cache_type):
                 xbmcgui.Dialog().notification(
                     addon_name,
                     context.i18n('Function cache was deleted'),
-                    addon_icon,
+                    NOTIFICATION_ICON,
                     sound=False
                 )
                 return
@@ -111,7 +111,7 @@ def invoke(context, action, cache_type):
                 xbmcgui.Dialog().notification(
                     addon_name,
                     context.i18n('Failed to delete function cache'),
-                    addon_icon,
+                    NOTIFICATION_ICON,
                     sound=False
                 )
                 make_path()

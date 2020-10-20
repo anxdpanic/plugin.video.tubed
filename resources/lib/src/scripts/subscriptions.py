@@ -11,6 +11,7 @@
 import xbmc  # pylint: disable=import-error
 import xbmcgui  # pylint: disable=import-error
 
+from ..constants.media import NOTIFICATION_ICON
 from ..lib.memoizer import reset_cache
 from ..lib.txt_fmt import bold
 from ..lib.url_utils import unquote
@@ -39,7 +40,7 @@ def invoke(context, action, channel_id='', subscription_id='', channel_name=''):
             xbmcgui.Dialog().notification(
                 context.addon.getAddonInfo('name'),
                 message,
-                context.addon.getAddonInfo('icon'),
+                NOTIFICATION_ICON,
                 sound=False
             )
 
@@ -64,7 +65,7 @@ def invoke(context, action, channel_id='', subscription_id='', channel_name=''):
             xbmcgui.Dialog().notification(
                 context.addon.getAddonInfo('name'),
                 message,
-                context.addon.getAddonInfo('icon'),
+                NOTIFICATION_ICON,
                 sound=False
             )
 

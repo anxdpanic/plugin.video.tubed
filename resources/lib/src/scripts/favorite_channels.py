@@ -14,6 +14,7 @@ from xml.etree import ElementTree
 import xbmc  # pylint: disable=import-error
 import xbmcgui  # pylint: disable=import-error
 
+from ..constants.media import NOTIFICATION_ICON
 from ..lib.txt_fmt import bold
 from ..lib.url_utils import unquote
 from ..storage.favorite_channels import FavoriteChannels
@@ -36,7 +37,7 @@ def invoke(context, action, channel_id='', channel_name=''):
         xbmcgui.Dialog().notification(
             context.i18n('Favorite Channels'),
             context.i18n('Added %s to favorite channels') % bold(channel_name),
-            context.addon.getAddonInfo('icon'),
+            NOTIFICATION_ICON,
             sound=False
         )
 
@@ -53,7 +54,7 @@ def invoke(context, action, channel_id='', channel_name=''):
         xbmcgui.Dialog().notification(
             context.i18n('Favorite Channels'),
             context.i18n('Favorite channels cleared'),
-            context.addon.getAddonInfo('icon'),
+            NOTIFICATION_ICON,
             sound=False
         )
 
@@ -75,7 +76,7 @@ def invoke(context, action, channel_id='', channel_name=''):
         xbmcgui.Dialog().notification(
             context.i18n('Favorite Channels'),
             message,
-            context.addon.getAddonInfo('icon'),
+            NOTIFICATION_ICON,
             sound=False
         )
 
@@ -96,14 +97,14 @@ def invoke(context, action, channel_id='', channel_name=''):
                 xbmcgui.Dialog().notification(
                     context.i18n('Favorite Channels'),
                     context.i18n('Import completed successfully'),
-                    context.addon.getAddonInfo('icon'),
+                    NOTIFICATION_ICON,
                     sound=False
                 )
             else:
                 xbmcgui.Dialog().notification(
                     context.i18n('Favorite Channels'),
                     context.i18n('Import failed'),
-                    context.addon.getAddonInfo('icon'),
+                    NOTIFICATION_ICON,
                     sound=False
                 )
 
