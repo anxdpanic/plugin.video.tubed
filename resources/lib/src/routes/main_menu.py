@@ -29,6 +29,7 @@ def invoke(context):  # pylint: disable=too-many-branches,too-many-statements
     users = None
 
     logged_in = context.api.logged_in
+    fanart = context.addon.getAddonInfo('fanart')
 
     if not logged_in:
         if show_main_menu_item('sign.in'):
@@ -41,7 +42,8 @@ def invoke(context):  # pylint: disable=too-many-branches,too-many-statements
             )
             action.ListItem.setArt({
                 'icon': 'OverlayLocked.png',
-                'thumb': 'OverlayLocked.png'
+                'thumb': 'OverlayLocked.png',
+                'fanart': fanart,
             })
             context_menus = _context_menu_hide_menu_item(context, 'sign.in', label)
             action.ListItem.addContextMenuItems(context_menus)
@@ -57,7 +59,8 @@ def invoke(context):  # pylint: disable=too-many-branches,too-many-statements
         )
         directory.ListItem.setArt({
             'icon': 'DefaultTVShows.png',
-            'thumb': 'DefaultTVShows.png'
+            'thumb': 'DefaultTVShows.png',
+            'fanart': fanart,
         })
         context_menus = _context_menu_hide_menu_item(context, 'most.popular', label)
         directory.ListItem.addContextMenuItems(context_menus)
@@ -73,7 +76,8 @@ def invoke(context):  # pylint: disable=too-many-branches,too-many-statements
         )
         directory.ListItem.setArt({
             'icon': 'DefaultCountry.png',
-            'thumb': 'DefaultCountry.png'
+            'thumb': 'DefaultCountry.png',
+            'fanart': fanart,
         })
         context_menus = _context_menu_hide_menu_item(context, 'most.popular.regionally', label)
         directory.ListItem.addContextMenuItems(context_menus)
@@ -89,7 +93,8 @@ def invoke(context):  # pylint: disable=too-many-branches,too-many-statements
         )
         directory.ListItem.setArt({
             'icon': 'DefaultGenre.png',
-            'thumb': 'DefaultGenre.png'
+            'thumb': 'DefaultGenre.png',
+            'fanart': fanart,
         })
         context_menus = _context_menu_hide_menu_item(context, 'categories', label)
         directory.ListItem.addContextMenuItems(context_menus)
@@ -106,7 +111,8 @@ def invoke(context):  # pylint: disable=too-many-branches,too-many-statements
             )
             directory.ListItem.setArt({
                 'icon': 'DefaultTVShows.png',
-                'thumb': 'DefaultTVShows.png'
+                'thumb': 'DefaultTVShows.png',
+                'fanart': fanart,
             })
             context_menus = _context_menu_hide_menu_item(context, 'my.channel', label)
             directory.ListItem.addContextMenuItems(context_menus)
@@ -122,7 +128,8 @@ def invoke(context):  # pylint: disable=too-many-branches,too-many-statements
             )
             directory.ListItem.setArt({
                 'icon': 'DefaultTVShows.png',
-                'thumb': 'DefaultTVShows.png'
+                'thumb': 'DefaultTVShows.png',
+                'fanart': fanart,
             })
             context_menus = _context_menu_hide_menu_item(context, 'liked.videos', label)
             directory.ListItem.addContextMenuItems(context_menus)
@@ -138,7 +145,8 @@ def invoke(context):  # pylint: disable=too-many-branches,too-many-statements
             )
             directory.ListItem.setArt({
                 'icon': 'DefaultTVShows.png',
-                'thumb': 'DefaultTVShows.png'
+                'thumb': 'DefaultTVShows.png',
+                'fanart': fanart,
             })
             context_menus = _context_menu_hide_menu_item(context, 'disliked.videos', label)
             directory.ListItem.addContextMenuItems(context_menus)
@@ -157,7 +165,8 @@ def invoke(context):  # pylint: disable=too-many-branches,too-many-statements
                 )
                 directory.ListItem.setArt({
                     'icon': 'DefaultVideoPlaylists.png',
-                    'thumb': 'DefaultVideoPlaylists.png'
+                    'thumb': 'DefaultVideoPlaylists.png',
+                    'fanart': fanart,
                 })
                 context_menus = _context_menu_hide_menu_item(context, 'history', label)
                 directory.ListItem.addContextMenuItems(context_menus)
@@ -178,7 +187,8 @@ def invoke(context):  # pylint: disable=too-many-branches,too-many-statements
                 )
                 directory.ListItem.setArt({
                     'icon': 'DefaultVideoPlaylists.png',
-                    'thumb': 'DefaultVideoPlaylists.png'
+                    'thumb': 'DefaultVideoPlaylists.png',
+                    'fanart': fanart,
                 })
                 context_menus = _context_menu_hide_menu_item(context, 'watch.later', label)
                 directory.ListItem.addContextMenuItems(context_menus)
@@ -195,7 +205,8 @@ def invoke(context):  # pylint: disable=too-many-branches,too-many-statements
             )
             directory.ListItem.setArt({
                 'icon': 'DefaultVideoPlaylists.png',
-                'thumb': 'DefaultVideoPlaylists.png'
+                'thumb': 'DefaultVideoPlaylists.png',
+                'fanart': fanart,
             })
             context_menus = _context_menu_hide_menu_item(context, 'playlists', label)
             directory.ListItem.addContextMenuItems(context_menus)
@@ -211,7 +222,8 @@ def invoke(context):  # pylint: disable=too-many-branches,too-many-statements
             )
             directory.ListItem.setArt({
                 'icon': 'DefaultStudios.png',
-                'thumb': 'DefaultStudios.png'
+                'thumb': 'DefaultStudios.png',
+                'fanart': fanart,
             })
             context_menus = _context_menu_hide_menu_item(context, 'subscriptions', label)
             directory.ListItem.addContextMenuItems(context_menus)
@@ -227,7 +239,8 @@ def invoke(context):  # pylint: disable=too-many-branches,too-many-statements
         )
         directory.ListItem.setArt({
             'icon': 'DefaultStudios.png',
-            'thumb': 'DefaultStudios.png'
+            'thumb': 'DefaultStudios.png',
+            'fanart': fanart,
         })
         context_menus = [
             (context.i18n('Import from xml'),
@@ -248,7 +261,8 @@ def invoke(context):  # pylint: disable=too-many-branches,too-many-statements
         )
         directory.ListItem.setArt({
             'icon': 'DefaultMovies.png',
-            'thumb': 'DefaultMovies.png'
+            'thumb': 'DefaultMovies.png',
+            'fanart': fanart,
         })
         context_menus = _context_menu_hide_menu_item(context, 'live', label)
         directory.ListItem.addContextMenuItems(context_menus)
@@ -264,7 +278,8 @@ def invoke(context):  # pylint: disable=too-many-branches,too-many-statements
         )
         directory.ListItem.setArt({
             'icon': 'DefaultAddonsSearch.png',
-            'thumb': 'DefaultAddonsSearch.png'
+            'thumb': 'DefaultAddonsSearch.png',
+            'fanart': fanart,
         })
         context_menus = _context_menu_hide_menu_item(context, 'search', label)
         directory.ListItem.addContextMenuItems(context_menus)
@@ -281,7 +296,8 @@ def invoke(context):  # pylint: disable=too-many-branches,too-many-statements
             )
             action.ListItem.setArt({
                 'icon': 'OverlayLocked.png',
-                'thumb': 'OverlayLocked.png'
+                'thumb': 'OverlayLocked.png',
+                'fanart': fanart,
             })
             context_menus = _context_menu_hide_menu_item(context, 'sign.out', label)
             action.ListItem.addContextMenuItems(context_menus)
@@ -300,7 +316,8 @@ def invoke(context):  # pylint: disable=too-many-branches,too-many-statements
         )
         action.ListItem.setArt({
             'icon': users.avatar or 'DefaultUser.png',
-            'thumb': users.avatar or 'DefaultUser.png'
+            'thumb': users.avatar or 'DefaultUser.png',
+            'fanart': fanart,
         })
         context_menus = _context_menu_hide_menu_item(context, 'manage.users', label)
         action.ListItem.addContextMenuItems(context_menus)
