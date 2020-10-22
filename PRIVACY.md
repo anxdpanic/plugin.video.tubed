@@ -34,7 +34,7 @@ Anonymous data collected in this way will only be used as required/requested by 
 
 **Privacy Policy Changes**
 
-Tubed may change this Privacy Policy, it is encouraged to frequently check this page for any changes to the Privacy Policy. If changes are made, notification will be given by revising the change log below. In most cases, notice will also be provided by adding a statement to https://panicked.xyz/tubed/. Further use of Tubed after a change to this Privacy Policy will be subject to the updated policy. Changes to this Privacy Policy are also subject to review by Google LLC.
+Tubed may change this Privacy Policy, it is encouraged to frequently check this page for any changes to the Privacy Policy. If changes are made, notification will be given by revising the change log below. In most cases, notice will also be provided by adding a statement to https://panicked.xyz/tubed/. Further use of Tubed after a change to this Privacy Policy will be subject to the updated policy. Changes to this Privacy Policy may also be subject to review by Google LLC.
 
 
 
