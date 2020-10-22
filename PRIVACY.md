@@ -37,4 +37,4 @@ Tubed may change this Privacy Policy, it is encouraged to frequently check this 
 
 ## Change Log
 
-- *10-22-2020*: Initial Privacy Policy
+- *10-22-2020* : Initial Privacy Policy
