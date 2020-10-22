@@ -18,7 +18,7 @@ The above data may be stored in local client side cache, will never be stored re
 **Data Storage and Sharing**
 
 API requests are made using HTTPS. <br />
-API data is storage locally by Tubed using an sqlite cache database. This data will never be stored remotely by Tubed and will only ever be transmitted to the YouTube API.
+API data is stored locally by Tubed using an sqlite cache database. This data will never be stored remotely by Tubed and will only ever be transmitted to the YouTube API.
 
 
 
