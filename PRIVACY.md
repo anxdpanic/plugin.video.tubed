@@ -1,7 +1,40 @@
-### Privacy Policy
+## Privacy Policy
 
-No personal or private information is required or used by Tubed. <br/>
-No personal or private information is specifically requested from YouTube's Data API, and if at any time it is returned by the API it will not be used by Tubed. Said data may be stored in local client side cache, and will never be stored or transmitted remotely by Tubed.
+The following privacy policy applies to **Tubed**, which can be found at https://panicked.xyz/tubed/
 
-Anonymous information will be collected by YouTube's Data API, see https://policies.google.com/privacy for more information. <br/>
-Anonymous API data will only be used as required/requested by Google LLC.
+
+
+**Personal Information**
+
+Personal information is only available and used by Tubed if you are logged in. <br />Your uploaded videos will be used for browsing purposes. <br />Your playlists will be used for browsing as well as adding/removing videos to your playlists, and adding/removing/renaming playlists. <br />
+Your subscriptions will be used for browsing as well as adding/removing subscriptions. <br />
+Your ratings will be used for browsing as well as Liking, Disliking videos and Removing your rating from videos. <br />
+Your channel information will be used for browsing or local display purposes. <br />
+
+The above data may be stored in local client side cache, will never be stored remotely by Tubed and will only ever be transmitted to the YouTube API. <br />
+
+
+
+**Data Storage and Sharing**
+
+API requests are made using HTTPS. <br />
+API data is storage locally by Tubed using an sqlite cache database. This data will never be stored remotely by Tubed and will only ever be transmitted to the YouTube API.
+
+
+
+**Vendor Data Collection Usage**
+
+Anonymous data will be collected by YouTube's Data API, see https://policies.google.com/privacy for more information. <br />
+Anonymous data collected in this way will only be used as required/requested by Google LLC.
+
+
+
+**Privacy Policy Changes**
+
+Tubed may change this Privacy Policy, it is encouraged to frequently check this page for any changes to the Privacy Policy. If changes are made, notification will be given by revising the change log below. In most cases, notice will also be provided by adding a statement to https://panicked.xyz/tubed/. Further use of Tubed after a change to this Privacy Policy will be subject to the updated policy. Changes to this Privacy Policy are also subject to review by Google LLC.
+
+
+
+## Change Log
+
+- *10-22-2020*: Initial Privacy Policy
