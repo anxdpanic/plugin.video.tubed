@@ -9,6 +9,10 @@
 
 Watch your favorite YouTube content on Kodi
 
+- Privacy Policy
+    -
+    [plugin.video.tubed/PRIVACY.md](https://github.com/anxdpanic/plugin.video.tubed/blob/master/PRIVACY.md)
+    
 - Installation
     -
     ##### Official repository (Not currently available)
