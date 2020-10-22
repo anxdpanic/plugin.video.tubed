@@ -22,7 +22,7 @@ API data is storage locally by Tubed using an sqlite cache database. This data w
 
 
 
-**Vendor Data Collection Usage**
+**Vendor Data Collection and Usage**
 
 Anonymous data will be collected by YouTube's Data API, see https://policies.google.com/privacy for more information. <br />
 Anonymous data collected in this way will only be used as required/requested by Google LLC.
