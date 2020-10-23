@@ -17,7 +17,7 @@ from .lib.url_utils import parse_query
 
 # pylint: disable=import-outside-toplevel
 
-CONTEXT = Context()
+CONTEXT = None
 LOG = Log('entrypoint', __file__)
 
 router = Router()
@@ -184,8 +184,11 @@ def _category(category_id, page_token=''):
 def invoke(argv):
     global CONTEXT  # pylint: disable=global-statement
 
+    CONTEXT = Context()
+
     CONTEXT.argv = argv
     CONTEXT.handle = argv[1]
+
     CONTEXT.query = parse_query(argv[2])
     CONTEXT.mode = CONTEXT.query.get('mode', str(MODES.MAIN))
 

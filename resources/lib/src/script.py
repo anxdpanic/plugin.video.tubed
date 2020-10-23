@@ -17,7 +17,7 @@ from .lib.url_utils import parse_script_query
 
 # pylint: disable=import-outside-toplevel
 
-CONTEXT = Context()
+CONTEXT = None
 LOG = Log('entrypoint', __file__)
 
 router = Router()
@@ -127,6 +127,8 @@ def _play(video_id='', playlist_id='', prompt_subtitles=False):
 
 def invoke(argv):
     global CONTEXT  # pylint: disable=global-statement
+
+    CONTEXT = Context()
 
     CONTEXT.argv = argv
     CONTEXT.handle = -1
