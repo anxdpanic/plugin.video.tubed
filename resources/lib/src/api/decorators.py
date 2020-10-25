@@ -19,11 +19,12 @@ from ..lib.context import Context
 from ..lib.logger import Log
 from ..lib.txt_fmt import strip_html
 
-CONTEXT = Context()
 LOG = Log('api', __file__)
 
 
 def api_request(func):
+    context = Context()
+
     @wraps(func)
     def wrapper(*args, **kwargs):
         if len(args) > 0 and not func.__name__.endswith('refresh_token'):
@@ -34,7 +35,7 @@ def api_request(func):
 
         uuid = ''
 
-        if CONTEXT.settings.log_api_requests:
+        if context.settings.log_api_requests:
             uuid = str(uuid4().hex)[:8]
             try:
                 LOG.debug('API Request [%s]: \n  Func: %s\n  Args: %s\n  Kwargs: %s' %
@@ -45,7 +46,7 @@ def api_request(func):
 
         payload = func(*args, **kwargs)
 
-        if CONTEXT.settings.log_api_requests:
+        if context.settings.log_api_requests:
             try:
                 LOG.debug('API Response [%s]: \n  Payload: \n%s' %
                           (uuid, json.dumps(payload, indent=4)))
@@ -59,11 +60,13 @@ def api_request(func):
 
 
 def __api_error_check(payload):
+    context = Context()
+
     if isinstance(payload, dict) and 'error' in payload:
         if not ('error' in payload and 'code' in payload['error'] and
                 200 <= int(payload['error']['code']) < 300):
 
-            heading = CONTEXT.i18n('Error')
+            heading = context.i18n('Error')
             message = ''
 
             if 'message' in payload['error']:
