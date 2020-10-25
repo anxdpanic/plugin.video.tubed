@@ -67,6 +67,8 @@ class UserStorage:  # pylint: disable=too-many-instance-attributes
         self._users = None
         self._user = None
 
+        self._uuid = str(uuid4().hex)[:8]
+
         self.init()
 
     @property
@@ -274,16 +276,20 @@ class UserStorage:  # pylint: disable=too-many-instance-attributes
 
             slept_for += sleep_time
 
+            LOG.debug('[%s] Attemping to aquire lock %s/%s ...' %
+                      (self._uuid, str(slept_for), str(timeout)))
+
         if not self.locked():
             with xbmcvfs.File(self.lock_filename, 'w') as _:
-                pass
+                LOG.debug('[%s] Lock aquired' % self._uuid)
 
         else:
-            LOG.error('Unable to aquire lock')
+            LOG.error('[%s] Unable to aquire lock' % self._uuid)
 
     def unlock(self):
         if self.locked():
             xbmcvfs.delete(self.lock_filename)
+            LOG.debug('[%s] Lock released' % self._uuid)
 
     def load(self):
         self.lock()

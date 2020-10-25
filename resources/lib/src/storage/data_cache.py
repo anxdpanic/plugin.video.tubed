@@ -17,7 +17,7 @@ from ..lib.context import Context
 
 class DataCache(Cache):
     def __init__(self, context=None):
-        filename = os.path.join(ADDONDATA_PATH, 'data', ' cache.sqlite')
+        filename = os.path.join(ADDONDATA_PATH, 'data', 'cache.sqlite')
 
         if not context:
             context = Context()
