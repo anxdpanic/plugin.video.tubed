@@ -25,7 +25,7 @@ def invoke(context, page_token=''):
         page_token=page_token,
         fields='items(kind,id)'
     )
-    list_items = list(video_generator(context, payload.get('items', [])))
+    items = list(video_generator(context, payload.get('items', [])))
 
     page_token = payload.get('nextPageToken')
     if page_token:
@@ -36,10 +36,14 @@ def invoke(context, page_token=''):
                 'page_token': page_token
             })
         )
-        list_items.append(tuple(directory))
+        items.append(tuple(directory))
 
-    xbmcplugin.addDirectoryItems(context.handle, list_items, len(list_items))
+    if items:
+        xbmcplugin.addDirectoryItems(context.handle, items, len(items))
 
-    set_video_sort_methods(context)
+        set_video_sort_methods(context)
 
-    xbmcplugin.endOfDirectory(context.handle, True)
+        xbmcplugin.endOfDirectory(context.handle, True)
+
+    else:
+        xbmcplugin.endOfDirectory(context.handle, False)

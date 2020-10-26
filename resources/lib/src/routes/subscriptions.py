@@ -33,7 +33,7 @@ def invoke(context, page_token='', order=DEFAULT_ORDER):
         fields='items(kind,id,snippet(resourceId/channelId))'
     )
 
-    list_items = list(subscription_generator(context, payload.get('items', [])))
+    items = list(subscription_generator(context, payload.get('items', [])))
 
     page_token = payload.get('nextPageToken')
     if page_token:
@@ -48,8 +48,12 @@ def invoke(context, page_token='', order=DEFAULT_ORDER):
             label=context.i18n('Next Page'),
             path=create_addon_path(query)
         )
-        list_items.append(tuple(directory))
+        items.append(tuple(directory))
 
-    xbmcplugin.addDirectoryItems(context.handle, list_items, len(list_items))
+    if items:
+        xbmcplugin.addDirectoryItems(context.handle, items, len(items))
 
-    xbmcplugin.endOfDirectory(context.handle, True)
+        xbmcplugin.endOfDirectory(context.handle, True)
+
+    else:
+        xbmcplugin.endOfDirectory(context.handle, False)

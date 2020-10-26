@@ -59,6 +59,10 @@ def invoke(context):
             directory.ListItem.addContextMenuItems(context_menus)
             items.append(tuple(directory))
 
-    xbmcplugin.addDirectoryItems(context.handle, items, len(items))
+    if items:
+        xbmcplugin.addDirectoryItems(context.handle, items, len(items))
 
-    xbmcplugin.endOfDirectory(context.handle, True)
+        xbmcplugin.endOfDirectory(context.handle, True)
+
+    else:
+        xbmcplugin.endOfDirectory(context.handle, False)
