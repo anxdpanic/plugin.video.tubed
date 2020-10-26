@@ -29,7 +29,7 @@ def memoizer_ttl():
     return xbmcaddon.Addon(ADDON_ID).getSettingInt('cache.ttl.function')
 
 
-class API:  # pylint: disable=too-many-public-methods
+class API:
 
     def __init__(self, language='en-US', region='US'):
         self._language = language

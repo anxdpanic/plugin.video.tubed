@@ -20,7 +20,7 @@ from .common import AddonFullWindow
 ACTION_STOP = 13
 
 
-class SignInDialog(AddonFullWindow):  # pylint: disable=too-many-instance-attributes
+class SignInDialog(AddonFullWindow):
 
     def __init__(self, context, window, **kwargs):
         self._context = context

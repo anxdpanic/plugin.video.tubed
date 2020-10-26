@@ -16,7 +16,7 @@ from .settings import Settings
 from .translation import Translator
 
 
-class Context:  # pylint: disable=too-many-instance-attributes
+class Context:
 
     def __init__(self):
         self._argv = None

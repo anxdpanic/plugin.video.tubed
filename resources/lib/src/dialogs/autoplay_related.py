@@ -23,7 +23,7 @@ from .utils import int_to_shortform_string
 ACTION_STOP = 13
 
 
-class AutoplayRelated(AddonFullWindow):  # pylint: disable=too-many-instance-attributes
+class AutoplayRelated(AddonFullWindow):
 
     def __init__(self, context, window, **kwargs):
         self._context = context
