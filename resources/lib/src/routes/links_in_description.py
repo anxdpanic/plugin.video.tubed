@@ -29,7 +29,7 @@ def invoke(context, video_id):
     cached_snippet = cached_video.get('snippet', {})
 
     extracted_urls = []
-    list_items = []
+    items = []
     success = True
 
     description = unescape(cached_snippet.get('description', ''))
@@ -46,21 +46,21 @@ def invoke(context, video_id):
 
         if parsed_urls.get('channel_ids'):
             payload = context.api.channels(parsed_urls.get('channel_ids'), fields='items(kind,id)')
-            list_items += channel_generator(context, payload.get('items', []))
+            items += channel_generator(context, payload.get('items', []))
 
         if parsed_urls.get('playlist_ids'):
             payload = context.api.playlists(parsed_urls.get('playlist_ids'),
                                             fields='items(kind,id,snippet(title))')
-            list_items += playlist_generator(context, payload.get('items', []))
+            items += playlist_generator(context, payload.get('items', []))
 
         if parsed_urls.get('video_ids'):
             payload = context.api.videos(parsed_urls.get('video_ids'), fields='items(kind,id)')
-            list_items += video_generator(context, payload.get('items', []))
+            items += video_generator(context, payload.get('items', []))
 
-        success = len(list_items) > 0
+        success = len(items) > 0
 
     if success:
-        xbmcplugin.addDirectoryItems(context.handle, list_items, len(list_items))
+        xbmcplugin.addDirectoryItems(context.handle, items, len(items))
 
     else:
         xbmcgui.Dialog().notification(

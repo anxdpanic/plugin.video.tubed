@@ -429,7 +429,7 @@ valid-metaclass-classmethod-first-arg=cls
 max-args=8
 
 # Maximum number of attributes for a class (see R0902).
-max-attributes=10
+max-attributes=50
 
 # Maximum number of boolean expressions in an if statement (see R0916).
 max-bool-expr=8
@@ -444,7 +444,7 @@ max-locals=25
 max-parents=8
 
 # Maximum number of public methods for a class (see R0904).
-max-public-methods=20
+max-public-methods=50
 
 # Maximum number of return / yield for function / method body.
 max-returns=10
@@ -453,7 +453,7 @@ max-returns=10
 max-statements=75
 
 # Minimum number of public methods for a class (see R0903).
-min-public-methods=1
+min-public-methods=0
 
 
 [IMPORTS]

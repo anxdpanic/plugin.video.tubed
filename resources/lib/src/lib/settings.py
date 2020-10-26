@@ -14,7 +14,7 @@ import xbmcaddon  # pylint: disable=import-error
 from ..constants import SUBTITLE_LANGUAGE
 
 
-class Settings:  # pylint: disable=too-many-public-methods
+class Settings:
 
     def __init__(self, addon=None):
         self._addon = addon

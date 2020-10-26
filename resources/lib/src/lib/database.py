@@ -81,8 +81,6 @@ class Database:
 
     def _open(self):
         if self._file is None:
-            self._optimize_file_size()
-
             path = os.path.dirname(self.filename)
             if not xbmcvfs.exists(path):
                 xbmcvfs.mkdirs(path)
@@ -130,12 +128,31 @@ class Database:
         if not xbmcvfs.exists(self.filename):
             return
 
-        try:
-            file_size_kb = (xbmcvfs.Stat(self.filename).st_size() // 1024)
-            if file_size_kb >= self.max_file_size_kb:
-                xbmcvfs.delete(self.filename)
-        except OSError:
-            pass
+        file_size_kb = (xbmcvfs.Stat(self.filename).st_size() // 1024)
+        if file_size_kb >= self.max_file_size_kb:
+            self._open()
+
+            result = self._execute(
+                False,
+                'SELECT COUNT(key) FROM %s' % self.table_name
+            )
+
+            item_count = result.fetchone()[0]
+            try:
+                item_count = int(item_count)
+            except ValueError:
+                item_count = 0
+
+            crop_count = max(item_count, item_count - 150)
+
+            result = self._execute(
+                True,
+                'DELETE FROM %s WHERE key in '
+                '(SELECT key FROM %s ORDER BY time DESC LIMIT -1 OFFSET %d)' %
+                (self.table_name, self.table_name, crop_count)
+            )
+
+            self._close()
 
     def _create_table(self):
         self._open()
@@ -156,6 +173,7 @@ class Database:
     def _set(self, item_id, item):
         if self.max_file_size_kb < 1 and self.max_item_count < 1:
             self._optimize_item_count()
+            self._optimize_file_size()
             return
 
         self._open()
@@ -168,6 +186,7 @@ class Database:
 
         self._close()
         self._optimize_item_count()
+        self._optimize_file_size()
 
     def _optimize_item_count(self):
         if self.max_item_count < 1:

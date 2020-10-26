@@ -27,7 +27,7 @@ def invoke(context, channel_id, page_token=''):
     related_playlists = content_details.get('relatedPlaylists', {})
     upload_playlist = related_playlists.get('uploads', '')
 
-    list_items = []
+    items = []
 
     if not page_token:
         if channel_id != 'mine':
@@ -38,7 +38,7 @@ def invoke(context, channel_id, page_token=''):
                     'channel_id': channel_id
                 })
             )
-            list_items.append(tuple(directory))
+            items.append(tuple(directory))
 
         if upload_playlist:
             directory = Directory(
@@ -48,7 +48,7 @@ def invoke(context, channel_id, page_token=''):
                     'playlist_id': upload_playlist
                 })
             )
-            list_items.append(tuple(directory))
+            items.append(tuple(directory))
 
         if channel_id == 'mine':
             watch_later_playlist = ' ' + related_playlists.get('watchLater', '')
@@ -61,7 +61,7 @@ def invoke(context, channel_id, page_token=''):
                         'playlist_id': watch_later_playlist
                     })
                 )
-                list_items.append(tuple(directory))
+                items.append(tuple(directory))
 
     payload = context.api.playlists_of_channel(
         channel_id=channel_id,
@@ -69,7 +69,7 @@ def invoke(context, channel_id, page_token=''):
         fields='items(kind,id,snippet(title))'
     )
 
-    list_items += list(playlist_generator(context, payload.get('items', [])))
+    items += list(playlist_generator(context, payload.get('items', [])))
 
     page_token = payload.get('nextPageToken')
     if page_token:
@@ -81,8 +81,12 @@ def invoke(context, channel_id, page_token=''):
                 'page_token': page_token
             })
         )
-        list_items.append(tuple(directory))
+        items.append(tuple(directory))
 
-    xbmcplugin.addDirectoryItems(context.handle, list_items, len(list_items))
+    if items:
+        xbmcplugin.addDirectoryItems(context.handle, items, len(items))
 
-    xbmcplugin.endOfDirectory(context.handle, True)
+        xbmcplugin.endOfDirectory(context.handle, True)
+
+    else:
+        xbmcplugin.endOfDirectory(context.handle, False)

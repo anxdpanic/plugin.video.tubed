@@ -87,6 +87,7 @@ class Cache(Database):
         )
 
         self._close()
+        self._optimize_file_size()
 
     def _set_all(self, items):
 
@@ -102,3 +103,4 @@ class Cache(Database):
             needs_commit = False
 
         self._close()
+        self._optimize_file_size()

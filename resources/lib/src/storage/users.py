@@ -24,7 +24,7 @@ from ..lib.url_utils import unquote
 LOG = Log('storage', __file__)
 
 
-class UserStorage:  # pylint: disable=too-many-instance-attributes
+class UserStorage:
     __template_root = \
         '''
 <users>

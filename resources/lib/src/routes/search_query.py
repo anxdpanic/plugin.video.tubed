@@ -65,7 +65,7 @@ def invoke(context, query='', page_token='', search_type='video',  # pylint: dis
         xbmcplugin.endOfDirectory(context.handle, False)
         return
 
-    list_items = []
+    items = []
     quoted_query = quote(query)
 
     if not page_token and search_type == 'video' and not channel_id:
@@ -79,7 +79,7 @@ def invoke(context, query='', page_token='', search_type='video',  # pylint: dis
             })
         )
 
-        list_items.append(tuple(directory))
+        items.append(tuple(directory))
 
         directory = SearchQuery(
             label=bold(context.i18n('Playlists')),
@@ -90,7 +90,7 @@ def invoke(context, query='', page_token='', search_type='video',  # pylint: dis
             })
         )
 
-        list_items.append(tuple(directory))
+        items.append(tuple(directory))
 
     addon_query = {
         'mode': str(MODES.SEARCH_QUERY),
@@ -114,20 +114,20 @@ def invoke(context, query='', page_token='', search_type='video',  # pylint: dis
 
         payload = context.api.search(**request_arguments)
 
-        list_items += list(video_generator(context, payload.get('items', [])))
+        items += list(video_generator(context, payload.get('items', [])))
         del addon_query['search_type']
 
     elif search_type == 'channel':
         request_arguments['fields'] = 'items(kind,id(channelId))'
         payload = context.api.search(**request_arguments)
 
-        list_items += list(channel_generator(context, payload.get('items', [])))
+        items += list(channel_generator(context, payload.get('items', [])))
 
     elif search_type == 'playlist':
         request_arguments['fields'] = 'items(kind,id(playlistId),snippet(title))'
         payload = context.api.search(**request_arguments)
 
-        list_items += list(playlist_generator(context, payload.get('items', [])))
+        items += list(playlist_generator(context, payload.get('items', [])))
 
     if not payload:
         return
@@ -143,9 +143,9 @@ def invoke(context, query='', page_token='', search_type='video',  # pylint: dis
             label=context.i18n('Next Page'),
             path=create_addon_path(addon_query)
         )
-        list_items.append(tuple(directory))
+        items.append(tuple(directory))
 
-    if not list_items:
+    if not items:
         xbmcplugin.endOfDirectory(context.handle, False)
         return
 
@@ -154,9 +154,13 @@ def invoke(context, query='', page_token='', search_type='video',  # pylint: dis
     if not channel_id:
         search_history.update(query)
 
-    xbmcplugin.addDirectoryItems(context.handle, list_items, len(list_items))
+    if items:
+        xbmcplugin.addDirectoryItems(context.handle, items, len(items))
 
-    if search_type == 'video':
-        set_video_sort_methods(context)
+        if search_type == 'video':
+            set_video_sort_methods(context)
 
-    xbmcplugin.endOfDirectory(context.handle, True)
+        xbmcplugin.endOfDirectory(context.handle, True)
+
+    else:
+        xbmcplugin.endOfDirectory(context.handle, False)

@@ -36,7 +36,7 @@ def invoke(context, page_token='', event_type='live', order=DEFAULT_ORDER):
     if event_type != 'upcoming':
         xbmcplugin.setContent(context.handle, 'videos')
 
-    list_items = []
+    items = []
 
     if not page_token and event_type == 'live':
 
@@ -48,7 +48,7 @@ def invoke(context, page_token='', event_type='live', order=DEFAULT_ORDER):
             })
         )
 
-        list_items.append(tuple(directory))
+        items.append(tuple(directory))
 
         directory = Directory(
             label=bold(context.i18n('Completed')),
@@ -58,7 +58,7 @@ def invoke(context, page_token='', event_type='live', order=DEFAULT_ORDER):
             })
         )
 
-        list_items.append(tuple(directory))
+        items.append(tuple(directory))
 
     payload = context.api.live_events(
         event_type=event_type,
@@ -66,7 +66,7 @@ def invoke(context, page_token='', event_type='live', order=DEFAULT_ORDER):
         page_token=page_token,
         fields='items(kind,id(videoId))'
     )
-    list_items += list(video_generator(context, payload.get('items', [])))
+    items += list(video_generator(context, payload.get('items', [])))
 
     page_token = payload.get('nextPageToken')
     if page_token:
@@ -82,10 +82,14 @@ def invoke(context, page_token='', event_type='live', order=DEFAULT_ORDER):
             label=context.i18n('Next Page'),
             path=create_addon_path(query)
         )
-        list_items.append(tuple(directory))
+        items.append(tuple(directory))
 
-    xbmcplugin.addDirectoryItems(context.handle, list_items, len(list_items))
+    if items:
+        xbmcplugin.addDirectoryItems(context.handle, items, len(items))
 
-    set_video_sort_methods(context)
+        set_video_sort_methods(context)
 
-    xbmcplugin.endOfDirectory(context.handle, True)
+        xbmcplugin.endOfDirectory(context.handle, True)
+
+    else:
+        xbmcplugin.endOfDirectory(context.handle, False)

@@ -30,7 +30,7 @@ from .utils import get_thumbnail
 WATCH_LATER_PLAYLIST = UserStorage().watchlater_playlist
 
 
-def video_generator(context, items, mine=False):  # pylint: disable=too-many-locals
+def video_generator(context, items, mine=False):
     event_type = ''
 
     if context.mode == str(MODES.LIVE):
@@ -59,78 +59,30 @@ def video_generator(context, items, mine=False):  # pylint: disable=too-many-loc
         if not snippet:
             continue
 
-        content_details = video.get('contentDetails', {})
-        statistics = video.get('statistics', {})
+        info_labels = get_info_labels(video, snippet)
 
-        duration = iso8601_duration_to_seconds(content_details.get('duration', ''))
-
-        channel_id = snippet.get('channelId', '')
-        channel_name = unescape(snippet.get('channelTitle', ''))
-
-        video_title = unescape(snippet.get('title', ''))
-
-        published_arrow = None
-        scheduled_start = None
-        live_details = video.get('liveStreamingDetails')
-
-        if live_details:
-            actual_start = live_details.get('actualStartTime')
-            actual_end = live_details.get('actualEndTime')
-            scheduled_start = live_details.get('scheduledStartTime')
-
-            published = actual_end or actual_start or scheduled_start
-            if published:
-                published_arrow = arrow.get(published).to('local')
-
-        if not published_arrow:
-            published_arrow = arrow.get(snippet['publishedAt']).to('local')
+        channel_id = info_labels.pop('channel_id', '')
+        scheduled_start = info_labels.pop('scheduled_start', '')
 
         if event_type == 'upcoming':
             payload = Action(
-                label=video_title,
-                label2=channel_name,
+                label=info_labels.get('originaltitle', ''),
+                label2=info_labels.get('studio', ''),
                 path=create_addon_path({
                     'mode': str(MODES.UPCOMING_NOTIFICATION),
-                    'title': quote(video_title),
+                    'title': quote(info_labels.get('originaltitle', '')),
                     'timestamp': scheduled_start
                 })
             )
         else:
             payload = Video(
-                label=video_title,
-                label2=channel_name,
+                label=info_labels.get('originaltitle', ''),
+                label2=info_labels.get('studio', ''),
                 path=create_addon_path({
                     'mode': str(MODES.PLAY),
                     'video_id': video_id
                 })
             )
-
-        votes = int(statistics.get('likeCount', '0')) + int(statistics.get('dislikeCount', '0'))
-        try:
-            rating = '%0.1f' % ((int(statistics.get('likeCount', '0')) / votes) * 10)
-        except ZeroDivisionError:
-            rating = '0.0'
-
-        info_labels = {
-            'mediatype': 'video',
-            'plot': unescape(snippet.get('description', '')),
-            'plotoutline': unescape(snippet.get('description', '')),
-            'originaltitle': video_title,
-            'sorttitle': video_title,
-            'studio': channel_name,
-            'year': published_arrow.year,
-            'premiered': published_arrow.format('YYYY-MM-DD'),
-            'dateadded': published_arrow.format('YYYY-MM-DD HH:mm:ss'),
-            'tag': snippet.get('tags', ''),
-            'rating': rating,
-            'votes': votes,
-        }
-
-        if duration:
-            info_labels['duration'] = duration
-
-        if snippet.get('liveBroadcastContent', 'none') != 'none':
-            info_labels['playcount'] = 0
 
         payload.ListItem.setInfo('video', info_labels)
 
@@ -142,8 +94,11 @@ def video_generator(context, items, mine=False):  # pylint: disable=too-many-loc
             'fanart': fanart.get(channel_id, ''),
         })
 
-        context_menus = get_context_menu(context, item, video_id, video_title,
-                                         channel_id, channel_name, event_type, mine)
+        context_menus = get_context_menu(context, item, video_id,
+                                         info_labels.get('originaltitle', ''),
+                                         channel_id,
+                                         info_labels.get('studio', ''),
+                                         event_type, mine)
 
         payload.ListItem.addContextMenuItems(context_menus)
 
@@ -165,6 +120,65 @@ def get_id(item):
             return item.get('id', {}).get('videoId', '')
 
     return ''
+
+
+def get_info_labels(video, snippet):
+    content_details = video.get('contentDetails', {})
+    statistics = video.get('statistics', {})
+
+    duration = iso8601_duration_to_seconds(content_details.get('duration', ''))
+
+    channel_id = snippet.get('channelId', '')
+    channel_name = unescape(snippet.get('channelTitle', ''))
+
+    video_title = unescape(snippet.get('title', ''))
+
+    published_arrow = None
+    scheduled_start = None
+    live_details = video.get('liveStreamingDetails')
+
+    if live_details:
+        actual_start = live_details.get('actualStartTime')
+        actual_end = live_details.get('actualEndTime')
+        scheduled_start = live_details.get('scheduledStartTime')
+
+        published = actual_end or actual_start or scheduled_start
+        if published:
+            published_arrow = arrow.get(published).to('local')
+
+    if not published_arrow:
+        published_arrow = arrow.get(snippet['publishedAt']).to('local')
+
+    votes = int(statistics.get('likeCount', '0')) + int(statistics.get('dislikeCount', '0'))
+    try:
+        rating = '%0.1f' % ((int(statistics.get('likeCount', '0')) / votes) * 10)
+    except ZeroDivisionError:
+        rating = '0.0'
+
+    info_labels = {
+        'mediatype': 'video',
+        'plot': unescape(snippet.get('description', '')),
+        'plotoutline': unescape(snippet.get('description', '')),
+        'originaltitle': video_title,
+        'sorttitle': video_title,
+        'studio': channel_name,
+        'year': published_arrow.year,
+        'premiered': published_arrow.format('YYYY-MM-DD'),
+        'dateadded': published_arrow.format('YYYY-MM-DD HH:mm:ss'),
+        'tag': snippet.get('tags', ''),
+        'rating': rating,
+        'votes': votes,
+        'channel_id': channel_id,
+        'scheduled_start': scheduled_start
+    }
+
+    if duration:
+        info_labels['duration'] = duration
+
+    if snippet.get('liveBroadcastContent', 'none') != 'none':
+        info_labels['playcount'] = 0
+
+    return info_labels
 
 
 def get_cached_videos(context, items, event_type):

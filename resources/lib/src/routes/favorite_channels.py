@@ -35,7 +35,7 @@ def invoke(context, page=1):
     channels = favorite_channels.list((page - 1) * max_channels, max_channels)
     channel_ids = [channel_id for channel_id, _ in channels]
 
-    list_items = list(favorite_channels_generator(context, channel_ids))
+    items = list(favorite_channels_generator(context, channel_ids))
 
     if favorite_channels.list(page * max_channels, 1):
         directory = NextPage(
@@ -45,8 +45,12 @@ def invoke(context, page=1):
                 'page': page + 1
             })
         )
-        list_items.append(tuple(directory))
+        items.append(tuple(directory))
 
-    xbmcplugin.addDirectoryItems(context.handle, list_items, len(list_items))
+    if items:
+        xbmcplugin.addDirectoryItems(context.handle, items, len(items))
 
-    xbmcplugin.endOfDirectory(context.handle, True)
+        xbmcplugin.endOfDirectory(context.handle, True)
+
+    else:
+        xbmcplugin.endOfDirectory(context.handle, False)

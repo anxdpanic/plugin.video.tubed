@@ -23,6 +23,8 @@ from ..storage.users import UserStorage
 
 
 def invoke(context):  # pylint: disable=too-many-branches,too-many-statements
+    xbmcplugin.setPluginCategory(context.handle, context.addon.getAddonInfo('name'))
+
     show_main_menu_item = context.settings.show_main_menu_item
 
     items = []
