@@ -61,6 +61,9 @@ def video_generator(context, items, mine=False):
 
         info_labels = get_info_labels(video, snippet)
 
+        channel_id = info_labels.pop('channel_id', '')
+        scheduled_start = info_labels.pop('scheduled_start', '')
+
         if event_type == 'upcoming':
             payload = Action(
                 label=info_labels.get('originaltitle', ''),
@@ -68,7 +71,7 @@ def video_generator(context, items, mine=False):
                 path=create_addon_path({
                     'mode': str(MODES.UPCOMING_NOTIFICATION),
                     'title': quote(info_labels.get('originaltitle', '')),
-                    'timestamp': info_labels.get('scheduled_start', '')
+                    'timestamp': scheduled_start
                 })
             )
         else:
@@ -88,12 +91,12 @@ def video_generator(context, items, mine=False):
         payload.ListItem.setArt({
             'icon': thumbnail,
             'thumb': thumbnail,
-            'fanart': fanart.get(info_labels.get('channel_id', ''), ''),
+            'fanart': fanart.get(channel_id, ''),
         })
 
         context_menus = get_context_menu(context, item, video_id,
                                          info_labels.get('originaltitle', ''),
-                                         info_labels.get('channel_id', ''),
+                                         channel_id,
                                          info_labels.get('studio', ''),
                                          event_type, mine)
 
