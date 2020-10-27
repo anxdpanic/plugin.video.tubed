@@ -59,6 +59,12 @@ def _most_popular_regionally():
     most_popular_regionally.invoke(CONTEXT)
 
 
+@router.route(MODES.CHAPTERS, args=['video_id'])
+def _chapters(video_id):
+    from .routes import chapters
+    chapters.invoke(CONTEXT, video_id)
+
+
 @router.route(MODES.LIKED_VIDEOS, kwargs=['page_token'])
 def _liked_videos(page_token=''):
     from .routes import liked_videos

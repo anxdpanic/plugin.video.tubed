@@ -8,7 +8,6 @@
     See LICENSES/GPL-2.0-only.txt for more information.
 """
 
-import re
 from copy import deepcopy
 from html import unescape
 from urllib.parse import quote
@@ -26,6 +25,7 @@ from ..lib.url_utils import create_addon_path
 from ..storage.users import UserStorage
 from .data_cache import get_cached
 from .data_cache import get_fanart
+from .utils import get_chapters
 from .utils import get_thumbnail
 
 WATCH_LATER_PLAYLIST = UserStorage().watchlater_playlist
@@ -64,7 +64,7 @@ def video_generator(context, items, mine=False):
 
         channel_id = info_labels.pop('channel_id', '')
         scheduled_start = info_labels.pop('scheduled_start', '')
-        _ = info_labels.pop('chapters', [])  # currently unused
+        chapters = info_labels.pop('chapters', [])
 
         if event_type == 'upcoming':
             payload = Action(
@@ -100,7 +100,7 @@ def video_generator(context, items, mine=False):
                                          info_labels.get('originaltitle', ''),
                                          channel_id,
                                          info_labels.get('studio', ''),
-                                         event_type, mine)
+                                         event_type, mine, chapters)
 
         payload.ListItem.addContextMenuItems(context_menus)
 
@@ -218,35 +218,8 @@ def get_cached_videos(context, items, event_type):
     return cached_videos
 
 
-def get_chapters(description):
-    def timestamp_to_seconds(stamp):
-        seconds = 0
-        stamp = stamp.split(':')
-
-        if len(stamp) == 4:
-            seconds = int(stamp[0]) * 24 * 60 * 60
-            stamp = stamp[1:]
-
-        return float(seconds + sum(int(value) * 60 ** index for index, value in
-                                   enumerate(reversed(stamp))))
-
-    chapter_sequence = re.compile(r"(?P<timestamp>[0-9:]+:[0-9]{2})\s(?P<title>[^\n]+)\n",
-                                  re.MULTILINE)
-
-    chapters = []
-    for sequence in chapter_sequence.finditer(description):
-        timestamp_label = sequence.group('timestamp')
-        timestamp_seconds = timestamp_to_seconds(timestamp_label)
-
-        title = sequence.group('title').strip()
-
-        chapters.append((timestamp_seconds, timestamp_label, title))
-
-    return chapters
-
-
-def get_context_menu(context, item, video_id, video_title,
-                     channel_id, channel_name, event_type, mine):
+def get_context_menu(context, item, video_id, video_title, channel_id,  # pylint: disable=too-many-arguments
+                     channel_name, event_type, mine, chapters):
     logged_in = context.api.logged_in
 
     context_menus = []
@@ -327,6 +300,13 @@ def get_context_menu(context, item, video_id, video_title,
     context_menus += [
         (context.i18n('Refresh'), 'RunScript(%s,mode=%s)' % (ADDON_ID, str(SCRIPT_MODES.REFRESH))),
     ]
+
+    if chapters:
+        context_menus += [
+            (context.i18n('Chapters'),
+             'PlayMedia(plugin://%s/?mode=%s&video_id=%s)' %
+             (ADDON_ID, str(MODES.CHAPTERS), video_id)),
+        ]
 
     if event_type != 'upcoming':
         context_menus += [

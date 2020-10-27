@@ -899,3 +899,11 @@ msgstr ""
 msgctxt "#30220"
 msgid "views"
 msgstr ""
+
+msgctxt "#30221"
+msgid "Chapters"
+msgstr ""
+
+msgctxt "#30222"
+msgid "Chapter starts at %s"
+msgstr ""

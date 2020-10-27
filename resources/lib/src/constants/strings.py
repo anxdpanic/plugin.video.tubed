@@ -163,4 +163,6 @@ STRINGS = {
     'likes': 30218,
     'dislikes': 30219,
     'views': 30220,
+    'Chapters': 30221,
+    'Chapter starts at %s': 30222,
 }
