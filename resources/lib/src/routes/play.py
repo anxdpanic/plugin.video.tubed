@@ -21,11 +21,12 @@ from ..generators.utils import get_thumbnail
 from ..generators.video import video_generator
 from ..items.stream import Stream
 from ..lib.pickle import write_pickled
+from ..lib.time import iso8601_duration_to_seconds
 
 
-def invoke(context, video_id='', playlist_id='', prompt_subtitles=False):
+def invoke(context, video_id='', playlist_id='', prompt_subtitles=False, start_offset=None):
     if video_id and not playlist_id:
-        play_single(context, video_id, prompt_subtitles)
+        play_single(context, video_id, prompt_subtitles, start_offset)
         return
 
     if playlist_id:
@@ -94,7 +95,7 @@ def create_playlist(context, playlist_id, video_id):
     return playlist, start_position, start_item
 
 
-def play_single(context, video_id, prompt_subtitles=False):
+def play_single(context, video_id, prompt_subtitles=False, start_offset=None):
     quality = context.api.quality(
         context.settings.video_quality,
         limit_30fps=context.settings.limit_to_30fps,
@@ -121,6 +122,7 @@ def play_single(context, video_id, prompt_subtitles=False):
 
     cached_video = cached_payload.get(video_id, {})
     snippet = cached_video.get('snippet', {})
+    content_details = cached_video.get('contentDetails', {})
 
     if not snippet:
         video_title = resolved_video.get('title', '')
@@ -145,6 +147,8 @@ def play_single(context, video_id, prompt_subtitles=False):
     )
     stream.ListItem.setSubtitles(subtitles)
 
+    duration = iso8601_duration_to_seconds(content_details.get('duration', ''))
+
     if snippet:
         published_arrow = arrow.get(snippet['publishedAt']).to('local')
         info_labels = {
@@ -159,8 +163,23 @@ def play_single(context, video_id, prompt_subtitles=False):
             'dateadded': published_arrow.format('YYYY-MM-DD HH:mm:ss'),
         }
 
+        if duration:
+            info_labels['duration'] = duration
+
         if snippet.get('liveBroadcastContent', 'none') != 'none':
-            info_labels['playcount'] = 0
+            info_labels['playcount'] = '0'
+
+        if start_offset is not None and duration:
+            # start `preload_time:5` seconds earlier than offset, otherwise a start offset of
+            # 60 may actually start at 61~64 seconds
+            preload_time = 5.0
+            start_offset = float(start_offset)
+            if start_offset >= preload_time:
+                start_offset = start_offset - preload_time
+
+            info_labels['playcount'] = '0'
+            stream.ListItem.setProperty('ResumeTime', '%.1f' % start_offset)
+            stream.ListItem.setProperty('TotalTime', '%.1f' % duration)
 
         thumbnail = get_thumbnail(snippet)
 

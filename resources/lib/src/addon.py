@@ -114,10 +114,10 @@ def _playlist(playlist_id, page_token='', mine=False):
     playlist.invoke(CONTEXT, playlist_id, page_token, mine)
 
 
-@router.route(MODES.PLAY, kwargs=['video_id', 'playlist_id', 'prompt_subtitles'])
-def _play(video_id='', playlist_id='', prompt_subtitles=False):
+@router.route(MODES.PLAY, kwargs=['video_id', 'playlist_id', 'prompt_subtitles', 'start_offset'])
+def _play(video_id='', playlist_id='', prompt_subtitles=False, start_offset=None):
     from .routes import play
-    play.invoke(CONTEXT, video_id, playlist_id, prompt_subtitles)
+    play.invoke(CONTEXT, video_id, playlist_id, prompt_subtitles, start_offset)
 
 
 @router.route(MODES.FAVORITE_CHANNELS, kwargs=['page'])
