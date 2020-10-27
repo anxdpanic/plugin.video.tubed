@@ -176,7 +176,7 @@ def get_info_labels(video, snippet):
         info_labels['duration'] = duration
 
     if snippet.get('liveBroadcastContent', 'none') != 'none':
-        info_labels['playcount'] = 0
+        info_labels['playcount'] = '0'
 
     return info_labels
 

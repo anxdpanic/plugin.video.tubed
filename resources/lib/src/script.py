@@ -119,10 +119,11 @@ def _post_play(video_id, position=-1):
     post_play.invoke(CONTEXT, video_id, position)
 
 
-@router.route(SCRIPT_MODES.PLAY, kwargs=['video_id', 'playlist_id', 'prompt_subtitles'])
-def _play(video_id='', playlist_id='', prompt_subtitles=False):
+@router.route(SCRIPT_MODES.PLAY, kwargs=['video_id', 'playlist_id', 'prompt_subtitles',
+                                         'start_offset'])
+def _play(video_id='', playlist_id='', prompt_subtitles=False, start_offset=None):
     from .scripts import play
-    play.invoke(CONTEXT, video_id, playlist_id, prompt_subtitles)
+    play.invoke(CONTEXT, video_id, playlist_id, prompt_subtitles, start_offset)
 
 
 def invoke(argv):
