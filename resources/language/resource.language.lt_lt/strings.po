@@ -909,3 +909,15 @@ msgstr ""
 msgctxt "#30222"
 msgid "Chapter starts at %s"
 msgstr ""
+
+msgctxt "#30223"
+msgid "API Module"
+msgstr ""
+
+msgctxt "#30224"
+msgid "Configure API module"
+msgstr ""
+
+msgctxt "#30225"
+msgid "Open Tubed API settings to configure the API module"
+msgstr ""
