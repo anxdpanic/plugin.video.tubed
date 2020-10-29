@@ -315,6 +315,17 @@
                 </setting>
             </group>
         </category>
+        <category id="api.module" label="30223" help="">
+            <group id="1" label="">
+                <setting id="api.module.settings" type="action" label="30224" help="30225">
+                    <level>0</level>
+                    <data>Addon.OpenSettings(script.module.tubed.api)</data>
+                    <control type="button" format="action">
+                        <close>true</close>
+                    </control>
+                </setting>
+            </group>
+        </category>
         <category id="debug" label="30125" help="">
             <group id="1" label="30126">
                 <setting id="log.api.requests" type="boolean" label="30127" help="30128">
