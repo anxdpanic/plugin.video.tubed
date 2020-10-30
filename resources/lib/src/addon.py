@@ -132,6 +132,12 @@ def _favorite_channels(page=1):
     favorite_channels.invoke(CONTEXT, page)
 
 
+@router.route(MODES.FAVORITE_PLAYLISTS, kwargs=['page'])
+def _favorite_playlists(page=1):
+    from .routes import favorite_playlists
+    favorite_playlists.invoke(CONTEXT, page)
+
+
 @router.route(MODES.SEARCH)
 def _search():
     from .routes import search

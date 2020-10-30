@@ -279,6 +279,14 @@ def get_context_menu(context, item, video_id, video_title, channel_id,  # pylint
              (ADDON_ID, str(SCRIPT_MODES.FAVORITE_CHANNELS), channel_id, quote(channel_name))),
         ]
 
+    if playlist_id:
+        if context.settings.favorite_playlist_maximum > 0:
+            context_menus += [
+                (context.i18n('Add to favorite playlists'),
+                 'RunScript(%s,mode=%s&action=add&playlist_id=%s)' %
+                 (ADDON_ID, str(SCRIPT_MODES.FAVORITE_PLAYLISTS), playlist_id)),
+            ]
+
     context_menus += [
         (context.i18n('Related videos'),
          'Container.Update(plugin://%s/?mode=%s&video_id=%s)' %

@@ -41,6 +41,13 @@ def _favorite_channel(action, channel_id='', channel_name=''):
     favorite_channels.invoke(CONTEXT, action, channel_id, channel_name)
 
 
+@router.route(SCRIPT_MODES.FAVORITE_PLAYLISTS, args=['action'],
+              kwargs=['playlist_id', 'playlist_name'])
+def _favorite_playlist(action, playlist_id='', playlist_name=''):
+    from .scripts import favorite_playlists
+    favorite_playlists.invoke(CONTEXT, action, playlist_id, playlist_name)
+
+
 @router.route(SCRIPT_MODES.REFRESH, kwargs=['override_cache'])
 def _refresh(override_cache=False):
     from .scripts import refresh

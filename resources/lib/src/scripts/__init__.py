@@ -9,5 +9,5 @@
 """
 
 __all__ = ['cache', 'configure_playlists', 'configure_regional', 'configure_subtitles',
-           'dialog_demo', 'favorite_channels', 'play', 'playlist', 'post_play', 'rate',
-           'read_comment', 'search_history', 'subscriptions', 'utils']
+           'dialog_demo', 'favorite_channels', 'favorite_playlists', 'play', 'playlist',
+           'post_play', 'rate', 'read_comment', 'search_history', 'subscriptions', 'utils']

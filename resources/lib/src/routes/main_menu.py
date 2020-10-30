@@ -253,6 +253,23 @@ def invoke(context):  # pylint: disable=too-many-branches,too-many-statements
         directory.ListItem.addContextMenuItems(context_menus)
         items.append(tuple(directory))
 
+    if context.settings.favorite_playlist_maximum > 0 and show_main_menu_item('favorite.playlists'):
+        label = context.i18n('Favorite Playlists')
+        directory = Directory(
+            label=label,
+            path=create_addon_path(parameters={
+                'mode': str(MODES.FAVORITE_PLAYLISTS)
+            })
+        )
+        directory.ListItem.setArt({
+            'icon': 'DefaultVideoPlaylists.png',
+            'thumb': 'DefaultVideoPlaylists.png',
+            'fanart': fanart,
+        })
+        context_menus = _context_menu_hide_menu_item(context, 'favorite.playlists', label)
+        directory.ListItem.addContextMenuItems(context_menus)
+        items.append(tuple(directory))
+
     if show_main_menu_item('live'):
         label = context.i18n('Live')
         directory = Directory(

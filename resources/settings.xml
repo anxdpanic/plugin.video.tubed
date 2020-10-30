@@ -27,6 +27,18 @@
                         <popup>false</popup>
                     </control>
                 </setting>
+                <setting id="favorite.playlist.items" type="integer" label="30236" help="30237">
+                    <level>0</level>
+                    <default>2500</default>
+                    <constraints>
+                        <minimum>0</minimum>
+                        <step>1</step>
+                        <maximum>5000</maximum>
+                    </constraints>
+                    <control type="slider" format="integer">
+                        <popup>false</popup>
+                    </control>
+                </setting>
             </group>
             <group id="2" label="30047">
                 <setting id="configure.regional" type="action" label="30052" help="30053">
@@ -118,6 +130,11 @@
                     <control type="toggle"/>
                 </setting>
                 <setting id="main.menu.favorite.channels" type="boolean" label="30171" help="30197">
+                    <level>0</level>
+                    <default>true</default>
+                    <control type="toggle"/>
+                </setting>
+                <setting id="main.menu.favorite.playlists" type="boolean" label="30226" help="30197">
                     <level>0</level>
                     <default>true</default>
                     <control type="toggle"/>

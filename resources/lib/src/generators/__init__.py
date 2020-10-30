@@ -9,4 +9,4 @@
 """
 
 __all__ = ['category', 'channel', 'comments', 'data_cache', 'favorite_channels',
-           'playlist', 'subscription', 'utils', 'video']
+           'favorite_playlists', 'playlist', 'subscription', 'utils', 'video']
