@@ -920,3 +920,51 @@ msgstr ""
 msgctxt "#30225"
 msgid "Open Tubed API settings to configure the API module"
 msgstr ""
+
+msgctxt "#30226"
+msgid "Favorite Playlists"
+msgstr ""
+
+msgctxt "#30227"
+msgid "Add to favorite playlists"
+msgstr ""
+
+msgctxt "#30228"
+msgid "Clear favorite playlists"
+msgstr ""
+
+msgctxt "#30229"
+msgid "Added to favorite playlists"
+msgstr ""
+
+msgctxt "#30230"
+msgid "Removed from favorite playlists"
+msgstr ""
+
+msgctxt "#30231"
+msgid "You are about to clear your favorite playlists, are you sure?"
+msgstr ""
+
+msgctxt "#30232"
+msgid "Favorite playlists cleared"
+msgstr ""
+
+msgctxt "#30233"
+msgid "Add %s to favorite playlists"
+msgstr ""
+
+msgctxt "#30234"
+msgid "Added %s to favorite playlists"
+msgstr ""
+
+msgctxt "#30235"
+msgid "Removed %s from favorite playlists"
+msgstr ""
+
+msgctxt "#30236"
+msgid "Favorite playlists"
+msgstr ""
+
+msgctxt "#30237"
+msgid "How many favorite playlists should be kept for each user"
+msgstr ""

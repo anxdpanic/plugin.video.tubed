@@ -11,6 +11,7 @@
 import xbmcplugin  # pylint: disable=import-error
 
 from ..constants import MODES
+from ..generators.data_cache import get_cached
 from ..generators.playlist import playlist_generator
 from ..items.directory import Directory
 from ..items.next_page import NextPage
@@ -20,9 +21,13 @@ from ..lib.url_utils import create_addon_path
 
 
 def invoke(context, channel_id, page_token=''):
-    payload = context.api.channels(channel_id=channel_id)
+    if channel_id == 'mine':  # don't cache these, it would require an additional request to achieve
+        payload = context.api.channels(channel_id=channel_id)
+        channel_item = payload.get('items', [{}])[0]
+    else:
+        payload = get_cached(context, context.api.channels, [channel_id])
+        channel_item = payload.get(channel_id, {})
 
-    channel_item = payload.get('items', [{}])[0]
     content_details = channel_item.get('contentDetails', {})
     related_playlists = content_details.get('relatedPlaylists', {})
     upload_playlist = related_playlists.get('uploads', '')

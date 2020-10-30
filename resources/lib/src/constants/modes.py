@@ -39,6 +39,7 @@ class MODES(Enum):
     MOST_POPULAR_REGIONALLY = 'most_popular_regionally'
     LINKS_IN_DESCRIPTION = 'links_in_description'
     CHAPTERS = 'chapters'
+    FAVORITE_PLAYLISTS = 'favorite_playlists'
 
     def __str__(self):
         return str(self.value).lower()

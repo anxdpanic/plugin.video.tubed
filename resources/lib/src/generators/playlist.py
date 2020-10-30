@@ -138,6 +138,15 @@ def get_context_menus(context, item, snippet, channel_id,
                  (ADDON_ID, str(SCRIPT_MODES.FAVORITE_CHANNELS), channel_id, quote(channel_name))),
             ]
 
+    if context.settings.favorite_playlist_maximum > 0:
+        context_menus += [
+            (context.i18n('Add %s to favorite playlists') % bold(playlist_title),
+             'RunScript(%s,mode=%s&action=add&playlist_id=%s&playlist_name=%s)' %
+             (ADDON_ID, str(SCRIPT_MODES.FAVORITE_PLAYLISTS),
+              playlist_id, quote(playlist_title))),
+        ]
+
+    if not is_mine:
         context_menus += [
             (context.i18n('Go to %s') % bold(unescape(snippet.get('channelTitle', ''))),
              'Container.Update(plugin://%s/?mode=%s&channel_id=%s)' %

@@ -28,6 +28,7 @@ class SCRIPT_MODES(Enum):  # pylint: disable=invalid-name
     REFRESH = 'refresh'
     HIDE_MENU = 'hide_menu'
     DIALOG_DEMO = 'dialog_demo'
+    FAVORITE_PLAYLISTS = 'favorite_playlists'
 
     def __str__(self):
         return str(self.value).lower()
