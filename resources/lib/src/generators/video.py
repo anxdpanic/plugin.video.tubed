@@ -48,6 +48,10 @@ def video_generator(context, items, mine=False):
         cache_ttl=context.settings.data_cache_ttl
     )
 
+    has_channel_mine = False
+    if context.api.logged_in:
+        has_channel_mine = context.api.channel_by_username('mine') != {}
+
     for item in items:
         video_id = get_id(item)
 
@@ -98,9 +102,8 @@ def video_generator(context, items, mine=False):
 
         context_menus = get_context_menu(context, item, video_id,
                                          info_labels.get('originaltitle', ''),
-                                         channel_id,
-                                         info_labels.get('studio', ''),
-                                         event_type, mine, chapters)
+                                         channel_id, info_labels.get('studio', ''),
+                                         event_type, mine, has_channel_mine, chapters)
 
         payload.ListItem.addContextMenuItems(context_menus)
 
@@ -219,7 +222,7 @@ def get_cached_videos(context, items, event_type):
 
 
 def get_context_menu(context, item, video_id, video_title, channel_id,  # pylint: disable=too-many-arguments
-                     channel_name, event_type, mine, chapters):
+                     channel_name, event_type, mine, has_channel_mine, chapters):
     logged_in = context.api.logged_in
 
     context_menus = []
@@ -236,8 +239,8 @@ def get_context_menu(context, item, video_id, video_title, channel_id,  # pylint
         ]
 
     if logged_in:
-        if ((WATCH_LATER_PLAYLIST and WATCH_LATER_PLAYLIST != playlist_id) or
-                not WATCH_LATER_PLAYLIST):
+        if (((WATCH_LATER_PLAYLIST and WATCH_LATER_PLAYLIST != playlist_id) or
+             not WATCH_LATER_PLAYLIST) and has_channel_mine):
 
             watch_later_playlist = WATCH_LATER_PLAYLIST or 'watch_later_prompt'
             context_menus += [
@@ -259,11 +262,14 @@ def get_context_menu(context, item, video_id, video_title, channel_id,  # pylint
                 (context.i18n('Rate'),
                  'RunScript(%s,mode=%s&video_id=%s)' %
                  (ADDON_ID, str(SCRIPT_MODES.RATE), video_id)),
-
-                (context.i18n('Add to playlist'),
-                 'RunScript(%s,mode=%s&action=add&video_id=%s)' %
-                 (ADDON_ID, str(SCRIPT_MODES.PLAYLIST), video_id)),
             ]
+
+            if has_channel_mine:
+                context_menus += [
+                    (context.i18n('Add to playlist'),
+                     'RunScript(%s,mode=%s&action=add&video_id=%s)' %
+                     (ADDON_ID, str(SCRIPT_MODES.PLAYLIST), video_id)),
+                ]
 
             if mine and snippet and playlist_id:
                 context_menus += [

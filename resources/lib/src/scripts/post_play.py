@@ -28,6 +28,10 @@ def invoke(context, video_id, position=-1):
     except ValueError:
         position = -1
 
+    has_channel_mine = False
+    if context.api.logged_in:
+        has_channel_mine = context.api.channel_by_username('mine') != {}
+
     if context.settings.post_play_rate:
         rate(context, video_id)
 
@@ -47,13 +51,13 @@ def invoke(context, video_id, position=-1):
                 if safe:
                     xbmc.Player().play(item=playlist, startpos=start_position)
 
-    if users.history_playlist:
+    if has_channel_mine and users.history_playlist:
         try:
             _ = context.api.add_to_playlist(users.history_playlist, video_id)
         except:  # pylint: disable=bare-except
             pass
 
-    if users.watchlater_playlist:
+    if has_channel_mine and users.watchlater_playlist:
         try:
             playlist_item_id = \
                 context.api.video_id_to_playlist_item_id(users.watchlater_playlist, video_id)
