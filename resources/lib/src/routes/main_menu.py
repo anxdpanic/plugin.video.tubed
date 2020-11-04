@@ -33,6 +33,10 @@ def invoke(context):  # pylint: disable=too-many-branches,too-many-statements
     logged_in = context.api.logged_in
     fanart = context.addon.getAddonInfo('fanart')
 
+    has_channel_mine = False
+    if logged_in:
+        has_channel_mine = context.api.channel_by_username('mine') != {}
+
     if not logged_in:
         if show_main_menu_item('sign.in'):
             label = context.i18n('Sign In')
@@ -103,7 +107,7 @@ def invoke(context):  # pylint: disable=too-many-branches,too-many-statements
         items.append(tuple(directory))
 
     if logged_in:
-        if show_main_menu_item('my.channel'):
+        if show_main_menu_item('my.channel') and has_channel_mine:
             label = context.i18n('My Channel')
             directory = Directory(
                 label=label,
@@ -196,7 +200,7 @@ def invoke(context):  # pylint: disable=too-many-branches,too-many-statements
                 directory.ListItem.addContextMenuItems(context_menus)
                 items.append(tuple(directory))
 
-        if show_main_menu_item('playlists'):
+        if show_main_menu_item('playlists') and has_channel_mine:
             label = context.i18n('Playlists')
             directory = Directory(
                 label=label,

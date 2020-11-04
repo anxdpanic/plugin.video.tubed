@@ -120,6 +120,9 @@ def add(context, video_id, playlist_id='', playlist_title=''):  # pylint: disabl
             fields='items(kind,id,snippet(title,description,thumbnails))'
         )
 
+        if 'error' in payload:
+            return None
+
         playlists = [(item.get('snippet', {}), item.get('id'))
                      for item in payload['items']]
 

@@ -28,6 +28,10 @@ def invoke(context, channel_id, page_token=''):
         payload = get_cached(context, context.api.channels, [channel_id])
         channel_item = payload.get(channel_id, {})
 
+    if not channel_item:
+        xbmcplugin.endOfDirectory(context.handle, False)
+        return
+
     content_details = channel_item.get('contentDetails', {})
     related_playlists = content_details.get('relatedPlaylists', {})
     upload_playlist = related_playlists.get('uploads', '')
