@@ -9,9 +9,11 @@
 
 Watch your favorite YouTube content on Kodi
 
-With Tubed you’ll be able to browse your favorite content from YouTube on Kodi. Additionally you’ll be able to create, delete, and rename playlists; subscribe or unsubscribe from your favorite channels; and rate your favorite videos
+With Tubed you’ll be able to browse your favorite content from YouTube on Kodi. Additionally you’ll be able to create, delete, and rename playlists; subscribe or unsubscribe from your favorite channels; and rate your favorite videos.
 
 Tubed’s use of information received from Google APIs will adhere to the [Google API Services User Data Policy](https://developers.google.com/terms/api-services-user-data-policy#additional_requirements_for_specific_api_scopes), including the Limited Use requirements.
+
+For more information about how your data is handled, please see the privacy policy provided below.
 
 - Privacy Policy
     -
