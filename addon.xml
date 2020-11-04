@@ -24,8 +24,11 @@ Development in progress
         <platform>all</platform>
         <license>GPL-2.0-only</license>
         <source>https://github.com/anxdpanic/plugin.video.tubed</source>
+        <website>https://panicked.xyz/tubed/</website>
         <forum></forum>
-        <description lang="en_GB">Watch your favorite YouTube content on Kodi</description>
+        <summary lang="en_GB">Watch your favorite YouTube content on Kodi</summary>
+        <description lang="en_GB">Browse your favorite content from YouTube; create, delete, and rename playlists; subscribe or unsubscribe from your favorite channels; and rate your favorite videos.</description>
+        <disclaimer lang="en_GB">Tubed&#8217;s use of information received from Google APIs will adhere to the Google API Services User Data Policy, including the Limited Use requirements. For more information on how your data is handled see Tubed&#39;s Privacy Policy at https://panicked.xyz/tubed-privacy/</disclaimer>
         <reuselanguageinvoker>true</reuselanguageinvoker>
     </extension>
 </addon>
