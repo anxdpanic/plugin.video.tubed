@@ -20,6 +20,7 @@ from ..lib.zip_utils import decompress
 
 BACKUP_LIST = [
     os.path.join(ADDONDATA_PATH, 'users.xml'),
+    os.path.join(ADDONDATA_PATH, 'settings.xml'),
     os.path.join(ADDONDATA_PATH, 'api_keys.json'),
     os.path.join(ADDONDATA_PATH, 'channels', '', ''),
     os.path.join(ADDONDATA_PATH, 'playlists', '', ''),
