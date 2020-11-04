@@ -175,4 +175,10 @@ STRINGS = {
     'Add %s to favorite playlists': 30233,
     'Added %s to favorite playlists': 30234,
     'Removed %s from favorite playlists': 30235,
+    'Choose a location to create backup': 30243,
+    'Choose a backup to restore': 30244,
+    'Failed to create backup at %s': 30245,
+    'Failed to restore backup from %s': 30246,
+    'Backup successfully created at %s': 30247,
+    'Backup successfully restored from %s': 30248,
 }

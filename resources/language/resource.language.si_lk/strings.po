@@ -967,3 +967,47 @@ msgstr ""
 msgctxt "#30237"
 msgid "How many favorite playlists should be kept for each user"
 msgstr ""
+
+msgctxt "#30238"
+msgid "Backup"
+msgstr ""
+
+msgctxt "#30239"
+msgid "Make a backup"
+msgstr ""
+
+msgctxt "#30240"
+msgid "Backup your Tubed settings, users, search history, favorite channels and favorite playlists"
+msgstr ""
+
+msgctxt "#30241"
+msgid "Restore a backup"
+msgstr ""
+
+msgctxt "#30242"
+msgid "Restore your Tubed settings, users, search history, favorite channels and favorite playlists from a previous backup"
+msgstr ""
+
+msgctxt "#30243"
+msgid "Choose a location to create backup"
+msgstr ""
+
+msgctxt "#30244"
+msgid "Choose a backup to restore"
+msgstr ""
+
+msgctxt "#30245"
+msgid "Failed to create backup at %s"
+msgstr ""
+
+msgctxt "#30246"
+msgid "Failed to restore backup from %s"
+msgstr ""
+
+msgctxt "#30247"
+msgid "Backup successfully created at %s"
+msgstr ""
+
+msgctxt "#30248"
+msgid "Backup successfully restored from %s"
+msgstr ""

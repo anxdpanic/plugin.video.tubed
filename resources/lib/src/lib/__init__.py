@@ -10,4 +10,4 @@
 
 __all__ = ['cache', 'context', 'database', 'logger', 'memoizer', 'pickle', 'playback',
            'routing', 'settings', 'sql_storage', 'time', 'translation', 'txt_fmt',
-           'url_utils', 'utils']
+           'url_utils', 'utils', 'zip_utils']

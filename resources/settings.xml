@@ -332,6 +332,24 @@
                 </setting>
             </group>
         </category>
+        <category id="backup" label="30238" help="">
+            <group id="1" label="30238">
+                <setting id="backup.settings" type="action" label="30239" help="30240">
+                    <level>0</level>
+                    <data>RunScript(plugin.video.tubed,mode=backup&amp;action=backup)</data>
+                    <control type="button" format="action">
+                        <close>true</close>
+                    </control>
+                </setting>
+                <setting id="restore.settings" type="action" label="30241" help="30242">
+                    <level>0</level>
+                    <data>RunScript(plugin.video.tubed,mode=backup&amp;action=restore)</data>
+                    <control type="button" format="action">
+                        <close>true</close>
+                    </control>
+                </setting>
+            </group>
+        </category>
         <category id="api.module" label="30223" help="">
             <group id="1" label="">
                 <setting id="api.module.settings" type="action" label="30224" help="30225">

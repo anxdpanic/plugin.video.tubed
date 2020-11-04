@@ -48,6 +48,12 @@ def _favorite_playlist(action, playlist_id='', playlist_name=''):
     favorite_playlists.invoke(CONTEXT, action, playlist_id, playlist_name)
 
 
+@router.route(SCRIPT_MODES.BACKUP, args=['action'])
+def _backup(action):
+    from .scripts import backup
+    backup.invoke(CONTEXT, action)
+
+
 @router.route(SCRIPT_MODES.REFRESH, kwargs=['override_cache'])
 def _refresh(override_cache=False):
     from .scripts import refresh
