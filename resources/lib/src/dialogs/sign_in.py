@@ -38,7 +38,7 @@ class SignInDialog(AddonFullWindow):
         self.verification_url = 'google.com/device'
         self.interval = 5
 
-        self.intructions = None
+        self.instructions = None
         self.user_code_label = None
         self.client_id = None
 
@@ -88,13 +88,13 @@ class SignInDialog(AddonFullWindow):
 
     def set_controls(self):
         # create instructions here so verification_url is updated
-        self.intructions = pyxbmct.Label(
+        self.instructions = pyxbmct.Label(
             self.context.i18n('Go to %s and enter the following code:') %
             bold(self.verification_url),
             font='font14',
             alignment=2
         )
-        self.placeControl(self.intructions, 3, 2, columnspan=68)
+        self.placeControl(self.instructions, 3, 2, columnspan=68)
 
         # create instructions here so user_code is updated
         self.user_code_label = pyxbmct.Label(
