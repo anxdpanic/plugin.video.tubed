@@ -11,7 +11,7 @@
 import xbmc  # pylint: disable=import-error
 import xbmcgui  # pylint: disable=import-error
 
-from ..constants.media import NOTIFICATION_ICON
+from ..constants.media import LOGO_SMALL
 from ..lib.txt_fmt import bold
 from ..lib.url_utils import unquote
 
@@ -25,7 +25,7 @@ def invoke(context, setting_id, menu_title):
     xbmcgui.Dialog().notification(
         menu_title,
         context.i18n('%s was hidden from the main menu') % bold(menu_title),
-        NOTIFICATION_ICON,
+        LOGO_SMALL,
         sound=False
     )
 

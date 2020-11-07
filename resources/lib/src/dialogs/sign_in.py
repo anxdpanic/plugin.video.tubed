@@ -15,6 +15,7 @@ import xbmc  # pylint: disable=import-error
 
 from ..constants import CREDENTIALS
 from ..constants.demo import SIGN_IN_CODES
+from ..constants.media import LOGO_SMALL
 from ..lib.txt_fmt import bold
 from .common import AddonFullWindow
 

@@ -12,4 +12,4 @@ import os
 
 from .config import MEDIA_PATH
 
-NOTIFICATION_ICON = os.path.join(MEDIA_PATH, 'notification.png')
+LOGO_SMALL = os.path.join(MEDIA_PATH, 'logo_small.png')

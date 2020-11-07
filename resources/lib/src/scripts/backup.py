@@ -14,7 +14,7 @@ import time
 import xbmcgui  # pylint: disable=import-error
 
 from ..constants import ADDONDATA_PATH
-from ..constants.media import NOTIFICATION_ICON
+from ..constants.media import LOGO_SMALL
 from ..lib.zip_utils import compress
 from ..lib.zip_utils import decompress
 
@@ -52,7 +52,7 @@ def invoke(context, action):
             xbmcgui.Dialog().notification(
                 addon_name,
                 context.i18n('Backup successfully created at %s') % backup_location,
-                NOTIFICATION_ICON,
+                LOGO_SMALL,
                 sound=False
             )
             return
@@ -61,7 +61,7 @@ def invoke(context, action):
             xbmcgui.Dialog().notification(
                 addon_name,
                 context.i18n('Failed to create backup at %s') % backup_location,
-                NOTIFICATION_ICON,
+                LOGO_SMALL,
                 sound=False
             )
             return
@@ -88,7 +88,7 @@ def invoke(context, action):
             xbmcgui.Dialog().notification(
                 addon_name,
                 context.i18n('Backup successfully restored from %s') % backup_location,
-                NOTIFICATION_ICON,
+                LOGO_SMALL,
                 sound=False
             )
             return
@@ -97,7 +97,7 @@ def invoke(context, action):
             xbmcgui.Dialog().notification(
                 addon_name,
                 context.i18n('Failed to restore backup from %s') % backup_location,
-                NOTIFICATION_ICON,
+                LOGO_SMALL,
                 sound=False
             )
 

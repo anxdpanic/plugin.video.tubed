@@ -15,7 +15,7 @@ from urllib.parse import urlparse
 import xbmcgui  # pylint: disable=import-error
 import xbmcplugin  # pylint: disable=import-error
 
-from ..constants.media import NOTIFICATION_ICON
+from ..constants.media import LOGO_SMALL
 from ..generators.channel import channel_generator
 from ..generators.data_cache import get_cached
 from ..generators.playlist import playlist_generator
@@ -66,7 +66,7 @@ def invoke(context, video_id):
         xbmcgui.Dialog().notification(
             context.addon.getAddonInfo('name'),
             context.i18n('There were no links found in the description'),
-            NOTIFICATION_ICON,
+            LOGO_SMALL,
             sound=False
         )
 

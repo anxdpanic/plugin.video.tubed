@@ -14,7 +14,7 @@ from xml.etree import ElementTree
 import xbmc  # pylint: disable=import-error
 import xbmcgui  # pylint: disable=import-error
 
-from ..constants.media import NOTIFICATION_ICON
+from ..constants.media import LOGO_SMALL
 from ..lib.txt_fmt import bold
 from ..lib.url_utils import unquote
 from ..storage.favorite_channels import FavoriteChannels
@@ -37,7 +37,7 @@ def invoke(context, action, channel_id='', channel_name=''):
         xbmcgui.Dialog().notification(
             context.i18n('Favorite Channels'),
             context.i18n('Added %s to favorite channels') % bold(channel_name),
-            NOTIFICATION_ICON,
+            LOGO_SMALL,
             sound=False
         )
 
@@ -54,7 +54,7 @@ def invoke(context, action, channel_id='', channel_name=''):
         xbmcgui.Dialog().notification(
             context.i18n('Favorite Channels'),
             context.i18n('Favorite channels cleared'),
-            NOTIFICATION_ICON,
+            LOGO_SMALL,
             sound=False
         )
 
@@ -76,7 +76,7 @@ def invoke(context, action, channel_id='', channel_name=''):
         xbmcgui.Dialog().notification(
             context.i18n('Favorite Channels'),
             message,
-            NOTIFICATION_ICON,
+            LOGO_SMALL,
             sound=False
         )
 
@@ -97,14 +97,14 @@ def invoke(context, action, channel_id='', channel_name=''):
                 xbmcgui.Dialog().notification(
                     context.i18n('Favorite Channels'),
                     context.i18n('Import completed successfully'),
-                    NOTIFICATION_ICON,
+                    LOGO_SMALL,
                     sound=False
                 )
             else:
                 xbmcgui.Dialog().notification(
                     context.i18n('Favorite Channels'),
                     context.i18n('Import failed'),
-                    NOTIFICATION_ICON,
+                    LOGO_SMALL,
                     sound=False
                 )
 
