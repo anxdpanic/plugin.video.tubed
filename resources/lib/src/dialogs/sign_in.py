@@ -13,6 +13,7 @@ import threading
 import pyxbmct.addonwindow as pyxbmct  # pylint: disable=import-error
 import xbmc  # pylint: disable=import-error
 
+from ..constants import CREDENTIALS
 from ..constants.demo import SIGN_IN_CODES
 from ..lib.txt_fmt import bold
 from .common import AddonFullWindow
@@ -39,6 +40,7 @@ class SignInDialog(AddonFullWindow):
 
         self.intructions = None
         self.user_code_label = None
+        self.client_id = None
 
         self.thread = None
 
@@ -101,6 +103,14 @@ class SignInDialog(AddonFullWindow):
             alignment=2
         )
         self.placeControl(self.user_code_label, 12, 2, columnspan=68, rowspan=10)
+
+        self.client_id = pyxbmct.Label(
+            self.context.i18n('Client ID: %s') %
+            bold(str(CREDENTIALS.ID)),
+            font='font10',
+            alignment=0
+        )
+        self.placeControl(self.client_id, 27, 2, columnspan=68)
 
     def set_navigation(self):
         pass
