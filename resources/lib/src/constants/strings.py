@@ -181,4 +181,5 @@ STRINGS = {
     'Failed to restore backup from %s': 30246,
     'Backup successfully created at %s': 30247,
     'Backup successfully restored from %s': 30248,
+    'Client ID: %s': 30249,
 }
