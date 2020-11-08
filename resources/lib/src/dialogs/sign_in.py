@@ -15,6 +15,7 @@ import xbmc  # pylint: disable=import-error
 
 from ..constants import CREDENTIALS
 from ..constants.demo import SIGN_IN_CODES
+from ..constants.media import LOGO_SMALL
 from ..lib.txt_fmt import bold
 from .common import AddonFullWindow
 
@@ -32,13 +33,15 @@ class SignInDialog(AddonFullWindow):
         self.title = context.i18n('Sign In')
 
         super().__init__(self.title)
+        self.logo = None
+        self.name_label = None
 
         self.device_code = ''
         self.user_code = ''
         self.verification_url = 'google.com/device'
         self.interval = 5
 
-        self.intructions = None
+        self.instructions = None
         self.user_code_label = None
         self.client_id = None
 
@@ -88,13 +91,23 @@ class SignInDialog(AddonFullWindow):
 
     def set_controls(self):
         # create instructions here so verification_url is updated
-        self.intructions = pyxbmct.Label(
+        self.instructions = pyxbmct.Label(
             self.context.i18n('Go to %s and enter the following code:') %
             bold(self.verification_url),
             font='font14',
             alignment=2
         )
-        self.placeControl(self.intructions, 3, 2, columnspan=68)
+        self.placeControl(self.instructions, 3, 2, columnspan=68)
+
+        self.logo = pyxbmct.Image(LOGO_SMALL, aspectRatio=2)
+        self.placeControl(self.logo, 9, 2, rowspan=12, columnspan=12)
+
+        self.name_label = pyxbmct.Label(
+            bold(self.context.addon.getAddonInfo('name')),
+            font='font14',
+            alignment=2
+        )
+        self.placeControl(self.name_label, 20, 2, columnspan=12, rowspan=4)
 
         # create instructions here so user_code is updated
         self.user_code_label = pyxbmct.Label(
@@ -108,7 +121,7 @@ class SignInDialog(AddonFullWindow):
             self.context.i18n('Client ID: %s') %
             bold(str(CREDENTIALS.ID)),
             font='font10',
-            alignment=0
+            alignment=2
         )
         self.placeControl(self.client_id, 27, 2, columnspan=68)
 

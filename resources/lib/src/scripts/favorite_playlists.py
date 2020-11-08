@@ -13,7 +13,7 @@ from html import unescape
 import xbmc  # pylint: disable=import-error
 import xbmcgui  # pylint: disable=import-error
 
-from ..constants.media import NOTIFICATION_ICON
+from ..constants.media import LOGO_SMALL
 from ..generators.data_cache import get_cached
 from ..lib.txt_fmt import bold
 from ..lib.url_utils import unquote
@@ -43,7 +43,7 @@ def invoke(context, action, playlist_id='', playlist_name=''):
         xbmcgui.Dialog().notification(
             context.i18n('Favorite Playlists'),
             context.i18n('Added %s to favorite playlists') % bold(playlist_name),
-            NOTIFICATION_ICON,
+            LOGO_SMALL,
             sound=False
         )
 
@@ -60,7 +60,7 @@ def invoke(context, action, playlist_id='', playlist_name=''):
         xbmcgui.Dialog().notification(
             context.i18n('Favorite Playlists'),
             context.i18n('Favorite playlists cleared'),
-            NOTIFICATION_ICON,
+            LOGO_SMALL,
             sound=False
         )
 
@@ -82,7 +82,7 @@ def invoke(context, action, playlist_id='', playlist_name=''):
         xbmcgui.Dialog().notification(
             context.i18n('Favorite Playlists'),
             message,
-            NOTIFICATION_ICON,
+            LOGO_SMALL,
             sound=False
         )
 
