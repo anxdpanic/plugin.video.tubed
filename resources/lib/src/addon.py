@@ -8,10 +8,13 @@
     See LICENSES/GPL-2.0-only.txt for more information.
 """
 
+import sys
+
 from .api import API
 from .constants import MODES
 from .lib.context import Context
 from .lib.logger import Log
+from .lib.privacy_policy import show_privacy_policy
 from .lib.routing import Router
 from .lib.url_utils import parse_query
 
@@ -208,6 +211,11 @@ def invoke(argv):
         'Invoker:\n  Handle: %s\n  Mode: %s\n  Parameters: %s\n' %
         (str(CONTEXT.handle), CONTEXT.mode, CONTEXT.query)
     )
+
+    privacy_policy_accepted = show_privacy_policy(CONTEXT)
+
+    if not privacy_policy_accepted:
+        sys.exit(1)
 
     CONTEXT.api = API(
         language=CONTEXT.settings.language,

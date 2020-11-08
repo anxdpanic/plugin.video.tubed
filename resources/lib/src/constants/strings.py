@@ -182,4 +182,8 @@ STRINGS = {
     'Backup successfully created at %s': 30247,
     'Backup successfully restored from %s': 30248,
     'Client ID: %s': 30249,
+    'Further use of Tubed will be subject to this privacy policy': 30250,
+    'Accept': 30251,
+    'Decline': 30252,
+    'Privacy Policy': 30253,
 }

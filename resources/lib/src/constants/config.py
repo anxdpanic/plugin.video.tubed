@@ -14,3 +14,6 @@ ADDON_ID = 'plugin.video.tubed'
 
 ADDONDATA_PATH = xbmcvfs.translatePath('special://profile/addon_data/%s/' % ADDON_ID)
 MEDIA_PATH = xbmcvfs.translatePath('special://home/addons/%s/resources/media/' % ADDON_ID)
+
+PRIVACY_POLICY_MARKDOWN = xbmcvfs.translatePath('special://home/addons/%s/PRIVACY.md' % ADDON_ID)
+PRIVACY_POLICY_REVISION = '10222020'

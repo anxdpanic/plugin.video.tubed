@@ -226,3 +226,9 @@ class Settings:
             return self.get_bool('main.menu.%s' % item)
 
         return self.set_bool('main.menu.%s' % item, value)
+
+    def get_privacy_policy(self):
+        return self.get_string('privacy.policy.accepted')
+
+    def set_privacy_policy(self, value):
+        return self.set_string('privacy.policy.accepted', value)

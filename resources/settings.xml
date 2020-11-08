@@ -385,6 +385,22 @@
                     </control>
                 </setting>
             </group>
+            <!-- group 99 is for non-visible settings, used internally -->
+            <group id="99" label="">
+                <setting id="privacy.policy.accepted" type="string" label="" help="">
+                    <!-- store privacy policy revision date as string ie. 10222020-->
+                    <level>0</level>
+                    <default>0</default>
+                    <enable>true</enable>
+                    <visible>false</visible>
+                    <constraints>
+                        <allowempty>true</allowempty>
+                    </constraints>
+                    <control type="edit" format="string">
+                        <heading></heading>
+                    </control>
+                </setting>
+            </group>
         </category>
     </section>
 </settings>
