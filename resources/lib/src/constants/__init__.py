@@ -11,6 +11,8 @@
 from .config import ADDON_ID
 from .config import ADDONDATA_PATH
 from .config import MEDIA_PATH
+from .config import PRIVACY_POLICY_MARKDOWN
+from .config import PRIVACY_POLICY_REVISION
 from .credentials import CREDENTIALS
 from .modes import MODES
 from .script_modes import SCRIPT_MODES
@@ -25,7 +27,7 @@ from .time import ONE_WEEK
 # the actual constants
 __all__ = ['ADDON_ID', 'ADDONDATA_PATH', 'MEDIA_PATH', 'CREDENTIALS', 'MODES', 'SCRIPT_MODES',
            'STRINGS', 'SUBTITLE_LANGUAGE', 'ONE_MINUTE', 'ONE_HOUR', 'ONE_DAY', 'ONE_WEEK',
-           'ONE_MONTH']
+           'ONE_MONTH', 'PRIVACY_POLICY_MARKDOWN', 'PRIVACY_POLICY_REVISION']
 
 # the modules containing the constants
 __all__ += ['config', 'credentials', 'demo', 'media', 'modes', 'script_modes',

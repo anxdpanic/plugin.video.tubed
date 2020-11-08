@@ -1016,3 +1016,19 @@ msgstr ""
 msgctxt "#30249"
 msgid "Client ID: %s"
 msgstr ""
+
+msgctxt "#30250"
+msgid "Further use of Tubed will be subject to this privacy policy"
+msgstr ""
+
+msgctxt "#30251"
+msgid "Accept"
+msgstr ""
+
+msgctxt "#30252"
+msgid "Decline"
+msgstr ""
+
+msgctxt "#30253"
+msgid "Privacy Policy"
+msgstr ""
