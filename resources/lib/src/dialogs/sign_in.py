@@ -33,6 +33,8 @@ class SignInDialog(AddonFullWindow):
         self.title = context.i18n('Sign In')
 
         super().__init__(self.title)
+        self.logo = None
+        self.name_label = None
 
         self.device_code = ''
         self.user_code = ''
@@ -97,6 +99,16 @@ class SignInDialog(AddonFullWindow):
         )
         self.placeControl(self.instructions, 3, 2, columnspan=68)
 
+        self.logo = pyxbmct.Image(LOGO_SMALL, aspectRatio=2)
+        self.placeControl(self.logo, 9, 2, rowspan=12, columnspan=12)
+
+        self.name_label = pyxbmct.Label(
+            bold(self.context.addon.getAddonInfo('name')),
+            font='font14',
+            alignment=2
+        )
+        self.placeControl(self.name_label, 20, 2, columnspan=12, rowspan=4)
+
         # create instructions here so user_code is updated
         self.user_code_label = pyxbmct.Label(
             self.user_code,
@@ -109,7 +121,7 @@ class SignInDialog(AddonFullWindow):
             self.context.i18n('Client ID: %s') %
             bold(str(CREDENTIALS.ID)),
             font='font10',
-            alignment=0
+            alignment=2
         )
         self.placeControl(self.client_id, 27, 2, columnspan=68)
 
