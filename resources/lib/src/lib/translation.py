@@ -12,6 +12,9 @@ import xbmc  # pylint: disable=import-error
 import xbmcaddon  # pylint: disable=import-error
 
 from ..constants import STRINGS
+from .logger import Log
+
+LOG = Log('lib', __file__)
 
 
 class Translator:
@@ -20,17 +23,22 @@ class Translator:
         self._addon = addon
 
     def i18n(self, string_id):
-        string_id = STRINGS.get(string_id) or string_id
+        string_msgctxt = STRINGS.get(string_id)
 
         try:
-            if int(string_id) < 30000:
-                return xbmc.getLocalizedString(string_id)
+            if int(string_msgctxt) < 30000:
+                return xbmc.getLocalizedString(string_msgctxt)
 
-        except ValueError:
+        except (ValueError, TypeError):
+            LOG.error('String is not properly localized: %s' % string_id)
             return string_id
 
-        finally:
-            return self.addon.getLocalizedString(string_id)  # pylint: disable=lost-exception
+        localized = self.addon.getLocalizedString(string_msgctxt)
+        if not localized:
+            LOG.error('String is not properly localized: %s' % string_id)
+            return string_id
+
+        return localized
 
     @property
     def addon(self):
