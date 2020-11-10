@@ -59,7 +59,7 @@ msgstr "Direkte"
 
 msgctxt "#30011"
 msgid "Sign in with Google"
-msgstr "Log ind"
+msgstr ""
 
 msgctxt "#30012"
 msgid "Sign Out"
@@ -1033,3 +1033,7 @@ msgstr ""
 msgctxt "#30253"
 msgid "Privacy Policy"
 msgstr ""
+
+msgctxt "#30254"
+msgid "Sign In"
+msgstr "Log ind"

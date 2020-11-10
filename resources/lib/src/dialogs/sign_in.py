@@ -15,6 +15,7 @@ import xbmc  # pylint: disable=import-error
 
 from ..constants import CREDENTIALS
 from ..constants.demo import SIGN_IN_CODES
+from ..constants.media import GOOGLE_SIGN_IN
 from ..constants.media import LOGO_SMALL
 from ..lib.txt_fmt import bold
 from .common import AddonFullWindow
@@ -30,9 +31,13 @@ class SignInDialog(AddonFullWindow):
 
         self.demo = kwargs.get('mode') == 'demo'
 
-        self.title = bold(context.i18n('Sign in with Google'))
+        self.title = bold(context.i18n('Sign In'))
 
         super().__init__(self.title)
+
+        self.header_label = None
+        self.header_image = None
+
         self.logo = None
         self.name_label = None
 
@@ -90,6 +95,27 @@ class SignInDialog(AddonFullWindow):
         return self.thread.signed_in
 
     def set_controls(self):
+
+        self.header_image = pyxbmct.Image(GOOGLE_SIGN_IN, aspectRatio=2)
+        self.placeControl(self.header_image, 1, 2, rowspan=7, columnspan=7)
+
+        self.header_label = pyxbmct.Label(
+            bold(self.context.i18n('Sign in with Google')),
+            font='font14',
+            alignment=0
+        )
+        self.placeControl(self.header_label, 2, 9, columnspan=46)
+
+        self.logo = pyxbmct.Image(LOGO_SMALL, aspectRatio=2)
+        self.placeControl(self.logo, 1, 64, rowspan=7, columnspan=7)
+
+        self.name_label = pyxbmct.Label(
+            bold(self.context.addon.getAddonInfo('name')),
+            font='font14',
+            alignment=1
+        )
+        self.placeControl(self.name_label, 2, 52, columnspan=12)
+
         # create instructions here so verification_url is updated
         self.instructions = pyxbmct.Label(
             self.context.i18n('Go to %s and enter the following code:') %
@@ -97,17 +123,7 @@ class SignInDialog(AddonFullWindow):
             font='font14',
             alignment=2
         )
-        self.placeControl(self.instructions, 3, 2, columnspan=68)
-
-        self.logo = pyxbmct.Image(LOGO_SMALL, aspectRatio=2)
-        self.placeControl(self.logo, 9, 2, rowspan=12, columnspan=12)
-
-        self.name_label = pyxbmct.Label(
-            bold(self.context.addon.getAddonInfo('name')),
-            font='font14',
-            alignment=2
-        )
-        self.placeControl(self.name_label, 20, 2, columnspan=12, rowspan=4)
+        self.placeControl(self.instructions, 9, 2, columnspan=68)
 
         # create instructions here so user_code is updated
         self.user_code_label = pyxbmct.Label(
@@ -115,7 +131,7 @@ class SignInDialog(AddonFullWindow):
             font='font_MainMenu',
             alignment=2
         )
-        self.placeControl(self.user_code_label, 12, 2, columnspan=68, rowspan=10)
+        self.placeControl(self.user_code_label, 16, 2, columnspan=68, rowspan=10)
 
         self.client_id = pyxbmct.Label(
             self.context.i18n('Client ID: %s') %
@@ -123,7 +139,7 @@ class SignInDialog(AddonFullWindow):
             font='font10',
             alignment=2
         )
-        self.placeControl(self.client_id, 27, 2, columnspan=68)
+        self.placeControl(self.client_id, 26, 2, columnspan=68)
 
     def set_navigation(self):
         pass
