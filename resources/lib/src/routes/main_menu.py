@@ -8,15 +8,14 @@
     See LICENSES/GPL-2.0-only.txt for more information.
 """
 
-import os
 from urllib.parse import quote
 
 import xbmcplugin  # pylint: disable=import-error
 
 from ..constants import ADDON_ID
-from ..constants import MEDIA_PATH
 from ..constants import MODES
 from ..constants import SCRIPT_MODES
+from ..constants.media import GOOGLE_SIGN_IN
 from ..items.action import Action
 from ..items.directory import Directory
 from ..lib.txt_fmt import bold
@@ -48,10 +47,9 @@ def invoke(context):  # pylint: disable=too-many-branches,too-many-statements
                     'mode': str(MODES.SIGN_IN)
                 })
             )
-            sign_in_icon = os.path.join(MEDIA_PATH, 'google-oauth-icon.png')
             action.ListItem.setArt({
-                'icon': sign_in_icon,
-                'thumb': sign_in_icon,
+                'icon': GOOGLE_SIGN_IN,
+                'thumb': GOOGLE_SIGN_IN,
                 'fanart': fanart,
             })
 

@@ -1033,3 +1033,7 @@ msgstr ""
 msgctxt "#30253"
 msgid "Privacy Policy"
 msgstr ""
+
+msgctxt "#30254"
+msgid "Sign In"
+msgstr ""

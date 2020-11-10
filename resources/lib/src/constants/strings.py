@@ -186,4 +186,5 @@ STRINGS = {
     'Accept': 30251,
     'Decline': 30252,
     'Privacy Policy': 30253,
+    'Sign In': 30254,
 }

@@ -370,7 +370,7 @@
                 </setting>
             </group>
             <group id="2" label="30215">
-                <setting id="demo.dialog.sign.in" type="action" label="30011" help="30217">
+                <setting id="demo.dialog.sign.in" type="action" label="30254" help="30217">
                     <level>0</level>
                     <data>RunScript(plugin.video.tubed,mode=dialog_demo&amp;dialog_id=sign_in)</data>
                     <control type="button" format="action">
