@@ -57,7 +57,7 @@ msgid "Live"
 msgstr ""
 
 msgctxt "#30011"
-msgid "Sign In"
+msgid "Sign in with Google"
 msgstr ""
 
 msgctxt "#30012"
