@@ -30,7 +30,7 @@ class SignInDialog(AddonFullWindow):
 
         self.demo = kwargs.get('mode') == 'demo'
 
-        self.title = context.i18n('Sign In')
+        self.title = bold(context.i18n('Sign in with Google'))
 
         super().__init__(self.title)
         self.logo = None

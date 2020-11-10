@@ -20,7 +20,7 @@ STRINGS = {
     'Channels': 30008,
     'Subscriptions': 30009,
     'Live': 30010,
-    'Sign In': 30011,
+    'Sign in with Google': 30011,
     'Sign Out': 30012,
     'Manage Users': 30013,
     'New Search': 30014,

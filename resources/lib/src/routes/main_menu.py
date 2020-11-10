@@ -8,11 +8,13 @@
     See LICENSES/GPL-2.0-only.txt for more information.
 """
 
+import os
 from urllib.parse import quote
 
 import xbmcplugin  # pylint: disable=import-error
 
 from ..constants import ADDON_ID
+from ..constants import MEDIA_PATH
 from ..constants import MODES
 from ..constants import SCRIPT_MODES
 from ..items.action import Action
@@ -39,18 +41,31 @@ def invoke(context):  # pylint: disable=too-many-branches,too-many-statements
 
     if not logged_in:
         if show_main_menu_item('sign.in'):
-            label = context.i18n('Sign In')
+            label = context.i18n('Sign in with Google')
             action = Action(
-                label=label,
+                label=bold(label),
                 path=create_addon_path(parameters={
                     'mode': str(MODES.SIGN_IN)
                 })
             )
+            sign_in_icon = os.path.join(MEDIA_PATH, 'google-oauth-icon.png')
             action.ListItem.setArt({
-                'icon': 'OverlayLocked.png',
-                'thumb': 'OverlayLocked.png',
+                'icon': sign_in_icon,
+                'thumb': sign_in_icon,
                 'fanart': fanart,
             })
+
+            # artificial centering of plot
+            unicode_spaces = u''
+            spaces_required = (15 - (len(label) - 19))
+            if spaces_required > 0:
+                unicode_spaces = u'\u2008' * spaces_required
+            plot = unicode_spaces + bold(label)
+            action.ListItem.setInfo('video', {
+                'plot': plot,
+                'plotoutline': plot,
+            })
+
             context_menus = _context_menu_hide_menu_item(context, 'sign.in', label)
             action.ListItem.addContextMenuItems(context_menus)
             items.append(tuple(action))
