@@ -12,5 +12,7 @@ import os
 
 from .config import MEDIA_PATH
 
+DEVELOPED_WITH_YOUTUBE = os.path.join(MEDIA_PATH, 'developed-with-youtube.png')
 LOGO_SMALL = os.path.join(MEDIA_PATH, 'logo_small.png')
 GOOGLE_SIGN_IN = os.path.join(MEDIA_PATH, 'google-sign-in.png')
+GOOGLE_SIGN_IN_BUTTON = os.path.join(MEDIA_PATH, 'google-sign-in-btn.png')
