@@ -29,7 +29,7 @@ For more information about how your data is handled, please see the privacy poli
     ##### Development and testing respository
     1. Enable - `Settings -> System -> Add-ons -> Unknown Sources`
     2. Download repository 
-        - Kodi 19: [repository.tubed_development-x.x.x+matrix.1.zip](https://panicked.xyz/repositories/matrix/repository.tubed_development-0.0.1+matrix.1.zip)
+        - Kodi 19: [repository.tubed_development-x.x.x+matrix.1.zip](https://panicked.xyz/repositories/matrix/repository.tubed_development-1.0.0+matrix.1.zip)
     3. [Install from zip file](http://kodi.wiki/view/Add-on_manager#How_to_install_from_a_ZIP_file) (repository.tubed_development-x.x.x+matrix.1.zip)
     4. [Install from repository](http://kodi.wiki/view/add-on_manager#How_to_install_add-ons_from_a_repository) (Tubed Development Repository)
 
