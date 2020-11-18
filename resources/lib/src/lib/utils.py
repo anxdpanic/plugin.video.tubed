@@ -76,3 +76,61 @@ def wait_for_busy_dialog():
 
     LOG.debug('Waited %.2f for busy dialogs to close.' % (time.time() - start_time))
     return not _abort() and not _busy()
+
+
+def addon_enabled(addon_id):
+    rpc_request = json.dumps({
+        "jsonrpc": "2.0",
+        "method": "Addons.GetAddonDetails",
+        "id": 1,
+        "params": {
+            "addonid": "%s" % addon_id,
+            "properties": ["enabled"]
+        }
+    })
+    response = json.loads(xbmc.executeJSONRPC(rpc_request))
+    try:
+        return response['result']['addon']['enabled'] is True
+    except KeyError:
+        message = response['error']['message']
+        code = response['error']['code']
+        error = 'Requested {request} and received error {error} and code: {code}' \
+            .format(request=rpc_request, error=message, code=code)
+        LOG.error(error)
+        return False
+
+
+def set_addon_enabled(addon_id, enabled=True):
+    rpc_request = json.dumps({
+        "jsonrpc": "2.0",
+        "method": "Addons.SetAddonEnabled",
+        "id": 1,
+        "params": {
+            "addonid": "%s" % addon_id,
+            "enabled": enabled
+        }
+    })
+    response = json.loads(xbmc.executeJSONRPC(rpc_request))
+    try:
+        return response['result'] == 'OK'
+    except KeyError:
+        message = response['error']['message']
+        code = response['error']['code']
+        error = 'Requested {request} and received error {error} and code: {code}' \
+            .format(request=rpc_request, error=message, code=code)
+        LOG.error(error)
+        return False
+
+
+def prompt_to_enable_inputstream_adaptive(context):
+    enabled = addon_enabled('inputstream.adaptive')
+
+    if not enabled:
+        if xbmcgui.Dialog().yesno(context.addon.getAddonInfo('name'),
+                                  context.i18n('InputStream Adaptive is required '
+                                               'and appears to be disabled. Would '
+                                               'you like to enable InputStream '
+                                               'Adaptive now?')):
+            enabled = set_addon_enabled('inputstream.adaptive')
+
+    return enabled

@@ -1037,3 +1037,7 @@ msgstr ""
 msgctxt "#30254"
 msgid "Sign In"
 msgstr ""
+
+msgctxt "#30255"
+msgid "InputStream Adaptive is required and appears to be disabled. Would you like to enable InputStream Adaptive now?"
+msgstr ""
