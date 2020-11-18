@@ -20,4 +20,6 @@
 .gitignore export-ignore
 .pylintrc export-ignore
 .travis.yml export-ignore
-*.md export-ignore
+
+LICENSE.md export-ignore
+README.md export-ignore
