@@ -187,4 +187,6 @@ STRINGS = {
     'Decline': 30252,
     'Privacy Policy': 30253,
     'Sign In': 30254,
+    'InputStream Adaptive is required and appears to be disabled. '
+    'Would you like to enable InputStream Adaptive now?': 30255,
 }

@@ -20,11 +20,16 @@ from ..items.action import Action
 from ..items.directory import Directory
 from ..lib.txt_fmt import bold
 from ..lib.url_utils import create_addon_path
+from ..lib.utils import prompt_to_enable_inputstream_adaptive
 from ..storage.users import UserStorage
 
 
 def invoke(context):  # pylint: disable=too-many-branches,too-many-statements
     xbmcplugin.setPluginCategory(context.handle, context.addon.getAddonInfo('name'))
+
+    if not prompt_to_enable_inputstream_adaptive(context):
+        xbmcplugin.endOfDirectory(context.handle, False)
+        return
 
     show_main_menu_item = context.settings.show_main_menu_item
 
