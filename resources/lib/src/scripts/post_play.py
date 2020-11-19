@@ -18,7 +18,7 @@ from ..storage.users import UserStorage
 from .utils import rate
 
 
-def invoke(context, video_id, position=-1):
+def invoke(context, video_id, position=-1, live=False):
     users = UserStorage()
     if not post_play(context, users):
         return
@@ -32,10 +32,10 @@ def invoke(context, video_id, position=-1):
     if context.api.logged_in:
         has_channel_mine = context.api.channel_by_username('mine') != {}
 
-    if context.settings.post_play_rate:
+    if not live and context.settings.post_play_rate:
         rate(context, video_id)
 
-    if context.settings.autoplay_related:
+    if not live and context.settings.autoplay_related:
         playlist = xbmc.PlayList(xbmc.PLAYLIST_VIDEO)
 
         spread = 1
