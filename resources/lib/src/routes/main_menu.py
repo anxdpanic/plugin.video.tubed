@@ -364,6 +364,23 @@ def invoke(context):  # pylint: disable=too-many-branches,too-many-statements
         action.ListItem.addContextMenuItems(context_menus)
         items.append(tuple(action))
 
+    if show_main_menu_item('open.settings'):
+        label = context.i18n('Settings')
+        action = Action(
+            label=label,
+            path=create_addon_path(parameters={
+                'mode': str(MODES.SETTINGS)
+            })
+        )
+        action.ListItem.setArt({
+            'icon': 'DefaultIconInfo.png',
+            'thumb': 'DefaultIconInfo.png',
+            'fanart': fanart,
+        })
+        context_menus = _context_menu_hide_menu_item(context, 'open.settings', label)
+        action.ListItem.addContextMenuItems(context_menus)
+        items.append(tuple(action))
+
     xbmcplugin.addDirectoryItems(context.handle, items, len(items))
 
     xbmcplugin.endOfDirectory(context.handle, True)

@@ -189,4 +189,5 @@ STRINGS = {
     'Sign In': 30254,
     'InputStream Adaptive is required and appears to be disabled. '
     'Would you like to enable InputStream Adaptive now?': 30255,
+    'Settings': 30256,
 }
