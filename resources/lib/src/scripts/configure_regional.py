@@ -10,6 +10,8 @@
 
 import xbmcgui  # pylint: disable=import-error
 
+from ..lib.memoizer import reset_cache
+
 
 def invoke(context):
     chosen_language = None
@@ -54,3 +56,6 @@ def invoke(context):
 
     if chosen_region:
         context.settings.region = chosen_region
+
+    if chosen_language or chosen_region:
+        reset_cache()

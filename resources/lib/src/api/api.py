@@ -501,7 +501,9 @@ class API:
 
     @api_request
     @memoizer.cache_method(limit=ONE_MINUTE * memoizer_ttl())
-    def live_events(self, event_type='live', order='relevance', page_token='', fields=None):
+    def live_events(self, event_type='live', order='relevance',
+                    page_token='', fields=None, published_after=None):
+
         parameters = {
             'part': 'snippet',
             'type': 'video',
@@ -515,6 +517,9 @@ class API:
 
         if fields:
             parameters['fields'] = fields + ',nextPageToken'
+
+        if published_after:
+            parameters['publishedAfter'] = published_after
 
         if page_token:
             parameters['pageToken'] = page_token

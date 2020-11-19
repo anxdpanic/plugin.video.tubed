@@ -159,6 +159,11 @@
                     <default>true</default>
                     <control type="toggle"/>
                 </setting>
+                <setting id="main.menu.open.settings" type="boolean" label="30256" help="30197">
+                    <level>0</level>
+                    <default>true</default>
+                    <control type="toggle"/>
+                </setting>
             </group>
         </category>
         <category id="playback" label="30045" help="">

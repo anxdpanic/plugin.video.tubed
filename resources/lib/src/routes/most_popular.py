@@ -8,6 +8,7 @@
     See LICENSES/GPL-2.0-only.txt for more information.
 """
 
+import xbmcgui  # pylint: disable=import-error
 import xbmcplugin  # pylint: disable=import-error
 
 from ..constants import MODES
@@ -46,4 +47,8 @@ def invoke(context, page_token='', region_code=''):
         xbmcplugin.endOfDirectory(context.handle, True)
 
     else:
+        xbmcgui.Dialog().notification(context.addon.getAddonInfo('name'),
+                                      context.i18n('No entries found'),
+                                      context.addon.getAddonInfo('icon'),
+                                      sound=False)
         xbmcplugin.endOfDirectory(context.handle, False)

@@ -28,8 +28,6 @@ from .data_cache import get_fanart
 from .utils import get_chapters
 from .utils import get_thumbnail
 
-WATCH_LATER_PLAYLIST = UserStorage().watchlater_playlist
-
 
 def video_generator(context, items, mine=False):
     event_type = ''
@@ -51,6 +49,8 @@ def video_generator(context, items, mine=False):
     has_channel_mine = False
     if context.api.logged_in:
         has_channel_mine = context.api.channel_by_username('mine') != {}
+
+    users = UserStorage()
 
     for item in items:
         video_id = get_id(item)
@@ -86,7 +86,8 @@ def video_generator(context, items, mine=False):
                 label2=info_labels.get('studio', ''),
                 path=create_addon_path({
                     'mode': str(MODES.PLAY),
-                    'video_id': video_id
+                    'video_id': video_id,
+                    'uuid': users.uuid
                 })
             )
 
@@ -100,7 +101,7 @@ def video_generator(context, items, mine=False):
             'fanart': fanart.get(channel_id, ''),
         })
 
-        context_menus = get_context_menu(context, item, video_id,
+        context_menus = get_context_menu(context, users, item, video_id,
                                          info_labels.get('originaltitle', ''),
                                          channel_id, info_labels.get('studio', ''),
                                          event_type, mine, has_channel_mine, chapters)
@@ -221,7 +222,7 @@ def get_cached_videos(context, items, event_type):
     return cached_videos
 
 
-def get_context_menu(context, item, video_id, video_title, channel_id,  # pylint: disable=too-many-arguments
+def get_context_menu(context, users, item, video_id, video_title, channel_id,  # pylint: disable=too-many-arguments
                      channel_name, event_type, mine, has_channel_mine, chapters):
     logged_in = context.api.logged_in
 
@@ -239,10 +240,11 @@ def get_context_menu(context, item, video_id, video_title, channel_id,  # pylint
         ]
 
     if logged_in:
-        if (((WATCH_LATER_PLAYLIST and WATCH_LATER_PLAYLIST != playlist_id) or
-             not WATCH_LATER_PLAYLIST) and has_channel_mine):
+        watch_later_playlist = users.watchlater_playlist
+        if (((watch_later_playlist and watch_later_playlist != playlist_id) or
+             not watch_later_playlist) and has_channel_mine):
 
-            watch_later_playlist = WATCH_LATER_PLAYLIST or 'watch_later_prompt'
+            watch_later_playlist = watch_later_playlist or 'watch_later_prompt'
             context_menus += [
                 (context.i18n('Add to watch later'),
                  'RunScript(%s,mode=%s&action=add&video_id=%s&playlist_id=%s&playlist_title=%s)' %
@@ -325,8 +327,8 @@ def get_context_menu(context, item, video_id, video_title, channel_id,  # pylint
     if event_type != 'upcoming':
         context_menus += [
             (context.i18n('Play (Prompt for subtitles)'),
-             'PlayMedia(plugin://%s/?mode=%s&video_id=%s&prompt_subtitles=true)' %
-             (ADDON_ID, str(MODES.PLAY), video_id)),
+             'PlayMedia(plugin://%s/?mode=%s&video_id=%s&prompt_subtitles=true&uuid=%s)' %
+             (ADDON_ID, str(MODES.PLAY), video_id, users.uuid)),
         ]
 
     if playlist_id:

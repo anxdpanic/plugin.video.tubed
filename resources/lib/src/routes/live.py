@@ -8,6 +8,8 @@
     See LICENSES/GPL-2.0-only.txt for more information.
 """
 
+import arrow
+import xbmcgui  # pylint: disable=import-error
 import xbmcplugin  # pylint: disable=import-error
 
 from ..constants import MODES
@@ -60,12 +62,18 @@ def invoke(context, page_token='', event_type='live', order=DEFAULT_ORDER):
 
         items.append(tuple(directory))
 
-    payload = context.api.live_events(
-        event_type=event_type,
-        order=order,
-        page_token=page_token,
-        fields='items(kind,id(videoId))'
-    )
+    api_arguments = {
+        'event_type': event_type,
+        'order': order,
+        'page_token': page_token,
+        'fields': 'items(kind,id(videoId))',
+    }
+    if event_type == 'upcoming':
+        published_after = arrow.utcnow()
+        published_after = published_after.shift(months=-6)
+        api_arguments['published_after'] = published_after
+
+    payload = context.api.live_events(**api_arguments)
     items += list(video_generator(context, payload.get('items', [])))
 
     page_token = payload.get('nextPageToken')
@@ -92,4 +100,8 @@ def invoke(context, page_token='', event_type='live', order=DEFAULT_ORDER):
         xbmcplugin.endOfDirectory(context.handle, True)
 
     else:
+        xbmcgui.Dialog().notification(context.addon.getAddonInfo('name'),
+                                      context.i18n('No entries found'),
+                                      context.addon.getAddonInfo('icon'),
+                                      sound=False)
         xbmcplugin.endOfDirectory(context.handle, False)

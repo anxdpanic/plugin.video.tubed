@@ -196,6 +196,12 @@ def _category(category_id, page_token=''):
     category.invoke(CONTEXT, category_id, page_token)
 
 
+@router.route(MODES.SETTINGS)
+def _settings():
+    from .routes import settings
+    settings.invoke(CONTEXT)
+
+
 def invoke(argv):
     global CONTEXT  # pylint: disable=global-statement
 
