@@ -8,6 +8,10 @@
     See LICENSES/GPL-2.0-only.txt for more information.
 """
 
+import xbmc  # pylint: disable=import-error
+
 
 def invoke(context):
     context.addon.openSettings()
+
+    xbmc.executebuiltin('Container.Refresh')
