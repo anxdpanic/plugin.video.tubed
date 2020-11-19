@@ -126,10 +126,10 @@ def _cache(action, cache_type):
     cache.invoke(CONTEXT, action, cache_type)
 
 
-@router.route(SCRIPT_MODES.POST_PLAY, args=['video_id'], kwargs=['position'])
-def _post_play(video_id, position=-1):
+@router.route(SCRIPT_MODES.POST_PLAY, args=['video_id'], kwargs=['position', 'live'])
+def _post_play(video_id, position=-1, live=False):
     from .scripts import post_play
-    post_play.invoke(CONTEXT, video_id, position)
+    post_play.invoke(CONTEXT, video_id, position, live)
 
 
 @router.route(SCRIPT_MODES.PLAY, kwargs=['video_id', 'playlist_id', 'prompt_subtitles',

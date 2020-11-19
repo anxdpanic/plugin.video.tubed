@@ -210,6 +210,7 @@ def play_single(context, video_id, prompt_subtitles=False, start_offset=None):
         'video_id': video_id,
         'playing_file': stream.ListItem.getPath(),
         'metadata': metadata,
+        'live': snippet.get('liveBroadcastContent', 'none') != 'none',
     })
 
     if context.handle != -1:

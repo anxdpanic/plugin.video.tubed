@@ -133,6 +133,10 @@ class PlaybackMonitorThread(threading.Thread):
         return self._player_dict.get('playing_file')
 
     @property
+    def is_live(self):
+        return self._player_dict.get('live')
+
+    @property
     def metadata(self):
         return self._player_dict.get('metadata', {})
 
@@ -236,6 +240,6 @@ class PlaybackMonitorThread(threading.Thread):
             waited += wait_time
 
         if progress >= self.context.settings.post_play_minimum_progress:
-            xbmc.executebuiltin('RunScript(%s,mode=%s&video_id=%s&position=%s)' %
-                                (ADDON_ID, str(SCRIPT_MODES.POST_PLAY),
-                                 self.video_id, self.playlist_position))
+            xbmc.executebuiltin('RunScript(%s,mode=%s&video_id=%s&position=%s&live=%s)' %
+                                (ADDON_ID, str(SCRIPT_MODES.POST_PLAY), self.video_id,
+                                 self.playlist_position, self.is_live))
