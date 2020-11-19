@@ -1043,3 +1043,7 @@ msgstr ""
 msgctxt "#30256"
 msgid "Settings"
 msgstr ""
+
+msgctxt "#30257"
+msgid "No entries found"
+msgstr ""

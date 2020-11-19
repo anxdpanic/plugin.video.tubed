@@ -10,6 +10,7 @@
 
 from urllib.parse import quote
 
+import xbmcgui  # pylint: disable=import-error
 import xbmcplugin  # pylint: disable=import-error
 
 from ..constants import ADDON_ID
@@ -65,4 +66,8 @@ def invoke(context):
         xbmcplugin.endOfDirectory(context.handle, True)
 
     else:
+        xbmcgui.Dialog().notification(context.addon.getAddonInfo('name'),
+                                      context.i18n('No entries found'),
+                                      context.addon.getAddonInfo('icon'),
+                                      sound=False)
         xbmcplugin.endOfDirectory(context.handle, False)

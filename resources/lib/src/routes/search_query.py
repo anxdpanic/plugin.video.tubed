@@ -11,6 +11,7 @@
 from urllib.parse import quote
 
 import xbmc  # pylint: disable=import-error
+import xbmcgui  # pylint: disable=import-error
 import xbmcplugin  # pylint: disable=import-error
 
 from ..constants import MODES
@@ -163,4 +164,8 @@ def invoke(context, query='', page_token='', search_type='video',  # pylint: dis
         xbmcplugin.endOfDirectory(context.handle, True)
 
     else:
+        xbmcgui.Dialog().notification(context.addon.getAddonInfo('name'),
+                                      context.i18n('No entries found'),
+                                      context.addon.getAddonInfo('icon'),
+                                      sound=False)
         xbmcplugin.endOfDirectory(context.handle, False)
