@@ -38,7 +38,7 @@ For more information about how your data is handled, please see the privacy poli
     -
   
     Post an [issue](https://github.com/anxdpanic/plugin.video.tubed/issues)  
-    Post on the [forum](https://forum.kodi.tv/showthread.php?tid=...) 
+    Post on the [forum](https://tubedaddon.panicked.xyz/forum) 
 
 ---
 
