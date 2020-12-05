@@ -42,6 +42,7 @@ class API:
         self._api.CLIENT_ID = str(CREDENTIALS.ID)
         self._api.CLIENT_SECRET = str(CREDENTIALS.SECRET)
         self._api.API_KEY = str(CREDENTIALS.KEY)
+        self._api.HTTP_REFERRER = 'https://tubedaddon.panicked.xyz/'
 
         self._api.ACCESS_TOKEN = self.users.access_token
 
