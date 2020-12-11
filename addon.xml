@@ -15,7 +15,8 @@
     <extension point="xbmc.service" library="resources/lib/service.py"/>
     <extension point="xbmc.addon.metadata">
         <news>
-- Initial release
+- pt_BR translation |contrib: MediaBrasil|
+- ro_RO translation |contrib: tmihai20|
         </news>
         <assets>
             <icon>resources/media/icon.png</icon>
