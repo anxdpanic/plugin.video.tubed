@@ -697,7 +697,7 @@ msgstr "A lista de reprodução do histórico não está mais configurada"
 
 msgctxt "#30168"
 msgid "%s is no longer configured as your watch later playlist"
-msgstr "%s não está mais configurado como sua lista de reprodução para assistir mais tarde" 
+msgstr "%s não está mais configurado como sua lista de reprodução para assistir mais tarde"
 
 msgctxt "#30169"
 msgid "%s is no longer configured as your history playlist"
