@@ -493,19 +493,19 @@ msgstr "Πόσο πρέπει να κρατήσει, ώστε να ληξει, �
 
 msgctxt "#30117"
 msgid "Clearing long term data cache will remove all entries from the database"
-msgstr "Εκκαθάριση μνήμης δεδομένων βραχείας διάρκειας"
+msgstr "Η εκκαθάριση της μνήμης δεδομένων μακράς διάρκειας θα αφαιρέσει όλες τις καταχωρήσεις από την βάση δεδομένων"
 
 msgctxt "#30118"
 msgid "Clearing short term function cache will remove all cache entries"
-msgstr "Εκκαθάριση βραχείας διάρκειας δεδομένων λειτουργιών"
+msgstr "Η εκκαθάριση της μνήμης λειτουργιών βραχείας διάρκειας θα αφαιρέσει όλες τις καταχωρήσεις από την προσωρινή μνήμη"
 
 msgctxt "#30119"
 msgid "Deleting long term data cache will delete the whole database"
-msgstr "Διαγραφή μνήμης δεδομένων μακράς διάρκειας"
+msgstr "Η διαγραφή της μνήμης δεδομένων μακράς διάρκειας θα διαγράψει ολόκληρη την βάση δεδομένων"
 
 msgctxt "#30120"
 msgid "Deleting short term function cache will delete the whole database"
-msgstr "Διαγραφή μνήμης λειτουργιών βραχείας διάρκειας"
+msgstr "Η διαγραφή της μνήμης λειτουργιών βραχείας διάρκειας θα διαγράψει ολόκληρη την βάση δεδομένων"
 
 msgctxt "#30121"
 msgid "Failed to clear function cache"
