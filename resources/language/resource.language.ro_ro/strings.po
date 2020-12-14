@@ -493,19 +493,19 @@ msgstr "Timpul maxim în minute când expiră cache-ul pe termen scurt al funcț
 
 msgctxt "#30117"
 msgid "Clearing long term data cache will remove all entries from the database"
-msgstr "Golește cache-ul datelor pe termen lung"
+msgstr "Golirea cache-ului datelor pe termen lung va elimina toate elementele din baza de date"
 
 msgctxt "#30118"
 msgid "Clearing short term function cache will remove all cache entries"
-msgstr "Golește cache-ul pe termen scurt al funcției"
+msgstr "Golirea cache-ului pe termen scurt al funcției va elimina toate elementele din cache"
 
 msgctxt "#30119"
 msgid "Deleting long term data cache will delete the whole database"
-msgstr "Șterge cache-ul datelor pe termen lung"
+msgstr "Ștergerea cache-ului datelor pe termen lung va goli toată baza de date"
 
 msgctxt "#30120"
 msgid "Deleting short term function cache will delete the whole database"
-msgstr "Șterge cache-ul pe termen scurt al funcției"
+msgstr "Ștergerea cache-ului pe termen scurt al funcției va goli toată baza de date"
 
 msgctxt "#30121"
 msgid "Failed to clear function cache"
