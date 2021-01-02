@@ -21,7 +21,7 @@ For more information about how your data is handled, please see the privacy poli
     
 - Installation
     -
-    ##### Official repository (Not currently available)
+    ##### Official repository
     * [Install from official repository](https://kodi.wiki/view/HOW-TO:Install_add-ons)
     
     ---
