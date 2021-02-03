@@ -15,12 +15,7 @@
     <extension point="xbmc.service" library="resources/lib/service.py"/>
     <extension point="xbmc.addon.metadata">
         <news>
-- de_DE translation |contrib: tweimer|
-- el_GR translation |contrib: Twilight0|
-- pt_BR translation |contrib: MediaBrasil|
-- pt_PT translation |contrib: enen92|
-- ro_RO translation |contrib: tmihai20|
-- zh_TW translation |contrib: JuenTingShie|
+- fixup iso8601 duration parsing
         </news>
         <assets>
             <icon>resources/media/icon.png</icon>
