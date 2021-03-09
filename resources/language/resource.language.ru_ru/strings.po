@@ -13,7 +13,7 @@ msgstr ""
 
 msgctxt "Addon Summary"
 msgid "Watch your favorite YouTube content on Kodi"
-msgstr "Смотри твой любимые видео с Youtube на Kodi"
+msgstr "Смотри твои любимые видео с Youtube на Kodi"
 
 msgctxt "Addon Description"
 msgid "Browse your favorite content from YouTube; create, delete, and rename playlists; subscribe or unsubscribe from your favorite channels; and rate your favorite videos."
