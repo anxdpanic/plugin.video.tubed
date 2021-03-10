@@ -425,7 +425,7 @@ msgstr "Трансляция %s должна была начаться %s"
 
 msgctxt "#30100"
 msgid "%s is scheduled to start %s"
-msgstr "%s должна начаться %s"
+msgstr "Трансляция %s должна начаться %s"
 
 msgctxt "#30101"
 msgid "Related videos"
