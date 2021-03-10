@@ -233,7 +233,7 @@ msgstr "Предпочитаемый регион"
 
 msgctxt "#30052"
 msgid "Configure regional preferences"
-msgstr "Настроить язык и регион"
+msgstr "Настройка языка и региона"
 
 msgctxt "#30053"
 msgid "Configure your preferred language and region"
@@ -241,7 +241,7 @@ msgstr "Настройте подходящий язык и регион"
 
 msgctxt "#30054"
 msgid "Configure subtitles"
-msgstr "Настроить субтитры"
+msgstr "Настройка субтитров"
 
 msgctxt "#30055"
 msgid "Configure your preferred subtitle language"
