@@ -237,7 +237,7 @@ msgstr "Настроить язык и регион"
 
 msgctxt "#30053"
 msgid "Configure your preferred language and region"
-msgstr "Настроить подходящий язык и регион"
+msgstr "Настройте подходящий язык и регион"
 
 msgctxt "#30054"
 msgid "Configure subtitles"
@@ -245,7 +245,7 @@ msgstr "Настроить субтитры"
 
 msgctxt "#30055"
 msgid "Configure your preferred subtitle language"
-msgstr "Настроить подходящий язык субтитров"
+msgstr "Настройте подходящий язык субтитров"
 
 msgctxt "#30056"
 msgid "Subtitle language"
@@ -645,7 +645,7 @@ msgstr "Нужно ли оценивать видео во время просм
 
 msgctxt "#30155"
 msgid "Autoplay related videos"
-msgstr "Автоматически проигрывать похожие видео"
+msgstr "Автоматически проигрывать похожее видео"
 
 msgctxt "#30156"
 msgid "Autoplay videos related to the previously played video"
@@ -769,7 +769,7 @@ msgstr "Очищать кеш функций при обновлении"
 
 msgctxt "#30186"
 msgid "Short term function cache will be cleared when using Refresh from the context menu"
-msgstr "Кеш функций будет очищаться при выборе пункта Обновить из контекстного меню"
+msgstr "Кеш функций будет очищаться при выборе пункта Обновить в контекстном меню"
 
 msgctxt "#30187"
 msgid "Choose watch later playlist"
@@ -841,7 +841,7 @@ msgstr "Переименовать пользователя"
 
 msgctxt "#30204"
 msgid "Remove a current user"
-msgstr "Удалить данного пользователя"
+msgstr "Удалить пользователя"
 
 msgctxt "#30205"
 msgid "Change avatar..."
@@ -857,7 +857,7 @@ msgstr "Выберите новый аватар"
 
 msgctxt "#30208"
 msgid "Up Next"
-msgstr "Следующий"
+msgstr "Следующее видео"
 
 msgctxt "#30209"
 msgid "Links in the description"
@@ -905,7 +905,7 @@ msgstr "не нравится"
 
 msgctxt "#30220"
 msgid "views"
-msgstr "просмотры"
+msgstr "просмотров"
 
 msgctxt "#30221"
 msgid "Chapters"
