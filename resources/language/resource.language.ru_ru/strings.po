@@ -45,11 +45,11 @@ msgstr "Мой канал"
 
 msgctxt "#30005"
 msgid "Liked Videos"
-msgstr "Понравившиеся видео"
+msgstr "Понравившееся видео"
 
 msgctxt "#30006"
 msgid "Disliked Videos"
-msgstr "Непонравившиеся видео"
+msgstr "Непонравившееся видео"
 
 msgctxt "#30007"
 msgid "Playlists"
@@ -337,11 +337,11 @@ msgstr "Отметка \"Не нравится\" поставлена"
 
 msgctxt "#30078"
 msgid "Liked %s"
-msgstr "%s добавлено как понравившиеся видео"
+msgstr "%s добавлено как понравившееся видео"
 
 msgctxt "#30079"
 msgid "Disliked %s"
-msgstr "%s добавлено как непонравившиеся видео"
+msgstr "%s добавлено как непонравившееся видео"
 
 msgctxt "#30080"
 msgid "Rating removed"
