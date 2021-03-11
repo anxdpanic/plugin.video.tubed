@@ -13,19 +13,19 @@ msgstr ""
 
 msgctxt "Addon Summary"
 msgid "Watch your favorite YouTube content on Kodi"
-msgstr "Смотри твои любимые видео с Youtube на Kodi"
+msgstr "Смотрите свой любимый контент с Youtube на Kodi"
 
 msgctxt "Addon Description"
 msgid "Browse your favorite content from YouTube; create, delete, and rename playlists; subscribe or unsubscribe from your favorite channels; and rate your favorite videos."
-msgstr "Просматривайте любимые видео с YouTube; создавайте, удаляйте, и переименовывайте плейлисты; подписывайтесь или отписывайтесь на каналы; и оценивайте видео."
+msgstr "Просматривайте свой любимый контент с YouTube; создавайте, удаляйте, и переименовывайте плейлисты; подписывайтесь или отписывайтесь на каналы; оцените свои любимые видео."
 
 msgctxt "Addon Disclaimer"
 msgid "Tubed&#8217;s use of information received from Google APIs will adhere to the Google API Services User Data Policy, including the Limited Use requirements. For more information on how your data is handled see Tubed&#39;s Privacy Policy at https://panicked.xyz/tubed-privacy/"
-msgstr "Использование Tubed информации, полученной от Google API, будет соответствовать Политике пользовательских данных сервисов Google API, включая требования к ограниченному использованию. Для получения дополнительной информации о том, как обрабатываются ваши данные, см. Политику конфиденциальности Tubed по адресу https://panicked.xyz/tubed-privacy/"
+msgstr "Использование Tubed информации, полученной от Google API, будет соответствовать Политике в отношении пользовательских данных служб Google API, включая требования ограниченного использования. Для получения дополнительной информации о том, как обрабатываются ваши данные, см. Политику конфиденциальности Tubed по адресу https://panicked.xyz/tubed-privacy/"
 
 msgctxt "#30000"
 msgid "Most Popular"
-msgstr "Популярные видео"
+msgstr "Самое популярное"
 
 msgctxt "#30001"
 msgid "Next Page"
@@ -637,7 +637,7 @@ msgstr "Оценивать видео после просмотра"
 
 msgctxt "#30153"
 msgid "Rate during playlists"
-msgstr "Оценить видео в плейлистах"
+msgstr "Оценивать видео в плейлистах"
 
 msgctxt "#30154"
 msgid "Should rating be requested while watching playlists"
