@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: STRINGS\n"
 "POT-Creation-Date: 2016-09-18 00:54+0000\n"
-"PO-Revision-Date: 2021-03-12 12:19+0000\n"
+"PO-Revision-Date: 2021-03-12 12:21+0000\n"
 "Last-Translator: Дмитрий Петров <dimakrm361@gmail.com>\n"
 "Language-Team: Russian <https://kodi.weblate.cloud/projects/kodi-add-ons-video/plugin-video-tubed/ru_ru/>\n"
 "Language: ru_ru\n"
@@ -330,19 +330,19 @@ msgstr "Убрать оценку"
 
 msgctxt "#30076"
 msgid "Liked"
-msgstr "Отметка \\\"Нравится\\\" поставлена"
+msgstr "Отметка \"Нравится\" поставлена"
 
 msgctxt "#30077"
 msgid "Disliked"
-msgstr "Отметка \\\"Не нравится\\\" поставлена"
+msgstr "Отметка \"Не нравится\" поставлена"
 
 msgctxt "#30078"
 msgid "Liked %s"
-msgstr "Оценка \\\"Нравиться\\\" поставлена для видео %s"
+msgstr "Оценка \"Нравиться\" поставлена для видео %s"
 
 msgctxt "#30079"
 msgid "Disliked %s"
-msgstr "Оценка \\\"Не нравиться\\\" поставлена для видео %s"
+msgstr "Оценка \"Не нравиться\" поставлена для видео %s"
 
 msgctxt "#30080"
 msgid "Rating removed"
@@ -658,7 +658,7 @@ msgstr "Привязать плейлист к истории"
 
 msgctxt "#30158"
 msgid "Set as Watch Later"
-msgstr "Привязать плейлист к \\\"Смотреть позже\\\""
+msgstr "Привязать плейлист к \"Смотреть позже\""
 
 msgctxt "#30159"
 msgid "Remove as History"
@@ -666,7 +666,7 @@ msgstr "Отвязать плейлист от истории"
 
 msgctxt "#30160"
 msgid "Remove as Watch Later"
-msgstr "Отвязать плейлист от \\\"Смотреть позже\\\""
+msgstr "Отвязать плейлист от \"Смотреть позже\""
 
 msgctxt "#30161"
 msgid "History"
@@ -674,39 +674,39 @@ msgstr "История"
 
 msgctxt "#30162"
 msgid "Watch later playlist configured"
-msgstr "Плейлист \\\"Смотреть позже\\\" настроен"
+msgstr "Плейлист \"Смотреть позже\" настроен"
 
 msgctxt "#30163"
 msgid "History playlist configured"
-msgstr "Плейлист \\\"История\\\" настроен"
+msgstr "Плейлист \"История\" настроен"
 
 msgctxt "#30164"
 msgid "%s was configured as your watch later playlist"
-msgstr "Плейлист %s привязан к \\\"Смотреть позже\\\""
+msgstr "Плейлист %s привязан к \"Смотреть позже\""
 
 msgctxt "#30165"
 msgid "%s was configured as your history playlist"
-msgstr "Плейлист %s привязан к \\\"История\\\""
+msgstr "Плейлист %s привязан к \"История\""
 
 msgctxt "#30166"
 msgid "Watch later playlist is no longer configured"
-msgstr "Плейлист \\\"Смотреть позже\\\" больше не настроен"
+msgstr "Плейлист \"Смотреть позже\" больше не настроен"
 
 msgctxt "#30167"
 msgid "History playlist is no longer configured"
-msgstr "Плейлист \\\"История\\\" больше не настроен"
+msgstr "Плейлист \"История\" больше не настроен"
 
 msgctxt "#30168"
 msgid "%s is no longer configured as your watch later playlist"
-msgstr "Плейлист %s отвязан от \\\"Смотреть позже\\\""
+msgstr "Плейлист %s отвязан от \"Смотреть позже\""
 
 msgctxt "#30169"
 msgid "%s is no longer configured as your history playlist"
-msgstr "Плейлист %s отвязан от \\\"История\\\""
+msgstr "Плейлист %s отвязан от \"История\""
 
 msgctxt "#30170"
 msgid "Add to watch later"
-msgstr "Добавить в \\\"Cмотреть позже\\\""
+msgstr "Добавить в \"Cмотреть позже\""
 
 msgctxt "#30171"
 msgid "Favorite Channels"
@@ -774,11 +774,11 @@ msgstr "Функциональный кеш будет очищаться при
 
 msgctxt "#30187"
 msgid "Choose watch later playlist"
-msgstr "Выберите плейлист для \\\"Смотреть позже\\\""
+msgstr "Выберите плейлист для \"Смотреть позже\""
 
 msgctxt "#30188"
 msgid "Added %s to the new watch later playlist %s"
-msgstr "Добавлен плейлист %s для \\\"Смотреть позже\\\""
+msgstr "Добавлен плейлист %s для \"Смотреть позже\""
 
 msgctxt "#30189"
 msgid "Search history items"
