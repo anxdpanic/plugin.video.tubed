@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: STRINGS\n"
 "POT-Creation-Date: 2016-09-18 00:54+0000\n"
-"PO-Revision-Date: 2021-05-03 00:29+0000\n"
+"PO-Revision-Date: 2021-05-07 15:09+0000\n"
 "Last-Translator: Christian Gade <gade@kodi.tv>\n"
 "Language-Team: Romanian <https://kodi.weblate.cloud/projects/kodi-add-ons-video/plugin-video-tubed/ro_ro/>\n"
 "Language: ro_ro\n"
@@ -1030,7 +1030,7 @@ msgstr "Utilizarea ulterioară a Tubed va fi subiectul următoarei Politici de C
 
 msgctxt "#30251"
 msgid "Accept"
-msgstr "Accept"
+msgstr ""
 
 msgctxt "#30252"
 msgid "Decline"
