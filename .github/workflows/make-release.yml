@@ -48,7 +48,8 @@ jobs:
         run: |
           mv .git ..
           rm -rf .??*
-          rm *.md
+          rm LICENSE.md
+          rm README.md
         working-directory: ${{ github.event.repository.name }}
 
       - name: Create Zip (Matrix)
