@@ -12,40 +12,36 @@ jobs:
     if: github.repository == 'anxdpanic/plugin.video.tubed'
     runs-on: ubuntu-latest
 
-    strategy:
-
-      fail-fast: false
-      matrix:
-        python-version: [ 3.9 ]
-
     steps:
 
+      # Checkout the current repository into the 'project' directory
       - name: Checkout repository
         uses: actions/checkout@v2
         with:
           path: project
 
-      - name: Checkout sync_addon_metadata_translations repository
-        uses: actions/checkout@v2
-        with:
-          repository: xbmc/sync_addon_metadata_translations
-          path: sync_addon_metadata_translations
-
-      - name: Set up Python ${{ matrix.python-version }}
+      # Setup python version 3.9
+      - name: Set up Python
         uses: actions/setup-python@v2
         with:
-          python-version: ${{ matrix.python-version }}
+          python-version: '3.9'
 
+      # Install all dependencies required by the following steps
+      # - git+https://github.com/xbmc/sync_addon_metadata_translations.git: main script for this action
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          python -m pip install sync_addon_metadata_translations/
+          python -m pip install git+https://github.com/xbmc/sync_addon_metadata_translations.git
 
+      # Run the sync-addon-metadata-translations against the 'project' directory
       - name: Run sync-addon-metadata-translations
         run: |
           sync-addon-metadata-translations
         working-directory: ./project
 
+      # Create a PR with any changes made by the sync-addon-metadata-translations script
+      # - title/commit message: Sync of addon metadata translations
+      # - body: Sync of addon metadata translations triggered by {github.sha}
       - name: Create PR for sync-addon-metadata-translations changes
         uses: peter-evans/create-pull-request@v3.10.0
         with:
@@ -55,4 +51,3 @@ jobs:
           branch: amt-sync
           delete-branch: true
           path: ./project
-          reviewers: gade01
