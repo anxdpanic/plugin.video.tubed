@@ -25,7 +25,7 @@ try:
     )
 
     if xbmcvfs.exists(_developer_key_json):
-        with open(_developer_key_json, 'r') as file_handle:
+        with open(_developer_key_json, 'r', encoding='utf-8') as file_handle:
             _json = json.load(file_handle)
 
         if ('keys' in _json and 'personal' in _json['keys'] and

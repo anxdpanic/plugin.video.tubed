@@ -59,10 +59,10 @@ def invoke(context):  # pylint: disable=too-many-branches,too-many-statements
             })
 
             # artificial centering of plot
-            unicode_spaces = u''
+            unicode_spaces = ''
             spaces_required = (15 - (len(label) - 19))
             if spaces_required > 0:
-                unicode_spaces = u'\u2008' * spaces_required
+                unicode_spaces = '\u2008' * spaces_required
             plot = unicode_spaces + bold(label)
             action.ListItem.setInfo('video', {
                 'plot': plot,
