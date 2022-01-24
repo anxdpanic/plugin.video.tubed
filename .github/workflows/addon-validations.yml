@@ -56,5 +56,5 @@ jobs:
       - name: isort
         id: isort
         run: |
-          isort . --diff
+          isort . --diff --check-only
         working-directory: ${{ github.event.repository.name }}
