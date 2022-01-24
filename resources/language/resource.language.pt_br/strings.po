@@ -22,8 +22,8 @@ msgid "Browse your favorite content from YouTube; create, delete, and rename pla
 msgstr "Navegue pelo seu conteúdo favorito do YouTube; criar, excluir e renomear listas de reprodução; inscreva-se ou cancele a inscrição de seus canais favoritos; e avalie seus vídeos favoritos."
 
 msgctxt "Addon Disclaimer"
-msgid "Tubed&#8217;s use of information received from Google APIs will adhere to the Google API Services User Data Policy, including the Limited Use requirements. For more information on how your data is handled see Tubed\'s Privacy Policy at https://panicked.xyz/tubed-privacy/"
-msgstr "Tubed&#8217;s informações recebidas das APIs do Google obedecerá à Política de dados do usuário dos serviços de API do Google, incluindo os requisitos de uso limitado. Para obter mais informações sobre como seus dados são tratados, consulte a Política de privacidade da Tubed em https://panicked.xyz/tubed-privacy/"
+msgid "Tubed's use of information received from Google APIs will adhere to the Google API Services User Data Policy, including the Limited Use requirements. For more information on how your data is handled see Tubed's Privacy Policy at https://panicked.xyz/tubed-privacy/"
+msgstr "Tubed's informações recebidas das APIs do Google obedecerá à Política de dados do usuário dos serviços de API do Google, incluindo os requisitos de uso limitado. Para obter mais informações sobre como seus dados são tratados, consulte a Política de privacidade da Tubed em https://panicked.xyz/tubed-privacy/"
 
 msgctxt "#30000"
 msgid "Most Popular"
