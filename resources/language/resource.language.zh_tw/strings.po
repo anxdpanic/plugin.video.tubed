@@ -22,7 +22,7 @@ msgid "Browse your favorite content from YouTube; create, delete, and rename pla
 msgstr "從YouTube瀏覽您喜歡的內容；新建，刪除和重命名播放列表；訂閱或取消訂閱您喜歡的頻道；對您喜歡的視頻進行評分。"
 
 msgctxt "Addon Disclaimer"
-msgid "Tubed&#8217;s use of information received from Google APIs will adhere to the Google API Services User Data Policy, including the Limited Use requirements. For more information on how your data is handled see Tubed\'s Privacy Policy at https://panicked.xyz/tubed-privacy/"
+msgid "Tubed’s use of information received from Google APIs will adhere to the Google API Services User Data Policy, including the Limited Use requirements. For more information on how your data is handled see Tubed\'s Privacy Policy at https://panicked.xyz/tubed-privacy/"
 msgstr "Tubed對從Google API收到的訊息的使用將遵守Google API服務用戶數據政策，包括“限制使用”要求。有關如何處理數據的更多信息，請參見Tubed的隱私政策，網址為https://panicked.xyz/tubed-privacy/"
 
 msgctxt "#30000"
