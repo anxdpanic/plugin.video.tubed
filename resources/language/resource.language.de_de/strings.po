@@ -22,7 +22,7 @@ msgid "Browse your favorite content from YouTube; create, delete, and rename pla
 msgstr "Lieblingsinhalte von YouTube in Kodi ansehen, Wiedergabelisten erstellen / löschen / umbenennen, Lieblingskanäle abonnieren und deabonnieren, Videos bewerten."
 
 msgctxt "Addon Disclaimer"
-msgid "Tubed&#8217;s use of information received from Google APIs will adhere to the Google API Services User Data Policy, including the Limited Use requirements. For more information on how your data is handled see Tubed\'s Privacy Policy at https://panicked.xyz/tubed-privacy/"
+msgid "Tubed’s use of information received from Google APIs will adhere to the Google API Services User Data Policy, including the Limited Use requirements. For more information on how your data is handled see Tubed\'s Privacy Policy at https://panicked.xyz/tubed-privacy/"
 msgstr "Tubed verwendet Informationen der Google APIs unter Einhaltung der Google API Services User Data Policy, inklusive der „Limited Use“ Voraussetzungen. Für weitere Informationen zur Verarbeitung persönlicher Daten bitte Tubed's Datenschutzbestimmungen einsehen unter https://panicked.xyz/tubed-privacy/"
 
 msgctxt "#30000"
