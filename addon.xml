@@ -15,7 +15,7 @@
     <extension point="xbmc.service" library="resources/lib/service.py"/>
     <extension point="xbmc.addon.metadata">
         <news>
-- added weblate translations
+- updated translations from Weblate
         </news>
         <assets>
             <icon>resources/media/icon.png</icon>
@@ -26,7 +26,7 @@
         <source>https://github.com/anxdpanic/plugin.video.tubed</source>
         <website>https://panicked.xyz/tubed/</website>
         <forum>https://tubedaddon.panicked.xyz/forum</forum>
-        <reuselanguageinvoker>true</reuselanguageinvoker>
+        <reuselanguageinvoker>false</reuselanguageinvoker>
         <summary lang="da_DK">Se dit yndlings YouTube-indhold i Kodi</summary>
         <summary lang="de_DE">Lieblingsinhalte von YouTube in Kodi ansehen</summary>
         <summary lang="el_GR">Δείτε το αγαπημένο σας περιεχόμενο από το Youtube στο Kodi</summary>
