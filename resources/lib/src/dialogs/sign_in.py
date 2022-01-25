@@ -29,9 +29,15 @@ class SignInDialog(AddonFullWindow):
         self._context = context
         self.window = window
 
+        self.tv_client = kwargs.get('tv_client') is True
         self.demo = kwargs.get('mode') == 'demo'
 
-        self.title = bold(context.i18n('Sign In'))
+        if not self.tv_client:
+            client_title = context.i18n('v3 Data API Client')
+        else:
+            client_title = context.i18n('YouTube-TV API Client')
+
+        self.title = bold(' '.join([context.i18n('Sign In'), '-', client_title]))
 
         super().__init__(self.title)
 
@@ -119,7 +125,7 @@ class SignInDialog(AddonFullWindow):
 
         self.client_id = pyxbmct.Label(
             self.context.i18n('Client ID: %s') %
-            bold(str(CREDENTIALS.ID)),
+            bold(str(CREDENTIALS.ID)) if not self.tv_client else bold(str(CREDENTIALS.TV_ID)),
             font='font10',
             alignment=2
         )

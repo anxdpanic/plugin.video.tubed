@@ -15,6 +15,10 @@ from enum import Enum
 
 import xbmcvfs  # pylint: disable=import-error
 
+from tubed_api import API_KEY_TV
+from tubed_api import CLIENT_ID_TV
+from tubed_api import CLIENT_SECRET_TV
+
 _KEY = 'QUl6YVN5QUR0T0RKVTB4d3BXdWZfbUE1N3VFdUNwT0FfcjN6WEtv'
 _ID = 'OTAxOTQ1MDk2MjU2LWV2MGk5dmFuczd0Z25iYTRtNjZjaTQ2ZGFnc3RlY2Y1'
 _SECRET = 'Y2RMSldUdHdrWENod2ZsV1dqYnNwYVNH'
@@ -47,6 +51,11 @@ class CREDENTIALS(Enum):
     ID = _ID
     SECRET = _SECRET
     TOKEN = ''
+
+    TV_KEY = API_KEY_TV
+    TV_ID = CLIENT_ID_TV
+    TV_SECRET = CLIENT_SECRET_TV
+    TV_TOKEN = ''
 
     def __str__(self):
         return b64decode(str(self.value)).decode('utf-8')
