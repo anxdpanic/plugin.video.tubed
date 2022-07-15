@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: STRINGS\n"
 "Report-Msgid-Bugs-To: translations@kodi.tv\n"
 "POT-Creation-Date: 2016-09-18 00:54+0000\n"
-"PO-Revision-Date: 2022-07-01 00:40+0000\n"
+"PO-Revision-Date: 2022-07-15 13:14+0000\n"
 "Last-Translator: Oskari Lavinto <olavinto@protonmail.com>\n"
 "Language-Team: Finnish <https://kodi.weblate.cloud/projects/kodi-add-ons-video/plugin-video-tubed/fi_fi/>\n"
 "Language: fi_fi\n"
@@ -327,7 +327,7 @@ msgstr "En pidä tästä"
 
 msgctxt "#30075"
 msgid "Remove rating"
-msgstr "Poista arvostelu"
+msgstr "Poista arvio"
 
 msgctxt "#30076"
 msgid "Liked"
@@ -347,11 +347,11 @@ msgstr "Ei tykätty %s:sta"
 
 msgctxt "#30080"
 msgid "Rating removed"
-msgstr "Arvostelu poistettu"
+msgstr "Arvio poistettiin"
 
 msgctxt "#30081"
 msgid "Rating removed from %s"
-msgstr "%s arvostelu poistettu"
+msgstr "Kohteen '%s' arvio poistettiin"
 
 msgctxt "#30082"
 msgid "New playlist"
@@ -579,7 +579,7 @@ msgstr "Pitkäikäisen tietovälimuistin koko ennen sen koon automaattista muuto
 
 msgctxt "#30138"
 msgid "Sort order"
-msgstr "Lajittelun järjestys"
+msgstr "Lajittelujärjestys"
 
 msgctxt "#30139"
 msgid "Choose a sort order"
@@ -607,7 +607,7 @@ msgstr "Päivä"
 
 msgctxt "#30145"
 msgid "Rating"
-msgstr "Arvostelu"
+msgstr "Arvio"
 
 msgctxt "#30146"
 msgid "Title"
@@ -643,7 +643,7 @@ msgstr "Arvostele soittolistan aikana"
 
 msgctxt "#30154"
 msgid "Should rating be requested while watching playlists"
-msgstr "Tulisiko arvostelua pyytää kun ollaan katsomassa soittolistaa"
+msgstr "Pyydetäänkö arviointia, kun katsellaan toistolistaa"
 
 msgctxt "#30155"
 msgid "Autoplay related videos"
