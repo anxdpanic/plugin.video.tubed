@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: STRINGS\n"
 "Report-Msgid-Bugs-To: translations@kodi.tv\n"
 "POT-Creation-Date: 2016-09-18 00:54+0000\n"
-"PO-Revision-Date: 2022-10-24 06:44+0000\n"
+"PO-Revision-Date: 2022-10-24 07:04+0000\n"
 "Last-Translator: Massimo Pissarello <mapi68@gmail.com>\n"
 "Language-Team: Italian <https://kodi.weblate.cloud/projects/kodi-add-ons-video/plugin-video-tubed/it_it/>\n"
 "Language: it_it\n"
@@ -63,7 +63,7 @@ msgstr "Canali"
 
 msgctxt "#30009"
 msgid "Subscriptions"
-msgstr "Sottoscrizioni"
+msgstr "Iscrizioni"
 
 msgctxt "#30010"
 msgid "Live"
@@ -79,7 +79,7 @@ msgstr "Esci"
 
 msgctxt "#30013"
 msgid "Manage Users"
-msgstr "Gestisci utenti"
+msgstr "Gestione utenti"
 
 msgctxt "#30014"
 msgid "New Search"
@@ -251,7 +251,7 @@ msgstr "Configura la lingua dei sottotitoli preferita"
 
 msgctxt "#30056"
 msgid "Subtitle language"
-msgstr "Lingua del sottotitolo"
+msgstr "Lingua dei sottotitoli"
 
 msgctxt "#30057"
 msgid "Your preferred subtitle language"
@@ -639,7 +639,7 @@ msgstr "Valuta il video che ha appena terminato la riproduzione"
 
 msgctxt "#30153"
 msgid "Rate during playlists"
-msgstr "Valuta durante le playlist"
+msgstr "Valuta mentre guardi le playlist"
 
 msgctxt "#30154"
 msgid "Should rating be requested while watching playlists"
@@ -767,7 +767,7 @@ msgstr "Aggiorna"
 
 msgctxt "#30185"
 msgid "Clear function cache on refresh"
-msgstr "Cancella la cache delle funzioni quando aggiorni"
+msgstr "Cancella la cache delle funzioni quando premi Aggiorna"
 
 msgctxt "#30186"
 msgid "Short term function cache will be cleared when using Refresh from the context menu"
@@ -807,7 +807,7 @@ msgstr "Riproduci da %s"
 
 msgctxt "#30195"
 msgid "Most Popular Regionally"
-msgstr "Più popolare a livello regionale"
+msgstr "Più popolari a livello regionale"
 
 msgctxt "#30196"
 msgid "Main Menu"
@@ -1043,7 +1043,7 @@ msgstr "Politica sulla riservatezza"
 
 msgctxt "#30254"
 msgid "Sign In"
-msgstr "Registrati"
+msgstr "Registrazione"
 
 msgctxt "#30255"
 msgid "InputStream Adaptive is required and appears to be disabled. Would you like to enable InputStream Adaptive now?"
