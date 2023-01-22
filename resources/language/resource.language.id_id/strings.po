@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: STRINGS\n"
 "Report-Msgid-Bugs-To: translations@kodi.tv\n"
 "POT-Creation-Date: 2016-09-18 00:54+0000\n"
-"PO-Revision-Date: 2022-12-22 19:15+0000\n"
+"PO-Revision-Date: 2023-01-22 10:15+0000\n"
 "Last-Translator: Christian Gade <gade@kodi.tv>\n"
 "Language-Team: Indonesian <https://kodi.weblate.cloud/projects/kodi-add-ons-video/plugin-video-tubed/id_id/>\n"
 "Language: id_id\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 4.15\n"
+"X-Generator: Weblate 4.15.1\n"
 
 msgctxt "Addon Summary"
 msgid "Watch your favorite YouTube content on Kodi"
@@ -35,7 +35,7 @@ msgstr ""
 
 msgctxt "#30002"
 msgid "Recommendations"
-msgstr ""
+msgstr "Rekomendasi"
 
 msgctxt "#30003"
 msgid "Search"
@@ -43,19 +43,19 @@ msgstr "Cari"
 
 msgctxt "#30004"
 msgid "My Channel"
-msgstr ""
+msgstr "Saluranku"
 
 msgctxt "#30005"
 msgid "Liked Videos"
-msgstr ""
+msgstr "Video yang disukai"
 
 msgctxt "#30006"
 msgid "Disliked Videos"
-msgstr ""
+msgstr "Video yang tak disukai"
 
 msgctxt "#30007"
 msgid "Playlists"
-msgstr ""
+msgstr "Daftarputar"
 
 msgctxt "#30008"
 msgid "Channels"
@@ -63,11 +63,11 @@ msgstr "Saluran"
 
 msgctxt "#30009"
 msgid "Subscriptions"
-msgstr ""
+msgstr "Langganan"
 
 msgctxt "#30010"
 msgid "Live"
-msgstr ""
+msgstr "Langsung"
 
 msgctxt "#30011"
 msgid "Sign in with Google"
@@ -75,7 +75,7 @@ msgstr ""
 
 msgctxt "#30012"
 msgid "Sign Out"
-msgstr ""
+msgstr "Keluar"
 
 msgctxt "#30013"
 msgid "Manage Users"
@@ -83,7 +83,7 @@ msgstr ""
 
 msgctxt "#30014"
 msgid "New Search"
-msgstr ""
+msgstr "Pencarian Baru"
 
 msgctxt "#30015"
 msgid "Enter your search term"
@@ -119,7 +119,7 @@ msgstr ""
 
 msgctxt "#30023"
 msgid "Uploads"
-msgstr ""
+msgstr "Unggahan"
 
 msgctxt "#30024"
 msgid "You are about to sign out, are you sure?"
@@ -139,7 +139,7 @@ msgstr ""
 
 msgctxt "#30028"
 msgid "General"
-msgstr ""
+msgstr "Umum"
 
 msgctxt "#30029"
 msgid "Quality"
@@ -159,7 +159,7 @@ msgstr ""
 
 msgctxt "#30033"
 msgid "HDR"
-msgstr ""
+msgstr "HDR"
 
 msgctxt "#30034"
 msgid "Use the best matching HDR streams for videos"
@@ -167,27 +167,27 @@ msgstr ""
 
 msgctxt "#30035"
 msgid "Adaptive (MP4/H264)"
-msgstr ""
+msgstr "Adaptif (MP4/H264)"
 
 msgctxt "#30036"
 msgid "Adaptive (WEBM/VP9)"
-msgstr ""
+msgstr "Adaptif (WEBM/VP9)"
 
 msgctxt "#30037"
 msgid "240p"
-msgstr ""
+msgstr "240p"
 
 msgctxt "#30038"
 msgid "360p"
-msgstr ""
+msgstr "360p"
 
 msgctxt "#30039"
 msgid "480p"
-msgstr ""
+msgstr "480p SD"
 
 msgctxt "#30040"
 msgid "720p (HD)"
-msgstr ""
+msgstr "720p HD"
 
 msgctxt "#30041"
 msgid "1080p (FHD)"
@@ -211,7 +211,7 @@ msgstr ""
 
 msgctxt "#30046"
 msgid "Watch Later"
-msgstr ""
+msgstr "Nonton Nanti"
 
 msgctxt "#30047"
 msgid "Regional"
@@ -219,7 +219,7 @@ msgstr ""
 
 msgctxt "#30048"
 msgid "Language"
-msgstr ""
+msgstr "Bahasa"
 
 msgctxt "#30049"
 msgid "Your preferred YouTube UI language"
@@ -227,7 +227,7 @@ msgstr ""
 
 msgctxt "#30050"
 msgid "Region"
-msgstr ""
+msgstr "Wilayah"
 
 msgctxt "#30051"
 msgid "Your preferred content region"
@@ -243,7 +243,7 @@ msgstr ""
 
 msgctxt "#30054"
 msgid "Configure subtitles"
-msgstr ""
+msgstr "Konfigurasi takarir"
 
 msgctxt "#30055"
 msgid "Configure your preferred subtitle language"
@@ -251,7 +251,7 @@ msgstr ""
 
 msgctxt "#30056"
 msgid "Subtitle language"
-msgstr ""
+msgstr "Bahasa takarir"
 
 msgctxt "#30057"
 msgid "Your preferred subtitle language"
@@ -263,23 +263,23 @@ msgstr ""
 
 msgctxt "#30059"
 msgid "%s with %s fallback"
-msgstr ""
+msgstr "Fallback %s dengan %s"
 
 msgctxt "#30060"
 msgid "No auto-generated"
-msgstr ""
+msgstr "Tidak ada yang secara otomatis"
 
 msgctxt "#30061"
 msgid "None"
-msgstr ""
+msgstr "Nihil"
 
 msgctxt "#30062"
 msgid "Prompt"
-msgstr ""
+msgstr "Perintah"
 
 msgctxt "#30063"
 msgid "Subscribe"
-msgstr ""
+msgstr "Berlangganan"
 
 msgctxt "#30064"
 msgid "Subscribed"
@@ -287,7 +287,7 @@ msgstr ""
 
 msgctxt "#30065"
 msgid "Unsubscribe"
-msgstr ""
+msgstr "Berhenti berlangganan"
 
 msgctxt "#30066"
 msgid "Unsubscribed"
@@ -303,7 +303,7 @@ msgstr ""
 
 msgctxt "#30069"
 msgid "Go to %s"
-msgstr ""
+msgstr "Ke %s"
 
 msgctxt "#30070"
 msgid "Subscribed to %s"
@@ -319,11 +319,11 @@ msgstr ""
 
 msgctxt "#30073"
 msgid "I like this"
-msgstr ""
+msgstr "Suka"
 
 msgctxt "#30074"
 msgid "I dislike this"
-msgstr ""
+msgstr "Tidak suka"
 
 msgctxt "#30075"
 msgid "Remove rating"
@@ -347,7 +347,7 @@ msgstr ""
 
 msgctxt "#30080"
 msgid "Rating removed"
-msgstr ""
+msgstr "Nilai dihapus"
 
 msgctxt "#30081"
 msgid "Rating removed from %s"
@@ -379,7 +379,7 @@ msgstr ""
 
 msgctxt "#30088"
 msgid "Removed from playlist"
-msgstr ""
+msgstr "Dihapus dari daftar putar"
 
 msgctxt "#30089"
 msgid "Removed %s from playlist"
@@ -447,11 +447,11 @@ msgstr ""
 
 msgctxt "#30105"
 msgid "Clear data cache"
-msgstr ""
+msgstr "Hapus cache data"
 
 msgctxt "#30106"
 msgid "Clear function cache"
-msgstr ""
+msgstr "Hapus cache fungsi"
 
 msgctxt "#30107"
 msgid "Data cache was cleared"
@@ -483,7 +483,7 @@ msgstr ""
 
 msgctxt "#30114"
 msgid "Maintenance"
-msgstr ""
+msgstr "Pemeliharaan"
 
 msgctxt "#30115"
 msgid "How long until long term data cache expires in weeks"
@@ -543,7 +543,7 @@ msgstr ""
 
 msgctxt "#30129"
 msgid "Comments"
-msgstr ""
+msgstr "Komentar"
 
 msgctxt "#30130"
 msgid "Comment"
@@ -555,11 +555,11 @@ msgstr ""
 
 msgctxt "#30132"
 msgid "Likes"
-msgstr ""
+msgstr "Suka"
 
 msgctxt "#30133"
 msgid "Replies"
-msgstr ""
+msgstr "Balasan"
 
 msgctxt "#30134"
 msgid "Comment has been edited"
@@ -655,23 +655,23 @@ msgstr ""
 
 msgctxt "#30157"
 msgid "Set as History"
-msgstr ""
+msgstr "Tetapkan sebagai Riwayat"
 
 msgctxt "#30158"
 msgid "Set as Watch Later"
-msgstr ""
+msgstr "Tetapkan sebagai Tonton Nanti"
 
 msgctxt "#30159"
 msgid "Remove as History"
-msgstr ""
+msgstr "Hapus sebagai Riwayat"
 
 msgctxt "#30160"
 msgid "Remove as Watch Later"
-msgstr ""
+msgstr "Hapus sebagai Tonton Nanti"
 
 msgctxt "#30161"
 msgid "History"
-msgstr ""
+msgstr "Riwayat"
 
 msgctxt "#30162"
 msgid "Watch later playlist configured"
@@ -763,7 +763,7 @@ msgstr ""
 
 msgctxt "#30184"
 msgid "Refresh"
-msgstr ""
+msgstr "Segarkan"
 
 msgctxt "#30185"
 msgid "Clear function cache on refresh"
@@ -1043,7 +1043,7 @@ msgstr ""
 
 msgctxt "#30254"
 msgid "Sign In"
-msgstr ""
+msgstr "Masuk"
 
 msgctxt "#30255"
 msgid "InputStream Adaptive is required and appears to be disabled. Would you like to enable InputStream Adaptive now?"
@@ -1051,7 +1051,7 @@ msgstr ""
 
 msgctxt "#30256"
 msgid "Settings"
-msgstr ""
+msgstr "Pengaturan"
 
 msgctxt "#30257"
 msgid "No entries found"
