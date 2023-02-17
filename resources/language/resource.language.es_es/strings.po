@@ -3,15 +3,15 @@ msgstr ""
 "Project-Id-Version: STRINGS\n"
 "Report-Msgid-Bugs-To: translations@kodi.tv\n"
 "POT-Creation-Date: 2016-09-18 00:54+0000\n"
-"PO-Revision-Date: 2022-04-08 00:13+0000\n"
-"Last-Translator: Christian Gade <gade@kodi.tv>\n"
+"PO-Revision-Date: 2023-02-17 18:08+0000\n"
+"Last-Translator: José Antonio Alvarado <jalvarado0.eses@gmail.com>\n"
 "Language-Team: Spanish (Spain) <https://kodi.weblate.cloud/projects/kodi-add-ons-video/plugin-video-tubed/es_es/>\n"
 "Language: es_es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.11.2\n"
+"X-Generator: Weblate 4.15.2\n"
 
 msgctxt "Addon Summary"
 msgid "Watch your favorite YouTube content on Kodi"
@@ -127,7 +127,7 @@ msgstr ""
 
 msgctxt "#30025"
 msgid "Categories"
-msgstr ""
+msgstr "Categorías"
 
 msgctxt "#30026"
 msgid "Remove..."
@@ -143,7 +143,7 @@ msgstr "General"
 
 msgctxt "#30029"
 msgid "Quality"
-msgstr ""
+msgstr "Calidad"
 
 msgctxt "#30030"
 msgid "Choose the maximum playback quality for videos and live content"
@@ -207,7 +207,7 @@ msgstr ""
 
 msgctxt "#30045"
 msgid "Playback"
-msgstr ""
+msgstr "Reproducción"
 
 msgctxt "#30046"
 msgid "Watch Later"
@@ -215,7 +215,7 @@ msgstr "Ver más tarde"
 
 msgctxt "#30047"
 msgid "Regional"
-msgstr ""
+msgstr "Regional"
 
 msgctxt "#30048"
 msgid "Language"
@@ -359,7 +359,7 @@ msgstr ""
 
 msgctxt "#30083"
 msgid "Add to playlist"
-msgstr ""
+msgstr "Añadir a la lista de reproducción"
 
 msgctxt "#30084"
 msgid "Remove from playlist"
@@ -367,7 +367,7 @@ msgstr ""
 
 msgctxt "#30085"
 msgid "Delete playlist"
-msgstr ""
+msgstr "Borrar lista de reproducción"
 
 msgctxt "#30086"
 msgid "Enter your playlist title"
@@ -527,7 +527,7 @@ msgstr ""
 
 msgctxt "#30125"
 msgid "Debug"
-msgstr ""
+msgstr "Depurar"
 
 msgctxt "#30126"
 msgid "Component Logging"
@@ -603,7 +603,7 @@ msgstr ""
 
 msgctxt "#30144"
 msgid "Date"
-msgstr ""
+msgstr "Fecha"
 
 msgctxt "#30145"
 msgid "Rating"
@@ -763,7 +763,7 @@ msgstr ""
 
 msgctxt "#30184"
 msgid "Refresh"
-msgstr "Refrescar lista"
+msgstr "Actualizar"
 
 msgctxt "#30185"
 msgid "Clear function cache on refresh"
@@ -799,7 +799,7 @@ msgstr ""
 
 msgctxt "#30193"
 msgid "Play"
-msgstr ""
+msgstr "Reproducir"
 
 msgctxt "#30194"
 msgid "Play from %s"
@@ -811,7 +811,7 @@ msgstr ""
 
 msgctxt "#30196"
 msgid "Main Menu"
-msgstr ""
+msgstr "Menú principal"
 
 msgctxt "#30197"
 msgid "Show/Hide this item on the main menu"
@@ -859,7 +859,7 @@ msgstr ""
 
 msgctxt "#30208"
 msgid "Up Next"
-msgstr ""
+msgstr "Up Next"
 
 msgctxt "#30209"
 msgid "Links in the description"
