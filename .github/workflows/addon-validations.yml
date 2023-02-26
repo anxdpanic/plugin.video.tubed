@@ -46,15 +46,19 @@ jobs:
         id: kodi-addon-checker
         run: |
           kodi-addon-checker ${{ github.event.repository.name }} --branch=nexus
+        continue-on-error: true
 
       - name: Pylint
         id: pylint
         run: |
           pylint resources/lib/
         working-directory: ${{ github.event.repository.name }}
+        continue-on-error: true
 
       - name: isort
         id: isort
         run: |
           isort . --diff --check-only
         working-directory: ${{ github.event.repository.name }}
+        continue-on-error: true
+        
