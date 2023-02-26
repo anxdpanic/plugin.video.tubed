@@ -26,12 +26,13 @@ jobs:
           fi
 
       - name: Checkout Add-on
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           path: ${{ github.event.repository.name }}
 
       - name: Install dependencies
         run: |
+          sudo apt-get update
           sudo apt-get install libxml2-utils xmlstarlet zip
 
       - name: Get Changelog
@@ -52,8 +53,8 @@ jobs:
           rm README.md
         working-directory: ${{ github.event.repository.name }}
 
-      - name: Create Zip (Matrix)
-        id: zip-matrix
+      - name: Create Zip (Nexus)
+        id: zip-nexus
         run: |
           version=$(xmlstarlet sel -t -v 'string(/addon/@version)' addon.xml)
           filename=${{ github.event.repository.name }}-${version}.zip
@@ -74,13 +75,13 @@ jobs:
           draft: false
           prerelease: ${{ steps.release.outputs.pre-release }}
 
-      - name: Upload Zip (Matrix)
-        id: upload-matrix
+      - name: Upload Zip (Nexus)
+        id: upload-nexus
         uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create-release.outputs.upload_url }}
-          asset_name: ${{ steps.zip-matrix.outputs.filename }}
-          asset_path: ${{ steps.zip-matrix.outputs.filename }}
+          asset_name: ${{ steps.zip-nexus.outputs.filename }}
+          asset_path: ${{ steps.zip-nexus.outputs.filename }}
           asset_content_type: application/zip

@@ -19,7 +19,7 @@ jobs:
 
     steps:
       - name: Checkout Add-on
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           path: ${{ github.event.repository.name }}
 
@@ -49,10 +49,10 @@ jobs:
           git commit -m "Remove unwanted files"
         working-directory: ${{ github.event.repository.name }}
 
-      - name: Submit to Official Repository (Matrix)
-        id: submit-matrix
+      - name: Submit to Official Repository (Nexus)
+        id: submit-nexus
         run: |
-          submit-addon -r repo-plugins -b matrix --pull-request ${{ github.event.repository.name }}
+          submit-addon -r repo-plugins -b nexus --pull-request ${{ github.event.repository.name }}
         working-directory: ${{ github.event.repository.name }}
         env:
           GH_USERNAME: anxdpanic

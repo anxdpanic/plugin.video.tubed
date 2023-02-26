@@ -17,12 +17,12 @@ jobs:
 
     steps:
       - name: Set up Python v3.9
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v3
         with:
           python-version: '3.9'
 
       - name: Checkout Add-on
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           path: ${{ github.event.repository.name }}
 
@@ -45,7 +45,7 @@ jobs:
       - name: Kodi Add-on Checker
         id: kodi-addon-checker
         run: |
-          kodi-addon-checker ${{ github.event.repository.name }} --branch=matrix
+          kodi-addon-checker ${{ github.event.repository.name }} --branch=nexus
 
       - name: Pylint
         id: pylint
