@@ -47,7 +47,7 @@ def invoke(context, action):
 
             compress(zip_path, BACKUP_LIST, 'x')
             if not os.path.exists(zip_path):
-                raise Exception
+                raise Exception  # pylint: disable=broad-exception-raised
 
             xbmcgui.Dialog().notification(
                 addon_name,
@@ -81,7 +81,7 @@ def invoke(context, action):
             # create a rollback zip in case there is an issue during restoration
             compress(rollback_path, BACKUP_LIST)
             if not os.path.exists(rollback_path):
-                raise Exception
+                raise Exception  # pylint: disable=broad-exception-raised
 
             decompress(backup_location, ADDONDATA_PATH)
 

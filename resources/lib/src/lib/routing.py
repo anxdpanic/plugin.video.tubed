@@ -27,7 +27,7 @@ class Router:
         def decorator(func):
             if mode in self._functions:
                 message = '%s already registered as %s' % (str(func), mode)
-                raise Exception(message)
+                raise Exception(message)  # pylint: disable=broad-exception-raised
 
             self._functions[mode] = func
             self._args[mode] = args
@@ -42,7 +42,7 @@ class Router:
 
         if mode not in self._functions:
             message = 'Attempted to invoke an unregistered mode %s' % mode
-            raise Exception(message)
+            raise Exception(message)  # pylint: disable=broad-exception-raised
 
         args = []
         kwargs = {}
@@ -57,7 +57,7 @@ class Router:
                     continue
 
                 message = 'Mode %s requested argument %s which was not provided.' % (mode, arg)
-                raise Exception(message)
+                raise Exception(message)  # pylint: disable=broad-exception-raised
 
         if self._kwargs[mode]:
             for arg in self._kwargs[mode]:

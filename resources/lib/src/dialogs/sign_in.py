@@ -176,7 +176,7 @@ class DialogThread(threading.Thread):
             if interval > 60000:
                 interval = 5000
 
-            steps = ((10 * 60 * 1000) // interval)  # 10 Minutes
+            steps = (10 * 60 * 1000) // interval  # 10 Minutes
             for _ in range(steps):
                 # self.update_progress(int(float((100.0 // steps)) * index))
 
