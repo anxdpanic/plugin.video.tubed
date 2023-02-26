@@ -11,6 +11,7 @@
 from urllib.parse import quote
 
 import xbmcplugin  # pylint: disable=import-error
+from infotagger.listitem import ListItemInfoTag  # pylint: disable=import-error
 
 from ..constants import ADDON_ID
 from ..constants import MODES
@@ -66,7 +67,8 @@ def invoke(context):  # pylint: disable=too-many-branches,too-many-statements
             if spaces_required > 0:
                 unicode_spaces = '\u2008' * spaces_required
             plot = unicode_spaces + bold(label)
-            action.ListItem.setInfo('video', {
+            info_tag = ListItemInfoTag(action.ListItem, 'video')
+            info_tag.set_info({
                 'plot': plot,
                 'plotoutline': plot,
             })

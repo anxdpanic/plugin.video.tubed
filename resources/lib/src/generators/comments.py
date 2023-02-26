@@ -11,6 +11,7 @@
 from copy import deepcopy
 
 import arrow
+from infotagger.listitem import ListItemInfoTag  # pylint: disable=import-error
 
 from ..api.utils import formatted_comment
 from ..constants import ADDON_ID
@@ -76,7 +77,9 @@ def thread_generator(context, items):
             'premiered': published_arrow.format('YYYY-MM-DD'),
             'dateadded': published_arrow.format('YYYY-MM-DD HH:mm:ss'),
         }
-        payload.ListItem.setInfo('video', info_labels)
+
+        info_tag = ListItemInfoTag(payload.ListItem, 'video')
+        info_tag.set_info(info_labels)
 
         payload.ListItem.setArt({
             'icon': comment_snippet.get('authorProfileImageUrl', 'DefaultUser.png'),
@@ -134,7 +137,9 @@ def comment_generator(context, items):
             'premiered': published_arrow.format('YYYY-MM-DD'),
             'dateadded': published_arrow.format('YYYY-MM-DD HH:mm:ss'),
         }
-        payload.ListItem.setInfo('video', info_labels)
+
+        info_tag = ListItemInfoTag(payload.ListItem, 'video')
+        info_tag.set_info(info_labels)
 
         payload.ListItem.setArt({
             'icon': snippet.get('authorProfileImageUrl', 'DefaultUser.png'),
