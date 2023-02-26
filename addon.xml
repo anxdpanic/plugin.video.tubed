@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<addon id="plugin.video.tubed" name="Tubed" version="1.0.6" provider-name="anxdpanic">
+<addon id="plugin.video.tubed" name="Tubed" version="2.0.0" provider-name="anxdpanic">
     <requires>
         <import addon="xbmc.python" version="3.0.0"/>
         <import addon="inputstream.adaptive"/>
@@ -16,6 +16,8 @@
     <extension point="xbmc.service" library="resources/lib/service.py"/>
     <extension point="xbmc.addon.metadata">
         <news>
+- updated for Kodi Nexus v20
+- removed support for Kodi Matrix v19
 - updated translations from Weblate
         </news>
         <assets>
