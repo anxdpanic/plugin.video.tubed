@@ -11,7 +11,7 @@
 from copy import deepcopy
 
 import arrow
-from infotagger.listitem import ListItemInfoTag
+from infotagger.listitem import ListItemInfoTag  # pylint: disable=import-error
 
 from ..api.utils import formatted_comment
 from ..constants import ADDON_ID

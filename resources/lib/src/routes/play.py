@@ -14,7 +14,7 @@ from html import unescape
 import arrow
 import xbmc  # pylint: disable=import-error
 import xbmcplugin  # pylint: disable=import-error
-from infotagger.listitem import ListItemInfoTag
+from infotagger.listitem import ListItemInfoTag  # pylint: disable=import-error
 
 from ..api.utils import choose_subtitles
 from ..generators.data_cache import get_cached
@@ -96,7 +96,7 @@ def create_playlist(context, playlist_id, video_id):
     return playlist, start_position, start_item
 
 
-def play_single(context, video_id, prompt_subtitles=False, start_offset=None):
+def play_single(context, video_id, prompt_subtitles=False, start_offset=None):  # pylint: disable=too-many-locals
     quality = context.api.quality(
         context.settings.video_quality,
         limit_30fps=context.settings.limit_to_30fps,

@@ -10,7 +10,7 @@
 
 from html import unescape
 
-from infotagger.listitem import ListItemInfoTag
+from infotagger.listitem import ListItemInfoTag  # pylint: disable=import-error
 
 from ..constants import ADDON_ID
 from ..constants import MODES
