@@ -13,6 +13,7 @@ from html import unescape
 from urllib.parse import quote
 
 import arrow
+from infotagger.listitem import ListItemInfoTag
 
 from ..constants import ADDON_ID
 from ..constants import MODES
@@ -73,7 +74,7 @@ def video_generator(context, items, mine=False):
         if event_type == 'upcoming':
             payload = Action(
                 label=info_labels.get('originaltitle', ''),
-                label2=info_labels.get('studio', ''),
+                label2=','.join(info_labels.get('studio', [''])),
                 path=create_addon_path({
                     'mode': str(MODES.UPCOMING_NOTIFICATION),
                     'title': quote(info_labels.get('originaltitle', '')),
@@ -83,7 +84,7 @@ def video_generator(context, items, mine=False):
         else:
             payload = Video(
                 label=info_labels.get('originaltitle', ''),
-                label2=info_labels.get('studio', ''),
+                label2=','.join(info_labels.get('studio', [''])),
                 path=create_addon_path({
                     'mode': str(MODES.PLAY),
                     'video_id': video_id,
@@ -91,7 +92,8 @@ def video_generator(context, items, mine=False):
                 })
             )
 
-        payload.ListItem.setInfo('video', info_labels)
+        info_tag = ListItemInfoTag(payload.ListItem, 'video')
+        info_tag.set_info(info_labels)
 
         thumbnail = get_thumbnail(snippet)
 
@@ -103,7 +105,7 @@ def video_generator(context, items, mine=False):
 
         context_menus = get_context_menu(context, users, item, video_id,
                                          info_labels.get('originaltitle', ''),
-                                         channel_id, info_labels.get('studio', ''),
+                                         channel_id, info_labels.get('studio', [''])[0],
                                          event_type, mine, has_channel_mine, chapters)
 
         payload.ListItem.addContextMenuItems(context_menus)
@@ -169,11 +171,11 @@ def get_info_labels(video, snippet):
         'plotoutline': description,
         'originaltitle': video_title,
         'sorttitle': video_title,
-        'studio': channel_name,
+        'studio': [channel_name],
         'year': published_arrow.year,
         'premiered': published_arrow.format('YYYY-MM-DD'),
         'dateadded': published_arrow.format('YYYY-MM-DD HH:mm:ss'),
-        'tag': snippet.get('tags', ''),
+        'tag': snippet.get('tags', []),
         'rating': rating,
         'votes': votes,
         'channel_id': channel_id,

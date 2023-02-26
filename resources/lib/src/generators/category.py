@@ -10,6 +10,8 @@
 
 from html import unescape
 
+from infotagger.listitem import ListItemInfoTag
+
 from ..constants import MODES
 from ..items.directory import Directory
 from ..lib.url_utils import create_addon_path
@@ -45,7 +47,9 @@ def category_generator(items):
             'originaltitle': unescape(snippet.get('title', '')),
             'sorttitle': unescape(snippet.get('title', '')),
         }
-        payload.ListItem.setInfo('video', info_labels)
+
+        info_tag = ListItemInfoTag(payload.ListItem, 'video')
+        info_tag.set_info(info_labels)
 
         payload.ListItem.setArt({
             'icon': 'DefaultGenre.png',

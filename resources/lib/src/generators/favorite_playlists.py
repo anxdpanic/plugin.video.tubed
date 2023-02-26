@@ -10,6 +10,8 @@
 
 from html import unescape
 
+from infotagger.listitem import ListItemInfoTag
+
 from ..constants import ADDON_ID
 from ..constants import MODES
 from ..constants import SCRIPT_MODES
@@ -52,7 +54,9 @@ def favorite_playlists_generator(context, playlist_ids):
             'originaltitle': playlist_name,
             'sorttitle': playlist_name,
         }
-        payload.ListItem.setInfo('video', info_labels)
+
+        info_tag = ListItemInfoTag(payload.ListItem, 'video')
+        info_tag.set_info(info_labels)
 
         thumbnail = get_thumbnail(snippet)
 

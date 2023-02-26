@@ -14,6 +14,7 @@ from html import unescape
 import arrow
 import xbmc  # pylint: disable=import-error
 import xbmcplugin  # pylint: disable=import-error
+from infotagger.listitem import ListItemInfoTag
 
 from ..api.utils import choose_subtitles
 from ..generators.data_cache import get_cached
@@ -148,6 +149,7 @@ def play_single(context, video_id, prompt_subtitles=False, start_offset=None):
     stream.ListItem.setSubtitles(subtitles)
 
     duration = iso8601_duration_to_seconds(content_details.get('duration', ''))
+    info_tag = ListItemInfoTag(stream.ListItem, 'video')
 
     if snippet:
         published_arrow = arrow.get(snippet['publishedAt']).to('local')
@@ -178,9 +180,10 @@ def play_single(context, video_id, prompt_subtitles=False, start_offset=None):
                 start_offset = start_offset - preload_time
 
             info_labels['playcount'] = '0'
-            stream.ListItem.setProperty('ResumeTime', '%.1f' % start_offset)
-            stream.ListItem.setProperty('TotalTime', '%.1f' % duration)
-
+            info_tag.set_resume_point({
+                                          'ResumeTime': int(start_offset),
+                                          'TotalTime': int(duration)
+                                      })
         thumbnail = get_thumbnail(snippet)
 
     else:
@@ -191,7 +194,7 @@ def play_single(context, video_id, prompt_subtitles=False, start_offset=None):
             'studio': channel_name,
         }
 
-    stream.ListItem.setInfo('video', info_labels)
+    info_tag.set_info(info_labels)
 
     stream.ListItem.setArt({
         'icon': thumbnail,
