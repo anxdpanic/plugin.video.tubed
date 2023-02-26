@@ -128,7 +128,7 @@ class Database:
         if not xbmcvfs.exists(self.filename):
             return
 
-        file_size_kb = (xbmcvfs.Stat(self.filename).st_size() // 1024)
+        file_size_kb = xbmcvfs.Stat(self.filename).st_size() // 1024
         if file_size_kb >= self.max_file_size_kb:
             self._open()
 

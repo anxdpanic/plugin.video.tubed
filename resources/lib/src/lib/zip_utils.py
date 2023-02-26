@@ -37,7 +37,7 @@ def compress(filename, file_list, mode='w'):
 
 def decompress(filename, path):
     if not os.path.exists(filename) or not os.path.exists(path) or ADDON_ID not in path:
-        raise Exception
+        raise Exception  # pylint: disable=broad-exception-raised
 
     with zipfile.ZipFile(filename, 'r') as zip_handle:
         zip_handle.extractall(path=path)

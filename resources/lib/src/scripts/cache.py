@@ -54,7 +54,7 @@ def invoke(context, action, cache_type):
                 if xbmcvfs.exists(cache.filename):
                     success = xbmcvfs.delete(cache.filename)
                     if not success:
-                        raise Exception
+                        raise Exception  # pylint: disable=broad-exception-raised
 
                 xbmcgui.Dialog().notification(
                     addon_name,

@@ -14,10 +14,9 @@ from base64 import b64encode
 from enum import Enum
 
 import xbmcvfs  # pylint: disable=import-error
-
-from tubed_api import API_KEY_TV
-from tubed_api import CLIENT_ID_TV
-from tubed_api import CLIENT_SECRET_TV
+from tubed_api import API_KEY_TV  # pylint: disable=import-error
+from tubed_api import CLIENT_ID_TV  # pylint: disable=import-error
+from tubed_api import CLIENT_SECRET_TV  # pylint: disable=import-error
 
 _KEY = 'QUl6YVN5QUR0T0RKVTB4d3BXdWZfbUE1N3VFdUNwT0FfcjN6WEtv'
 _ID = 'OTAxOTQ1MDk2MjU2LWV2MGk5dmFuczd0Z25iYTRtNjZjaTQ2ZGFnc3RlY2Y1'
