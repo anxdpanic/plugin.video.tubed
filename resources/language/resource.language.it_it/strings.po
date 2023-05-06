@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: STRINGS\n"
 "Report-Msgid-Bugs-To: translations@kodi.tv\n"
 "POT-Creation-Date: 2016-09-18 00:54+0000\n"
-"PO-Revision-Date: 2023-03-12 02:16+0000\n"
+"PO-Revision-Date: 2023-05-06 01:42+0000\n"
 "Last-Translator: Massimo Pissarello <mapi68@gmail.com>\n"
 "Language-Team: Italian <https://kodi.weblate.cloud/projects/kodi-add-ons-video/plugin-video-tubed/it_it/>\n"
 "Language: it_it\n"
@@ -79,7 +79,7 @@ msgstr "Disconnessione"
 
 msgctxt "#30013"
 msgid "Manage Users"
-msgstr "Gestione utenti"
+msgstr "Gestisci utenti"
 
 msgctxt "#30014"
 msgid "New Search"
@@ -119,7 +119,7 @@ msgstr "Rimozione di %s, sei sicuro?"
 
 msgctxt "#30023"
 msgid "Uploads"
-msgstr "Upload"
+msgstr "Caricamenti"
 
 msgctxt "#30024"
 msgid "You are about to sign out, are you sure?"
@@ -135,7 +135,7 @@ msgstr "Rimuovi..."
 
 msgctxt "#30027"
 msgid "Clear history"
-msgstr "Cancella la cronologia"
+msgstr "Svuota la cronologia"
 
 msgctxt "#30028"
 msgid "General"
@@ -231,7 +231,7 @@ msgstr "Regione"
 
 msgctxt "#30051"
 msgid "Your preferred content region"
-msgstr "La tua regione di contenuti preferita"
+msgstr "La tua area di contenuto preferita"
 
 msgctxt "#30052"
 msgid "Configure regional preferences"
@@ -263,7 +263,7 @@ msgstr "Sottotitoli"
 
 msgctxt "#30059"
 msgid "%s with %s fallback"
-msgstr "%s con %s fallback"
+msgstr "%s con %s di riserva"
 
 msgctxt "#30060"
 msgid "No auto-generated"
@@ -351,7 +351,7 @@ msgstr "Valutazione rimossa"
 
 msgctxt "#30081"
 msgid "Rating removed from %s"
-msgstr "Valutazione a %s rimossa"
+msgstr "Valutazione rimossa da %s"
 
 msgctxt "#30082"
 msgid "New playlist"
@@ -359,7 +359,7 @@ msgstr "Nuova playlist"
 
 msgctxt "#30083"
 msgid "Add to playlist"
-msgstr "Aggiungi a playlist"
+msgstr "Aggiungi alla playlist"
 
 msgctxt "#30084"
 msgid "Remove from playlist"
@@ -391,7 +391,7 @@ msgstr "Playlist eliminata"
 
 msgctxt "#30091"
 msgid "%s playlist deleted"
-msgstr "%s playlist eliminata"
+msgstr "Playlist %s eliminata"
 
 msgctxt "#30092"
 msgid "Rename playlist"
@@ -403,7 +403,7 @@ msgstr "Playlist rinominata in %s"
 
 msgctxt "#30094"
 msgid "%s renamed to %s"
-msgstr "%s rinominato in %s"
+msgstr "%s rinominata in %s"
 
 msgctxt "#30095"
 msgid "You are about to delete %s, are you sure?"
@@ -419,7 +419,7 @@ msgstr "In arrivo"
 
 msgctxt "#30098"
 msgid "Completed"
-msgstr "Terminato"
+msgstr "Completato"
 
 msgctxt "#30099"
 msgid "%s was scheduled to start %s"
@@ -447,11 +447,11 @@ msgstr "Cache funzioni TTL (minuti)"
 
 msgctxt "#30105"
 msgid "Clear data cache"
-msgstr "Svuota la cache dati"
+msgstr "Svuota cache dati"
 
 msgctxt "#30106"
 msgid "Clear function cache"
-msgstr "Svuota la cache delle funzioni"
+msgstr "Svuota cache delle funzioni"
 
 msgctxt "#30107"
 msgid "Data cache was cleared"
@@ -479,7 +479,7 @@ msgstr "La cache delle funzioni è stata eliminata"
 
 msgctxt "#30113"
 msgid "Time to Live"
-msgstr "Time to live"
+msgstr "Tempo di vita (TTL)"
 
 msgctxt "#30114"
 msgid "Maintenance"
@@ -531,7 +531,7 @@ msgstr "Debug"
 
 msgctxt "#30126"
 msgid "Component Logging"
-msgstr "Logging componenti"
+msgstr "Registrazione eventi dei componenti"
 
 msgctxt "#30127"
 msgid "API requests"
@@ -539,7 +539,7 @@ msgstr "Richieste API"
 
 msgctxt "#30128"
 msgid "Enable logging of API requests and responses"
-msgstr "Abilita il logging di richieste e risposte API"
+msgstr "Abilita registrazione eventi di richieste e risposte API"
 
 msgctxt "#30129"
 msgid "Comments"
@@ -555,7 +555,7 @@ msgstr "Leggi commento"
 
 msgctxt "#30132"
 msgid "Likes"
-msgstr "Like"
+msgstr "Mi piace"
 
 msgctxt "#30133"
 msgid "Replies"
@@ -619,19 +619,19 @@ msgstr "Numero video"
 
 msgctxt "#30148"
 msgid "View Count"
-msgstr "Numero visuaizzazioni"
+msgstr "Numero visualizzazioni"
 
 msgctxt "#30149"
 msgid "Post Play"
-msgstr "Post-riproduzione"
+msgstr "Riproduzione successiva"
 
 msgctxt "#30150"
 msgid "Post play minimum watch percentage"
-msgstr "Percentuale di visualizzazione minima post-riproduzione"
+msgstr "Percentuale minima di visualizzazione dopo la riproduzione"
 
 msgctxt "#30151"
 msgid "What percent of the video's duration must be watched to trigger post play events"
-msgstr "Quale percentuale della durata del video deve essere guardata per attivare eventi post-riproduzione"
+msgstr "La percentuale della durata del video deve essere visualizzata per attivare gli eventi dopo la riproduzione"
 
 msgctxt "#30152"
 msgid "Rate the video that just finished playing"
@@ -659,7 +659,7 @@ msgstr "Imposta come cronologia"
 
 msgctxt "#30158"
 msgid "Set as Watch Later"
-msgstr "Imposta come Guarda più tardi"
+msgstr "Imposta come guarda più tardi"
 
 msgctxt "#30159"
 msgid "Remove as History"
@@ -667,7 +667,7 @@ msgstr "Rimuovi dalla cronologia"
 
 msgctxt "#30160"
 msgid "Remove as Watch Later"
-msgstr "Rimuovi da Guarda più tardi"
+msgstr "Rimuovi da guarda più tardi"
 
 msgctxt "#30161"
 msgid "History"
@@ -675,7 +675,7 @@ msgstr "Cronologia"
 
 msgctxt "#30162"
 msgid "Watch later playlist configured"
-msgstr "Playlist Guarda più tardi configurata"
+msgstr "Playlist guarda più tardi configurata"
 
 msgctxt "#30163"
 msgid "History playlist configured"
@@ -683,7 +683,7 @@ msgstr "Playlist cronologia configurata"
 
 msgctxt "#30164"
 msgid "%s was configured as your watch later playlist"
-msgstr "%s è stato configurato come playlist Guarda più tardi"
+msgstr "%s è stato configurato come playlist guarda più tardi"
 
 msgctxt "#30165"
 msgid "%s was configured as your history playlist"
@@ -691,7 +691,7 @@ msgstr "%s è stato configurato come playlist cronologia"
 
 msgctxt "#30166"
 msgid "Watch later playlist is no longer configured"
-msgstr "La playlist Guarda più tardi non è più configurata"
+msgstr "La playlist guarda più tardi non è più configurata"
 
 msgctxt "#30167"
 msgid "History playlist is no longer configured"
@@ -699,7 +699,7 @@ msgstr "La playlist cronologia non è più configurata"
 
 msgctxt "#30168"
 msgid "%s is no longer configured as your watch later playlist"
-msgstr "%s non è più configurato come playlist Guarda più tardi"
+msgstr "%s non è più configurato come playlist guarda più tardi"
 
 msgctxt "#30169"
 msgid "%s is no longer configured as your history playlist"
@@ -707,7 +707,7 @@ msgstr "%s non è più configurato come playlist cronologia"
 
 msgctxt "#30170"
 msgid "Add to watch later"
-msgstr "Aggiungi a Guarda più tardi"
+msgstr "Aggiungi a guarda più tardi"
 
 msgctxt "#30171"
 msgid "Favorite Channels"
@@ -775,11 +775,11 @@ msgstr "La cache delle funzioni a breve termine verrà cancellata quando si util
 
 msgctxt "#30187"
 msgid "Choose watch later playlist"
-msgstr "Scegli la playlist Guarda più tardi"
+msgstr "Scegli la playlist guarda più tardi"
 
 msgctxt "#30188"
 msgid "Added %s to the new watch later playlist %s"
-msgstr "Aggiunto %s alla nuova playlist Guarda più tardi %s"
+msgstr "Aggiunto %s alla nuova playlist guarda più tardi %s"
 
 msgctxt "#30189"
 msgid "Search history items"
@@ -795,7 +795,7 @@ msgstr "Canali preferiti"
 
 msgctxt "#30192"
 msgid "How many favorite channels should be kept for each user"
-msgstr "Quanti canali preferiti devono essere conservati per ciascun utente"
+msgstr "Numero di canali preferiti da conservare per ciascun utente"
 
 msgctxt "#30193"
 msgid "Play"
@@ -839,11 +839,11 @@ msgstr "Crea un nuovo utente"
 
 msgctxt "#30203"
 msgid "Rename a current user"
-msgstr "Rinomina un utente corrente"
+msgstr "Rinomina l'utente attuale"
 
 msgctxt "#30204"
 msgid "Remove a current user"
-msgstr "Rimuovi un utente corrente"
+msgstr "Rimuovi l'utente attuale"
 
 msgctxt "#30205"
 msgid "Change avatar..."
@@ -851,7 +851,7 @@ msgstr "Cambia avatar..."
 
 msgctxt "#30206"
 msgid "Change a current user's avatar"
-msgstr "Cambia l'avatar di un utente corrente"
+msgstr "Cambia l'avatar dell'attuale utente"
 
 msgctxt "#30207"
 msgid "Choose a new avatar"
@@ -927,7 +927,7 @@ msgstr "Configura modulo API"
 
 msgctxt "#30225"
 msgid "Open Tubed API settings to configure the API module"
-msgstr "Apri le impostazioni dell'API Tubed per configurare il modulo API"
+msgstr "Apri le impostazioni API di Tubed per configurare il modulo API"
 
 msgctxt "#30226"
 msgid "Favorite Playlists"
@@ -955,7 +955,7 @@ msgstr "Stai per cancellare le tue playlist preferite, sei sicuro?"
 
 msgctxt "#30232"
 msgid "Favorite playlists cleared"
-msgstr "Playlist preferiti cancellata"
+msgstr "Playlist preferite cancellate"
 
 msgctxt "#30233"
 msgid "Add %s to favorite playlists"
@@ -975,7 +975,7 @@ msgstr "Playlist preferite"
 
 msgctxt "#30237"
 msgid "How many favorite playlists should be kept for each user"
-msgstr "Quante playlist preferite devono essere conservate per ciascun utente"
+msgstr "Numero di playlist preferite da conservare per ciascun utente"
 
 msgctxt "#30238"
 msgid "Backup"
@@ -1027,7 +1027,7 @@ msgstr "ID cliente: %s"
 
 msgctxt "#30250"
 msgid "Further use of Tubed will be subject to this privacy policy"
-msgstr "L'ulteriore utilizzo di Tubed sarà soggetto a questa politica sulla privacy"
+msgstr "L'ulteriore utilizzo di Tubed sarà soggetto alla presente informativa sulla privacy"
 
 msgctxt "#30251"
 msgid "Accept"
@@ -1059,8 +1059,8 @@ msgstr "Nessuna voce trovata"
 
 msgctxt "#30258"
 msgid "v3 Data API Client"
-msgstr "Dati Client API v3"
+msgstr "Client API data v3"
 
 msgctxt "#30259"
 msgid "YouTube-TV API Client"
-msgstr "Client dell'API YouTube-TV"
+msgstr "Client dell'API di YouTube-TV"
