@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: STRINGS\n"
 "Report-Msgid-Bugs-To: translations@kodi.tv\n"
 "POT-Creation-Date: 2016-09-18 00:54+0000\n"
-"PO-Revision-Date: 2024-01-16 02:44+0000\n"
-"Last-Translator: Christian Gade <gade@kodi.tv>\n"
+"PO-Revision-Date: 2024-01-24 15:13+0000\n"
+"Last-Translator: ludovik <ludo.ha@gmail.com>\n"
 "Language-Team: French (France) <https://kodi.weblate.cloud/projects/kodi-add-ons-video/plugin-video-tubed/fr_fr/>\n"
 "Language: fr_fr\n"
 "MIME-Version: 1.0\n"
@@ -15,23 +15,23 @@ msgstr ""
 
 msgctxt "Addon Summary"
 msgid "Watch your favorite YouTube content on Kodi"
-msgstr ""
+msgstr "Regardez votre contenu YouTube préféré sur Kodi"
 
 msgctxt "Addon Description"
 msgid "Browse your favorite content from YouTube; create, delete, and rename playlists; subscribe or unsubscribe from your favorite channels; and rate your favorite videos."
-msgstr ""
+msgstr "Parcourez vos contenus préférés sur YouTube, créez, supprimez et renommez des listes de lecture, abonnez-vous ou désabonnez-vous de vos chaînes préférées et évaluez vos vidéos favorites."
 
 msgctxt "Addon Disclaimer"
 msgid "Tubed's use of information received from Google APIs will adhere to the Google API Services User Data Policy, including the Limited Use requirements. For more information on how your data is handled see Tubed's Privacy Policy at https://panicked.xyz/tubed-privacy/"
-msgstr ""
+msgstr "L'utilisation par Tubed des informations reçues des API de Google sera conforme à la politique de données des utilisateurs des services API de Google, y compris les exigences relatives à l'utilisation limitée. Pour plus d'informations sur le traitement de vos données, consultez la politique de confidentialité de Tubed à l'adresse https://panicked.xyz/tubed-privacy/."
 
 msgctxt "#30000"
 msgid "Most Popular"
-msgstr ""
+msgstr "Les plus populaires"
 
 msgctxt "#30001"
 msgid "Next Page"
-msgstr ""
+msgstr "Page suivante"
 
 msgctxt "#30002"
 msgid "Recommendations"
@@ -71,7 +71,7 @@ msgstr "En direct"
 
 msgctxt "#30011"
 msgid "Sign in with Google"
-msgstr ""
+msgstr "Se connecter avec Google"
 
 msgctxt "#30012"
 msgid "Sign Out"
@@ -79,7 +79,7 @@ msgstr "Déconnexion"
 
 msgctxt "#30013"
 msgid "Manage Users"
-msgstr ""
+msgstr "Gérer les utilisateurs"
 
 msgctxt "#30014"
 msgid "New Search"
@@ -87,35 +87,35 @@ msgstr "Nouvelle recherche"
 
 msgctxt "#30015"
 msgid "Enter your search term"
-msgstr ""
+msgstr "Saisissez votre recherche"
 
 msgctxt "#30016"
 msgid "Go to %s and enter the following code:"
-msgstr ""
+msgstr "Allez à %s et entrez le code suivant :"
 
 msgctxt "#30017"
 msgid "New user..."
-msgstr ""
+msgstr "Nouvel utilisateur..."
 
 msgctxt "#30018"
 msgid "Rename user..."
-msgstr ""
+msgstr "Renommer l'utilisateur..."
 
 msgctxt "#30019"
 msgid "Remove user..."
-msgstr ""
+msgstr "Supprimer l'utilisateur..."
 
 msgctxt "#30020"
 msgid "New Username"
-msgstr ""
+msgstr "Nouveau nom d'utilisateur"
 
 msgctxt "#30021"
 msgid "Remove User"
-msgstr ""
+msgstr "Supprimer l'utilisateur"
 
 msgctxt "#30022"
 msgid "Removing %s, are you sure?"
-msgstr ""
+msgstr "Suppression de %s, êtes-vous sûr ?"
 
 msgctxt "#30023"
 msgid "Uploads"
@@ -123,7 +123,7 @@ msgstr "Téléversements"
 
 msgctxt "#30024"
 msgid "You are about to sign out, are you sure?"
-msgstr ""
+msgstr "Vous êtes sur le point de vous déconnecter, êtes-vous sûr ?"
 
 msgctxt "#30025"
 msgid "Categories"
@@ -131,11 +131,11 @@ msgstr "Catégories"
 
 msgctxt "#30026"
 msgid "Remove..."
-msgstr ""
+msgstr "Supprimer..."
 
 msgctxt "#30027"
 msgid "Clear history"
-msgstr ""
+msgstr "Effacer l'historique"
 
 msgctxt "#30028"
 msgid "General"
@@ -143,11 +143,11 @@ msgstr "Général"
 
 msgctxt "#30029"
 msgid "Quality"
-msgstr ""
+msgstr "Qualité"
 
 msgctxt "#30030"
 msgid "Choose the maximum playback quality for videos and live content"
-msgstr ""
+msgstr "Choisissez la qualité de lecture maximale pour les vidéos et le contenu en direct"
 
 msgctxt "#30031"
 msgid "Limit to 30 fps"
@@ -155,7 +155,7 @@ msgstr "Limite à 30 fps"
 
 msgctxt "#30032"
 msgid "Limit playback quality to 30 fps or less"
-msgstr ""
+msgstr "Limiter la qualité de la lecture à 30 images par seconde ou moins"
 
 msgctxt "#30033"
 msgid "HDR"
@@ -163,7 +163,7 @@ msgstr "HDR"
 
 msgctxt "#30034"
 msgid "Use the best matching HDR streams for videos"
-msgstr ""
+msgstr "Utiliser les meilleurs flux HDR pour les vidéos"
 
 msgctxt "#30035"
 msgid "Adaptive (MP4/H264)"
@@ -191,23 +191,23 @@ msgstr "720p (HD)"
 
 msgctxt "#30041"
 msgid "1080p (FHD)"
-msgstr ""
+msgstr "1080p (FullHD)"
 
 msgctxt "#30042"
 msgid "1440p (QHD)"
-msgstr ""
+msgstr "1440p (Quad HD)"
 
 msgctxt "#30043"
 msgid "2160p (4K)"
-msgstr ""
+msgstr "2160p (4k)"
 
 msgctxt "#30044"
 msgid "4320p (8K)"
-msgstr ""
+msgstr "4320p (8k)"
 
 msgctxt "#30045"
 msgid "Playback"
-msgstr ""
+msgstr "Lecture"
 
 msgctxt "#30046"
 msgid "Watch Later"
@@ -215,7 +215,7 @@ msgstr "Regarder plus tard"
 
 msgctxt "#30047"
 msgid "Regional"
-msgstr ""
+msgstr "Régionale"
 
 msgctxt "#30048"
 msgid "Language"
@@ -223,7 +223,7 @@ msgstr "Langue"
 
 msgctxt "#30049"
 msgid "Your preferred YouTube UI language"
-msgstr ""
+msgstr "Votre langue préférée pour l'interface utilisateur de YouTube"
 
 msgctxt "#30050"
 msgid "Region"
@@ -231,15 +231,15 @@ msgstr "Région"
 
 msgctxt "#30051"
 msgid "Your preferred content region"
-msgstr ""
+msgstr "Votre région préférée pour le contenu"
 
 msgctxt "#30052"
 msgid "Configure regional preferences"
-msgstr ""
+msgstr "Configurer les préférences régionales"
 
 msgctxt "#30053"
 msgid "Configure your preferred language and region"
-msgstr ""
+msgstr "Configurez votre langue et votre région préférées"
 
 msgctxt "#30054"
 msgid "Configure subtitles"
@@ -247,7 +247,7 @@ msgstr "Configurer les sous-titres"
 
 msgctxt "#30055"
 msgid "Configure your preferred subtitle language"
-msgstr ""
+msgstr "Configurez votre langue de sous-titres préférée"
 
 msgctxt "#30056"
 msgid "Subtitle language"
@@ -255,11 +255,11 @@ msgstr "Langue des sous-titres"
 
 msgctxt "#30057"
 msgid "Your preferred subtitle language"
-msgstr ""
+msgstr "Votre langue de sous-titrage préférée"
 
 msgctxt "#30058"
 msgid "Subtitles"
-msgstr ""
+msgstr "Sous-titres"
 
 msgctxt "#30059"
 msgid "%s with %s fallback"
@@ -283,7 +283,7 @@ msgstr "S'abonner"
 
 msgctxt "#30064"
 msgid "Subscribed"
-msgstr ""
+msgstr "Abonné"
 
 msgctxt "#30065"
 msgid "Unsubscribe"
@@ -291,7 +291,7 @@ msgstr "Se désabonner"
 
 msgctxt "#30066"
 msgid "Unsubscribed"
-msgstr ""
+msgstr "Désabonné"
 
 msgctxt "#30067"
 msgid "Error"
@@ -299,7 +299,7 @@ msgstr "Erreur"
 
 msgctxt "#30068"
 msgid "Play (Prompt for subtitles)"
-msgstr ""
+msgstr "Lecture (Demande de sous-titres)"
 
 msgctxt "#30069"
 msgid "Go to %s"
@@ -307,15 +307,15 @@ msgstr "Aller à %s"
 
 msgctxt "#30070"
 msgid "Subscribed to %s"
-msgstr ""
+msgstr "Abonné à %s"
 
 msgctxt "#30071"
 msgid "Unsubscribed from %s"
-msgstr ""
+msgstr "Désabonné de %s"
 
 msgctxt "#30072"
 msgid "Rate"
-msgstr ""
+msgstr "Évaluer"
 
 msgctxt "#30073"
 msgid "I like this"
@@ -327,23 +327,23 @@ msgstr "Je n'aime pas"
 
 msgctxt "#30075"
 msgid "Remove rating"
-msgstr ""
+msgstr "Supprimer l'évaluation"
 
 msgctxt "#30076"
 msgid "Liked"
-msgstr ""
+msgstr "Aimé"
 
 msgctxt "#30077"
 msgid "Disliked"
-msgstr ""
+msgstr "Pas aimé"
 
 msgctxt "#30078"
 msgid "Liked %s"
-msgstr ""
+msgstr "Aimé %s"
 
 msgctxt "#30079"
 msgid "Disliked %s"
-msgstr ""
+msgstr "Pas aimé %s"
 
 msgctxt "#30080"
 msgid "Rating removed"
@@ -351,31 +351,31 @@ msgstr "Note supprimée"
 
 msgctxt "#30081"
 msgid "Rating removed from %s"
-msgstr ""
+msgstr "Évaluation supprimée de %s"
 
 msgctxt "#30082"
 msgid "New playlist"
-msgstr ""
+msgstr "Nouvelle liste de lecture"
 
 msgctxt "#30083"
 msgid "Add to playlist"
-msgstr ""
+msgstr "Ajouter à la liste de lecture"
 
 msgctxt "#30084"
 msgid "Remove from playlist"
-msgstr ""
+msgstr "Retirer de la liste de lecture"
 
 msgctxt "#30085"
 msgid "Delete playlist"
-msgstr ""
+msgstr "Supprimer la liste de lecture"
 
 msgctxt "#30086"
 msgid "Enter your playlist title"
-msgstr ""
+msgstr "Entrez le titre de votre liste de lecture"
 
 msgctxt "#30087"
 msgid "Added %s to %s"
-msgstr ""
+msgstr "Ajouté %s à %s"
 
 msgctxt "#30088"
 msgid "Removed from playlist"
@@ -383,55 +383,55 @@ msgstr "Supprimé de la playlist"
 
 msgctxt "#30089"
 msgid "Removed %s from playlist"
-msgstr ""
+msgstr "Retiré de %s de la liste de lecture"
 
 msgctxt "#30090"
 msgid "Playlist deleted"
-msgstr ""
+msgstr "Liste de lecture supprimée"
 
 msgctxt "#30091"
 msgid "%s playlist deleted"
-msgstr ""
+msgstr "Liste de lecture %s supprimée"
 
 msgctxt "#30092"
 msgid "Rename playlist"
-msgstr ""
+msgstr "Renommer la liste de lecture"
 
 msgctxt "#30093"
 msgid "Playlist renamed to %s"
-msgstr ""
+msgstr "Liste de lecture renommée en %s"
 
 msgctxt "#30094"
 msgid "%s renamed to %s"
-msgstr ""
+msgstr "%s renommé en %s"
 
 msgctxt "#30095"
 msgid "You are about to delete %s, are you sure?"
-msgstr ""
+msgstr "Vous êtes sur le point de supprimer %s, êtes-vous sûr ?"
 
 msgctxt "#30096"
 msgid "You are about to delete a playlist, are you sure?"
-msgstr ""
+msgstr "Vous êtes sur le point de supprimer une liste de lecture, êtes-vous sûr ?"
 
 msgctxt "#30097"
 msgid "Upcoming"
-msgstr ""
+msgstr "À venir"
 
 msgctxt "#30098"
 msgid "Completed"
-msgstr ""
+msgstr "Terminé"
 
 msgctxt "#30099"
 msgid "%s was scheduled to start %s"
-msgstr ""
+msgstr "Le démarrage de %s était prévu pour %s"
 
 msgctxt "#30100"
 msgid "%s is scheduled to start %s"
-msgstr ""
+msgstr "Le démarrage de %s est prévu pour %s"
 
 msgctxt "#30101"
 msgid "Related videos"
-msgstr ""
+msgstr "Vidéos liées"
 
 msgctxt "#30102"
 msgid "Cache"
@@ -439,11 +439,11 @@ msgstr "Cache"
 
 msgctxt "#30103"
 msgid "Data cache TTL (weeks)"
-msgstr ""
+msgstr "Cache de données TTL (semaines)"
 
 msgctxt "#30104"
 msgid "Function cache TTL (minutes)"
-msgstr ""
+msgstr "Fonction cache TTL (minutes)"
 
 msgctxt "#30105"
 msgid "Clear data cache"
@@ -455,31 +455,31 @@ msgstr "Effacer les fonctions du cache"
 
 msgctxt "#30107"
 msgid "Data cache was cleared"
-msgstr ""
+msgstr "La mémoire cache des données a été effacée"
 
 msgctxt "#30108"
 msgid "Function cache was cleared"
-msgstr ""
+msgstr "La mémoire cache des fonctions a été effacée"
 
 msgctxt "#30109"
 msgid "Delete data cache"
-msgstr ""
+msgstr "Supprimer la mémoire cache des données"
 
 msgctxt "#30110"
 msgid "Delete function cache"
-msgstr ""
+msgstr "Supprimer la mémoire cache des fonctions"
 
 msgctxt "#30111"
 msgid "Data cache was deleted"
-msgstr ""
+msgstr "La mémoire cache a été supprimée"
 
 msgctxt "#30112"
 msgid "Function cache was deleted"
-msgstr ""
+msgstr "Le cache de la fonction a été supprimé"
 
 msgctxt "#30113"
 msgid "Time to Live"
-msgstr ""
+msgstr "Durée de vie"
 
 msgctxt "#30114"
 msgid "Maintenance"
@@ -487,59 +487,59 @@ msgstr "Maintenance"
 
 msgctxt "#30115"
 msgid "How long until long term data cache expires in weeks"
-msgstr ""
+msgstr "Combien de temps avant l'expiration du cache de données à long terme (en semaines)"
 
 msgctxt "#30116"
 msgid "How long until short term function cache expires in minutes"
-msgstr ""
+msgstr "Combien de temps avant l'expiration du cache des fonctions à court terme (en minutes)"
 
 msgctxt "#30117"
 msgid "Clearing long term data cache will remove all entries from the database"
-msgstr ""
+msgstr "L'effacement du cache des données à long terme supprimera toutes les entrées de la base de données"
 
 msgctxt "#30118"
 msgid "Clearing short term function cache will remove all cache entries"
-msgstr ""
+msgstr "L'effacement de la mémoire cache des fonctions à court terme supprimera toutes les entrées de la mémoire cache"
 
 msgctxt "#30119"
 msgid "Deleting long term data cache will delete the whole database"
-msgstr ""
+msgstr "La suppression du cache de données à long terme supprimera de l'ensemble de la base de données"
 
 msgctxt "#30120"
 msgid "Deleting short term function cache will delete the whole database"
-msgstr ""
+msgstr "La suppression de la mémoire cache des fonctions à court terme supprimera l'ensemble de la base de données"
 
 msgctxt "#30121"
 msgid "Failed to clear function cache"
-msgstr ""
+msgstr "Échec de l'effacement du cache des fonctions"
 
 msgctxt "#30122"
 msgid "Failed to clear data cache"
-msgstr ""
+msgstr "Échec de l'effacement de la mémoire cache"
 
 msgctxt "#30123"
 msgid "Failed to delete function cache"
-msgstr ""
+msgstr "Échec de la suppression du cache des fonctions"
 
 msgctxt "#30124"
 msgid "Failed to delete data cache"
-msgstr ""
+msgstr "Échec de la suppression du cache de données"
 
 msgctxt "#30125"
 msgid "Debug"
-msgstr ""
+msgstr "Débogage"
 
 msgctxt "#30126"
 msgid "Component Logging"
-msgstr ""
+msgstr "Enregistrement des composants"
 
 msgctxt "#30127"
 msgid "API requests"
-msgstr ""
+msgstr "Requêtes API"
 
 msgctxt "#30128"
 msgid "Enable logging of API requests and responses"
-msgstr ""
+msgstr "Activer la journalisation des requêtes et des réponses de l'API"
 
 msgctxt "#30129"
 msgid "Comments"
@@ -547,11 +547,11 @@ msgstr "Commentaires"
 
 msgctxt "#30130"
 msgid "Comment"
-msgstr ""
+msgstr "Commenter"
 
 msgctxt "#30131"
 msgid "Read comment"
-msgstr ""
+msgstr "Lire le commentaire"
 
 msgctxt "#30132"
 msgid "Likes"
@@ -563,15 +563,15 @@ msgstr "Réponses"
 
 msgctxt "#30134"
 msgid "Comment has been edited"
-msgstr ""
+msgstr "Le commentaire a été modifié"
 
 msgctxt "#30135"
 msgid "Limits"
-msgstr ""
+msgstr "Limites"
 
 msgctxt "#30136"
 msgid "Data cache (MB)"
-msgstr ""
+msgstr "Cache de données (Mo)"
 
 msgctxt "#30137"
 msgid "The maximum size of long term data cache before being automatically resized"
