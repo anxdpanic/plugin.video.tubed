@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: STRINGS\n"
 "Report-Msgid-Bugs-To: translations@kodi.tv\n"
 "POT-Creation-Date: 2016-09-18 00:54+0000\n"
-"PO-Revision-Date: 2022-04-08 00:13+0000\n"
+"PO-Revision-Date: 2024-04-23 08:46+0000\n"
 "Last-Translator: Christian Gade <gade@kodi.tv>\n"
 "Language-Team: Ukrainian <https://kodi.weblate.cloud/projects/kodi-add-ons-video/plugin-video-tubed/uk_ua/>\n"
 "Language: uk_ua\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 4.11.2\n"
+"X-Generator: Weblate 5.4.3\n"
 
 msgctxt "Addon Summary"
 msgid "Watch your favorite YouTube content on Kodi"
@@ -35,7 +35,7 @@ msgstr ""
 
 msgctxt "#30002"
 msgid "Recommendations"
-msgstr ""
+msgstr "Рекомендації"
 
 msgctxt "#30003"
 msgid "Search"
@@ -191,7 +191,7 @@ msgstr "720p (HD)"
 
 msgctxt "#30041"
 msgid "1080p (FHD)"
-msgstr ""
+msgstr "1080p (FHD)"
 
 msgctxt "#30042"
 msgid "1440p (QHD)"
@@ -251,7 +251,7 @@ msgstr ""
 
 msgctxt "#30056"
 msgid "Subtitle language"
-msgstr ""
+msgstr "Мова субтитрів"
 
 msgctxt "#30057"
 msgid "Your preferred subtitle language"
@@ -271,7 +271,7 @@ msgstr ""
 
 msgctxt "#30061"
 msgid "None"
-msgstr ""
+msgstr "Жоден"
 
 msgctxt "#30062"
 msgid "Prompt"
@@ -347,7 +347,7 @@ msgstr ""
 
 msgctxt "#30080"
 msgid "Rating removed"
-msgstr ""
+msgstr "Оцінка видалена"
 
 msgctxt "#30081"
 msgid "Rating removed from %s"
@@ -379,7 +379,7 @@ msgstr ""
 
 msgctxt "#30088"
 msgid "Removed from playlist"
-msgstr ""
+msgstr "Видалено з плейлиста"
 
 msgctxt "#30089"
 msgid "Removed %s from playlist"
@@ -447,11 +447,11 @@ msgstr ""
 
 msgctxt "#30105"
 msgid "Clear data cache"
-msgstr ""
+msgstr "Очистити кеш даних"
 
 msgctxt "#30106"
 msgid "Clear function cache"
-msgstr ""
+msgstr "Очистити функціональний кеш"
 
 msgctxt "#30107"
 msgid "Data cache was cleared"
@@ -483,7 +483,7 @@ msgstr ""
 
 msgctxt "#30114"
 msgid "Maintenance"
-msgstr ""
+msgstr "Обслуговування"
 
 msgctxt "#30115"
 msgid "How long until long term data cache expires in weeks"
@@ -543,7 +543,7 @@ msgstr ""
 
 msgctxt "#30129"
 msgid "Comments"
-msgstr ""
+msgstr "Коментарі"
 
 msgctxt "#30130"
 msgid "Comment"
@@ -555,11 +555,11 @@ msgstr ""
 
 msgctxt "#30132"
 msgid "Likes"
-msgstr ""
+msgstr "Лайки"
 
 msgctxt "#30133"
 msgid "Replies"
-msgstr ""
+msgstr "Відповіді"
 
 msgctxt "#30134"
 msgid "Comment has been edited"
@@ -655,19 +655,19 @@ msgstr ""
 
 msgctxt "#30157"
 msgid "Set as History"
-msgstr ""
+msgstr "Додати до переглянутих"
 
 msgctxt "#30158"
 msgid "Set as Watch Later"
-msgstr ""
+msgstr "Додати в \\\"Переглянути пізніше\\\""
 
 msgctxt "#30159"
 msgid "Remove as History"
-msgstr ""
+msgstr "Видалити з історії переглянутих"
 
 msgctxt "#30160"
 msgid "Remove as Watch Later"
-msgstr ""
+msgstr "Видалити з \\\"Переглянути пізніше\\\""
 
 msgctxt "#30161"
 msgid "History"
@@ -1051,7 +1051,7 @@ msgstr ""
 
 msgctxt "#30256"
 msgid "Settings"
-msgstr ""
+msgstr "Налаштування"
 
 msgctxt "#30257"
 msgid "No entries found"
