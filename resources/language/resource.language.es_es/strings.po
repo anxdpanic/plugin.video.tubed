@@ -3,15 +3,15 @@ msgstr ""
 "Project-Id-Version: STRINGS\n"
 "Report-Msgid-Bugs-To: translations@kodi.tv\n"
 "POT-Creation-Date: 2016-09-18 00:54+0000\n"
-"PO-Revision-Date: 2024-03-02 18:13+0000\n"
-"Last-Translator: José Antonio Alvarado <jalvarado0.eses@gmail.com>\n"
+"PO-Revision-Date: 2024-04-27 22:42+0000\n"
+"Last-Translator: roliverosc <roliverosc@hotmail.com>\n"
 "Language-Team: Spanish (Spain) <https://kodi.weblate.cloud/projects/kodi-add-ons-video/plugin-video-tubed/es_es/>\n"
 "Language: es_es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.4\n"
+"X-Generator: Weblate 5.4.3\n"
 
 msgctxt "Addon Summary"
 msgid "Watch your favorite YouTube content on Kodi"
@@ -163,7 +163,7 @@ msgstr "HDR"
 
 msgctxt "#30034"
 msgid "Use the best matching HDR streams for videos"
-msgstr "Usar las mejores transmisiones HDR coincidentes para los videos"
+msgstr "Usar las transmisiones HDR que mejor coincidan para vídeos"
 
 msgctxt "#30035"
 msgid "Adaptive (MP4/H264)"
@@ -235,7 +235,7 @@ msgstr "Su región de contenidos preferida"
 
 msgctxt "#30052"
 msgid "Configure regional preferences"
-msgstr "Configurar las preferencias regionales"
+msgstr "Configurar preferencias regionales"
 
 msgctxt "#30053"
 msgid "Configure your preferred language and region"
@@ -315,7 +315,7 @@ msgstr "Dado de baja de %s"
 
 msgctxt "#30072"
 msgid "Rate"
-msgstr "Calificar"
+msgstr "Valorar"
 
 msgctxt "#30073"
 msgid "I like this"
@@ -327,7 +327,7 @@ msgstr "No me gusta"
 
 msgctxt "#30075"
 msgid "Remove rating"
-msgstr "Eliminar calificación"
+msgstr "Eliminar valoración"
 
 msgctxt "#30076"
 msgid "Liked"
@@ -347,11 +347,11 @@ msgstr "No me ha gustado %s"
 
 msgctxt "#30080"
 msgid "Rating removed"
-msgstr "Valoración eliminada"
+msgstr "Valoración borrada"
 
 msgctxt "#30081"
 msgid "Rating removed from %s"
-msgstr "Calificación eliminada de %s"
+msgstr "Valoración borrada de %s"
 
 msgctxt "#30082"
 msgid "New playlist"
@@ -359,19 +359,19 @@ msgstr "Nueva lista de reproducción"
 
 msgctxt "#30083"
 msgid "Add to playlist"
-msgstr "Añadir a la lista de reproducción"
+msgstr "Añadir a lista de reproducción"
 
 msgctxt "#30084"
 msgid "Remove from playlist"
-msgstr "Eliminar de la lista de reproducción"
+msgstr "Eliminar de lista de reproducción"
 
 msgctxt "#30085"
 msgid "Delete playlist"
-msgstr "Borrar lista de reproducción"
+msgstr "Eliminar lista de reproducción"
 
 msgctxt "#30086"
 msgid "Enter your playlist title"
-msgstr "Introduce el título de tu lista de reproducción"
+msgstr "Introduzca el título de su lista de reproducción"
 
 msgctxt "#30087"
 msgid "Added %s to %s"
@@ -379,11 +379,11 @@ msgstr "Añadido %s a %s"
 
 msgctxt "#30088"
 msgid "Removed from playlist"
-msgstr "Eliminado de la lista de reproducción"
+msgstr "Borrado de la lista de reproducción"
 
 msgctxt "#30089"
 msgid "Removed %s from playlist"
-msgstr "Eliminado %s de la lista de reproducción"
+msgstr "Borrado %s de la lista de reproducción"
 
 msgctxt "#30090"
 msgid "Playlist deleted"
@@ -407,11 +407,11 @@ msgstr "%s renombrado a %s"
 
 msgctxt "#30095"
 msgid "You are about to delete %s, are you sure?"
-msgstr "Estás a punto de borrar %s, ¿estás seguro?"
+msgstr "Estás a punto de eliminar %s, ¿estás seguro?"
 
 msgctxt "#30096"
 msgid "You are about to delete a playlist, are you sure?"
-msgstr "Estás a punto de borrar una lista de reproducción, ¿estás seguro?"
+msgstr "Estás a punto de eliminar una lista de reproducción, ¿estás seguro?"
 
 msgctxt "#30097"
 msgid "Upcoming"
@@ -439,7 +439,7 @@ msgstr "Caché"
 
 msgctxt "#30103"
 msgid "Data cache TTL (weeks)"
-msgstr "TTL de la caché de datos (semanas)"
+msgstr "TTL de caché de datos (semanas)"
 
 msgctxt "#30104"
 msgid "Function cache TTL (minutes)"
@@ -463,19 +463,19 @@ msgstr "Se ha borrado la caché de funciones"
 
 msgctxt "#30109"
 msgid "Delete data cache"
-msgstr "Borrar caché de datos"
+msgstr "Eliminar caché de datos"
 
 msgctxt "#30110"
 msgid "Delete function cache"
-msgstr "Borrar caché de funciones"
+msgstr "Eliminar caché de funciones"
 
 msgctxt "#30111"
 msgid "Data cache was deleted"
-msgstr "Se ha borrado la caché de datos"
+msgstr "Se eliminó la caché de datos"
 
 msgctxt "#30112"
 msgid "Function cache was deleted"
-msgstr "Se ha borrado la caché de funciones"
+msgstr "Se eliminó la caché de funciones"
 
 msgctxt "#30113"
 msgid "Time to Live"
@@ -495,35 +495,35 @@ msgstr "Cuánto falta para que caduque la caché de funciones a corto plazo en m
 
 msgctxt "#30117"
 msgid "Clearing long term data cache will remove all entries from the database"
-msgstr "Al borrar la caché de datos a largo plazo se eliminarán todas las entradas de la base de datos"
+msgstr "Borrar la caché de datos a largo plazo eliminará todas las entradas de la base de datos"
 
 msgctxt "#30118"
 msgid "Clearing short term function cache will remove all cache entries"
-msgstr "Al borrar la caché de funciones a corto plazo se eliminarán todas las entradas de la caché"
+msgstr "Borrar la caché de funciones a corto plazo eliminará todas las entradas de la caché"
 
 msgctxt "#30119"
 msgid "Deleting long term data cache will delete the whole database"
-msgstr "Al borrar la caché de datos a largo plazo se borrará toda la base de datos"
+msgstr "Eliminar la caché de datos a largo plazo eliminará toda la base de datos"
 
 msgctxt "#30120"
 msgid "Deleting short term function cache will delete the whole database"
-msgstr "Al borrar la caché de funciones a corto plazo se borrará toda la base de datos"
+msgstr "Eliminar la caché de funciones a corto plazo eliminará toda la base de datos"
 
 msgctxt "#30121"
 msgid "Failed to clear function cache"
-msgstr "Error al borrar la caché de funciones"
+msgstr "No se pudo limpiar la caché de funciones"
 
 msgctxt "#30122"
 msgid "Failed to clear data cache"
-msgstr "Error al borrar la caché de datos"
+msgstr "No se pudo limpiar la caché de datos"
 
 msgctxt "#30123"
 msgid "Failed to delete function cache"
-msgstr "Error al borrar la caché de funciones"
+msgstr "No se pudo eliminar la caché de funciones"
 
 msgctxt "#30124"
 msgid "Failed to delete data cache"
-msgstr "Error al borrar la caché de datos"
+msgstr "No se pudo eliminar la caché de datos"
 
 msgctxt "#30125"
 msgid "Debug"
@@ -539,7 +539,7 @@ msgstr "Solicitudes API"
 
 msgctxt "#30128"
 msgid "Enable logging of API requests and responses"
-msgstr "Activar el registro de solicitudes y respuestas de la API"
+msgstr "Activar registro de solicitudes y respuestas de la API"
 
 msgctxt "#30129"
 msgid "Comments"
@@ -575,7 +575,7 @@ msgstr "Caché de datos (MB)"
 
 msgctxt "#30137"
 msgid "The maximum size of long term data cache before being automatically resized"
-msgstr "El tamaño máximo de la caché de datos a largo plazo antes de ser redimensionada automáticamente"
+msgstr "El tamaño máximo de la caché de datos a largo plazo antes de cambiar su tamaño automáticamente"
 
 msgctxt "#30138"
 msgid "Sort order"
@@ -635,19 +635,19 @@ msgstr "Porcentaje de la duración del vídeo que debe verse para que se activen
 
 msgctxt "#30152"
 msgid "Rate the video that just finished playing"
-msgstr "Calificar el vídeo que acaba de terminar de reproducirse"
+msgstr "Valorar el vídeo que acaba de terminar de reproducirse"
 
 msgctxt "#30153"
 msgid "Rate during playlists"
-msgstr "Calificar en las listas de reproducción"
+msgstr "Valorar en las listas de reproducción"
 
 msgctxt "#30154"
 msgid "Should rating be requested while watching playlists"
-msgstr "Debería solicitarse la calificación mientras se ven las listas de reproducción"
+msgstr "Debería solicitarse la valoración mientras se ven las listas de reproducción"
 
 msgctxt "#30155"
 msgid "Autoplay related videos"
-msgstr "Reproducción automática de vídeos relacionados"
+msgstr "Reproducir automáticamente vídeos relacionados"
 
 msgctxt "#30156"
 msgid "Autoplay videos related to the previously played video"
@@ -663,11 +663,11 @@ msgstr "Establecer como 'Ver más tarde'"
 
 msgctxt "#30159"
 msgid "Remove as History"
-msgstr "Eliminar como 'Historial'"
+msgstr "Borrar como 'Historial'"
 
 msgctxt "#30160"
 msgid "Remove as Watch Later"
-msgstr "Eliminar como 'Ver más tarde'"
+msgstr "Borrar como 'Ver más tarde'"
 
 msgctxt "#30161"
 msgid "History"
@@ -675,39 +675,39 @@ msgstr "Historial"
 
 msgctxt "#30162"
 msgid "Watch later playlist configured"
-msgstr "Ver más tarde lista de reproducción configurada"
+msgstr "Lista de reproducción Ver más tarde configurada"
 
 msgctxt "#30163"
 msgid "History playlist configured"
-msgstr "Historial de listas de reproducción configuradas"
+msgstr "Lista de reproducción Historial configurada"
 
 msgctxt "#30164"
 msgid "%s was configured as your watch later playlist"
-msgstr "%s se ha configurado como tu lista de reproducción para ver más tarde"
+msgstr "%s se ha configurado como tu lista de reproducción Ver más tarde"
 
 msgctxt "#30165"
 msgid "%s was configured as your history playlist"
-msgstr "%s se configuró como tu lista de reproducción en el historial"
+msgstr "%s se configuró como tu lista de reproducción Historial"
 
 msgctxt "#30166"
 msgid "Watch later playlist is no longer configured"
-msgstr "La lista de reproducción \"Ver más tarde\" ya no está configurada"
+msgstr "La lista de reproducción Ver más tarde ya no está configurada"
 
 msgctxt "#30167"
 msgid "History playlist is no longer configured"
-msgstr "El historial de listas de reproducción ya no está configurado"
+msgstr "La lista de reproducción Historial ya no está configurada"
 
 msgctxt "#30168"
 msgid "%s is no longer configured as your watch later playlist"
-msgstr "%s ya no está configurada como tu lista de reproducción para ver más tarde"
+msgstr "%s ya no está configurada como tu lista de reproducción Ver más tarde"
 
 msgctxt "#30169"
 msgid "%s is no longer configured as your history playlist"
-msgstr "%s ya no está configurada como tu lista de reproducción en el historial"
+msgstr "%s ya no está configurada como tu lista de reproducción Historial"
 
 msgctxt "#30170"
 msgid "Add to watch later"
-msgstr "Añadir para ver más tarde"
+msgstr "Añadir a Ver más tarde"
 
 msgctxt "#30171"
 msgid "Favorite Channels"
@@ -719,7 +719,7 @@ msgstr "Añadir a canales favoritos"
 
 msgctxt "#30173"
 msgid "Clear favorite channels"
-msgstr "Borrar canales favoritos"
+msgstr "Limpiar canales favoritos"
 
 msgctxt "#30174"
 msgid "Added to favorite channels"
@@ -727,7 +727,7 @@ msgstr "Añadido a canales favoritos"
 
 msgctxt "#30175"
 msgid "Removed from favorite channels"
-msgstr "Eliminado de canales favoritos"
+msgstr "Borrado de canales favoritos"
 
 msgctxt "#30176"
 msgid "Import from xml"
@@ -739,11 +739,11 @@ msgstr "Error de importación"
 
 msgctxt "#30178"
 msgid "Import completed successfully"
-msgstr "Importación completada con éxito"
+msgstr "Importación completada correctamente"
 
 msgctxt "#30179"
 msgid "You are about to clear your favorite channels, are you sure?"
-msgstr "Estás a punto de borrar tus canales favoritos, ¿estás seguro?"
+msgstr "Estás a punto de limpiar tus canales favoritos, ¿estás seguro?"
 
 msgctxt "#30180"
 msgid "Favorite channels cleared"
@@ -767,7 +767,7 @@ msgstr "Actualizar"
 
 msgctxt "#30185"
 msgid "Clear function cache on refresh"
-msgstr "Borrar caché de funciones al actualizar"
+msgstr "Limpiar caché de funciones al actualizar"
 
 msgctxt "#30186"
 msgid "Short term function cache will be cleared when using Refresh from the context menu"
