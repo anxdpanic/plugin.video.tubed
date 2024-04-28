@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: STRINGS\n"
 "Report-Msgid-Bugs-To: translations@kodi.tv\n"
 "POT-Creation-Date: 2016-09-18 00:54+0000\n"
-"PO-Revision-Date: 2024-04-27 22:42+0000\n"
+"PO-Revision-Date: 2024-04-28 20:01+0000\n"
 "Last-Translator: roliverosc <roliverosc@hotmail.com>\n"
 "Language-Team: Spanish (Spain) <https://kodi.weblate.cloud/projects/kodi-add-ons-video/plugin-video-tubed/es_es/>\n"
 "Language: es_es\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.4.3\n"
+"X-Generator: Weblate 5.5.2\n"
 
 msgctxt "Addon Summary"
 msgid "Watch your favorite YouTube content on Kodi"
@@ -775,11 +775,11 @@ msgstr "La caché de funciones a corto plazo se borrará al utilizar Actualizar 
 
 msgctxt "#30187"
 msgid "Choose watch later playlist"
-msgstr "Elegir lista de reproducción \"Ver más tarde\""
+msgstr "Elegir lista de reproducción Ver más tarde"
 
 msgctxt "#30188"
 msgid "Added %s to the new watch later playlist %s"
-msgstr "Añadido %s a la nueva lista de reproducción ver más tarde %s"
+msgstr "Añadido %s a la nueva lista de reproducción Ver más tarde %s"
 
 msgctxt "#30189"
 msgid "Search history items"
@@ -843,7 +843,7 @@ msgstr "Renombrar un usuario actual"
 
 msgctxt "#30204"
 msgid "Remove a current user"
-msgstr "Eliminar un usuario actual"
+msgstr "Borrar un usuario actual"
 
 msgctxt "#30205"
 msgid "Change avatar..."
@@ -851,7 +851,7 @@ msgstr "Cambiar avatar..."
 
 msgctxt "#30206"
 msgid "Change a current user's avatar"
-msgstr "Cambiar el avatar de un usuario actual"
+msgstr "Cambia el avatar de un usuario actual"
 
 msgctxt "#30207"
 msgid "Choose a new avatar"
@@ -879,11 +879,11 @@ msgstr "Ir a la página siguiente"
 
 msgctxt "#30213"
 msgid "Rate the selected video"
-msgstr "Calificar el vídeo seleccionado"
+msgstr "Valorar el vídeo seleccionado"
 
 msgctxt "#30214"
 msgid "Rate %s"
-msgstr "Calificar %s"
+msgstr "Valorar %s"
 
 msgctxt "#30215"
 msgid "Dialogs"
@@ -947,11 +947,11 @@ msgstr "Añadido a listas de reproducción favoritas"
 
 msgctxt "#30230"
 msgid "Removed from favorite playlists"
-msgstr "Eliminado de listas de reproducción favoritas"
+msgstr "Borrado de listas de reproducción favoritas"
 
 msgctxt "#30231"
 msgid "You are about to clear your favorite playlists, are you sure?"
-msgstr "Estás a punto de borrar tus listas de reproducción favoritas, ¿estás seguro?"
+msgstr "Estás a punto de limpiar tus listas de reproducción favoritas, ¿estás seguro?"
 
 msgctxt "#30232"
 msgid "Favorite playlists cleared"
@@ -967,7 +967,7 @@ msgstr "Añadido %s a listas de reproducción favoritas"
 
 msgctxt "#30235"
 msgid "Removed %s from favorite playlists"
-msgstr "Eliminado %s de listas de reproducción favoritas"
+msgstr "Borrado %s de listas de reproducción favoritas"
 
 msgctxt "#30236"
 msgid "Favorite playlists"
@@ -1059,7 +1059,7 @@ msgstr "No se han encontrado entradas"
 
 msgctxt "#30258"
 msgid "v3 Data API Client"
-msgstr "Cliente Data API v3"
+msgstr "Cliente API de datos v3"
 
 msgctxt "#30259"
 msgid "YouTube-TV API Client"
