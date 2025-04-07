@@ -3,39 +3,39 @@ msgstr ""
 "Project-Id-Version: STRINGS\n"
 "Report-Msgid-Bugs-To: translations@kodi.tv\n"
 "POT-Creation-Date: 2016-09-18 00:54+0000\n"
-"PO-Revision-Date: 2023-11-21 12:11+0000\n"
-"Last-Translator: Christian Gade <gade@kodi.tv>\n"
+"PO-Revision-Date: 2025-04-07 16:55+0000\n"
+"Last-Translator: Daniel Nylander <daniel@danielnylander.se>\n"
 "Language-Team: Swedish <https://kodi.weblate.cloud/projects/kodi-add-ons-video/plugin-video-tubed/sv_se/>\n"
 "Language: sv_se\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.1\n"
+"X-Generator: Weblate 5.10.4\n"
 
 msgctxt "Addon Summary"
 msgid "Watch your favorite YouTube content on Kodi"
-msgstr ""
+msgstr "Titta på ditt favoritinnehåll från YouTube på Kodi"
 
 msgctxt "Addon Description"
 msgid "Browse your favorite content from YouTube; create, delete, and rename playlists; subscribe or unsubscribe from your favorite channels; and rate your favorite videos."
-msgstr ""
+msgstr "Bläddra bland ditt favoritinnehåll från YouTube, skapa, ta bort och byt namn på spellistor, prenumerera eller avsluta prenumerationen på dina favoritkanaler och betygsätt dina favoritvideor."
 
 msgctxt "Addon Disclaimer"
 msgid "Tubed's use of information received from Google APIs will adhere to the Google API Services User Data Policy, including the Limited Use requirements. For more information on how your data is handled see Tubed's Privacy Policy at https://panicked.xyz/tubed-privacy/"
-msgstr ""
+msgstr "Tubeds användning av information som erhållits från Google API: er kommer att följa Google API Services användardatapolicy, inklusive kraven för begränsad användning. För mer information om hur dina uppgifter hanteras, se Tubeds sekretesspolicy på https://panicked.xyz/tubed-privacy/"
 
 msgctxt "#30000"
 msgid "Most Popular"
-msgstr ""
+msgstr "Mest populära"
 
 msgctxt "#30001"
 msgid "Next Page"
-msgstr ""
+msgstr "Nästa sida"
 
 msgctxt "#30002"
 msgid "Recommendations"
-msgstr ""
+msgstr "Rekommenderat"
 
 msgctxt "#30003"
 msgid "Search"
@@ -43,19 +43,19 @@ msgstr "Sök"
 
 msgctxt "#30004"
 msgid "My Channel"
-msgstr ""
+msgstr "Min kanal"
 
 msgctxt "#30005"
 msgid "Liked Videos"
-msgstr ""
+msgstr "Gillade videor"
 
 msgctxt "#30006"
 msgid "Disliked Videos"
-msgstr ""
+msgstr "Ogillade videor"
 
 msgctxt "#30007"
 msgid "Playlists"
-msgstr ""
+msgstr "Spellistor"
 
 msgctxt "#30008"
 msgid "Channels"
@@ -63,7 +63,7 @@ msgstr "Kanaler"
 
 msgctxt "#30009"
 msgid "Subscriptions"
-msgstr ""
+msgstr "Prenumerationer"
 
 msgctxt "#30010"
 msgid "Live"
@@ -71,23 +71,23 @@ msgstr "Live"
 
 msgctxt "#30011"
 msgid "Sign in with Google"
-msgstr ""
+msgstr "Logga in med Google"
 
 msgctxt "#30012"
 msgid "Sign Out"
-msgstr ""
+msgstr "Logga ut"
 
 msgctxt "#30013"
 msgid "Manage Users"
-msgstr ""
+msgstr "Hantera användare"
 
 msgctxt "#30014"
 msgid "New Search"
-msgstr ""
+msgstr "Ny sökning"
 
 msgctxt "#30015"
 msgid "Enter your search term"
-msgstr ""
+msgstr "Ange din sökterm"
 
 msgctxt "#30016"
 msgid "Go to %s and enter the following code:"
@@ -119,7 +119,7 @@ msgstr ""
 
 msgctxt "#30023"
 msgid "Uploads"
-msgstr ""
+msgstr "Uppladdningar"
 
 msgctxt "#30024"
 msgid "You are about to sign out, are you sure?"
@@ -195,7 +195,7 @@ msgstr "1080p (FHD)"
 
 msgctxt "#30042"
 msgid "1440p (QHD)"
-msgstr ""
+msgstr "1440p (QHD)"
 
 msgctxt "#30043"
 msgid "2160p (4K)"
@@ -211,7 +211,7 @@ msgstr ""
 
 msgctxt "#30046"
 msgid "Watch Later"
-msgstr ""
+msgstr "Se senare"
 
 msgctxt "#30047"
 msgid "Regional"
@@ -267,7 +267,7 @@ msgstr ""
 
 msgctxt "#30060"
 msgid "No auto-generated"
-msgstr ""
+msgstr "Ingen autogenererad"
 
 msgctxt "#30061"
 msgid "None"
@@ -279,7 +279,7 @@ msgstr ""
 
 msgctxt "#30063"
 msgid "Subscribe"
-msgstr ""
+msgstr "Prenumerera"
 
 msgctxt "#30064"
 msgid "Subscribed"
@@ -287,7 +287,7 @@ msgstr ""
 
 msgctxt "#30065"
 msgid "Unsubscribe"
-msgstr ""
+msgstr "Avsluta prenumeration"
 
 msgctxt "#30066"
 msgid "Unsubscribed"
@@ -303,7 +303,7 @@ msgstr ""
 
 msgctxt "#30069"
 msgid "Go to %s"
-msgstr ""
+msgstr "Gå till %s"
 
 msgctxt "#30070"
 msgid "Subscribed to %s"
@@ -319,11 +319,11 @@ msgstr ""
 
 msgctxt "#30073"
 msgid "I like this"
-msgstr ""
+msgstr "Jag gillar det här"
 
 msgctxt "#30074"
 msgid "I dislike this"
-msgstr ""
+msgstr "Jag tycker inte om detta"
 
 msgctxt "#30075"
 msgid "Remove rating"
@@ -347,7 +347,7 @@ msgstr ""
 
 msgctxt "#30080"
 msgid "Rating removed"
-msgstr ""
+msgstr "Betyg borttaget"
 
 msgctxt "#30081"
 msgid "Rating removed from %s"
@@ -379,7 +379,7 @@ msgstr ""
 
 msgctxt "#30088"
 msgid "Removed from playlist"
-msgstr ""
+msgstr "Borttagen från spellistan"
 
 msgctxt "#30089"
 msgid "Removed %s from playlist"
@@ -447,11 +447,11 @@ msgstr ""
 
 msgctxt "#30105"
 msgid "Clear data cache"
-msgstr ""
+msgstr "Töm datacache"
 
 msgctxt "#30106"
 msgid "Clear function cache"
-msgstr ""
+msgstr "Töm funktionscache"
 
 msgctxt "#30107"
 msgid "Data cache was cleared"
@@ -483,7 +483,7 @@ msgstr ""
 
 msgctxt "#30114"
 msgid "Maintenance"
-msgstr ""
+msgstr "Underhåll"
 
 msgctxt "#30115"
 msgid "How long until long term data cache expires in weeks"
@@ -543,7 +543,7 @@ msgstr ""
 
 msgctxt "#30129"
 msgid "Comments"
-msgstr ""
+msgstr "Kommentarer"
 
 msgctxt "#30130"
 msgid "Comment"
@@ -555,11 +555,11 @@ msgstr ""
 
 msgctxt "#30132"
 msgid "Likes"
-msgstr ""
+msgstr "Gillar"
 
 msgctxt "#30133"
 msgid "Replies"
-msgstr ""
+msgstr "Svar"
 
 msgctxt "#30134"
 msgid "Comment has been edited"
@@ -655,23 +655,23 @@ msgstr ""
 
 msgctxt "#30157"
 msgid "Set as History"
-msgstr ""
+msgstr "Ställ in som historik"
 
 msgctxt "#30158"
 msgid "Set as Watch Later"
-msgstr ""
+msgstr "Ställ in som Se senare"
 
 msgctxt "#30159"
 msgid "Remove as History"
-msgstr ""
+msgstr "Ta bort som historik"
 
 msgctxt "#30160"
 msgid "Remove as Watch Later"
-msgstr ""
+msgstr "Ta bort som Se senare"
 
 msgctxt "#30161"
 msgid "History"
-msgstr ""
+msgstr "Historik"
 
 msgctxt "#30162"
 msgid "Watch later playlist configured"
@@ -1043,7 +1043,7 @@ msgstr ""
 
 msgctxt "#30254"
 msgid "Sign In"
-msgstr ""
+msgstr "Logga in"
 
 msgctxt "#30255"
 msgid "InputStream Adaptive is required and appears to be disabled. Would you like to enable InputStream Adaptive now?"
