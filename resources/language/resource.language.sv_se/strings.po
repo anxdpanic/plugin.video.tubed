@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: STRINGS\n"
 "Report-Msgid-Bugs-To: translations@kodi.tv\n"
 "POT-Creation-Date: 2016-09-18 00:54+0000\n"
-"PO-Revision-Date: 2025-04-07 16:55+0000\n"
+"PO-Revision-Date: 2025-04-08 15:12+0000\n"
 "Last-Translator: Daniel Nylander <daniel@danielnylander.se>\n"
 "Language-Team: Swedish <https://kodi.weblate.cloud/projects/kodi-add-ons-video/plugin-video-tubed/sv_se/>\n"
 "Language: sv_se\n"
@@ -91,31 +91,31 @@ msgstr "Ange din sökterm"
 
 msgctxt "#30016"
 msgid "Go to %s and enter the following code:"
-msgstr ""
+msgstr "Gå till %s och ange följande kod:"
 
 msgctxt "#30017"
 msgid "New user..."
-msgstr ""
+msgstr "Ny användare..."
 
 msgctxt "#30018"
 msgid "Rename user..."
-msgstr ""
+msgstr "Byt namn på användare..."
 
 msgctxt "#30019"
 msgid "Remove user..."
-msgstr ""
+msgstr "Ta bort användare..."
 
 msgctxt "#30020"
 msgid "New Username"
-msgstr ""
+msgstr "Nytt användarnamn"
 
 msgctxt "#30021"
 msgid "Remove User"
-msgstr ""
+msgstr "Ta bort användare"
 
 msgctxt "#30022"
 msgid "Removing %s, are you sure?"
-msgstr ""
+msgstr "Tar bort %s. Är du säker?"
 
 msgctxt "#30023"
 msgid "Uploads"
@@ -123,7 +123,7 @@ msgstr "Uppladdningar"
 
 msgctxt "#30024"
 msgid "You are about to sign out, are you sure?"
-msgstr ""
+msgstr "Du är på väg att logga ut. Är du säker?"
 
 msgctxt "#30025"
 msgid "Categories"
@@ -131,11 +131,11 @@ msgstr "Kategorier"
 
 msgctxt "#30026"
 msgid "Remove..."
-msgstr ""
+msgstr "Ta bort..."
 
 msgctxt "#30027"
 msgid "Clear history"
-msgstr ""
+msgstr "Töm historik"
 
 msgctxt "#30028"
 msgid "General"
@@ -143,23 +143,23 @@ msgstr "Allmänt"
 
 msgctxt "#30029"
 msgid "Quality"
-msgstr ""
+msgstr "Kvalitet"
 
 msgctxt "#30030"
 msgid "Choose the maximum playback quality for videos and live content"
-msgstr ""
+msgstr "Välj maximal uppspelningskvalitet för videor och liveinnehåll"
 
 msgctxt "#30031"
 msgid "Limit to 30 fps"
-msgstr ""
+msgstr "Begränsa till 30 bilder/s"
 
 msgctxt "#30032"
 msgid "Limit playback quality to 30 fps or less"
-msgstr ""
+msgstr "Begränsa uppspelningskvaliteten till 30 bilder/s eller mindre"
 
 msgctxt "#30033"
 msgid "HDR"
-msgstr ""
+msgstr "HDR"
 
 msgctxt "#30034"
 msgid "Use the best matching HDR streams for videos"
@@ -1031,15 +1031,15 @@ msgstr ""
 
 msgctxt "#30251"
 msgid "Accept"
-msgstr ""
+msgstr "Acceptera"
 
 msgctxt "#30252"
 msgid "Decline"
-msgstr ""
+msgstr "Neka"
 
 msgctxt "#30253"
 msgid "Privacy Policy"
-msgstr ""
+msgstr "Integritetspolicy"
 
 msgctxt "#30254"
 msgid "Sign In"
@@ -1047,7 +1047,7 @@ msgstr "Logga in"
 
 msgctxt "#30255"
 msgid "InputStream Adaptive is required and appears to be disabled. Would you like to enable InputStream Adaptive now?"
-msgstr ""
+msgstr "InputStream Adaptive är obligatoriskt och verkar vara inaktiverat. Vill du aktivera InputStream Adaptive nu?"
 
 msgctxt "#30256"
 msgid "Settings"
@@ -1055,12 +1055,12 @@ msgstr "Inställningar"
 
 msgctxt "#30257"
 msgid "No entries found"
-msgstr ""
+msgstr "Inga poster hittades"
 
 msgctxt "#30258"
 msgid "v3 Data API Client"
-msgstr ""
+msgstr "v3 Data API-klient"
 
 msgctxt "#30259"
 msgid "YouTube-TV API Client"
-msgstr ""
+msgstr "YouTube-TV API-klient"
